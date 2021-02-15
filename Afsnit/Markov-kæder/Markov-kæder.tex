@@ -1,0 +1,235 @@
+\section{Markov-kæder}
+Markov-kæder er en stokastisk proces med en bestemt \textbf{afhængighedsstruktur}. For Markov-kæder gælder det at sandsynligheden for en tilfældig variabel til indekset $n+1$ afhænger kun af udfaldet at den tilfældige variabel indekset $n$. Dette er formuleret i følgende definition.
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{Markov egenskaben} %Ny definition
+\newline
+Lad $\mathbf{X}=(X_n:n\geq 0)$ være en sekvens at diskrete tilfældige variabler, som tager værdier i en mængde $S$.
+Sekvensen $\mathbf{X}$ en \textit{Markov-kæde}, hvis den opfylder \textit{Markov egenskaben}
+\begin{align*}
+    P(X_{n+1} = j | X_0 = i_0, \cdots, X_{n-1} = i_{n-1}, X_n = i_n) =  P(X_{n+1} = j | X_n = i_n)
+\end{align*}
+for alle $n\geq 0$, samt $i, i_0, i_1, \cdots i_{n+1}$ i $S$.
+Markov-kæden kaldes homogen, hvis den betingede sandsynlighed, $P(X_{n+1}=j|X_n=i)$ ikke afhænger af $n$ for alle $i,j\in S$.
+\end{defn}
+\end{minipage}
+
+I ovenstående definition, siges $X_n$ at være \textit{tilstanden} af kæden til tiden $n$, hvoraf tilstandsrummet, $S$ både kan være endelig og tællelig uendelig. 
+I de følgende afsnit antages alle Markov-kæder at være homogene.
+
+
+%Hvis sandsynligheden, $P(X_{n+1}=j|X_n=i)=P(X_{n}=j|X_{n-1}=i)$, så er Markov-kæden \textit{tids-homogen}. Altså, afhænger den kun af $i,j$, men ikke $n$. 
+
+
+\subsection{Overgangssandsynlighed}
+\textit{Overgangssandsynligheden} for en Markov-kæde noteres i dette projekt ved $$p_{ij}=P(X_{n+1}=j|X_n=i)$$
+hvor $p_{ij}$ beskriver sandsynligheden for at nå fra tilstanden i $i$ til tilstanden i $j$.\\
+Følgende korrollar omhandler disse mængder:
+\begin{enumerate}[label=(\alph*)]
+    \item \textit{Overgangsmatricen} er givet ved $P=(p_{ij}:i,j\in S)$
+    \item \textit{Begyndelsesfordelingen}, $\bm{\lambda}=(\lambda_i:i\in S)$, hvor $\lambda_i=P(X_0=i)$.
+\end{enumerate}
+
+\begin{minipage}\textwidth
+\begin{kor} \textbf{} %Ny proposition
+\newline
+\begin{enumerate}[label=(\alph*)]
+    \item Vektoren, $\bm{\lambda}$ er en fordeling, hvis $\lambda_i\geq 0$ for $i\in S$ og $\sum_{i\in S}\lambda_i=1$.
+    \item Matricen, $P=(p_{ij})$ er en overgangsmatrice hvis 
+    \begin{enumerate}[label=(\roman*)]
+    \item $p_{ij}\geq0$ for $i,j\in S$ og
+    \item $\sum_{j\in S}p_{ij}=1$ for $i\in S$, sådan at rækkerne i $P$ summer henholdsvist til $1$. 
+    \end{enumerate}
+\end{enumerate}
+\end{kor}
+\end{minipage}
+\begin{bev} \textbf{} %Nyt bevis
+\newline
+For ethvert $i$ og $j$ er $\lambda_i$ og $p_{ij}$ frekvensfunktioner, hvorfor det følger af \autoref{prop:frekvensfunktion}, at 
+de begge er positive, samt at summen over tilstandsrummet er 1.
+\end{bev}
+
+\begin{minipage}\textwidth
+\begin{thmx} \textbf{} %Ny sætning
+\newline
+Lad $\bm{\lambda}$ være en fordeling og $P$ - en overgangsmatrice. Den tilfældige sekvens, $\mathbf{X}=(X_n:n\geq0)$ er en Markov-kæde med begyndelsesfordelingen $\bm{\lambda}$ og overgangsmatricen, $P$ hvis og kun hvis
+\begin{align}\label{markov-kæde-hovedsætning}
+    P(X_0=i_0,X_1=i_1,\dots, X_n=i_n)=\lambda_{i_0}p_{i_0i_1}\cdots p_{i_{n-1}i_n}
+\end{align}
+for alle $n\geq0$ og $i_0,i_1,\dots,i_n\in S$.
+\end{thmx}
+\end{minipage}
+\begin{bev}
+Lad $A_n=\{X_n=i_n\}$ sådan at $\bm A_n=\bigcap_0^n A_n$. Så kan \eqref{markov-kæde-hovedsætning} omskrives til
+\begin{align}\label{omskrivning}
+    P(\bm A_n)=\lambda_{i_0}p_{i_0i_1}\cdots p_{i_{n-1}i_n}
+\end{align}
+Antag, at $\bm X$ er en Markov-kæde med begyndelsesfordeling, $\lambda$ og overgangsmatrice, $P$. Der ønskes at bevise \eqref{omskrivning} ved induktion for $n$. Tilfældet ved $n=0$ er trivielt. Der antages derfor nu, at $N\geq1$ sådan at $n<N$. Så gælder, at
+\begin{align*}
+    P(\bm A_N)&=P(\bm A_{N-1})P(A_N|\bm A_{N-1})\\
+    &=P(\bm A_{N-1})P(A_N|A_{N-1})\\
+\end{align*}
+Eftersom der per definition gælder, at
+$P(A_N|A_{N-1})=p_{i_{N-1}i_N}$, er induktionsskridtet færdigt. 
+Antag, at \eqref{omskrivning} holder for alle $n$ og sekvenser $(i_m)$. Ved at lade $n=0$ indses det, at begyndelsesfordelingen er givet ved $P(X_0=i_0)=\lambda_{i_0}$. Det følger af \eqref{omskrivning}, at
+\begin{align*}
+    P(A_{n+1}|\bm A_n)&=\frac{P(\bm A_{n+1})}{P(\bm A_n)}\\
+    &=p_{i_ni_{n+1}}
+\end{align*}
+Eftersom dette ikke afhænger af tilstandende, $i_0,i_1,\dots,i_{n-1}$, har det konsekvensen, at $\bm X$er en homogen Markov-kæde med overgangsmatricen $P$.
+
+\end{bev}
+
+Det er muligt at visualisere en Markov-kæde som en graf kaldet en \textit{overgangsgraf}. 
+
+Nedenstående eksempel, \autoref{eks:overgangsmatrice}, illustrerer brugen af overgangsgrafer og overgangsmatricer.
+
+\begin{eks}\textbf{} \label{eks:overgangsmatrice}%Nyt eksempel
+\newline
+Et bestemt gen i en plante har to alleler, $A$ og $a$. Denne genotype kan dermed være $AA, Aa$ eller $aa$, altså er tilstandsrummet $S = \{AA, Aa, aa\}$. Antag, at en plante krydses med sig selv og ét afkom bliver valgt, som herefter krydses med sig selv og så videre. Dette er en Markov-kæde, da afkommet kun afhænger at den forgående plante. 
+
+Der gælder, at afkommet af $AA$ og $aa$ altid er sig selv. For gentypen $Aa$ er sandsynligheden for at afkommet har gentypen $Aa$, $\frac{1}{2}$, $AA$, $\frac{1}{4}$ og $aa$, $\frac{1}{4}$. Dermed ser overgangsgraf ud på følgende måde
+
+\begin{center}
+	\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=3cm]
+	\tikzstyle{every state}=[fill=white,draw=black,thick,text=black,scale=1]
+	\node[state]    (A)                     {$AA$};
+	\node[state]    (B)[right of=A]   {$Aa$};
+	\node[state]    (C)[right of=B]   {$aa$};
+	\path
+	(A) edge[loop left]			node{$1$}	(A)
+	(B) edge[bend left,below]	node{$1/4$}	(A)
+	(B) edge[loop above]		node{$\frac{1}{2}$}	(B)
+	(C) edge[bend left,below]	node{$1/4$}	(B)
+	(C) edge[loop right]		node{$1$}	(C);
+	%\node[above=0.5cm] (A){Patch G};
+	%\draw[red] ($(D)+(-1.5,0)$) ellipse (2cm and 3.5cm)node[yshift=3cm]{Patch H};
+	\end{tikzpicture}
+\end{center}
+Det er derudover muligt at lave overgangsmatricen hvor $p_{ij}$ er indgang $i,j$. 
+\begin{align*}
+    P=
+\begin{bmatrix}
+1 & 0 & 0 \\
+\frac{1}{4} & \frac{1}{2} & \frac{1}{4}\\
+0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+\end{eks}
+
+\subsection{Tidsdynamik af Markov-kæder}
+Det er muligt at analysere hvordan Markov-kæder udvikler sig over tid. Det er muligt ud fra kendte sandsynligheder at beregne fremtidige sandsynligheder. Overgangsmatricen består af $p_{ij}$ som er \textit{et-trins overgangssandsynligheder}, hvor man generelt kan skrive \textit{n'te-trins overgangssandsynligheder} som 
+\begin{align*}
+    p_{ij}^{(n)} = P ( X_n = j | X_0 = i)
+\end{align*}
+Hvorom det gælder at den n'te-trins overgangsmatrice er $P^{(n)}$. Denne matrice opfylder følgende
+
+\begin{minipage}\textwidth
+\begin{thmx} \textbf{Chapman-Kolmogorov ligningen}\label{sæt:chapman-kolmogrov} %Ny sætning
+\newline
+Det gælder at 
+\begin{align*}
+    p_{ij}^{(n+m)} = \sum_{k \in S} p_{ik}^{(n)}p_{kj}^{(m)}
+\end{align*}
+for alle $m,n$ og alle $i,j \in S$. Altså gælder $P^{(n+m)} = P^{(n)}P^{(m)} = P^{n}P^{m}$.
+\end{thmx}
+\end{minipage}
+
+\begin{bev} \textbf{} %Nyt bevis
+\newline
+Ud fra Loven og Total Sandsynlighed, \autoref{sæt:loven_om_total_sandsynlighed}, gælder det at
+\begin{align*}
+    p_{ij}^{(n+m)} &= P(X_{n+m} = j | X_0 = i) = \sum_{k \in S} P (X_{n+m} = j | X_n = k, X_0 = i)P(X_n=k|X_0=i)
+    \intertext{Af Markov egenskaben får dermed at}
+    p_{ij}^{(n+m)} &=\sum_{k \in S} P (X_{n+m} = j | X_n = k, X_0 = i)P(X_n=k|X_0=i) \\
+    &= \sum_{k \in S} P (X_{n+m} = j | X_n = k)P(X_n=k|X_0=i) \\ 
+    &= \sum_{k \in S} p_{ik}p_{kj}
+\end{align*}
+Dermed er \autoref{sæt:chapman-kolmogrov} bevist.
+\end{bev}
+Når $P^{(n)}$ er bestem er det muligt bestemme Markov-kædens langsigtet adfærd. Dette gøres ved at bestemme
+\begin{align*}
+    \lim_{n \to \infty} P^{(n)}
+\end{align*}
+Hvis de asymptotisk sandsynligheder ikke afhænger af \textbf{?begyndelsestilstanden?} kaldes fordelingen på det givne tilstandsrum for en \textbf{\textit{grænsefordelling}}.
+
+\subsection{Klassifikation af tilstande}
+Når man skal analysere Markov-kæder er en vigtig del aat se på om tilstande kan "nå" hinanden eller ej. Derfor defineres følgende
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{Tilgængelighed} \label{def:tilgængelighed} %Ny definition
+\newline
+Hvis $p_{ij}^{(n)}>0$ for et givent $n$, siges tilstanden, $j$ at være \textit{tilgængeligt} fra tilstanden $i$. Dette noteres, $i\to j$. Hvis $i\to j$ og $j\to i$, siges det, at $i$ og $j$ \textit{kommunikerer}, hvilket noteres $i\leftrightarrow j$. 
+\end{defn}
+\end{minipage}
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{} %Ny definition
+\newline
+Hvis alle tilstande i $S$ kommunikerer med hinanden, siges Markov-kæden at være $ureducerbar$.
+\end{defn}
+\end{minipage}
+
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{} %Ny definition
+\newline
+Lad $i\in S$ være en tilstand og $\tau_i$ være antallet af skridt før kæden besøger $i$. Med andre ord:
+\begin{align*}
+    \tau_i=min\{n\geq1:X_n=i\}
+\end{align*}
+hvor $\tau_i=\infty$ hvis $i$ aldrig bliver besøgt. Hvis $P_i(\tau_i<\infty)=1$, siges tilstanden $i$ at være \textit{tilbagevendende} og hvis $P_i(\tau_i<\infty)<1$, siges den at være forbigående
+\end{defn}
+\end{minipage}
+
+
+
+\begin{minipage}\textwidth
+\begin{kor} \textbf{} %Nyt korollar
+\newline
+I en ureducerbar Markov-kæde er alle tilstande enten forbigående eller tilbagevendende.
+\end{kor}
+\end{minipage}
+
+\begin{minipage}\textwidth
+\begin{kor} \textbf{} %Nyt korollar
+\newline
+Lad S være endelig. En tilstand siges at være forbigående hvis og kun hvis der eksisterer en anden tilstand j således at $i \to j$ men $j \not\to i.$
+\end{kor}
+\end{minipage}
+
+\begin{minipage}\textwidth
+\begin{pro} \textbf{} %Ny proposition
+\newline
+Tilstanden, $i$ er
+\begin{align*}
+    \text{forbigående hvis }  &\sum_{n=1}^\infty p_{ii}^{(n)}<\infty\\
+    \text{tilbagevendende hvis } &\sum_{n=1}^\infty p_{ii}^{(n)}=\infty\\
+\end{align*}
+\end{pro}
+\end{minipage}
+
+
+\subsection{Stationære distributioner}
+
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{} %Ny definition
+\newline
+Lad $P$ være en overgangsmatrice for en Markov-kæde med tilstandsrummet, $S$. En sandsynlighedsdistribution, $\pi=(\pi_1,\pi_2,\dots)$ på $S$, som opfylder
+\begin{align*}
+    \pi P=\pi
+\end{align*}
+kaldes for en \textit{stationær distribution} på kæden. 
+\end{defn}
+\end{minipage}
+
+Indgangene i $\pi$ må dermed opfylde, at
+\begin{align*}
+    \pi_j=\sum_{i\in S}=p_{ij}\pi_i \text{ for alle } j\in S
+\end{align*}
+hvilket med betingelsen:
+\begin{align*}
+    \sum_{i\in S} \pi_i=1
+\end{align*}
+bestemmer den stationære distribution. 

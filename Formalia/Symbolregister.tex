@@ -1,0 +1,91 @@
+%Symbolregister
+
+% Symbolregisteret kan opdeles som set nedenfor, ved at indsætte \nomenclature[A]{$mit-symbol$}{forklaring} indsættes det under kategori A, kategori kan laves i preamble under symbolregister, hvis ikke et symbol får en kategori gives den "other".
+
+% Eksempel på et symbolregister:
+
+% A = Indledning/Problemanalyse/Problemformulering
+\nomenclature[A]{$a$}{Test}
+
+% B = Introduktion
+%Mængder
+\nomenclature[B,01]{$V$}{Et vektorrum}
+\nomenclature[B,01]{$\R$}{De reelle tal}
+\nomenclature[B,01]{$\R^n$}{De reelle tal med $n$ dimensioner}
+\nomenclature[B,01]{$\R^{n \times n}$}{De reelle tal, men med et sejt kryds}
+%Funktioner
+\nomenclature[B,02]{$\langle \m,\m \rangle$}{Prikprodukt}
+\nomenclature[B,02]{$\norm{\m}$}{Normen af en vektor}
+\nomenclature[B,02]{$\textbf{x}$}{Funktionsvektor i $\R^n$}
+\nomenclature[B,02]{$\norm{\m}_F$}{Frobeniusnormen af en reel matrice}
+%Tal
+\nomenclature[B,03]{$\textbf{u},\textbf{v}, \textbf{w}$}{Vektorer i $V$}
+\nomenclature[B,03]{$\textbf{0}$}{Nulvektoren i $V$}
+\nomenclature[B,03]{$\textbf{a}_i$}{$i$'te række i $A$}
+\nomenclature[B,03]{$\textbf{a}_j$}{$j$'te række i $A$}
+\nomenclature[B,03]{$\textbf{b}_j$}{$j$'te række i $B$}
+
+\nomenclature[B,03]{$x_k$}{$k$'te element i \textbf{x}}
+\nomenclature[B,03]{$\textbf{a}_k$}{$k$'te række i $A$}
+\nomenclature[B,03]{$c$}{Skalar i $\R$}
+\nomenclature[B,03]{$A,B$}{Matrice i $\R^{n \times n}$}
+%Diverse
+
+
+% C = Differentialligninger
+\nomenclature[C,01]{$\frac{d^nx}{dt^n}$}{Leibniz' notation for $n$'te afledte af $x$ med hensyn til $t$}
+\nomenclature[C,01]{$x^{(n)}$}{Lagrange notation for $n$'te afledte af $x$ med hensyn til $t$}
+% Mængder
+\nomenclature[C,02]{$I,J$}{Intervaller på $\R$}
+\nomenclature[C,02]{$C^n$}{Et rum med kontinuerte funktion}
+\nomenclature[C,02]{$C^0$}{Et andet rum med kontinuerte funktioner}
+\nomenclature[C,02]{$D_f$}{Definitionsmængde}
+\nomenclature[C,02]{$\R$}{De reelle tal}
+\nomenclature[C,02]{$\R^n$}{De reelle tal med $n$ dimensioner}
+% Funktioner
+\nomenclature[C,03]{$a(t), b(t)$}{Variable koefficienter i $\R$}
+\nomenclature[C,03]{$a,b$}{Konstante koefficienter i $\R$}
+\nomenclature[C,03]{$A(t)$}{Stamfunktion til $a(t)$}
+% Tal
+\nomenclature[C,03]{$t$}{Element i $I$}
+\nomenclature[C,03]{$f,g,h,q$}{Funktion}
+\nomenclature[C,03]{$n$}{Orden af differentialligning}
+\nomenclature[C,03]{$k,c$}{Skalar i $\R$}
+\nomenclature[C,03]{$s$}{Variabel anvendt ved variabelskift}
+%Diverse
+\nomenclature[C,04]{$x(t_0)=x_0$}{Begyndelsesbetingelse}
+\nomenclature[C,04]{$\phi(t)$}{Løsning til separabel differentialligning}
+\nomenclature[C,04]{$\textbf{x}(t)$}{Funktionsvektor }
+\nomenclature[C,04]{$A$}{Matrice i $\R^{n \times n}$}
+\nomenclature[C,04]{$\textbf{y}_1,\textbf{y}_2$}{Løsning til et inhomogent lineært system af differentialligninger}
+\nomenclature[B,04]{$\norm{A}_F$}{Frobeniusnormen af $A$}
+
+
+% \noncleture[BOGSTAV,VÆGT]{symbol}{symbolforklaring}
+% Hvor BOGSTAV betegner afsnittet den skal i og VÆGT betegner hvor den skal hen (01 er først og 0n er sidst)
+
+% D = Beregning a e^tA Hej får 9 fejl prøver lige at sætte preamble ind igen
+%wut Yessir 
+
+
+
+
+
+
+
+
+
+
+
+
+% E = Stabilitet
+
+
+% F = Problemløsning
+
+% P = Diverse
+
+
+\printnomenclature[2.5cm]
+
+% Ja præcis den her :))))))))))))

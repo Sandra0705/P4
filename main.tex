@@ -1,0 +1,29 @@
+\input{preamble.tex}
+
+\begin{document} 
+
+\input{structure/structure}
+
+%Indsæt her jeres dokumenter. Lav mapper under afsnit, som har jeres kapitelnavne, og indsæt herunder disse mapper jeres .tex dokumenter
+
+\chapter{Indledning} 
+    % Input indledningens main-fil her:
+    \input{Afsnit/Indledning/Indledning_main}
+
+\chapter{Sandsynlighed}\label{kapitel:sandsynlighed}
+\input{Afsnit/Sandsynlighed/Sandsynlighed.main}
+
+%\input{Afsnit/Sandsynlighed}
+
+\chapter{Markov-kæder}
+\input{Afsnit/Markov-kæder/Main_markov}
+
+\chapter{Bilag}
+    \input{Afsnit/Bilag/bilag_main}
+
+
+\cite{hoel1986introduction}
+\cite{kaas2008modern}
+\bibliography{Litteratur.bib}
+
+\end{document}
