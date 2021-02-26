@@ -1,11 +1,11 @@
 \section{Markov-kæder}
-Markov-kæder er en stokastisk proces med en bestemt \textbf{afhængighedsstruktur}. For Markov-kæder gælder det at sandsynligheden for en tilfældig variabel til indekset $n+1$ afhænger kun af udfaldet at den tilfældige variabel indekset $n$. Dette er formuleret i følgende definition.
+Markov-kæder er en stokastisk proces med en bestemt \textbf{\textit{afhængighedsstruktur}}. For Markov-kæder gælder, at sandsynligheden for en tilfældig variabel til indekset $n+1$ afhænger kun af udfaldet at den tilfældige variabel indekset $n$. Dette er formuleret i følgende definition.
 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Markov egenskaben} %Ny definition
 \newline
-Lad $\mathbf{X}=(X_n:n\geq 0)$ være en sekvens at diskrete tilfældige variabler, som tager værdier i en mængde $S$.
-Sekvensen $\mathbf{X}$ en \textit{Markov-kæde}, hvis den opfylder \textit{Markov egenskaben}
+Lad $\bm{X}=(X_n:n\geq 0)$ være en sekvens at diskrete tilfældige variabler, som tager værdier i en mængde $S$.
+Sekvensen $\bm{X}$ er en \textit{Markov-kæde}, hvis den opfylder \textit{Markov egenskaben}
 \begin{align*}
     P(X_{n+1} = j | X_0 = i_0, \cdots, X_{n-1} = i_{n-1}, X_n = i_n) =  P(X_{n+1} = j | X_n = i_n)
 \end{align*}
@@ -14,16 +14,29 @@ Markov-kæden kaldes homogen, hvis den betingede sandsynlighed, $P(X_{n+1}=j|X_n
 \end{defn}
 \end{minipage}
 
-I ovenstående definition, siges $X_n$ at være \textit{tilstanden} af kæden til tiden $n$, hvoraf tilstandsrummet, $S$ både kan være endelig og tællelig uendelig. 
+I ovenstående definition, siges $X_n$ at være \textit{tilstanden} af kæden til tiden $n$, hvoraf tilstandsrummet, $S$ både kan være endeligt og tællelig uendeligt. 
 I de følgende afsnit antages alle Markov-kæder at være homogene.
 
 
 %Hvis sandsynligheden, $P(X_{n+1}=j|X_n=i)=P(X_{n}=j|X_{n-1}=i)$, så er Markov-kæden \textit{tids-homogen}. Altså, afhænger den kun af $i,j$, men ikke $n$. 
 
-
 \subsection{Overgangssandsynlighed}
-\textit{Overgangssandsynligheden} for en Markov-kæde noteres i dette projekt ved $$p_{ij}=P(X_{n+1}=j|X_n=i)$$
-hvor $p_{ij}$ beskriver sandsynligheden for at nå fra tilstanden i $i$ til tilstanden i $j$.\\
+\begin{minipage}\textwidth
+\begin{defn}\textbf{Overgangssandsynligheden} %Ny definition
+\newline
+Lad $i, j \in S$. Så er overgangssandsynligheden for en Markov-kæde givet ved $$p_{ij}=P(X_{n+1}=j|X_n=i)$$
+\end{defn}
+\end{minipage}
+
+Overgangssandsynligheden, $p_{ij}$, beskriver sandsynligheden for at nå fra tilstanden i $i$ til tilstanden i $j$.
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{Overgangsmatrice} %Ny definition
+\newline
+Lad $p_{ij}$ for $i,j \in S$ være overgangssandsynligheden for en Markov-kæde. Så gælder det at matricen $T = [p_{ij}]$, er overgangsmatricen for Markov-kæden, hvor $p_{ij}$ er den $ij'te$ indgang i matricen.
+\end{defn}
+\end{minipage}
+
 Følgende korrollar omhandler disse mængder:
 \begin{enumerate}[label=(\alph*)]
     \item \textit{Overgangsmatricen} er givet ved $P=(p_{ij}:i,j\in S)$
@@ -34,7 +47,7 @@ Følgende korrollar omhandler disse mængder:
 \begin{kor} \textbf{} %Ny proposition
 \newline
 \begin{enumerate}[label=(\alph*)]
-    \item Vektoren, $\bm{\lambda}$ er en fordeling, hvis $\lambda_i\geq 0$ for $i\in S$ og $\sum_{i\in S}\lambda_i=1$.
+    \item Vektoren, $\bm{\lambda}$ er en begyndelsesfordeling, hvis $\lambda_i\geq 0$ for $i\in S$ og $\sum_{i\in S}\lambda_i=1$.
     \item Matricen, $P=(p_{ij})$ er en overgangsmatrice hvis 
     \begin{enumerate}[label=(\roman*)]
     \item $p_{ij}\geq0$ for $i,j\in S$ og
@@ -46,7 +59,7 @@ Følgende korrollar omhandler disse mængder:
 \begin{bev} \textbf{} %Nyt bevis
 \newline
 For ethvert $i$ og $j$ er $\lambda_i$ og $p_{ij}$ frekvensfunktioner, hvorfor det følger af \autoref{prop:frekvensfunktion}, at 
-de begge er positive, samt at summen over tilstandsrummet er 1.
+de begge er ikke-negative, samt at summen over tilstandsrummet er 1.
 \end{bev}
 
 \begin{minipage}\textwidth
@@ -59,7 +72,8 @@ Lad $\bm{\lambda}$ være en fordeling og $P$ - en overgangsmatrice. Den tilfæld
 for alle $n\geq0$ og $i_0,i_1,\dots,i_n\in S$.
 \end{thmx}
 \end{minipage}
-\begin{bev}
+\begin{bev} \textbf{}
+\newline
 Lad $A_n=\{X_n=i_n\}$ sådan at $\bm A_n=\bigcap_0^n A_n$. Så kan \eqref{markov-kæde-hovedsætning} omskrives til
 \begin{align}\label{omskrivning}
     P(\bm A_n)=\lambda_{i_0}p_{i_0i_1}\cdots p_{i_{n-1}i_n}
@@ -100,7 +114,7 @@ Der gælder, at afkommet af $AA$ og $aa$ altid er sig selv. For gentypen $Aa$ er
 	(A) edge[loop left]			node{$1$}	(A)
 	(B) edge[bend left,below]	node{$1/4$}	(A)
 	(B) edge[loop above]		node{$\frac{1}{2}$}	(B)
-	(C) edge[bend left,below]	node{$1/4$}	(B)
+	(B) edge[bend left,below]	node{$1/4$}	(C)
 	(C) edge[loop right]		node{$1$}	(C);
 	%\node[above=0.5cm] (A){Patch G};
 	%\draw[red] ($(D)+(-1.5,0)$) ellipse (2cm and 3.5cm)node[yshift=3cm]{Patch H};
@@ -137,7 +151,7 @@ for alle $m,n$ og alle $i,j \in S$. Altså gælder $P^{(n+m)} = P^{(n)}P^{(m)} =
 
 \begin{bev} \textbf{} %Nyt bevis
 \newline
-Ud fra Loven og Total Sandsynlighed, \autoref{sæt:loven_om_total_sandsynlighed}, gælder det at
+Ud fra Loven om total sandsynlighed, \autoref{sæt:loven_om_total_sandsynlighed}, gælder det at
 \begin{align*}
     p_{ij}^{(n+m)} &= P(X_{n+m} = j | X_0 = i) = \sum_{k \in S} P (X_{n+m} = j | X_n = k, X_0 = i)P(X_n=k|X_0=i)
     \intertext{Af Markov egenskaben får dermed at}
@@ -147,22 +161,23 @@ Ud fra Loven og Total Sandsynlighed, \autoref{sæt:loven_om_total_sandsynlighed}
 \end{align*}
 Dermed er \autoref{sæt:chapman-kolmogrov} bevist.
 \end{bev}
-Når $P^{(n)}$ er bestem er det muligt bestemme Markov-kædens langsigtet adfærd. Dette gøres ved at bestemme
+Når $P^{(n)}$ er bestemt er det muligt bestemme Markov-kædens langsigtet adfærd. Dette gøres ved at bestemme
 \begin{align*}
     \lim_{n \to \infty} P^{(n)}
 \end{align*}
-Hvis de asymptotisk sandsynligheder ikke afhænger af \textbf{?begyndelsestilstanden?} kaldes fordelingen på det givne tilstandsrum for en \textbf{\textit{grænsefordelling}}.
+Hvis de asymptotiske sandsynligheder ikke afhænger af \textbf{?begyndelsestilstanden?} kaldes fordelingen på det givne tilstandsrum for en \textbf{\textit{grænsefordelling}}.
 
 \subsection{Klassifikation af tilstande}
-Når man skal analysere Markov-kæder er en vigtig del aat se på om tilstande kan "nå" hinanden eller ej. Derfor defineres følgende
-
+Når Markov-kæder skal analyseres, er en vigtig del at se på om tilstande kan "nå" hinanden eller ej. Derfor defineres følgende.\\
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Tilgængelighed} \label{def:tilgængelighed} %Ny definition
 \newline
-Hvis $p_{ij}^{(n)}>0$ for et givent $n$, siges tilstanden, $j$ at være \textit{tilgængeligt} fra tilstanden $i$. Dette noteres, $i\to j$. Hvis $i\to j$ og $j\to i$, siges det, at $i$ og $j$ \textit{kommunikerer}, hvilket noteres $i\leftrightarrow j$. 
+Hvis $p_{ij}^{(n)}>0$ for et givent $n$, siges tilstanden, $j$, at være \textit{tilgængeligt} fra tilstanden $i$. Dette noteres, $i\to j$. Hvis $i\to j$ og $j\to i$, siges det, at $i$ og $j$ \textit{kommunikerer}, hvilket noteres $i\leftrightarrow j$. 
 \end{defn}
 \end{minipage}
 
+Hvis en tilstand, $i \in S$, kun kommunikerer med én tilstand, $j \in S$, danner disse en \textit{kommunikerende klasse}. Det er muligt at alle tilstande i $S$ kommunikerer med hinanden, hvilket fører til følgende definition
+ 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{} %Ny definition
 \newline
@@ -170,45 +185,116 @@ Hvis alle tilstande i $S$ kommunikerer med hinanden, siges Markov-kæden at vær
 \end{defn}
 \end{minipage}
 
+Ud over at det er vigtigt at vide om tilstande kommunikerer er det også vigtigt at vide om man vender tilbage til en tilstand. I følgende definition klassificeres tilstande i forhold til om det er sikkert at man vender tilbage til den. 
 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{} %Ny definition
 \newline
-Lad $i\in S$ være en tilstand og $\tau_i$ være antallet af skridt før kæden besøger $i$. Med andre ord:
+Lad $i\in S$ være en tilstand, $\tau_i$ være antallet af skridt før kæden besøger $i$ og $P_i$ være sandsynlighedsfordellingen for kæden i begyndelsestilstanden $X_0=i$. Altså
 \begin{align*}
     \tau_i=min\{n\geq1:X_n=i\}
 \end{align*}
-hvor $\tau_i=\infty$ hvis $i$ aldrig bliver besøgt. Hvis $P_i(\tau_i<\infty)=1$, siges tilstanden $i$ at være \textit{tilbagevendende} og hvis $P_i(\tau_i<\infty)<1$, siges den at være forbigående
+hvor $\tau_i=\infty$ hvis $i$ aldrig bliver besøgt. Hvis $P_i(\tau_i<\infty)=1$, siges tilstanden $i$ at være \textit{tilbagevendende}. Hvis den ikke er tilbagevendende, siges den at være  \textit{forbigående}.
 \end{defn}
 \end{minipage}
 
-
+Altså gælder det at hvis en tilstand er tilbagevendende vil Markov-kæden med sikkerhed vende tilbage til tilstanden. Hvis tilstanden derimod er forbigående vil der være en sandsynlighed for, at Markov-kæden ikke vender tilbage til tilstanden. For ureducerbare Markov-kæder gælder følgende
 
 \begin{minipage}\textwidth
-\begin{kor} \textbf{} %Nyt korollar
+\begin{kor} \textbf{} \label{kor:enten_forbigå_eller_tilbagevend}%Nyt k
 \newline
 I en ureducerbar Markov-kæde er alle tilstande enten forbigående eller tilbagevendende.
 \end{kor}
 \end{minipage}
 
+\begin{bev} \textbf{} %Nyt bevis
+\newline
+Da Markov-kæden er ureducerbar gælder det at $i \leftrightarrow j$ for alle $i,j \in S$. Af \autoref{def:tilgængelighed} gælder det da at $i \to j$ og $j \to i$, og dermed eksisterer der $n,m$ således at
+\begin{align*}
+    p_{ij}^{(n)} > 0 \quad \text{ og } \quad p_{ji}^{(m)} > 0
+\end{align*}
+
+\end{bev}
+
+Det er herved muligt at konkluderer at alle tilstande er tilbagevendende eller forbigående hvis dette gælder for én tilstand. For et endeligt tilstandsrum er der givet følgende korollar
+
 \begin{minipage}\textwidth
-\begin{kor} \textbf{} %Nyt korollar
+\begin{kor} \textbf{} \label{kor:forbigående}%Nyt korollar
 \newline
 Lad S være endelig. En tilstand siges at være forbigående hvis og kun hvis der eksisterer en anden tilstand j således at $i \to j$ men $j \not\to i.$
 \end{kor}
 \end{minipage}
 
-\begin{minipage}\textwidth
-\begin{pro} \textbf{} %Ny proposition
-\newline
-Tilstanden, $i$ er
-\begin{align*}
-    \text{forbigående hvis }  &\sum_{n=1}^\infty p_{ii}^{(n)}<\infty\\
-    \text{tilbagevendende hvis } &\sum_{n=1}^\infty p_{ii}^{(n)}=\infty\\
-\end{align*}
-\end{pro}
-\end{minipage}
+%Af \autoref{kor:forbigående} fremgår det, at når en Markov-kæde går gennem en forbigående tilstand, er der en sandsynlighed for, at kæden ikke vil gå tilbage igen.
 
+I et endeligt tilstandrum er det kun muligt for en Markov-kæde at være forbigående, hvis der er endnu en tilstand, der kan nåes, men som ikke har en rute tilbage. I en uendeligt tilstandsrum er det muligt, at der kun er forbigående tilstande, selvom de alle er kommunikerende. 
+
+For at bevise Proposition \ref{tilbagevendende}, introduceres følgende genererende funktioner. Lad $i,j\in S$ og
+$$p_{ij}=\sum_{n=0}^\infty p_{ij}(n)s^n, \quad F_{ij}(s)=\sum_{n=0}^\infty p_i(\tau_j=n)s^n$$
+Med konventionerne, $p_i(\tau_j=0)=0$ og $p_{ij}(0)=\delta_{ij}$ følger det, at \textit{Kronecker} deltaet defineres som
+\begin{align*}
+    \delta_{ij}=\begin{cases}1\ \text{hvis } i=j,\\0\ ellers\end{cases}
+\end{align*}
+
+
+\begin{lem}\label{overgangssandynlighed Kronecker}
+For $i,j\in S$ gælder, at
+\begin{align*}
+    p_{ij}(s)=\delta_{ij}+F_{ij}(s)p_{jj}(s),\quad s\in(-1,1]
+\end{align*}
+\end{lem}
+
+\begin{bev} %Nyt bevis
+Ved at betinge værdien af $\tau_j$,
+gælder ifølge Loven om Total Sandsynlighed, at
+\begin{align}\label{tau_j betinget}
+    p_{ij}(n)=\sum_{m=1}^\infty p_i(X_n=j|\tau_j=m)p_i(\tau_j=m), \quad n\geq 1
+\end{align}
+hvor $X_n$ er betinget af $\tau_j$.
+Summanden er $0$ for $m>n$, eftersom det første besøg til $j$ ikke har sket tiden $n$. For $m\leq n$ gælder, at
+\begin{align*}
+    p_i(X_n=j|\tau_j=m)=p_i(X_n=j|X_m=j, H)
+\end{align*}
+hvor $H=\{X_r\neq j \text{ for } 1\leq r <m\}$ er en hændelse defineret før tiden $m$.
+Det følger af antagelsen om homogenitet og den udvidede Markov egenskab, at
+\begin{align*}
+    p_i(X_n=j|\tau_j=m)=p(X_n=j|X_m=j)=p_j(X_{n-m}=j)
+\end{align*}
+Ved at indsætte dette i \eqref{tau_j betinget} fås
+\begin{align*}
+    p_{ij}(n)=\sum_{m=1}^n p_{jj}(n-m)p_i(\tau_j=m), \quad n\geq 1
+\end{align*}
+Ved at multiplicere ligningen med $s^n$ og summe over $n\geq 1$ fås
+\begin{align*}
+    p_{ij}(s)-p_{ij}(0)=p_{jj}(s)F_{ij}(s)
+\end{align*}
+Dette beviser sætningen, eftersom $p_{ij}(0)=\delta_{ij}$.
+\end{bev}
+
+\begin{minipage}\textwidth
+\begin{thmx}\label{tilbagevendende} \textbf{} %Ny proposition
+\newline
+Tilstanden, $i$ er tilbagevendende, hvis
+\begin{align*}
+ \sum_{n=1}^\infty p_{ii}^{(n)}=\infty
+\end{align*}
+\end{thmx}
+\end{minipage}
+\begin{bev}
+Hvis $i=j$ følger det af \eqref{overgangssandynlighed Kronecker}, at
+\begin{align}\label{i=j}
+    p_{ii}(s)=\frac{1}{1-F_{ii}(s)} \text{ for } |s|<1
+\end{align}
+Der gælder ifølge Abel's lemma, at
+\begin{align*}
+    F_{ii}(s)\uparrow F_{ii}(1), \quad p_{ii}\uparrow\sum_{n=0}^\infty p_{ii}(n)
+\end{align*}
+Det følger af \eqref{i=j}, at
+\begin{align*}
+    \sum_{n=0}^\infty p_{ii}(n)=\infty \text{ hvis og kun hvis } F_{ii}(1)=1
+\end{align*}
+
+\end{bev}
 
 \subsection{Stationære distributioner}
 
@@ -216,9 +302,9 @@ Tilstanden, $i$ er
 \begin{minipage}\textwidth
 \begin{defn}\textbf{} %Ny definition
 \newline
-Lad $P$ være en overgangsmatrice for en Markov-kæde med tilstandsrummet, $S$. En sandsynlighedsdistribution, $\pi=(\pi_1,\pi_2,\dots)$ på $S$, som opfylder
+Lad $P$ være en overgangsmatrice for en Markov-kæde med tilstandsrummet, $S$. En sandsynlighedsdistribution, $\bm\pi=(\pi_1,\pi_2,\dots)$ på $S$, som opfylder
 \begin{align*}
-    \pi P=\pi
+    \bm\pi P=\bm\pi
 \end{align*}
 kaldes for en \textit{stationær distribution} på kæden. 
 \end{defn}
@@ -233,3 +319,4 @@ hvilket med betingelsen:
     \sum_{i\in S} \pi_i=1
 \end{align*}
 bestemmer den stationære distribution. 
+

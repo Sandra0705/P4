@@ -1,33 +1,16 @@
 
-$S = \{1,2,3\}$
-$\Sigma = \{\emptyset, \{ 1\}, \{ 2\}, \{ 3\},  \{ 1, 2\}, \{ 2,3 \}, \{ 1,3\}, S\}$
-\pagebreak
-Tilfældig variabel:\\
-En tilfældig variabel på $(S,\Sigma, P)$ er en funktion $X:S\to \R$ således at:\\
-$\forall x\in \R : \{s \in S: X(s)\leq x\} \in \Sigma$
+% $S = \{1,2,3\}$
+% $\Sigma = \{\emptyset, \{ 1\}, \{ 2\}, \{ 3\},  \{ 1, 2\}, \{ 2,3 \}, \{ 1,3\}, S\}$
+% \pagebreak
+% Tilfældig variabel:\\
+% En tilfældig variabel på $(S,\Sigma, P)$ er en funktion $X:S\to \R$ således at:\\
+% $\forall x\in \R : \{s \in S: X(s)\leq x\} \in \Sigma$
 
-Tilfældig diskret variabel:\\
-Billedet er en tællelig delmængde af $\R$\\
-$\forall x\in \R : \{s \in S: X(s) = x\} \in \Sigma$
+% Tilfældig diskret variabel:\\
+% Billedet er en tællelig delmængde af $\R$\\
+% $\forall x\in \R : \{s \in S: X(s) = x\} \in \Sigma$
 
 
-\begin{minipage}\textwidth
-\begin{defn}\textbf{Hændelsesrum}\\
-    Lad $S$ være et udfaldsrum for et eksperiment $\E$.
-    
-    Hændelsesrummet er givet ved potensmængden
-    $\Sigma = \{A:A\subseteq S\}$.
-\end{defn}
-\end{minipage}
-derved er hændelsesmængden givet ud fra alle mulige hændelser
-
-\begin{minipage}\textwidth
-\begin{defn}\textbf{Sandsynlighedsrum}\\
-    Lad $S$ være et udfaldsrum, $A$ et hændelsesrum til $S$ og $P$ et sandsynlighedsmål over hændelsesrummet. 
-    
-    Så er sandsynlighedsrummet givet ved tretupelen $(S, \Sigma, P)$ for et eksperiment, $\E$.
-\end{defn}
-\end{minipage}
 
 
 % \begin{minipage}\textwidth
@@ -49,11 +32,13 @@ derved er hændelsesmængden givet ud fra alle mulige hændelser
 % \end{minipage}
 
 
-En tilfældig variabel, $X$, er en reel variabel som får sin værdi fra et eksperiment. 
-Tilfældige variabler kan udtrykkes som reelle funktioner, der tildeler reelle værdier til de mulige udfald af eksperimentet.
+En \textit{tilfældig variabel}, $X$, er en reel variabel, som antager sin værdi fra et tilfældigt eksperiment, $\E$. 
+Tilfældige variabler kan udtrykkes som reelle funktioner, der tildeler reelle værdier til eksperimentets mulige udfald.
 
 %En tilfældig variabel er en variabel, $X$, der først tildeles en værdi efter eksperimentet er udført. 
-Da $X$ først antager en værdi efter eksperimentet, er det kun muligt at beskrive billedet af $X$, som er mængden af mulige værdier $X$ kan antage, samt de  tilhørende sandsynligheder. Billedet af $X$ betegnes $range(X)$ og de tilhørende sandsynligheder kaldes for \textit{fordelingen} af $X$.
+%Da $X$ først antager en værdi efter $\E$, er det kun muligt at beskrive billedet af $X$,  som er mængden af mulige værdier, $X$ kan antage samt de tilhørende sandsynligheder. Billedet af $X$ betegnes $Range(X)$, og de tilhørende sandsynligheder kaldes for \textit{fordelingen} af $X$.
+
+Da $X$ først antager en værdi efter $\E$, er det kun muligt at beskrive \textit{billedet} af $X$ samt de tilhørende sandsynligheder. Billedet af $X$ betegnes $\text{Range}(X)$ og er mængden af mulige værdier, $X$ kan antage. Mængden af de tilhørende sandsynligheder kaldes for \textit{fordelingen} af $X$.
 
 % Før eksperimentet er det muligt at beskrive mængden af mulige værdier, $range(X)$, og de tilhørende sandsynligheder, \textit{fordelingen} af $X$.
 % Det betyder, at det er muligt at beskrive billedet af $X$, men ikke hvilken værdi $X$ antager.
@@ -61,19 +46,18 @@ Da $X$ først antager en værdi efter eksperimentet, er det kun muligt at beskri
 \begin{minipage}\textwidth
 \begin{defn}\label{def:Diskret_tilfældig_variabel}\textbf{Diskret tilfældig variabel} %Ny definition
 \newline
-Lad $(S, \Sigma, P)$ være et sandsynlighedsrum. En diskret tilfældig variabel $X$ er en reel funktion på sandsynlighedsrummet $X:S\to \R$ således, at
+Lad $(\Omega, \F, P)$ være et sandsynlighedsrum. En diskret tilfældig variabel, $X:\Omega \to \R$, er en reel funktion på sandsynlighedsrummet således, at
 %
 \begin{align}
-    &\text{$Range(X)$ er en tællelig delmængde af $\R$ } \quad \text{og}\label{eq:def_diskretitet_betingelsen}\\
-    &\forall x\in \R: \{s\in S: X(s)=x\}\in % S\cup \{\emptyset\} \subseteq 
-    \Sigma\label{eq:def_tilfældig_variabel}
+    &\text{$\text{Range}(X)$ er en tællelig delmængde af $\R$ } \quad \text{og}\label{eq:def_diskretitet_betingelsen}\\
+    &\forall x\in \R: \{\omega\in \Omega: X(\omega)=x\}\in % S\cup \{\emptyset\} \subseteq 
+    \F. \label{eq:def_tilfældig_variabel}
 \end{align}
 
 \end{defn}
 \end{minipage}
 
-
-At en funktion er diskret betyder, at dens billede er tællelig. 
+En funktions billede kan ligesom udfaldsrummet være endeligt, tællelig uendeligt og ikke-tællig uendelig. Det, at en funktion er diskret, betyder, at dens billede er tællelig. 
 I \autoref{def:Diskret_tilfældig_variabel} er
 \eqref{eq:def_diskretitet_betingelsen} betingelsen, der sikrer, at $X$ er en diskret funktion.
 
@@ -89,175 +73,381 @@ I \autoref{def:Diskret_tilfældig_variabel} er
 
 % Af denne grund, vil vi finde sandsynligheden for at $X$ er en given værdi $x$. 
 
-%Det bemærkes, at $X$ antager værdien $x$ hvis og kun hvis resultatet af eksperimentet ligger i delmængden som afbilledes over i $x$ - altså delmængden $X^{-1}(x) = \{s\in S: X(s)=x\}$. Betingelse (2,2) postulerer at alle sådanne delmængder er hændelser, og da alle kombinationer af hændelser er i $\Sigma$, kan en tilsvarende sandsynlighed findes.
+%Det bemærkes, at $X$ antager værdien $x$ hvis og kun hvis resultatet af eksperimentet ligger i delmængden som afbilledes over i $x$ - altså delmængden $X^{-1}(x) = \{\omega\in S: X(s)=x\}$. Betingelse (2,2) postulerer at alle sådanne delmængder er hændelser, og da alle kombinationer af hændelser er i $\Sigma$, kan en tilsvarende sandsynlighed findes.
 
-Det bemærkes, at $X$ antager værdien $x$ hvis og kun hvis resultatet af eksperimentet, $\E$, ligger i en delmængde af $S$ som afbilledes over i $x$. Derved ligger resultatet af $\E$ i delmængden $X^{-1}(x) = \{s\in S: X(s)=x\} \subseteq S\cup \{\emptyset\}$, hvor det bemærkes, at  $X^{-1}(x)\subseteq S\cup \{\emptyset\} \subseteq \Sigma$.
-Betingelse \eqref{eq:def_tilfældig_variabel} gør derfor, at alle sådanne delmængder er elementer af hændelsesrummet, $\Sigma$, og derfor har en tilsvarende sandsynlighed, $P$.
+Det bemærkes, at $X$ antager værdien $x$, hvis og kun hvis resultatet af $\E$ er et element af delmængden af $\Omega$, som afbildes over i $x$. Derved ligger resultatet af $\E$ i delmængden $X^{-1}(x) = \{\omega\in \Omega: X(\omega)=x\} \subseteq \Omega$, hvor det bemærkes, at  $X^{-1}(x)\subseteq \Omega \in \F$.
+Betingelse \eqref{eq:def_tilfældig_variabel} medfører altså, at urbilledet, $X^{-1}(x)$, til ethvert $x$, er element af hændelsesrummet, $\F$, og har derfor en tilsvarende sandsynlighed, $P(\omega\in \Omega: X(\omega)=x)$.
 
-Da den diskret tilfældige variabel kan antage flere værdier, defineres en funktion, der bestemmer sandsynligheden for hvert udfald af den diskret tilfældige variabel.
-
-Fremadrettet vil $\{s\in S: X(s)=x\}$ blive betegnet $\{X=x\}$.
+Fremadrettet vil $\{\omega\in \Omega: X(\omega)=x\}$ blive betegnet $\{X=x\}$. Da den diskrete tilfældige variabel kan antage flere værdier, defineres en funktion, der bestemmer sandsynligheden for hvert udfald.
 
 \begin{minipage}\textwidth
-\begin{defn}\label{def:Frekvensfunktionen}\textbf{Frekvensfunktionen} %Ny definition
+\begin{defn}\label{def:Frekvensfunktionen}\textbf{Frekvensfunktion} %Ny definition
 \newline
     Lad $X$ være en diskret tilfældig variabel. % med range $\{x_k| k\in N \subseteq \N\}$. 
     Funktionen $p_X:\R\to [0,1]$ defineret ved
 %    
-    $$ p_X(x) = P(X = x)$$
+    $$ p_X(x) = P(X = x),$$
 %    
-    kaldes for \textit{frekvensfunktionen} eller \textit{pmf} til $X$.
+    kaldes for en \textit{frekvensfunktion} eller \textit{pmf} til $X$.
 \end{defn}
 \end{minipage}
 
-Frekvensfunktionen er derved sandsynligheden for at afbildingen $X$ antager værdien $x$.
-Hvis en hændelse ikke er element af $range(X)$ vil frekvensfunktionen give $0$. 
+Frekvensfunktionen er derved sandsynligheden for, at afbildingen $X$ antager værdien $x$.
+Hvis $x\not\in \text{Range}(X)$, gælder det, at $p_X(x) = 0$. 
+
 %$p_X(x)=0$ for $x\notin range(X)$.
 
-\begin{minipage}\textwidth
-\begin{pro}\label{prop:frekvensfunktion}\textbf{}\\
+\begin{pro}\label{prop:frekvensfunktion}\textbf{}
+\newline
     Lad $X$ være en diskret tilfældig variabel og lad $p_X$ være den tilhørende frekvensfunktion. Så gælder det, at
     %
    % En funktion $p_X$ er en frekvensfunktion for en diskret tilfældig variable $X$, %  med $range(X)=\{x_k | k\in N \subseteq \N\}$
     %hvor det gælder, at
     \begin{enumerate}
-        \item[(a)] $\displaystyle p_X(x)\geq 0$
+        \item $\displaystyle p_X(x)\geq 0$,
         %\item[(b)] $\displaystyle \sum_{k=1}^\infty p(x_k)=1$
-        \item[(b)] $\displaystyle \sum_{x\in \R} p_X(x)=1$
+        \item $\displaystyle \sum_{x\in \R} p_X(x)=1$,
     \end{enumerate}
     %hvor summen er endelig, hvis $range(X)$ er endelig.
     for alle $x\in \R$.
 \end{pro}
-\end{minipage}
+
 
 \begin{bev} \textbf{} %Nyt bevis
 \newline
-Lad $X$ være en diskret tilfældig variabel der kan antage værdier $x\in\R$ og lad $p_X(x)$ være en frekvensfunktion til $X$.
-\begin{itemize}
-    \item []\textbf{Bevis for punkt (a)}\\
+Lad $X$ være en diskret tilfældig variabel med $I=\text{Range}(X)$. $X$ kan antage værdier $x$, hvor $x\in\R$, og lad $p_X$ være en frekvensfunktion til $X$.
+
+\textbf{Bevis for punkt 1}\\
     % Antag først at, $x\in Range(X)$, så vil frekvensfunktionen være sandsynligheden for at $X$ giver hændelsen $x$. Fra \autoref{def:sandsynlighedsregningens_grundsætninger} punkt (a) fås, at enhver hændelse har en ikke-negative sandsynlighed, og derfor må $p_X(x) = P(X=x) \geq 0$. \\
     % Antag omvendt, at $x\notin Range(X)$, så vil det være en umulig hændelse, at $X$ giver hændelsen $x$. Da sandsynligheden af en umulig hændelse altid er 0, fås $p_X(x)=P(\emptyset) = 0$.\\
     % Derved er det bevist, at $p_X(x) \geq 0$
     % 
-    Da $x\in \R$, er frekvensfunktionen defineret over alle $x$ og angiver sandsynligheden for, at $X$ giver hændelsen $x$. Fra \autoref{def:sandsynlighedsregningens_grundsætninger} punkt (a) fås, at enhver hændelse har en ikke-negative sandsynlighed, og derfor må $p_X(x) = P(X=x) \geq 0$.
-    Derved er det bevist, at $p_X(x) \geq 0$
-    
-    \item[]\textbf{Bevis for punkt (b)}\\
-    Lad $ \sum_{x\in \R} p_X(x)$ være givet.
+    Frekvensfunktionen er defineret for alle $x\in \R$, og angiver sandsynligheden for, at $X=x$.
+    Fra \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 1 fås, at enhver hændelse har en ikke-negativ sandsynlighed, og derfor må $p_X(x) = P(X=x) \geq 0$.
+    Dermed er det bevist, at $p_X(x) \geq 0$.
+
+\textbf{Bevis for punkt 2}\\
+    Lad $\displaystyle\sum_{x\in \R} p_X(x)$ være givet.
     Summen omskrives ved brug af \autoref{def:Frekvensfunktionen}.
     \begin{align*}
-    \sum_{x\in \R} p_X(x) &=  \sum_{x\in \R} P(X=x)
-    \intertext{Dette omskrives ved brug af  \autoref{def:sandsynlighedsregningens_grundsætninger} punkt (c)}
+    \sum_{x\in \R} p_X(x) &=  \sum_{x\in \R} P(X=x).
+    \intertext{Dette omskrives ved brug af  \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3}
      \sum_{x\in \R} P(X=x)  &= P\left( \bigcup_{x\in \R} \{X=x\}\right)\\
-    &= P\left( \bigcup_{x\in \R} \{s\in S: X(s)=x\}\right) \\
-    &= P\left( \bigcup_{x\in Range(X)} \{s\in S: X(s)=x\}\right) + P\left( \bigcup_{x\notin Range(X)} \{s\in S: X(s)=x\}\right)\\
+    &= P\left( \bigcup_{x\in I} \{X=x\}\right) + P\left( \bigcup_{x\notin I} \{X=x\}\right)\\
      %P\left( S\cup \emptyset \right) = P(S) + P(\emptyset) 
-    &= P(S) + P(\emptyset)
+    &= P(\Omega) + P(\emptyset).
 \end{align*} 
-    Fra \autoref{def:sandsynlighedsregningens_grundsætninger} punkt (b) gælder det, at $P(S)=1$ og $P(\emptyset)=0$. Det er dermed bevist, at $\displaystyle \sum_{x\in \R} p_X(x)=1$.
-\end{itemize}
+    Fra \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 2 gælder det, at $P(\Omega)=1$ og $P(\emptyset)=0$. Det er dermed bevist, at $\displaystyle \sum_{x\in \R} p_X(x)=1$.
 \end{bev}
 
-Hvis frekvensfunktionen har den samme værdi for alle de mulige udfald er det en uniform fordeling. \\
-Frekvensfunktionen kan illustreres i et pindediagram, hvor søjlerne er de forskellige udfald, og højden af en given søjle repræsenterer sandsynligheden for udfaldet.
-\textbf{overvej eksempel der viser pindediagram/sim}
+Hvis frekvensfunktionen har den samme værdi for alle mulige udfald, siges mængden af sandsynligheder at være \textit{uniform fordelt}.\\
+Frekvensfunktionen kan illustreres i et pindediagram, hvor søjlerne repræsenterer de forskellige udfald, og højden af en given søjle repræsenterer sandsynligheden for udfaldet. Dette illustreres i \autoref{eks:frekvensfunktion_med_terninger}.
 
-\begin{eks} \textbf{} %Nyt eksempel
+\begin{eks} \textbf{}\label{eks:frekvensfunktion_med_terninger} %Nyt eksempel
 \newline
-I et eksperiment $\E$ kastes to fair terninger. \\ $S=\left\{\{1,1\},\{1,2\},\cdots,\{6,6\}\right\}$ hvor $|S|=6^2 = 36$
+Lad $\E$ være et tilfældigt eksperiment hvor der kastes to fair terninger. Lad udfaldsrummet være givet ved %$S=\left\{\{1,1\},\{1,2\},\cdots,\{6,6\}\right\}$
+$\Omega=\left\{(1,1),(1,2),\dots,(6,6)\right\}$ med kardinalitet, $|\Omega|=6^2 = 36$, som er antallet af de forskellige udfald.
 %$S = \{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\},$
-Lad $X$ være summen af de to terningkast og lad $X$ være givet således, at $Range(X)=\{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\}$.
-Sandsynlighederne for at ${X=x}$ kan findes med frekvensfunktionen, hvor  $p_X(2)=\frac{1}{36}, p_X(3)=\frac{2}{36}, \cdots, p_X(12)=\frac{1}{36}$ 
-
-
-    \begin{tikzpicture}
-        \begin{axis}[
-            symbolic x coords={0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
-            xtick=data
-          ]
-            \addplot[ybar,fill=lightgray] coordinates {
-                (0, 0.0000001)
-                (2, 0.028)
-                (3,  0.056)
-                (4,   0.083)
-                (5,   0.111)
-                (6,  0.139)
-                (7,   0.167)
-                (8,   0.139)
-                (9,  0.111)
-                (10,   0.083)
-                (11,   0.056)
-                (12,  0.028)
-            };
-        \end{axis}
-    \end{tikzpicture}
-    
-
-\begin{tikzpicture}
-\begin{axis}
-\addplot+[ycomb, color=black] plot coordinates
-	{(0,3) (1,2) (2,4) (3,1) (4,2)};
-\end{axis}
-\end{tikzpicture}
-
-\begin{tikzpicture}
-\begin{axis}[axis x line=bottom,
-	axis y line=left, ymax=0.2, ymin=0, xmax=14.5, xmin=0]
-\addplot [ybar, color=black, fill=lightgray] coordinates
-	{           (0, 0)
-	            (1, 0)
-                (2, 0.028)
-                (3,  0.056)
-                (4,   0.083)
-                (5,   0.111)
-                (6,  0.139)
-                (7,   0.167)
-                (8,   0.139)
-                (9,  0.111)
-                (10,   0.083)
-                (11,   0.056)
-                (12,  0.028)}
-                (13, 0)
-                (14, 0);
-\end{axis}
-\end{tikzpicture}
-
+Lad $X$ være summen af de to terningkast og være givet således, at $\text{Range}(X)=\{2, 3, \dots , 12\}$.
+%Lad $A=\{\text{Udfaldet af en terning}\}$ som har $\text{Range}(A)=\{1,2,3,4,5,6\}$. Så kan sandsynlighederne for $p_X$ beregnes som uafhængige sandsynligheder for, at $X$ antager en af værdierne i $\text{Range}(X)$, bestemmes ved frekvensfunktionen. For $p_X$ gælder det, at
+%Der er ét muligt udfald der summer til 2, (1,1). For, at summen af de to terninger er 3, er der mulighederne (1,2) og (2,1), mens der af symmetri følger, at der kun er et udfald der summer til 12. Derfor gælder det, at
+%For at summen af de to terninger er 2, er der kun et muligt udfald, (1,1). For summen 3 er der udfaldene (1,2) og (2,1), mens der af symmetri følger, at der kun er et udfald der summer til 12, (6,6). Derfor gælder det, at
+%Det følger af uafhængighed mellem terningerne, at
+%
+% Eftersom de to terninger er fair, følger det af klassisk sandsynlighed, at
 % \begin{align*}
-%     % p_X(2)=\frac{1}{36}; \quad  p_X(3)=\frac{2}{36}; \quad p_X(4)=\frac{3}{36}; \quad  p_X(5)=\frac{4}{36}; \quad
-%     % p_X(6)=\frac{5}{36}\\
-%     % p_X(7)=\frac{6}{36}\\
-%     % p_X(8)=\frac{5}{36}\\
-%     % p_X(9)=\frac{4}{36}\\
-%     % p_X(10)=\frac{3}{36}\\
-%     % p_X(11)=\frac{2}{36}\\
-%     % p_X(12)=\frac{1}{36}\\
+%     p_X(x)=\frac{|\text{gunstige udfald}|}{|\text{mulige udfald}|}
 % \end{align*}
+\begin{align*}
+%    p_X(x) = P(X = x)\\
+%\intertext{Der er ét muligt udfald der summer til 2, (1,1) dermed gælder det, at}
+    p_X(2)=\frac{1}{36}, 
+    p_X(3)=\frac{2}{36}, 
+    \dots, 
+    p_X(12)=\frac{1}{36}.
+\end{align*}
 
+
+%\begin{align*}
+%    p_X(2)=\frac{1}{36}, %p_X(3)=\frac{2}{36}, \dots, %p_X(12)=\frac{1}{36}
+%\end{align*}
+%
+I nedenstående pindediagram, \autoref{fig:eksempel_med_frekvensfunktion}, illustreres frekvensfunktionen for $\E$.  
+
+
+\begin{figure}[H] \centering
+\pgfplotsset{
+      standard/.style={
+         %width=0.85\linewidth, %størrelse på graf
+         axis x line=middle,
+         axis y line=middle,
+         enlarge x limits=0.15,
+         every axis x label/.style={at={(1,-0.01)},anchor=north west},
+         every axis y label/.style={at={(0,1.12)},anchor=north},
+         every axis plot post/.style={mark options={fill=white}}
+      }
+   }
+   \begin{tikzpicture}
+      \begin{axis}[
+      standard,
+      domain = 2:12,
+      samples = 11,
+      xlabel={$x$},
+      ylabel={$p_X(x)$},
+      ymin=0,
+      yticklabels={$1/36$, $2/36$, $3/36$, $4/36$, $5/36$, $6/36$},
+      ytick = {1, 2, 3, 4, 5, 6},
+      ymax=6.8]
+      \addplot+[ycomb,black,thick] {(6-abs(x-7))};
+      \end{axis}
+   \end{tikzpicture}
+\caption{Frekvensfunktion for summen af to terningkast}\label{fig:eksempel_med_frekvensfunktion}
+\end{figure}
+%
+I pindediagrammet repræsenterer søjlerne de enkelte udfald, $x\in \text{Range}(X)$, og højden repræsenterer den tilsvarende sandsynlighed.
+%I \autoref{fig:eksempel_med_frekvensfunktion} illustrerer højden af søjlerne de enkelte sandsynligheder for at $X$ antager værdien $x$.
 \end{eks}
 
 %$\Sigma = {{}, {1}, {2}, {3}, {4}, {5}, {6}, {1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6}, {2, 3}, {2, 4}, {2, 5}, {2, 6}, {3, 4}, {3, 5}, {3, 6}, {4, 5}, {4, 6}, {5, 6}, {1, 2, 3}, {1, 2, 4}, {1, 2, 5}, {1, 2, 6}, {1, 3, 4}, {1, 3, 5}, {1, 3, 6}, {1, 4, 5}, {1, 4, 6}, {1, 5, 6}, {2, 3, 4}, {2, 3, 5}, {2, 3, 6}, {2, 4, 5}, {2, 4, 6}, {2, 5, 6}, {3, 4, 5}, {3, 4, 6}, {3, 5, 6}, {4, 5, 6}, {1, 2, 3, 4}, {1, 2, 3, 5}, {1, 2, 3, 6}, {1, 2, 4, 5}, {1, 2, 4, 6}, {1, 2, 5, 6}, {1, 3, 4, 5}, {1, 3, 4, 6}, {1, 3, 5, 6}, {1, 4, 5, 6}, {2, 3, 4, 5}, {2, 3, 4, 6}, {2, 3, 5, 6}, {2, 4, 5, 6}, {3, 4, 5, 6}, {1, 2, 3, 4, 5}, {1, 2, 3, 4, 6}, {1, 2, 3, 5, 6}, {1, 2, 4, 5, 6}, {1, 3, 4, 5, 6}, {2, 3, 4, 5, 6}, {1, 2, 3, 4, 5, 6}}$
 
-\textit{Indtil videre} har hændelsen været på formen $\{X=k\}$, hvor $X$ har antaget én bestemt værdi, $k$. Dette kan udvides til hændelser på formen $\{X\leq k\}$, hvor $X$ antager værdier mindre eller lig $k$. Dette kan defineres som følgende funktion
+%Frekvensfunktionen bestemmer P(X=x), men herudover er det også muligt at bestemme P(X \leq x), hvor....
+I den forrige teori har hændelsen været på formen $\{X=x\}$, hvor $X$ har antaget én bestemt værdi, $x$. Herudover er det muligt at bestemme sandsynligheden for hændelser på formen $\{X\leq x\}$, altså hvor $X$ antager værdier mindre end eller lig $x$. Da $X$ er en diskret tilfældig variabel, er det kun nødvendigt at analysere elementer i $\text{Range}(X)$.
+%
+%Da $X$ er en diskret tilfældig variabel 
+%det er kun vigtigt at kigge på ting i range(X)
+%
+Lad $\mathcal{Y}_X = \{y \in \text{Range}(X) \ | \ y\leq x\}$.
+Mængden, hvor $X$ antager værdier mindre end eller lig $x$, kan udtrykkes ved $$\{X\leq x\}=\displaystyle\bigcup_{y \in \mathcal{Y}_X} \{X=y\}.$$
+%$\{X\leq x\}=\displaystyle\bigcup_{\substack{y \in \text{Range}(X): \\ y \leq x}} \{X=y\}$
+%Lad $x\in Range(X)$ og $y\in\R$. Så kan mængden, hvor $X$ antager værdier mindre end eller lig $x$ udtrykkes ved $\{X\leq x\}=\displaystyle\bigcup_{y\leq x}\{X=y\}$. 
+
+%$\{y \ | \ y\leq x\in Range(x)\}$
+% $Y = \{y|x\in Range(X)\land y\leq x\}$ 
+
+% $\{X\leq x\}=\displaystyle\bigcup_{y\in Y} \{X=y\}$.
+% Dette kan defineres som følgende funktion
+
+
+
+%Da den diskret tilfældige variabel kan antage flere værdier, defineres en funktion,
+
+%Funktionen, der bestemmer sandsynligheden for, at den diskret tilfældige variabel antager en værdi, der er mindre end eller lig en specifik værdi, defineres.
+
+Funktionen, der bestemmer $P(X \leq x)$, defineres som følgende
+
 
 \begin{minipage}\textwidth
-\begin{defn}\textbf{Kumulative fordelingsfunktion} %Ny definition
+\begin{defn}\textbf{Fordelingsfunktion}\label{Def:Kumulative_fordelingsfunktion} %Ny definition
 \newline
-Lad $X$ være en tilfældig variabel. Funktionen 
-$$F(x)=P(X\leq x), \quad x\in\R$$
-kaldes for den kumulative fordelingsfunktion (cdf) af $X$
+Lad $X$ være en diskret tilfældig variabel. Funktionen $F_X:\R \to [0,1]$, defineret ved
+$$F_X(x)=P(X\leq x), \text{ for } x\in\R,$$
+kaldes for \textit{fordelingsfunktionen} eller \textit{cdf} til $X$.
 \end{defn}
 \end{minipage}
 
+Fra \autoref{Def:Kumulative_fordelingsfunktion} og \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3 følger det, at
+%
+\begin{align}
+    F_X(x) &= P\left(X\leq x\right)=P\left(\bigcup_{y\in \mathcal{Y}} \{X=y\}\right) = \sum_{y\in \mathcal{Y}} P(X=y) = \sum_{y\in \mathcal{Y}} p_X(y), \label{eq:fordelingsfunktion_som_sum_af_frekvensfunktioner}
+\end{align}
+hvor $\mathcal{Y} = \{y\in \text{Range}(X) \ | \ y\leq x\}$.
+%
+Altså kan fordelingsfunktionen udtrykkes som en sum af frekvensfunktioner, hvilket illustreres i \autoref{eks:fordelingsfunktionen}.
+
+
+\begin{eks}\textbf{}\label{eks:fordelingsfunktionen}\\
+Lad $\E$ være givet som i \autoref{eks:frekvensfunktion_med_terninger}, hvor sandsynlighederne for $\{X=x\}$ blev bestemt.
+
+Sandsynlighederne for $\{X\leq x\}$ bestemmes ved brug af \autoref{eq:fordelingsfunktion_som_sum_af_frekvensfunktioner}. 
+\begin{align*}
+    F(2)&=\sum_{k=2}^2 p(k)=p(2)=\frac{1}{36},\\
+    F(3)&=\sum_{k=2}^3 p(k)=p(2)+p(3)=\frac{1}{36}+\frac{2}{36}=\frac{3}{36},\\
+    &\vdots\\
+    F(12)&=\sum_{k=2}^{12}p(k)=p(2)+p(3)+\cdots+ p(12)=\frac{1}{36}+\frac{2}{36}+\cdots+\frac{1}{36}=1.
+\end{align*}
+
+I nedenstående, \autoref{fig:eksempel_fordelingsfunktion_terningkast}, illustreres fordelingsfunktionen for $\E$. 
+
+%https://tex.stackexchange.com/questions/198383/drawing-cumulative-distribution-function-for-a-discrete-variable
+
+
+% \begin{figure}[H]
+% {\centering
+% \begin{tikzpicture}
+% \begin{axis}[axis y line=middle,
+%     axis x line=middle,
+%     clip=false,
+%     jump mark left,
+%     ymin=0,ymax=1,
+%     xmin=0, xmax=12,
+%     every axis plot/.style={very thick},
+%     discontinuous,
+%     table/create on use/cumulative distribution/.style={
+%         create col/expr={\pgfmathaccuma + \thisrow{f(x)}}   
+%     }
+% ]
+% \addplot [black] table [y=cumulative distribution, ]{
+% x f(x)
+% 0 0
+% 1 0
+% 2 1/36
+% 3 2/36
+% 4 3/36
+% 5 4/36
+% 6 5/36
+% 7 6/36
+% 8 5/36
+% 9 4/36
+% 10 3/36
+% 11 2/36
+% 12 1/36
+
+% };
+
+% \end{axis}
+% \end{tikzpicture}
+% \par}
+% \end{figure}
+
+
+% \begin{tikzpicture}
+% \begin{axis}[axis y line=middle,
+%     axis x line=middle,
+% 	title=Jumps at unbounded coords,
+% 	unbounded coords=jump]
+% 	\addplot coordinates {
+% 		(0,0) (10,50) (20,100) (30,200) 
+% 		(40,inf) (40, 50) (50,600) (60,800) (80,1000)
+% 	};
+% \end{axis}
+% \end{tikzpicture}
+
+%http://pgfplots.sourceforge.net/gallery.html
+\begin{figure}[H]
+    \centering
+    
+\begin{tikzpicture}
+\begin{axis}[axis y line=middle,
+    axis x line=middle,
+	%title=Fordelingsfunktion for summen af to terningkast,
+	unbounded coords=jump,
+	 xlabel={$x$},
+     ylabel={$F_X(x)$},
+     xmax=13.4,
+     ymax=1.15,
+     every axis x label/.style={at={(1,-0.01)},anchor=north west},
+     every axis y label/.style={at={(0,1.12)},anchor=north},
+    yticklabels={$0$,$9/36$, $18/36$,$27/36$, $1$},
+    ytick = {0.001, 9/36, 18/36, 27/36, 1}
+    ]
+	\addplot[color=black,mark=none, line width=0.3mm] coordinates {
+        (0,inf) (0,0) (2,0)
+        (2, inf) (2, 1/36) (3, 1/36)
+ 		(3,inf) (3, 3/36) (4,3/36)
+ 		(4,inf) (4, 6/36) (5,6/36)
+ 		(5,inf) (5, 10/36) (6,10/36)
+ 		(6,inf) (6, 15/36) (7,15/36)
+ 		(7,inf) (7, 21/36) (8, 21/36)
+        (8,inf) (8, 26/36) (9, 26/36)
+        (9,inf) (9, 30/36) (10,30/36)
+       (10,inf) (10, 33/36) (11, 33/36)
+       (11,inf) (11, 35/36) (12, 35/36)
+       (12, inf) (12, 1) (14, 1)
+    };
+    
+    \addplot[color=black,mark=*, only marks] coordinates {
+        (2, 1/36)
+        (3, 3/36)
+        (4, 6/36)
+        (5, 10/36)
+        (6, 15/36)
+        (7, 21/36)
+        (8, 26/36)
+        (9, 30/36)
+        (10, 33/36)
+        (11, 35/36)
+        (12, 36/36)
+    };
+    \addplot[color=black,mark=*, fill=white, only marks] coordinates {
+        (2, 0)
+        (3,1/36)
+ 		(4,3/36)
+        (5,6/36)
+ 		(6,10/36)
+ 		(7,15/36)
+ 		(8, 21/36)
+        (9, 26/36)
+        (10,30/36)
+        (11, 33/36)
+        (12, 35/36)
+    };
+\end{axis}
+\end{tikzpicture}
+\caption{Fordelingsfunktion for summen af to terningkast}\label{fig:eksempel_fordelingsfunktion_terningkast}
+\end{figure}
+
+%Gammel figur
+% \begin{figure}[H] \centering
+% \pgfplotsset{
+%       standard/.style={
+%          %width=0.85\linewidth, %størrelse på graf
+%          axis x line=middle,
+%          axis y line=middle,
+%          enlarge x limits=0.15,
+%          every axis x label/.style={at={(1,-0.01)},anchor=north west},
+%          every axis y label/.style={at={(0,1.12)},anchor=north},
+%          every axis plot post/.style={mark options={fill=white}}
+%       }
+%   }
+%   \begin{tikzpicture}
+%       \begin{axis}[
+%       standard,
+%       domain = 2:12,
+%       samples = 11,
+%       xlabel={$x$},
+%       ylabel={$p_X(x)$},
+%       ymin=0,
+%       yticklabels={$1/36$, $2/36$, $3/36$, $4/36$, $5/36$, $6/36$},
+%       ytick = {1, 2, 3, 4, 5, 6},
+%       ymax=6.8]
+%       \addplot+[ycomb,black,thick] {(6-abs(x-7))};
+%       \end{axis}
+%   \end{tikzpicture}
+% \caption{Frekvensfunktion for summen af to terningkast}\label{fig:eksempel_med_frekvensfunktion}
+% \end{figure}
+% x f(x)
+% 2 1/36
+% 3 3/36
+% 4 6/36
+% 5 10/36
+% 6 15/36
+% 7 21/36
+% 8 26/36
+% 9 30/36
+% 10 33/36
+% 11 35/36
+% 12 1
+
+Det kan konkluderes, at fordelingsfunktionen er monotont voksende og højrekontinuert. På grafen ses det også, at funktionen springer ved hver værdi, $X$ kan antage. Ethvert spring i fordelingsfunktionen repræsenterer værdien for frekvensfunktionen i punktet. 
+\end{eks}
+
+Det er en generel egenskab for fordelingsfunktionen, at $F_X(x_1)\leq F_X(x_2)$ for $x_1\leq x_2$. Dette gør sig gældende, da $\{X\leq x_1\}\subseteq \{X\leq x_2\}$ for $x_1\leq x_2$.
+
 %A real random variable is a real valued function from the possible outcome of a random experiment.
 
-\begin{minipage}\textwidth
-\begin{pro} \textbf{} %Ny proposition
-\newline
-Lad $X$ være en diskret tilfældig variabel med $range(X)=\{x_k | k\in N \subseteq \N\}$, frekvensfunktion, $p$, og kumulative fordelingsfunktion, $F$. Så gælder det, at
-\begin{enumerate}
-    \item $\displaystyle F(x)=\displaystyle\sum_{k:x_k\leq x}p(x_k), \quad x\in\R$
-    \item $\displaystyle p(x_k)=F(x_k)-\lim_{y\uparrow x_k} F(y), \quad k=1, 2,\cdots$
-    \item For $B\subseteq \R$, $\displaystyle P(X\in B)=\displaystyle\sum_{k:x_k\in B}p(x_k)$
-\end{enumerate}
-\end{pro}
-\end{minipage}
+% \begin{minipage}\textwidth
+% \begin{pro} \textbf{} %Ny proposition
+% \newline
+% Lad $X$ være en diskret tilfældig variabel med $Range(X)=\{x_k | k\in N \subseteq \N\}$, frekvensfunktion, $p$, og kumulative fordelingsfunktion, $F$. Så gælder det, at
+% \begin{enumerate}
+%     \item $\displaystyle F_X(x)=\displaystyle\sum_{k:x_k\leq x}p(x_k), \quad x\in\R$
+%     \item $\displaystyle p(x_k)=F_X(x_k)-\lim_{y\uparrow x_k} F(y), \quad k=1, 2,\cdots$
+%     \item For $B\subseteq \R$, $\displaystyle P(X\in B)=\displaystyle\sum_{k:x_k\in B}p(x_k)$
+% \end{enumerate}
+% \end{pro}
+% \end{minipage}
+
+% \begin{bev} \textbf{} %Nyt bevis
+% \newline
+
+% \end{bev}

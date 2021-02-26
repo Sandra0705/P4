@@ -1,0 +1,44 @@
+En investor ønsker at maksimere sin \textit{nytte} over en given periode.
+Lad tidshorisonten være givet ved $T$. Investorens opsparing til tiden $t$ betegnes ved $S_t$, sådan at $S_0$ er givet. Investoren kan enten forbruge eller lade pengene akkumulere til en rente, $r$. Lad $A_t$ være forbrug og indkomst være $I>0$. I dette afsnit konstrueres en MDP over disse beslutninger, med henblik på maksimering af nytte. Følgende tabel opsummerer disse variabler.
+
+
+\begin{table}[!hbt]
+\caption{Variabler for investeringsproblemet}
+\begin{tabular}{@{}l|l@{}}
+\toprule
+Variabler & Forklaring                     \\ \midrule
+$T,t$       & Tidspunkter                  \\
+$S_t$       & Opsparing til tiden t        \\
+$r$         & Rente                        \\
+$A_t$       & Forbrug                      \\
+$I$         & Indkomst                     \\
+$\xi_t$     & $\begin{cases}1\ \text{Hvis i arbejde}\\0\ \text{Ellers}\end{cases}$ \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+Opsparing til tiden $t+1$ er dermed givet ved
+\begin{align*}
+    S_{t+1}=(1+r)(S_t-A_t)+I\dot \xi_t
+\end{align*}
+
+
+\section{Basis Problemet}
+
+
+\begin{align*}
+    P(\xi_{t+1}=0|\xi_t=1)=1-P(\xi_{t+1}=1|\xi_t=1)=p\\
+    P(\xi_{t+1}=0|\xi_t=0)=1-P(\xi_{t+1}=1|\xi_t=0)=q
+\end{align*}
+
+\begin{align*}
+    \mathcal{A}_t=[0,S_t]
+\end{align*}
+
+\begin{align*}
+    E^\pi[\sum_{t=1}^T U_t(A_t)]
+\end{align*}
+
+

@@ -95,10 +95,10 @@
     \def\nomgroupname{Indledning}%
     \else
     \ifx#1B\relax
-    \def\nomgroupname{Introduktion}%
+    \def\nomgroupname{Sandsynlighed}%
     \else
     \ifx#1C\relax
-      \def\nomgroupname{Differentialligninger}%
+      \def\nomgroupname{Markov-kæder}%
     \else
     \ifx#1D\relax
       \def\nomgroupname{Beregning af $\bm{e^{tA}}$}%
@@ -185,6 +185,9 @@
 \tikzset{->-/.style={decoration={
   markings,
   mark=at position #1 with {\arrow{>}}},postaction={decorate}}} % Midtvejspil
+\usepackage{pgfplots, pgfplotstable}
+
+
 
 %---- pseudocode 
 \usepackage{algorithm}
@@ -273,7 +276,7 @@
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\tr}{\mathrm{tr }}
-\newcommand{\F}{\mathbb{F}}
+\newcommand{\F}{\mathcal{F}}
 \renewcommand{\L}{\mathcal{L}}
 \newcommand{\m}{\cdot}
 

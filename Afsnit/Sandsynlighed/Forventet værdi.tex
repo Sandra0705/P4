@@ -1,164 +1,255 @@
-For at introducere begrebet, \textit{forventet værdi}, bliver der gjort brug af \textit{gennemsnitlige værdier} af et eksperiment. De gennemsnitlige værdier er data, som kan give et billede af, hvordan eksperimentet i gennemsnit vil udfalde sig.
-Mere præcist fremgår det i følgende definition.
+
+
+
+%\textit{Den forventede værdi} afhænger af de gennemsnitlige værdier af et eksperiment. 
+
+Den \textit{forventede værdi} afhænger af de gennemsnitlige værdier for de diskrete tilfældige variabler i et tilfældigt eksperiment, $\E$. Den forventet værdi defineres som følgende.
+
+%De gennemsnitlige værdier af E er givet ved summen af værdierne divideret med 
+
+
 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Forventet værdi} \label{def:Forventetværdi} %Ny definition 
 \newline
-Lad X være en diskret tilfældig variabel med range $\{x_1,x_2,\ldots\}$ og  \textit{p} være pmf. Den forventede værdi af X er defineret ved
+Lad $X$ være en diskret tilfældig variabel med den tilhørende frekvensfunktion $p_X$. Den forventede værdi af $X$ er defineret ved
 \begin{align}
-E[X]=\sum_{k=1}^\infty x_k p(x_k)
+E[X]=\sum_{x\in \text{Range}(X)} x p_X(x),
 \end{align}
+hvis summen er absolut konvergent.
 \end{defn}
 \end{minipage}
 
+Den forventede værdi er et vægtet gennemsnit af de mulige værdier af $X$ med tilsvarende sandsynligheder som vægte. Den forventede værdi er derved et tal, der er beregnet ud fra fordelingen.
 
-
-Den forventede værdi er altså et vægtet gennemsnit af de mulige værdier af X med tilsvarende sandsynligheder som vægte. Det kan tænkes som værende et teoretisk rumlig gennemsnit over X's range, hvoraf der i det ovenstående er beskrevet, at det fortløbende gennemsnit er tidsgennemsnittet. Desuden fremgår, at den forventede værdi er et tal, der er beregnet ud fra fordelingen, og tidsgennemsnittet er beregnet fra eksperimentet og er dermed tilfældigt.
-\\
-\\
-I nogle tilfælde vil den tilfældige variabel være ikke-negativ, derved gælder følgende.
+\iffalse
+I nogle tilfælde er den tilfældige variabel ikke-negativ, derved gælder følgende.
 
 
 \begin{minipage}\textwidth
-\begin{thmx} \textbf{} %Ny sætning
+\begin{thmx} \textbf{} \label{sæt:forventet_værdi_x_større_end_nul}%Ny sætning
 \newline
-Lad X være en diskret tilfældig variabel med range $\{0,1,\ldots\}$, så gælder
+Lad $X$ være en diskret tilfældig variabel og 
+$x\in Range(X)$ hvor $x\geq0$. Så gælder
 \begin{align*}
-    E[X]=\sum_{n=0}^\infty P(X > n)
+    E[X]=\sum_{x\in Range(X)} P(X > x)
 \end{align*}
 \end{thmx}
 \end{minipage}
 
-
-\begin{bev} \textbf{}
-Lad $K=\sum_{n=1}^k 1$\\ Ved brug af definition \ref{Definition2.4.1} fås
+\begin{bev} \textbf{} 
+\newline
+Ved brug af \autoref{def:Forventetværdi} fås
 \begin{align*}
-    E[X]=\sum_{k=1}^\infty kP(X=k) = \sum_{k=1}^\infty \sum_{n=1}^k P(X=k)\\
-    = \sum_{k=1}^\infty \sum_{n=1}^\infty P(X=k) = \sum_{n=1}^\infty P(X \geq n)\\
-    = \sum_{n=0}^\infty P(X > n)\\
+    E[X]&=\sum_{k=1}^\infty k P(X=k)=\sum_{k=1}^\infty \sum_{n=1}^k P(X=k)\\
+    &=\sum_{n=1}^\infty \sum_{k=n}^\infty P(X=k)=\sum_{n=1}^\infty P(X\geq n)\\
+    &=\sum_{n=0}^\infty P(X>n)
     \end{align*}
+Dermed er \autoref{sæt:forventet_værdi_x_større_end_nul} bevist.
+
+$I = Range(X)$
+
+\begin{align*}
+    E[X]&=\sum_{x\in I} xP(X=x)=\sum_{x\in I} \sum_{n=1}^xP(X=x)\\
+    &=\sum_{x\geq1\in I} \sum_{1\geq x\geq n\in I}P(X=x)=\sum_{x\geq1\in I} P(X\geq x)\\
+    &=\sum_{x\in I} P(X>x)
+\end{align*}
+
 \end{bev}
+\fi
 
-
-Den forventede værdi kan opstilles som en funktion, heraf ses følgende
+Den forventede værdi af en funktion kan opstilles som følgende
 
 \begin{minipage}\textwidth
-\begin{pro} \textbf{Forventet værdi som funktion af diskret variabel} %Ny proposition
+\begin{pro} \textbf{Forventet værdi som funktion af diskret variabel} \label{prop:forventet_værdi_af_funktion} %Ny proposition
 \newline
-Lad X være en vilkårlig diskret variabel med $pmf\  p_X$, og $range\{x_1,x_2,\cdots\}$. Lad desuden $g: R \to R$ være en vilkårlig funktion. Så gælder det, at
+Lad $X$ være en diskret tilfældig variabel med den tilhørende frekvensfunktion $p_X$. Lad $g: \R \to \R$ være en vilkårlig funktion. Så gælder det, at
 \begin{align}
-    E[g(X)]=\sum_{k=1}^\infty g(x_k)p_X(x_k)
+    E\left[g(X)\right]=\sum_{x \in \text{Range}(X)} g(x)p_X(x),
 \end{align}
+hvis summen er absolut konvergent.
 \end{pro}
 \end{minipage}
 
 \begin{bev}\textbf{} %Nyt bevis
 \newline
-Lad $I = range\{x_1, x_2, \cdots\}$ og lad $Y = g(I)$. Så gælder
+Lad $I= \text{Range}(X)=\{x_1,x_2,\dots\}$ og $Y=g(X)$, så er $Y$ en diskret tilfældig variabel med $\text{Range}\left(g(I)\right)$ og har den tilhørende frekvensfunktion $p_Y(y)$. Der gælder desuden, at
+%Lad $I = Range\{X\}$ sådan at $Y = g(X)$ har afbildningen $g(I)$  Så gælder det, at
+% \begin{align*}
+%     p_Y(y)&= P(Y = y)= P(g(X)=y)\\ 
+% &=P(g(x_1)=y)+P(g(x_2)=y)\dots\\
+% &=P(x_1=g^{-1}(y))+P(x_2=g^{-1}(y))+\dots\\
+% &=\sum_{x\in g^{-1}(y)} P(X = x)=\sum_{x\in I:g(x)=y} p_X(x)
+% \end{align*}
+
+% Da urmængden, $g^{-1}(y)$, er defineret som mængden af $x$ sådan, at $g(x)=y$, kan summen omskrives til 
+
+% %g(I) = g(Range(X))=\{g(x_1),g(x_2),\dots \}
+
+% %y \in g(I)=
+
+ \begin{align*}
+     E[Y]&=\sum_{y \in g(I)} y p_Y(y) = \sum_{y \in g(I)} y P(Y=y)\\
+     &=\sum_{y \in g(I)} y\sum_{x\in I:g(x)=y} p_X(x)\\
+     &=\sum_{x \in I} g(x)p_X(x)
+ \end{align*}
+ 
+ \begin{align*}
+     \sum_{y\in g(I)} g(y)p_Y(y)
+ \end{align*}
+%Dermed er \autoref{prop:forventet_værdi_af_funktion} bevist. Ved at indsætte betydningen af $P(X=x)$ fås,
+\pagebreak
+\begin{align*}
+    \sum_{x\in I}g(x)p_X(x)=\sum_{x\in I}g(x)P(X=x)&=\sum_{x\in I} g(x) P(\{\omega: X(\omega)=x\})\\
+\intertext{Det følger af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3, at}
+    &=\sum_{x\in I} g(x)\sum_{\omega\in \{X=x\}} P(\{\omega\})\\
+\intertext{$g(x)$ multipliceres ind i den indre sum.}
+    &=\sum_{x\in I}\sum_{\omega\in\{X=x\}}g(x)P(\{\omega\})\\
+\intertext{Hvis $\omega\in\{X=x\}$, så er $g(X(\omega))=g(x)$.}
+    &=\sum_{x\in I} \sum_{\omega\in\{X=x\}} g(X(\omega))P(\{\omega\})\\
+\intertext{Mængderne, $\{X=x\}, \omega\in \Omega$ er disjunkte.} 
+    &=\sum_{\omega\in\bigcup_x\{X=x\}} g(X(\omega))P(\{\omega\})\\
+\intertext{Eftersom $\bigcup_{x\in I}=\Omega$, gælder, at}
+    &=\sum_{\omega\in\Omega} g(X(\omega))P(\{\omega\})\\
+\intertext{Dette er ækvivalent med}
+    &=\sum_{x\in I}g(x)p_X(x)
+    &=E[g(X)]\\
+    &=E[Y]
+\end{align*}
+
+\pagebreak
+\begin{align*}
+    \sum_{x\in I}g(x)p_X(x)=\sum_{x\in I}g(x)P(X=x)&=\sum_{x\in I} g(x) P(\{\omega: X(\omega)=x\})\\
+\intertext{Det følger af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3, at}
+    &=\sum_{x\in I} g(x)\sum_{\omega\in \{X=x\}} P(\{\omega\})\\
+\intertext{$g(x)$ multipliceres ind i den indre sum.}
+    &=\sum_{x\in I}\sum_{\omega\in\{X=x\}}g(x)P(\{\omega\})\\
+\intertext{Hvis $\omega\in\{X=x\}$, så er $g(X(\omega))=g(x)$.}
+    &=\sum_{x\in I} \sum_{\omega\in\{X=x\}} g(X(\omega))P(\{\omega\})\\
+\intertext{Mængderne, $\{X=x\}, \omega\in \Omega$ er disjunkte.} 
+    &=\sum_{\omega\in\bigcup_x\{X=x\}} g(X(\omega))P(\{\omega\})\\
+\intertext{Eftersom $\bigcup_{x\in I}=\Omega$, gælder, at}
+    &=\sum_{\omega\in\Omega} g(X(\omega))P(\{\omega\})\\
+\intertext{Dette er ækvivalent med}
+    &=\sum_{y\in g(I)}y p_Y(y)\\
+    &=E[Y]\\
+\end{align*}
+
 
 \begin{align*}
-    E(Y)&=\sum_{k=1}^\infty y_k p_Y(y_k)\\
-    &=\sum_{k=1}^\infty y_k p_X(x_k)\\
-    &=\sum_{k=1}^\infty g(x_k)p_X(x_k)
+    E[Y]=\sum_{y\in g(I)}y p_Y(y)\\
 \end{align*}
-%\begin{align*}
-%    E(Y)&=\sum_{y \in g(I)} y p_Y(y)\\
-%    &=\sum_{y\in g(I)} y \sum_{x\in I:g(x)=y} p_X(x)\\
-%    &=\sum_{x\in I} g(x)p_X(x)
-%\end{align*}
-%hvis den sidste konvergerer absolut
 \end{bev}
 
+\begin{align*}
+    P(\{\omega\}=P(\omega: X(\omega)=x)
+\end{align*}
 
-\section{Varians} %fra s. 104 osv.
-Det er tidligere nævnt, at den forventede værdi beskriver den samlede fordeling af et tilfældigt tal. Dette giver således et billede af $X$'s gennemsnitlige værdi, dertil indføres begrebet \textit{lokationsparameteret}. Den forventede værdi giver dog ikke information omkring $X's$ variabilitet. 
-Der tages udgangspunkt i følgende eksempel.
-\begin{eks}\textbf{}
-\newline
-Lad $X \sim  unif [w-0.01, w+0.01]$ og $Y  \sim unif[w-0.1, w+0.1]$ beskrive variabiliteten for et objekt. De forventede værdi vil i dette omfang give
-$$E[X] = w \ og \ E[Y] = w$$
-begge beskriver gennemsnittet, men det er klart, at $E[X]$ varierer tættere på gennemsnittet end $E[Y]$. Den forventede værdi giver altså ikke et billede af, hvor meget variation der vil være.\\
-\end{eks}
+\begin{align*}
+    P(Y=y)=P(g(X)=y)=P(X=g^{-1}(y))=P(\{\omega\})
+\end{align*}
 
-Ovenstående eksempel er motivation til begrebet, \textit{varians}. Varians beskriver således den variation, som X ligger i. Lad nu $\mu$ beskrive den forventede værdi for lokationen. Dertil vil gennemsnittet beskrives ved hjælp af $X - \mu$, hvor $|X-\mu|$ beskriver den generelle afvigelse fra gennemsnitsværdien, for et vilkårligt $\mu$.
-Dertil fremgår det af følgende definition
+
+ %fra s. 104 osv.
+%Den forventede værdi giver ikke information 
+ 
+%Måden hvorpå den forventede værdi er defineret giver den ikke nogen information om variation af en tilfældig variabel. Dette illustreres i følgende eksempel
+
+%Den forventede værdi afhænger af fordelingen. 
+
+%Den forventede værdi beskriver det vægtede gennemsnit af en tilfældig variabel. 
+
+%Det er tidligere nævnt, at den forventede værdi beskriver den samlede fordeling af et tilfældigt tal. 
+
+%Den forventede værdi giver dog ikke information omkring $X's$ variabilitet. 
+%Der tages udgangspunkt i følgende eksempel.
+
+%LadX∼unif[w−0.01,w+ 0.01]ogY∼unif[w−0.1,w+ 0.1]beskrive variabilitetenfor et objekt. 
+
+% \begin{eks}\textbf{}
+% \newline
+% Lad $X,Y$ være diskrete tilfældige variabler som er uniformt fordelt på henholdsvis $[w-0.01,w+0.01]$ og $[w-0.1, w+0.1]$. Den forventede værdi er givet ved
+% $$E[X] = w \ og \ E[Y] = w$$
+% begge beskriver gennemsnittet, men det er klart, at $E[X]$ varierer tættere på gennemsnittet end $E[Y]$. Den forventede værdi giver altså ikke et billede af, hvor meget variation der vil være.
+% \end{eks}
+
+Den forventede værdi giver ikke information om variationen for $X$. Derfor introduceres begrebet \textit{varians}, som beskriver variationen for $X$. Varians er defineret som følgende
 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Varians}\label{def:varians} %Ny definition
 \newline
-Lad X være en tilfældig variabel med forventet værdi $E[x]$. \textit{Variansen} af X er defineret ved
+Lad $X$ være en diskret tilfældig variabel med den forventede værdi, $E[X]$. Så er variansen givet ved
 \begin{align*}
-    Var[X]=E[(X-E[x])^2] \geq 0
+    \text{Var}[X]=E\left[\left(X-E[X]\right)^2\right].
 \end{align*}
 \end{defn}
 \end{minipage}
 
-Fremadrettet vil varians beskrives ved $\sigma^2$. Bemærk desuden at varians vil være større eller lig den gennemsnitlige værdi, hvor der i tilfældet med en højere varians vil medføre en større afvigelse.
+%Fremadrettet beskrives varians ved $\sigma^2$. 
 
+%Jo større variansen er jo mere varierer X omkring den forventede værdi.
+
+Bemærk desuden at variansen vil være større end eller lig $0$. En højere varians medfører en større gennemsnitlig afvigelse fra den forventede værdi. 
 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Standardafvigelse} %Ny definition
 \newline
-Lad X være en tilfældig variabel med varians $\sigma^2 = Var[X]$. Standardafvigelsen for X er defineret ved $\sigma = \sqrt{Var[X]}$
+Lad $X$ være en diskret tilfældig variabel med varians, $\text{Var}[X]$. Så er \textit{standardafvigelsen} for $X$ er givet ved 
+$$\sigma = \sqrt{\text{Var}[X]}.$$
 \end{defn}
 \end{minipage}
 
+%Der gælder desuden følgende korollar 
+%Variansen kan også beregnes som følgende
 
-Der gælder desuden følgende korollar 
+Af \autoref{def:varians} er variansen givet ved følgende
 
 \begin{minipage}\textwidth
-\begin{kor} \textbf{} %Nyt korollar
+\begin{kor} \textbf{}\label{kor:varians} %Nyt korollar
 \newline
+Lad $X$ være en diskret tilfældig variabel med den forventede værdi, $E[X]$. Så er variansen givet ved
 \begin{align*}
-    Var[X]=E[X^2] - (E[X])^2
+    \text{Var}[X]=E[X^2] - \left(E[X]\right)^2.
 \end{align*}
 \end{kor}
 \end{minipage}
 
 \begin{bev} \textbf{} %Nyt bevis
 \newline
-Der bliver gjort brug af \autoref{def:Forventetværdi}, hvor\\
-$$E[X] = \sum_{k=1}^\infty x_k p(x_k)$$.\\
-Der gælder desuden jævnført \autoref{def:varians}, at\\
-$$Var[X] = E[(X-E[X])^2]$$
-for diskrete variable gælder fra \textbf{prob 2.12}
+Lad $X$ være en diskret tilfældig variabel og $I=\text{Range}(X)$. For diskrete variable følger det af  \autoref{def:varians} og \autoref{prop:forventet_værdi_af_funktion}, at
 \begin{align*}
-    Var[X] &=\sum_{k=1}^\infty(x_k-E[X])^2 p(x_k)\\
-    &= \sum_{k=1}^\infty (x_k^2-2x_kE[X]+(E[X])^2)p(x_k)\\
-    &= \sum_{k=1}^\infty x_k^2p(x_k) - 2E[X] \sum_{k=1}^\infty x_k p(x_k) + (E[X])^2 \sum_{k=1}^\infty p(x_k)\\
-    &= E[X^2]-2(E[X])^2+(E[X])^2
-    = E[X^2] - (E[X])^2
+    \text{Var}[X] &=\sum_{x\in I}\left(x-E[X]\right)^2 p_X(x)\\
+    &= \sum_{x\in I} \left(x^2-2xE[X]+\left(E[X]\right)^2\right)p_X(x)\\
+    &= \sum_{x\in I} x^2p_X(x) - 2E[X] \sum_{x\in I} x p_X(x) + \left(E[X]\right)^2 \sum_{x\in I} p_X(x)\\
+    &= E[X^2]-2\left(E[X]\right)^2+\left(E[X]\right)^2
+    = E[X^2] - \left(E[X]\right)^2.
 \end{align*}
+Dermed er \autoref{kor:varians} bevist.
 \end{bev}
+I følgende eksempel beregnes variansen af et terningkast. 
 
-
-\begin{eks} \textbf{Varians for terningeslag} %Nyt eksempel
+\begin{eks} \textbf{} %Nyt eksempel
 \newline
-Lad X være et tilfældigt tal på en terning.\\
-Find $Var[X]$\\
-Pmf er givet ved $p(k) = \dfrac{1}{6}$, $k=1,2,\ldots, 6$, dette giver den forventede værdi\\
+Lad $\E$ være et tilfældigt eksperiment hvor der kastes en fair terning. Lad $X$ være en tilfældigt variabel til $\E$ og lad $p_X$ være frekvensfunktion til $X$.
+
+%Hvis frekvensfunktionen har den samme værdi for alle mulige udfald, siges mængden af sandsynligheder at væreuniform fordelt.
+
+Frekvensfunktionen er uniformt fordelt med $p_X=\frac{1}{6}$ og $\text{Range}(X)=\{1,2,3,4,5,6\}$.
+Dette giver den forventede værdi
 \begin{align*}
-    E[X]=\sum_{k=1}^6 kp(k) = \dfrac{1}{6}\sum_{k=1}^6 k=\dfrac{7}{2}\\
+    E[X]=\sum_{x=1}^6 xp_X = \dfrac{1}{6}\sum_{x=1}^6 x=\dfrac{7}{2}.
 \end{align*}
-Ved brug af sætning ... fås\\
-    
+Ved brug af \autoref{prop:forventet_værdi_af_funktion} fås
 \begin{align*}
-    E[X^2]=\sum_{k=1}^6 k^2 p(k) = \dfrac{1}{6} \sum_{k=1}^6 k^2 = \dfrac{91}{6}
+    E[X^2]=\sum_{x=1}^6  k^2 p(k) = \dfrac{1}{6} \sum_{x=1}^6 x^2 = \dfrac{91}{6}.
 \end{align*}
-Dertil bruges definitionen af varians\\
+Ud fra \autoref{kor:varians} bestemmes variansen
 \begin{align*}
-    Var[X]=E[X^2]-(E[X])^2=\dfrac{35}{12}
+    \text{Var}[X]  &=E[X^2]-\left(E[X]\right)^2\\
+            &=\frac{91}{6} - \left(\frac{7}{2}\right)^2 = \dfrac{35}{12}.
 \end{align*}
+Dermed er variansen for et terningkast bestemt til at være $\text{Var}[X] = \displaystyle \frac{35}{12}$.
 \end{eks}
-
-
-
-
-
-
-
-
-
 
 
 \iffalse

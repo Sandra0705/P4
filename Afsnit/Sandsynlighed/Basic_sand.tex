@@ -1,77 +1,99 @@
-To primære fortolkninger af sandsynlighed er, at en sandsynlighed er grænsen for den relative frekvenser eller en vis grad af tro. Ud over disse to fortolkninger er det muligt at formulere en mere matematisk præcis definition af hvad sandsynlighed er.
+%To primære fortolkninger af sandsynlighed er, at en sandsynlighed er grænsen for den relative frekvens eller en vis grad af tro. Ud over disse to fortolkninger er det muligt at formulere en matematisk definition af, hvad sandsynlighed er.
 
-For at kunne beskrive hvad en sandsynlighed mere matematisk præcis, skal begreber som \textit{tilfældighed}, \textit{udfaldsrummet} og \textit{hændelser} først beskrives.
 
-I en situation hvor der sker noget, der ikke er muligt at forudse det præcise udfald kaldes \textit{tilfældig}. Et eksempel på dette kan være, hvis man kaster med en terning, hvor man ikke er sikker på om man slår $1, 2, \cdot$ eller $6$. Dette kaldes for et \textit{tilfældigt eksperiment}. For et tilfældigt eksperiment kan begreberne udfaldsrum og hændelser defineres som følgende
+%
 
-\begin{minipage}\textwidth
-\begin{defn}\textbf{Udfaldsrum} %Ny definition
+%Hvis man kaster en mønt vil de fleste mene at der er $50\%$ chance for at den lander på krone. Derudover kan man kaste mønten mange gange og se at ca halvdelen af gangene man kaster mønten rammer den krone. I dette afsnit vil en matematiske definition på sandsynlighed præsenteres, og det vil være denne definition som fremadrettet vil blive anvendt.
+
+%I dette projekt defineres sandsynlighed aksiomatisk
+%Endeligt, er det muligt at formulere en matematisk definition af, hvad sandsynlighed er.
+
+
+%Derudover bliver ordet sandsynlighed brugt om hvad en person tror vil være 
+
+
+
+%For at kunne beskrive en sandsynlighed matematisk skal begreber som \textit{tilfældighed}, \textit{udfaldsrum}, \textit{hændelser} og \textit{hændelsesrum} først beskrives.
+
+Noget kaldes \textit{tilfældigt}, hvis det ikke er muligt at forudse udfaldet. Hvis der udføres et eksperiment, hvor udfaldet er tilfældigt, kaldes det et \textit{tilfældigt eksperiment}, $\E$. Et eksempel på et tilfældigt eksperiment er et terningkast, hvor det ikke er sikkert, om der slås $1, 2, \dots$ eller $6$. %%For et tilfældigt eksperiment defineres begreberne, \textit{udfaldsrum}, \textit{hændelser} og \textit{hændelsesrum} som følgende
+
+Mængden af mulige udfald i et tilfældigt eksperiment, $\E$, kaldes et \textit{udfaldsrum} og bliver noteret, $\Omega$. Et udfaldsrum kan bestå af en \textit{endelig}, \textit{tællelig uendelig} eller en \textit{ikke-tællelig uendelig} mængde af udfald. Hvis udfaldene er adskilt i punkter, eksempelvis $\{1,2,3, \dots\}$, er det et tælleligt udfaldsrum, og hvis det derimod er et kontinuum af punkter, er det ikke-tælleligt. Eksempelvis, er udfaldsrummet $[0, \infty)$ ikke-tælleligt.
+
+%\begin{minipage}\textwidth
+%\begin{defn}\textbf{Hændelsesrum}\\
+    %Lad $\Omega$ være et udfaldsrum for $\E$
+    %Lad $\Omega$ være et udfaldsrum. Så er hændelsesrummet givet ved potensmængden
+    %$$\Sigma = \{A:A\subseteq \Omega \},$$
+%hvor elementerne, $A\in \Sigma$, kaldes for \textit{hændelser}.
+%\end{defn}
+%\end{minipage}
+
+\begin{defn}\textbf{Hændelsesrum}
 \newline
-Mængden af mulige udfald i et tilfældigt eksperiment kaldes et udfaldsrum og bliver noteret, $S$.
+    Mængden, $\mathcal{F}$ af delmængder af udfaldsrummet, $\Omega$, kaldes et hændelsesrum, hvis
+    \begin{enumerate}
+        \item $\F$ er ikke-tom,
+        \item Hvis $A\in\F$ så er $A^c=\Omega\backslash A \in \mathcal{F}$,
+        \item Hvis $A_1, A_2,\dots\in \F$ så er $\displaystyle \bigcup_{i=1}^\infty A_i\in\F$.
+    \end{enumerate}
+Elementerne, $A\in \F$, kaldes for \textit{hændelser}.
 \end{defn}
-\end{minipage}
 
-Et udfaldsrum kan være \textit{endeligt}, \textit{tællelig uendeligt} og \textit{ikke-tællelig uendeligt}. Endeligt betyder, at udfaldsrummet består af et endeligt antal udfald, hvor der gælder for de to andre, at udfaldsrummet består at et uendeligt antal udfald. Hvis udfaldene er adskilt i punkter som foreksempel $\{1,2,3, \cdots\}$ er udfaldsrummet tællelig, og hvis det derimod er et kontinuum af punkter er det ikke-tællelig. Et eksempel på dette er udfaldsrummet $[0, \infty)$.
 
-\begin{minipage}\textwidth
-\begin{defn}\textbf{Hændelse} %Ny definition
-\newline
-En delmængde af udfaldsrummet, $A \subseteq S$, kaldes en hændelse.
-\end{defn}
-\end{minipage}
+Hvis der for to hændelser $A$ og $B$ gælder, at $A \cap B = \varnothing$, kaldes de for \textit{disjunkte}.
 
-Hvis der for to hændelser $A$ og $B$ gælder at $A \cap B = \varnothing$ kaldes de for \textbf{\textit{disjunkte}}.
+% Derved er hændelsesrummet givet ud fra alle mulige hændelser.
 
-Følgende beskriver et eksemplet for udfaldsrummet og hændelser for det tilfældige eksperiment, hvor der kastes med en terning.
+%Følgende beskriver et eksempel for udfaldsrummet og hændelserne for det tilfældige eksperiment, hvor der kastes med en terning.
 
-\begin{eks} \textbf{} %Nyt eksempel
-\newline
-Det tilfældige eksperiment går ud på, at man kaster en terning og observerer nummeret.
+% \begin{eks} \textbf{} %Nyt eksempel
+% \newline
+% Det tilfældige eksperiment går ud på, at der kastes en terning og udfaldet observeres.
 
-For dette tilfældige eksperiment vil udfaldene kunne være tallene fra 1 til 6. Dermed vil udfaldsrummet være
-\begin{align*}
-    S = \{1, 2, 3, 4, 5, 6\}
-\end{align*}
+% For dette tilfældige eksperiment vil udfaldene kunne være tallene fra 1 til 6. Dermed vil udfaldsrummet være
+% \begin{align*}
+%     S = \{1, 2, 3, 4, 5, 6\}
+% \end{align*}
+% %Antag, at udfaldsrummet deles op i to hændelser, lige og ulige. Så er udfaldsrummet givet ved
 
-Det er også muligt at have to hændelser, når man kaster en terning, hvor den ene hændelse er at få ulige numre og den anden er at få lige numre. Altså er delmængderne at udfaldsrummet følgende
-\begin{align*}
-    A = \{1, 3, 5\} \quad B = \{2, 4, 6\}
-\end{align*}
-I dette tilfælde er $A$ og $B$  \textbf{disjunkte}, da $A \cap B = \varnothing$. Altså er det ikke muligt at både $A$ og $B$ kan hænde på samme tid.
-\end{eks}
+% % Hvis eksemplet beholdes synes jeg vi skal skrive udfaldsrummet op her, og sige at A og B er hændelserne .. ulige og lige tal.. som viser sig at være disjunkte mængder.... - Mikkel
 
-Det er hermed muligt at lave en matematisk definition af sandsynlighed.
+% Det er også muligt at have to hændelser, når man kaster en terning, hvor den ene hændelse er at få ulige numre, og den anden er at få lige numre. Altså er delmængderne at udfaldsrummet følgende
+% \begin{align*}
+%     A = \{1, 3, 5\} \quad B = \{2, 4, 6\}
+% \end{align*}
+% I dette tilfælde er $A$ og $B$ disjunkte, da $A \cap B = \varnothing$. Altså er det ikke muligt, at både $A$ og $B$ kan hænde på samme tid.
+% \end{eks}
+
+Det er hermed muligt at definere et \textit{sandsynlighedsmål}.
 
 \begin{defn}\textbf{Sandsynlighedsregningens grundsætninger} \label{def:sandsynlighedsregningens_grundsætninger}%Ny definition
 \newline
-Et sandsynlighedsmål er en funktion $P$, 
-der tildeler hver hændelse $A$ et tal $P(A)$, der opfylder at
+Lad $\Omega$ være et udfaldsrum, $\F$ et hændelsesrum og $A$ en hændelse.\\
+En funktion, $P: \F \to [0,1]$, kaldes et sandsynlighedsmål på $(\Omega, \F)$, hvis den opfylder, at
 \begin{enumerate}
-    \item[(a)] $0 \leq P(A) \leq 1$
-    \item[(b)]$P(S) = 1$ og $P(\emptyset)=0$
-    \item[(c)] Hvis $A_1, A_2, \cdots$ er en sekvens af parvise \textbf{disjunkte} hændelser, altså at hvis $i \neq j$, så er $A_i \cap A_j = \varnothing$, så gælder det at
+    \item $0 \leq P(A) \leq 1$,
+    \item $P(\Omega) = 1$ og $P(\emptyset)=0$,
+    \item hvis $A_1, A_2, \cdots $ er en sekvens af parvise disjunkte hændelser, altså $A_i \cap A_j = \varnothing$ for $i \neq j$, så gælder det, at
+    \begin{align*}
+        P\left(\bigcup_{k=1}^\infty A_k \right) = \sum_{k=1}^\infty P(A_k).
+    \end{align*}
 \end{enumerate}
-\begin{align*}
-    P\left(\bigcap_{k=1}^\infty A_k \right) = \sum_{k=1}^\infty P(A_k)
-\end{align*}
+
 \end{defn}
-
-Ud fra det sidste aksiom i \autoref{def:sandsynlighedsregningens_grundsætninger} følger det naturligt, at hvis $A_1, A_2, \cdots , A_n$ er en sekvens af parvise \textbf{disjunkte} hændelser så gælder det at
+Ud fra punkt 3 i \autoref{def:sandsynlighedsregningens_grundsætninger} følger det, at
 \begin{align*}
-    P\left(\bigcap_{k=1}^n A_k \right) = \sum_{k=1}^n P(A_k)
+    P\left(\bigcup_{k=1}^n A_k \right) = \sum_{k=1}^n P(A_k),
 \end{align*}
+ved at lade $A_k = \emptyset$ for $k > n$.
 
-\textbf{Tænker at vi skriver de regneregler(inklusiv lim) ind vi bruger hen ad vejen. gider ikke lige skrive dem alle sammen ind og bevise dem hvis vi kun anvender 2,3 stykker. samme med regrad to order/replacement}
+Ud fra udfaldsrum, hændelsesrum og sandsynlighedsmål defineres \textit{sandsynlighedsrummet} som følgende
 
-
-
-
-
-
-
-
-
-
+\begin{minipage}\textwidth
+\begin{defn}\textbf{Sandsynlighedsrum}\\
+    Lad $\Omega$ være et udfaldsrum, $\mathcal{F}$ et hændelsesrum og $P$ et sandsynlighedsmål på $(\Omega, \F)$. Så er sandsynlighedsrummet givet ved triplen, $(\Omega, \F, P)$. 
+\end{defn}
+\end{minipage}
 
 
 
