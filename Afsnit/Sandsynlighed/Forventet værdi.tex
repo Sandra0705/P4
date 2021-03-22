@@ -73,7 +73,54 @@ hvis summen er absolut konvergent.
 
 \begin{bev}\textbf{} %Nyt bevis
 \newline
-Lad $I= \text{Range}(X)=\{x_1,x_2,\dots\}$ og $Y=g(X)$, så er $Y$ en diskret tilfældig variabel med $\text{Range}\left(g(I)\right)$ og har den tilhørende frekvensfunktion $p_Y(y)$. Der gælder desuden, at
+Lad $(\Omega, \F, P)$ være et sandsynlighedsrum og $X: \Omega \to I$ være en diskret tilfældig variabel. Lad $I= \text{Range}(X)=\{x_1,x_2,\dots\}$ og $Y=g(X)$, så er $Y$ en diskret tilfældig variabel med $\text{Range}\left(g(I)\right)$ og har den tilhørende frekvensfunktion $p_Y(y)$. Fra \autoref{def:Frekvensfunktionen} og \autoref{def:Diskret_tilfældig_variabel} gælder det, at
+%
+\begin{align*}
+    p_Y(y) = P(Y = y) = P\left(\{\omega \in \Omega: Y(\omega) = y\}\right).
+\end{align*}
+%
+Af \autoref{def:Forventetværdi} gælder det, at
+%
+\begin{align}\label{eq:E[Y]}
+    E[Y] = \sum_{y \in \text{Range}\left(g(I)\right)} yp_Y(y).
+\end{align}
+%
+For ethvert $y\in \text{Range}\left(g(I)\right)$ eksisterer der mindst et $x\in I$ således, at $g(x)=y$. Altså gælder det, at
+% 
+\begin{align*}
+    P\left(\{\omega \in \Omega: Y(\omega) = y\}\right) = P\left(\left\{\omega \in \Omega: X(\omega) \in \{x\in I| g(x)=y\}\right\}\right).
+\end{align*}
+Derudover gælder det, at
+\begin{align*}
+    \left\{\omega \in \Omega: X(\omega) \in \{x\in I| g(x)=y\}\right\} = \bigcup_{\substack{x \in I:\\ g(x) =y}} \{\omega \in \Omega |X(\omega) = x\}.
+\end{align*}
+Hvorom det gælder, at
+\begin{align*}
+    \{\omega \in \Omega | X(\omega)=x_j\} \cap \{\omega \in \Omega | X(\omega)=x_i\} = \emptyset \text{ for alle } i,j=1,2, \dots \Rightarrow x_j\neq x_i.
+\end{align*}
+Det følger da af \autoref{def:ovegangsmatrice} punkt 3 og \autoref{def:Frekvensfunktionen}, at
+\begin{align}
+    P\left(\left\{\omega \in \Omega: X(\omega) \in \{x\in I| g(x)=y\}\right\}\right)&=\sum_{\substack{x \in I:\\ g(x) =y}} P\left(\{\omega \in \Omega |X(\omega) = x\}\right)\nonumber\\
+    &=\sum_{\substack{x \in I:\\ g(x) =y}}p_X(x).\label{eq:bevis_for_forventet_værdi_som_funktion_2}
+\intertext{Ved at indsætte \eqref{eq:bevis_for_forventet_værdi_som_funktion_2} i \eqref{eq:E[Y]} fås følgende}
+    E[Y] = \sum_{y \in \text{Range}\left(g(I)\right)} y\left( \sum_{\substack{x \in I:\\ g(x) =y}}p_X(x) \right)
+    &=\sum_{y \in \text{Range}\left(g(I)\right)}\sum_{\substack{x \in I:\\ g(x) =y}} g(x) p_X(x). \nonumber\\
+    \intertext{Da}
+    \bigcup_{y\in \text{Range}\left(g(I)\right)}\bigcup_{\substack{x\in I\\g(x)=y}}\{x\}&=\bigcup_{y\in\text{Range}\left(g(I)\right)}\{x\in I|g(x)=y\} = I,\nonumber\\
+    \intertext{gælder det, at}
+    \sum_{y \in \text{Range}\left(g(I)\right)}\sum_{\substack{x \in I:\\ g(x) =y}} g(x) p_X(x)&=\sum_{x\in I}g(x)p_X(x). \nonumber
+\end{align}
+
+Da $Y=g(X)$ og $I = \text{Range}(X)$, gælder det, at
+\begin{align*}
+    E\left[g(X)\right]=\sum_{x\in \text{Range}(X)}g(x)p_X(x).
+\end{align*}
+Dermed er \autoref{prop:forventet_værdi_af_funktion} bevist.
+\end{bev}
+
+% \begin{bev}\textbf{} %Nyt bevis
+% \newline
+% Lad $I= \text{Range}(X)=\{x_1,x_2,\dots\}$ og $Y=g(X)$, så er $Y$ en diskret tilfældig variabel med $\text{Range}\left(g(I)\right)$ og har den tilhørende frekvensfunktion $p_Y(y)$. Der gælder desuden, at
 %Lad $I = Range\{X\}$ sådan at $Y = g(X)$ har afbildningen $g(I)$  Så gælder det, at
 % \begin{align*}
 %     p_Y(y)&= P(Y = y)= P(g(X)=y)\\ 
@@ -85,69 +132,79 @@ Lad $I= \text{Range}(X)=\{x_1,x_2,\dots\}$ og $Y=g(X)$, så er $Y$ en diskret ti
 % Da urmængden, $g^{-1}(y)$, er defineret som mængden af $x$ sådan, at $g(x)=y$, kan summen omskrives til 
 
 % %g(I) = g(Range(X))=\{g(x_1),g(x_2),\dots \}
-
 % %y \in g(I)=
 
- \begin{align*}
-     E[Y]&=\sum_{y \in g(I)} y p_Y(y) = \sum_{y \in g(I)} y P(Y=y)\\
-     &=\sum_{y \in g(I)} y\sum_{x\in I:g(x)=y} p_X(x)\\
-     &=\sum_{x \in I} g(x)p_X(x)
- \end{align*}
+% \begin{align*}
+%     \sum_{x \in I }g(x)P(X=x) &= \sum_{x \in I }g(x) \sum_{\omega: \{X=x\}} P(\{\omega\})\\
+%     &= \sum_{y \in g(I) }y\sum_{\omega: \{X=x\}} P(\{\omega\})\\
+%     &= \sum_{y \in g(I) }y\sum_{\omega: \{Y=y\}} P(\{\omega\})\\
+%     &= \sum_{y \in g(I) } y P(Y=y)\\
+%     &= E[Y] = E[g(X)]
+% \end{align*}
+
+% \pagebreak
+
+%  \begin{align*}
+%      E[Y]&=\sum_{y \in g(I)} y p_Y(y)\\
+%      &=\sum_{y\in g(I)} y \sum_{x\in g^{-1}(y)}P(X=x)\\
+%      &=\sum_{x \in I} g(x)p_X(x)
+%  \end{align*}
  
- \begin{align*}
-     \sum_{y\in g(I)} g(y)p_Y(y)
- \end{align*}
-%Dermed er \autoref{prop:forventet_værdi_af_funktion} bevist. Ved at indsætte betydningen af $P(X=x)$ fås,
-\pagebreak
-\begin{align*}
-    \sum_{x\in I}g(x)p_X(x)=\sum_{x\in I}g(x)P(X=x)&=\sum_{x\in I} g(x) P(\{\omega: X(\omega)=x\})\\
-\intertext{Det følger af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3, at}
-    &=\sum_{x\in I} g(x)\sum_{\omega\in \{X=x\}} P(\{\omega\})\\
-\intertext{$g(x)$ multipliceres ind i den indre sum.}
-    &=\sum_{x\in I}\sum_{\omega\in\{X=x\}}g(x)P(\{\omega\})\\
-\intertext{Hvis $\omega\in\{X=x\}$, så er $g(X(\omega))=g(x)$.}
-    &=\sum_{x\in I} \sum_{\omega\in\{X=x\}} g(X(\omega))P(\{\omega\})\\
-\intertext{Mængderne, $\{X=x\}, \omega\in \Omega$ er disjunkte.} 
-    &=\sum_{\omega\in\bigcup_x\{X=x\}} g(X(\omega))P(\{\omega\})\\
-\intertext{Eftersom $\bigcup_{x\in I}=\Omega$, gælder, at}
-    &=\sum_{\omega\in\Omega} g(X(\omega))P(\{\omega\})\\
-\intertext{Dette er ækvivalent med}
-    &=\sum_{x\in I}g(x)p_X(x)
-    &=E[g(X)]\\
-    &=E[Y]
-\end{align*}
+ 
+%  \begin{align*}
+%      \sum_{y\in g(I)} g(y)p_Y(y)
+%  \end{align*}
+% %Dermed er \autoref{prop:forventet_værdi_af_funktion} bevist. Ved at indsætte betydningen af $P(X=x)$ fås,
+% \pagebreak
+%\begin{align*}
+%     \sum_{x\in I}g(x)p_X(x)=\sum_{x\in I}g(x)P(X=x)&=\sum_{x\in I} g(x) P(\{\omega: X(\omega)=x\})\\
+% \intertext{Det følger af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3, at}
+%     &=\sum_{x\in I} g(x)\sum_{\omega\in \{X=x\}} P(\{\omega\})\\
+% \intertext{$g(x)$ multipliceres ind i den indre sum.}
+%     &=\sum_{x\in I}\sum_{\omega\in\{X=x\}}g(x)P(\{\omega\})\\
+% \intertext{Hvis $\omega\in\{X=x\}$, så er $g(X(\omega))=g(x)$.}
+%     &=\sum_{x\in I} \sum_{\omega\in\{X=x\}} g(X(\omega))P(\{\omega\})\\
+% \intertext{Mængderne, $\{X=x\}, \omega\in \Omega$ er disjunkte.} 
+%     &=\sum_{\omega\in\bigcup_x\{X=x\}} g(X(\omega))P(\{\omega\})\\
+% \intertext{Eftersom $\bigcup_{x\in I}=\Omega$, gælder, at}
+%     &=\sum_{\omega\in\Omega} g(X(\omega))P(\{\omega\})\\
+% \intertext{Dette er ækvivalent med}
+%     &=\sum_{x\in I}g(x)p_X(x)
+%     &=E[g(X)]\\
+%     &=E[Y]
+% \end{align*}
 
-\pagebreak
-\begin{align*}
-    \sum_{x\in I}g(x)p_X(x)=\sum_{x\in I}g(x)P(X=x)&=\sum_{x\in I} g(x) P(\{\omega: X(\omega)=x\})\\
-\intertext{Det følger af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3, at}
-    &=\sum_{x\in I} g(x)\sum_{\omega\in \{X=x\}} P(\{\omega\})\\
-\intertext{$g(x)$ multipliceres ind i den indre sum.}
-    &=\sum_{x\in I}\sum_{\omega\in\{X=x\}}g(x)P(\{\omega\})\\
-\intertext{Hvis $\omega\in\{X=x\}$, så er $g(X(\omega))=g(x)$.}
-    &=\sum_{x\in I} \sum_{\omega\in\{X=x\}} g(X(\omega))P(\{\omega\})\\
-\intertext{Mængderne, $\{X=x\}, \omega\in \Omega$ er disjunkte.} 
-    &=\sum_{\omega\in\bigcup_x\{X=x\}} g(X(\omega))P(\{\omega\})\\
-\intertext{Eftersom $\bigcup_{x\in I}=\Omega$, gælder, at}
-    &=\sum_{\omega\in\Omega} g(X(\omega))P(\{\omega\})\\
-\intertext{Dette er ækvivalent med}
-    &=\sum_{y\in g(I)}y p_Y(y)\\
-    &=E[Y]\\
-\end{align*}
+% \pagebreak
+% \begin{align*}
+%     \sum_{x\in I}g(x)p_X(x)=\sum_{x\in I}g(x)P(X=x)&=\sum_{x\in I} g(x) P(\{\omega: X(\omega)=x\})\\
+% \intertext{Det følger af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3, at}
+%     &=\sum_{x\in I} g(x)\sum_{\omega\in \{X=x\}} P(\{\omega\})\\
+% \intertext{$g(x)$ multipliceres ind i den indre sum.}
+%     &=\sum_{x\in I}\sum_{\omega\in\{X=x\}}g(x)P(\{\omega\})\\
+% \intertext{Hvis $\omega\in\{X=x\}$, så er $g(X(\omega))=g(x)$.}
+%     &=\sum_{x\in I} \sum_{\omega\in\{X=x\}} g(X(\omega))P(\{\omega\})\\
+% \intertext{Mængderne, $\{X=x\}, \omega\in \Omega$ er disjunkte.} 
+%     &=\sum_{\omega\in\bigcup_x\{X=x\}} g(X(\omega))P(\{\omega\})\\
+% \intertext{Eftersom $\bigcup_{x\in I}=\Omega$, gælder, at}
+%     &=\sum_{\omega\in\Omega} g(X(\omega))P(\{\omega\})\\
+% \intertext{Dette er ækvivalent med}
+%     &=\sum_{y\in g(I)}y p_Y(y)\\
+%     &=E[Y]\\
+% \end{align*}
 
 
-\begin{align*}
-    E[Y]=\sum_{y\in g(I)}y p_Y(y)\\
-\end{align*}
-\end{bev}
+% \begin{align*}
+%     E[Y]=\sum_{y\in g(I)}y p_Y(y)\\
+% \end{align*}
+% \end{bev}
 
-\begin{align*}
-    P(\{\omega\}=P(\omega: X(\omega)=x)
-\end{align*}
+% \begin{align*}
+%     P(\{\omega\}=P(\omega: X(\omega)=x)
+% \end{align*}
 
-\begin{align*}
-    P(Y=y)=P(g(X)=y)=P(X=g^{-1}(y))=P(\{\omega\})
-\end{align*}
+% \begin{align*}
+%     P(Y=y)=P(g(X)=y)=P(X=g^{-1}(y))=P(\{\omega\})
+% \end{align*}
 
 
  %fra s. 104 osv.
@@ -172,6 +229,33 @@ Lad $I= \text{Range}(X)=\{x_1,x_2,\dots\}$ og $Y=g(X)$, så er $Y$ en diskret ti
 % $$E[X] = w \ og \ E[Y] = w$$
 % begge beskriver gennemsnittet, men det er klart, at $E[X]$ varierer tættere på gennemsnittet end $E[Y]$. Den forventede værdi giver altså ikke et billede af, hvor meget variation der vil være.
 % \end{eks}
+Hvis sandsynligheden for en diskret tilfældig variabel, $X$, er betinget af en hændelse, $B\in\F$, i et tilfældigt eksperiment, påvirker det fordelingen af $X$. Sandsynligheden $P(X=x)$ erstattes derfor af $\displaystyle\frac{P\left(\{X(\omega)=x\}\cap B\right)}{P(B)}=P(X=x|B)$.
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{Betingede forventet værdi}\label{def:betinget_forventet_værdi} %Ny definition
+\newline
+Lad $(\Omega, \F, P)$ være et sandsynlighedsrum og $B\in\F$ en hændelse. Lad $X$ være en diskret tilfældig variabel og $P(B)>0$. Så er den betingede forventet værdi af $X$ givet $B$ betegnet $E[X|B]$ defineret ved 
+\begin{align*}
+    E[X|B]&=\sum_{x\in Range(X)}xP(X=x|B)
+\end{align*}
+hvis summen er absolut konvergent.
+\end{defn}
+\end{minipage}
+
+I ovenstående definition er den forventede værdi af den diskrete tilfældige variabel, $X$, betinget af en hændelse, $B$. For hændelser på formen $B_j = \{Y=y_j\}$ defineres betinget forventet værdi som følgende 
+
+\begin{minipage}\textwidth
+\begin{defn}\textbf{Betingede forventet værdi af diskrete tilfældige variabler}\label{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler} %Ny definition
+\newline
+Lad $X, Y$ være diskrete tilfældige variabler. Så er den betingede forventet værdi af $X$ givet $Y$, givet ved
+\begin{align*}
+    E[X|Y=y_j] = \sum_{x\in Range(X)}xP(X=x|Y=y_j)
+\end{align*}
+hvis summen er absolut konvergent.
+\end{defn}
+\end{minipage}
+
+Altså er den forventet værdi af $X$ betinget af en diskret tilfældig variabel $Y=y_j$.
 
 Den forventede værdi giver ikke information om variationen for $X$. Derfor introduceres begrebet \textit{varians}, som beskriver variationen for $X$. Varians er defineret som følgende
 

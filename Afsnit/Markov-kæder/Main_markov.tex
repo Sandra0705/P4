@@ -1,16 +1,9 @@
-\begin{itemize}
-    \item Markov kæder, def, overgangssyndsynlighed, stokastisk matrice, accessible og communicate, Recurrent, translent, 
-    \item Probability distribution. Stationary / invariant distribution
-    \item Chapman-Kolmogorov ligninger
-    \item Politik/strategier ($\pi$)
-    \item Random walk
-    \item Maximum forventet værdi for MDP’er (Bellman equation)
-\end{itemize}
+Dette kapitel er baseret på \cite[s. 444-462]{olofsson2005probability} og  \cite[s. 205-216]{oxford}.
 
-Dette kapitel er baseret på \cite[s.]{olofsson2005probability}.
+På baggrund af teorien i \autoref{kapitel:sandsynlighed} er det hermed muligt at definere og analysere \textit{Markov-kæder}. 
 
-På baggrund af teorien i \autoref{kapitel:sandsynlighed} er det hermed muligt at definere og analysere Markov-kæder. 
-
-Markov-kæder er en \textit{stokastisk proces}. En stokastisk proces er en samling tilfældige variabler $X_0, X_1, X_2, \cdots$ som tager værdier i en mængde $S$, som kaldes \textbf{\textit{tilstandsrum}}. Denne samling er indekseret af en  mængde $T$, som kaldes for \textbf{\textit{indeksmængden}}. Indeksmængden kan foreksempel beskrive tiden. 
-
+En Markov-kæde er en \textit{stokastisk proces}. En stokastisk proces er en sekvens af tilfældige variabler $\bm X$. De tilfældige variabler i $\bm X$ antager værdier i \textit{tilstandsrummet}, $S$, hvor værdierne i $S$ kaldes \textit{tilstande}. $\bm X$ er indekseret af en mængde, $T$, som kaldes for \textit{indeksmængden}. Indeksmængden kan eksempelvis beskrive tiden. 
+I dette projekt indekseres $\bm X$ over de naturlige tal. 
 \input{Afsnit/Markov-kæder/Markov-kæder}
+
+\input{Afsnit/Markov-kæder/Markov_beslutningsprocesser}

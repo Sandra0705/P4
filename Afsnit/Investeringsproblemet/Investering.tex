@@ -1,5 +1,5 @@
 En investor ønsker at maksimere sin \textit{nytte} over en given periode.
-Lad tidshorisonten være givet ved $T$. Investorens opsparing til tiden $t$ betegnes ved $S_t$, sådan at $S_0$ er givet. Investoren kan enten forbruge eller lade pengene akkumulere til en rente, $r$. Lad $A_t$ være forbrug og indkomst være $I>0$. I dette afsnit konstrueres en MDP over disse beslutninger, med henblik på maksimering af nytte. Følgende tabel opsummerer disse variabler.
+Lad tidshorisonten være givet ved $N$. Investorens opsparing til tiden $t$ betegnes ved $S_t$, sådan at $S_0$ er givet. Investoren kan enten forbruge eller lade pengene akkumulere til en rente, $r$. Lad $A_t$ være forbrug og indkomst være $I>0$. I dette afsnit konstrueres en MDP over disse beslutninger, med henblik på maksimering af nytte. Følgende tabel opsummerer disse variabler.
 
 
 \begin{table}[!hbt]
@@ -7,8 +7,9 @@ Lad tidshorisonten være givet ved $T$. Investorens opsparing til tiden $t$ bete
 \begin{tabular}{@{}l|l@{}}
 \toprule
 Variabler & Forklaring                     \\ \midrule
-$T,t$       & Tidspunkter                  \\
+$N,t$       & Tidspunkter                  \\
 $S_t$       & Opsparing til tiden t        \\
+$S$         & Beslutningsrum               \\
 $r$         & Rente                        \\
 $A_t$       & Forbrug                      \\
 $I$         & Indkomst                     \\
@@ -26,19 +27,54 @@ Opsparing til tiden $t+1$ er dermed givet ved
 
 
 \section{Basis Problemet}
-
-
+Lad $p$ angive den betingede sandsynlighed for, at han mister sit arbejde i næste måned og lad $q$ være den betingede sandsynlighed for, at han ikke er i arbejde næste måned, givet han ikke er i arbejde. 
+Det vil sige:
 \begin{align*}
     P(\xi_{t+1}=0|\xi_t=1)=1-P(\xi_{t+1}=1|\xi_t=1)=p\\
     P(\xi_{t+1}=0|\xi_t=0)=1-P(\xi_{t+1}=1|\xi_t=0)=q
 \end{align*}
 
+
+
+Dette medfører følgende overgansgraf\\
+\begin{tikzpicture}[node distance=2cm and 1cm,>=stealth',auto, every place/.style={draw}]
+    \node [place] (S1) {Ikke i arbejde};
+    \coordinate[node distance=1.1cm,left of=S1] (left-S1);
+    \coordinate[node distance=1.1cm,right of=S1] (right-S1);
+
+
+    \node [place] (S2) [right=of S1] {\phantom{---}I arbejde \phantom{---}};
+
+    \path[->] (S1) edge [bend left] node {1-q} (S2);
+    \path[->] (S1) edge [loop left] node {q} (s1);
+    \path[->] (S2) edge [bend left] node {p} (S1);
+    \path[->] (S2) edge [loop right] node {1-p} ();
+\end{tikzpicture}
+
+Det vil sige, at overgangsmatricen er givet ved:\\
 \begin{align*}
-    \mathcal{A}_t=[0,S_t]
+    P=\begin{bmatrix}q & 1-q\\ p & 1-p\end{bmatrix}
 \end{align*}
 
+Lad os først antage, at nytten er ækvivalent med forbruget. Det vil sige, at markedet er perfekt. Det vil sige, at man har et vist forbrug for tidspunkter mellem 0 og $N-1$ og man forbruger resten ($S_N$) til tidspunkt $N$. Med andre ord, så er nytten, $r_t(S_t,A_t)=A_t$ og $r_N(S_N)=S_N$.
+
+Det antages, at nytten, \\
+Beslutningsrummet er mængden af alle tilstande til alle tidspunkter. 
 \begin{align*}
-    E^\pi[\sum_{t=1}^T U_t(A_t)]
+    W=\sum_{t=1}^{N-1} r_t(s_t,a_t)+ r_N(s_N)
 \end{align*}
 
+Lad nyttefunktionen være givet ved
+\begin{align*}
+    \{U\}_t^N=\begin{cases}A_t\ \text{ for } t<N\\ S_N \text{ for } t=N \end{cases}.
+\end{align*}
+Det antages, desuden, at indkomsten kommer sidst på måneden og den kan dermed ikke bruges i den indeværende måned. Beslutningsrummet er givet ved:
+\begin{align*}
+    S=[0,S_t]
+\end{align*}
+
+Dermed ønskes at finde strategi ($\pi$), der maksimerer
+\begin{align*}
+    E^\pi \left[\sum_{t=1}^N U_t(A_t)\right]
+\end{align*}
 
