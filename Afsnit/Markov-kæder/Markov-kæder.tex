@@ -124,7 +124,8 @@ Det er derudover muligt at opstille overgangsmatricen, hvor $p_{ij}$ er indgang 
 Dermed er overgangsmatricen for genotyperne blevet bestemt.
 \end{eks}
 
-Følgende sætning er en betingelse for, at en given sekvens af diskrete tilfældige variabler er en Markov-kæde.\\
+Følgende sætning er en betingelse for, at en given sekvens af diskrete tilfældige variabler er en Markov-kæde.
+
 \begin{minipage}\textwidth
 \begin{thmx} \textbf{Markov betingelsen} \label{sæt:markov_tingtang}%Ny sætning
 \newline 
@@ -132,7 +133,7 @@ Lad $\bm X=(X_0, X_1,\dots)$ være en sekvens af diskrete tilfældige variabler,
 \begin{align}
     P(X_0=i_0,X_1=i_1,\dots, X_t=i_t)=P(X_0=i_0)p_{i_0i_1}\dots p_{i_{t-1}i_t}\label{markov-kæde-hovedsætning}
 \end{align}
-for alle $t\geq0$ og $i_0,i_1,\dots,i_t\in S$.
+for alle $t\geq0$ og $i_0,i_1,\dots,i_t\in S$. $P(X_0 = i_0)$ betegner begyndelsessandsynligheden.
 \end{thmx}
 \end{minipage}
 \begin{bev} \textbf{}
@@ -415,7 +416,7 @@ Den betingede forventet værdi $E\left[A | X_0 = i\right]$ bestemmes. Af \autore
 \sum_{t=1}^{\infty} E\left[I_t | X_0 = i\right] &= \sum_{t=1}^{\infty} \sum_{x \in \text{Range}(I_t)} xP\left(X_t=x | X_0 = i\right) = \sum_{t=1}^{\infty} P\left(X_t=i | X_0 = i\right)
     \intertext{Af \eqref{eq:nte-trinsovergangssandsynligheden} følger det da, at}
     \sum_{t=1}^{\infty} P\left(X_t=i | X_0 = i \right) &= \sum_{t=1}^{\infty} p_{ii}^{(t)}
-\end{align*}
+\end{align*} 
 Altså er det nok at vise, at hvis Markov-kæden er tilbagevendende, så er $E\left[A | X_0 = i\right] = \infty$. Når Markov-kæden er tilbagevendende, gælder det, at $P(\tau_i < \infty | X_0 = i)=1$, altså vender kæden tilbage til $i$. Dermed vil antallet af gange kæden vender tilbage til tilstanden, $i$, være uendelig, altså $A = \infty$. Deraf gælder det, at $E[A | X_0 = i]= \infty$.
 \end{bev}
 
@@ -475,7 +476,7 @@ Det kan herved konkluderes, at hvis én tilstand er tilbagegående eller forbig�
 \section{Invariant fordeling}
 
 \begin{defn}\textbf{} %Ny definition
-\newline
+\newline \label{defn: invariant_fordeling}
 Lad $\bm X$ være en Markov-kæde med tilstandsrummet, $S$, og overgangsmatricen, $P$. En sandsynlighedsfordeling, $\bm\pi=(\pi_1,\pi_2,\dots)$ på $S$, som opfylder
 \begin{enumerate}
     \item $\pi_i\geq 0 \text{ for } i\in S$
@@ -484,6 +485,8 @@ Lad $\bm X$ være en Markov-kæde med tilstandsrummet, $S$, og overgangsmatricen
 \end{enumerate}
 kaldes for en \textit{invariant fordeling} på kæden. 
 \end{defn}
+
+Sandsynligheden, $\pi_j$, fortæller altså hvor lang tid der bruges i tilstand j i det lange løb. Derfor er det intuitivt, at der gælder følgende definition.
 
 \begin{defn}\textbf{Positiv og null tilbagevendende} %Ny definition
 \newline
@@ -494,7 +497,7 @@ Lad $\bm X$ være en Markov-kæde med en tilstand, $i$, i tilstandsrummet, $S$. 
 \end{enumerate}
 \end{defn}
 
-Altså gælder det, at hvis $i$ er positiv tilbagevendende, forventes det, at der er et endeligt antal trin, før Markov-kæden vender tilbage til $i$. For en tilstand der er null tilbagevendende, forventes der derimod at gå uendeligt mange trin, før kæden vender tilbage til tilstanden. For en Markov-kæde med et endeligt tilstandsrum vil det ikke være muligt for tilstande at være null tilbagevendende. 
+--Altså gælder det, at hvis $i$ er positiv tilbagevendende, forventes det, at der er et endeligt antal trin, før Markov-kæden vender tilbage til $i$. For en tilstand der er null tilbagevendende, forventes der derimod at gå uendeligt mange trin, før kæden vender tilbage til tilstanden. For en Markov-kæde med et endeligt tilstandsrum vil det ikke være muligt for tilstande at være null tilbagevendende. 
 
 \begin{minipage}\textwidth
 \begin{thmx} \textbf{} %Ny sætning
@@ -513,3 +516,29 @@ Hvis dette er opfyldt, er $\bm\pi$ entydig.
 Lad $\bm X$ være en ureducerbar Markov-kæde med det endelige tilstandsrum $S$. Så eksisterer der en entydig invariant fordeling $\bm \pi$.
 \end{pro}
 \end{minipage}
+
+Det gælder desuden, at hvis Markov-kæden ikke er ureducerbar, så vil det være muligt, at der findes flere løsninger.
+
+\begin{eks} \textbf{} %Nyt eksempel
+\newline Find invariant fordelingen for \autoref{eks:overgangsmatrice}.\\
+I dette tilfælde er det en ikke ureducerbar Markov-kæde, men det er stadig muligt at gøre rede for invariant fordelingen.\\
+Tilstandene $AA, Aa$ og $aa$, samt jævntført \autoref{defn: invariant_fordeling} (3)
+giver\\
+\begin{align*}
+    (\pi_{AA} \ \pi_{Aa} \ \pi_{aa}) \begin{pmatrix}
+    1 & 0 & 0 \\
+    1/4 & 1/2 & 1/4 \\
+    0 & 0 & 1 \\
+    \end{pmatrix}
+    = (\pi_{AA} \ \pi_{Aa} \ \pi_{aa})
+\end{align*}
+Fra den første ligning fås
+\begin{align*}
+    \pi_{AA} + \dfrac{1}{4}\pi_{Aa} = \pi_{AA}
+\end{align*}
+hvilket må sige $\pi_{Aa}=0$, og anden ligning giver dermed $0=0$, samt at $\pi_{aa}=\pi_{aa}$. Dette giver, at fordelingen er givet ved
+\begin{align*}
+    \bm \pi = (\alpha, \ 0,\ 1-\alpha)
+\end{align*}
+hvor $0 \leq \alpha \leq 1$ er en invariant fordeling. Markov-kæden giver, at hvis der enten vælger mellem tilstandene $AA$ og $aa$ i forhold til $\bm \pi$, så vil kæden blive ved med at være der. Dette giver, at sekvensen $AA, \ AA, \ldots$ har sandsynligheden $\alpha$, og $aa, \ aa, \dots$ har sandsynligheden $1-\alpha$. Dette er altså et eksempel på, hvad der vil ske i en ikke ureducerbar Markov-kæde.
+\end{eks}

@@ -36,7 +36,7 @@ Det vil sige:
 
 
 
-Dette medfører følgende overgansgraf\\
+Dette medfører følgende overgangsgraf\\
 \begin{tikzpicture}[node distance=2cm and 1cm,>=stealth',auto, every place/.style={draw}]
     \node [place] (S1) {Ikke i arbejde};
     \coordinate[node distance=1.1cm,left of=S1] (left-S1);
@@ -58,8 +58,7 @@ Det vil sige, at overgangsmatricen er givet ved:\\
 
 Lad os først antage, at nytten er ækvivalent med forbruget. Det vil sige, at markedet er perfekt. Det vil sige, at man har et vist forbrug for tidspunkter mellem 0 og $N-1$ og man forbruger resten ($S_N$) til tidspunkt $N$. Med andre ord, så er nytten, $r_t(S_t,A_t)=A_t$ og $r_N(S_N)=S_N$.
 
-Det antages, at nytten, \\
-Beslutningsrummet er mængden af alle tilstande til alle tidspunkter. 
+
 \begin{align*}
     W=\sum_{t=1}^{N-1} r_t(s_t,a_t)+ r_N(s_N)
 \end{align*}
@@ -78,3 +77,25 @@ Dermed ønskes at finde strategi ($\pi$), der maksimerer
     E^\pi \left[\sum_{t=1}^N U_t(A_t)\right]
 \end{align*}
 
+
+
+
+
+
+\subsection{Udvidelse(Lån)}
+Det antages, at forbrugeren i en lang periode har været foruden job (eller i form af et markant højere forbrug ift. opsparing/indkomst), derved kræves et lån.
+Lad nu beslutningsrummet udvides, så det kan antage negative værdier i form af et lån.
+Beslutningsrummet bliver derved
+\begin{align*}
+    S = [-L_t, S_t],
+\end{align*}
+hvor $L_t$ er det maksimale beløb, som investoren kan låne. Der gælder således følgende bibetingelser,
+\begin{align*}
+    \sum_{t=1}^{T-1} L_t \leq L_{max}
+\end{align*}
+og
+\begin{align*}
+    \sum_{t=1}^{T-1} L_t \leq S_T
+\end{align*}
+
+\textit{Når udlåns- og indlånsrenten er lig med hinanden? Hvad sker hvis de er forskellige? Hvordan påvirker processen $\xi's$ parametre, hvordan lån optages?}

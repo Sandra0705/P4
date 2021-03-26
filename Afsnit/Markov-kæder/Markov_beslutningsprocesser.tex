@@ -1,6 +1,8 @@
 \chapter{Markov beslutningsprocesser}
 %https://onlinelibrary-wiley-com.zorac.aub.aau.dk/doi/pdf/10.1002/9780470316887
-I dette afsnit redegøres for de processer, der opfylder markovegenskaben. Disse kaldes for Markov beslutningsprocesser (MBP)...
+Dette kapitel er baseret på \cite[s. 17-25]{"Markov_decision_process"}.
+
+I dette kapitel redegøres for de processer, der opfylder markovegenskaben. Disse kaldes for \textit{Markov beslutningsprocesser}. 
 
 
 
@@ -25,40 +27,38 @@ For at beskrive Markov beslutningsprocesser introduceres begrebet beslutningsmod
     \item Beslutningstager
     \item Beslutningstidspunkt
     \item Tilstande
-    \item Mulige beslutninger
-    \item Belønninger eller omkostninger som følge af en beslutning (vi skriver kun belønninger, omkostninger er implicit)
+    \item Beslutninger
+    \item Belønninger eller omkostninger som følge af en beslutning % (vi skriver kun belønninger, omkostninger er implicit)
 \end{enumerate}
-Til en specifik beslutningstidspunkt observerer en beslutningstager en tilstand i et system. Ud fra denne observation tager beslutningstageren en beslutning. Denne beslutning resulterer i, at beslutningstageren får en belønning eller omkostning, og systemet udvikler sig til en ny tilstand ved det efterfølgende beslutningstidspunkt. Til denne nye tilstand skal beslutningstageren tage en ny beslutning, som fører til en ny tilstand. Denne proces fortsætter, hvoraf beslutningstageren modtager en sekvens af belønninger og omkostninger. For beslutningstageren er målet at optimerer belønningerne og minimere omkostningerne.
+Til et specifik beslutningstidspunkt observerer en beslutningstager en tilstand i et system. Ud fra denne observation tager beslutningstageren en beslutning. Denne beslutning resulterer i, at beslutningstageren får en belønning eller omkostning, og systemet udvikler sig til en ny tilstand til det efterfølgende beslutningstidspunkt. Ved denne nye tilstand skal beslutningstageren tage en ny beslutning, som fører til en ny tilstand. Denne proces fortsætter, hvoraf beslutningstageren modtager en sekvens af belønninger og omkostninger. For beslutningstageren er målet at optimere belønningerne og minimere omkostningerne.
 
 %Problem -- beslutninger, tilstande -- beslutningstager --taget en beslutning-- reward/cost
 
 \section{Markov beslutningsprocesser}
-En Markov beslutningsproces er en beslutningsmodel, og er dermed baseret på begreberne beslutningstager, beslutningstidspunkt, tilstand, beslutninger og belønning. For en Markov beslutningsproces afhænger tilstande til fremtidige beslutningstidspunkter af den nuværende tilstand og beslutninger. Beslutningstageren skal derfor ikke udelukkende tage beslutninger ud fra kortsigtede belønninger, men også ud fra de fremtidige for at kunne optimerer sine belønninger. 
+En Markov beslutningsproces er en beslutningsmodel, og er dermed baseret på begreberne, beslutningstager, beslutningstidspunkter, tilstande, beslutninger og belønninger. For en Markov beslutningsproces afhænger tilstande til fremtidige beslutningstidspunkter af den nuværende tilstand og de forrige beslutninger. Beslutningstageren skal derfor ikke udelukkende tage beslutninger ud fra kortsigtede belønninger, men også ud fra de fremtidige for at kunne optimere sine belønninger. 
 
 
 %En beslutningstager kan påvirke et probabilistisk system over tid. Målet er at vælge en sekvens af hændelser / beslutninger, som får systemet til at fungere optimalt i forhold til et vis kriterie. Tilstanden af systemet i morgen afhænger af tilstanden i dag, samt beslutningen i dag. Man bliver dermed nødt til at tænke frem og man skal forudse mulighederne og omkostningerne (eller belønninger) forbundet med fremtidige systemtilstande. 
 
 
 \subsection{Beslutningstidspunkter}
-I \autoref{Kap:MArkov-kæder} gælder det, at hver tilstand er indekseret af et indeks i mængden $T$, som kaldes for indeksmængden. For en Markov beslutningsproces gælder det, at denne indeksmængde er en mængde af beslutningstidspunkter. Det gælder, at $T$ er en endelig eller uendelig mængde af diskrete beslutningstidspunkter, hvor hvert element i $T$ noteres $t$. 
-
+I \autoref{Kap:MArkov-kæder} gælder det, at hver tilstand er indekseret af et indeks i mængden $T$, som kaldes for indeksmængden. For en Markov beslutningsproces gælder det, at denne indeksmængde er en mængde bestående af beslutningstidspunkter. Der gælder, at $T$ er en endelig eller uendelig mængde af diskrete beslutningstidspunkter $t$.%, hvor hvert element i $T$ noteres $t$.
 
 %$T$ er mængden af beslutningstidspunkter. Beslutningstidspunkterne tager udgangspunkt i diskret tid med tilfældige tidsperioder, hvor forskellige begivenheder optræder. Eksempelvis ved et køsystem eller ved tidspunkter valgt af beslutningstageren. Denne tid er opdelt i perioder eller tilstande. Beslutningstidspunkter er enten endelige, uendelige, eller begrænset i intervaller.
 
 \subsection{Tilstande og beslutninger}
-Til ethvert beslutningstidspunkt, $t$, er systemet i en tilstand. Det gælder, at $S$ er mængden af mulige tilstande i systemet, hvor $s\in S$ er en tilstand. Tilstandsrummet, $S_t$, er mængden af mulige tilstande i systemet til beslutningstidspunkt, $t$. 
+Til ethvert beslutningstidspunkt, $t$, er systemet i en tilstand. Det gælder, at $S$ er mængden af mulige tilstande i systemet, hvor $s\in S$ er en tilstand. Tilstandsrummet, $S_t$, er mængden af mulige tilstande i systemet til beslutningstidspunktet, $t$. 
 
-Mængden af mulige beslutninger ved tilstanden $s$ kaldes beslutningsrummet og noteres $A_s$. Det noteres $A_{s,t}$, hvis beslutningerne også afhænger af beslutningstidspunktet, $t$. Hver enkelte beslutning betegnes $a$. Beslutninger kan enten tages tilfældigt eller deterministisk. Hvis de tages tilfældigt, betyder det, at hver beslutning tages med en bestemt sandsynlighed. Derimod gælder det, at hvis beslutningerne vælges deterministisk, vil sandsynligheden for én beslutning være 1, mens den for alle andre vil være 0.
+Mængden af mulige beslutninger ved tilstanden, $s$, kaldes beslutningsrummet og noteres, $A_s$. Det noteres $A_{s,t}$, hvis beslutningerne også afhænger af $t$. Hver enkelte beslutning betegnes $a$. Beslutninger kan enten tages tilfældigt eller deterministisk. Hvis hver beslutning tages tilfældigt, betyder det, at de tages med en bestemt sandsynlighed. Derimod gælder det, at hvis beslutningerne vælges deterministisk, vil sandsynligheden for én beslutning være 1, mens den for alle andre vil være 0.
 
-For $S_t$ og $A_{s,t}$ gælder det, at de er diskrete og endelige eller tællelig uendelige mængder. Det bemærkes, at $S=\displaystyle \bigcup_{t\in T}S_t$ og $A_s=\displaystyle\bigcup_{t\in T}A_{s,t}$.
+Det gælder, at $S_t$ og $A_{s,t}$ er diskrete og enten endelige eller tællelig uendelige mængder. Det bemærkes, at $S=\displaystyle \bigcup_{t\in T}S_t$ og $A_s=\displaystyle\bigcup_{t\in T}A_{s,t}$.
 
 
 %Lad $S_t$ angive mængden af mulige tilstande til tiden $t$, sådan at $S=\bigcup_{t\in T} S_t$ og lad $A_{s,t}$ være mængden af tilladte hændelser i tilstand $s\in S$ og tid $t$. Så er $A_s=\bigcup_{t\in T} A_{s,t}$ og beslutningstageren kan i så fald vælge enhver hændelse, $a\in A_s$. Lad $A=\bigcup_{s\in S} A_s$. Hændelser kan enten vælges tilfældigt eller deterministisk. Lad $P(A_s)$ angive mængden af sandsynligshedsfordelinger for delmængder af $A_s$ og ligeledes, $P(A)$ være sandsynlighedsfordelinger på delmængder af $A$.
 
 \subsection{Belønningssandsynlighed}
-Når beslutningstageren har taget en beslutning, $a\in A_{s}$ til beslutningstidspunktet, $t$, vil beslutningstageren modtage en belønning, $r_t(s,a)$. Hvis $r_t(s,a)$ er negativ, vil beslutningen resultere i en omkostning. 
-Når beslutningen er taget, vil tilstanden til næste beslutningstidspunkt derudover blive bestemt ved sandsynlighedsfordelingen $p_t(\cdot|s,a)$. 
-Hvis belønningen er afhængig af tilstanden til næste beslutningstidspunkt, betegnes belønningen $r_t(s, a, j)$, hvor $j$ er tilstanden til beslutningstidspunktet, $t+1$.
+Når beslutningstageren har taget en beslutning, $a\in A_{s}$ til beslutningstidspunktet, $t$, vil beslutningstageren modtage en belønning, $r_t(s,a)$. Hvis $r_t(s,a)$ er negativ, vil beslutningen resultere i en omkostning. Hvis belønningen er afhængig af tilstanden til næste beslutningstidspunkt, betegnes belønningen $r_t(s, a, j)$, hvor $j$ er tilstanden til beslutningstidspunktet, $t+1$.
+Når beslutningen er taget, vil tilstanden til næste beslutningstidspunkt blive bestemt ved sandsynlighedsfordelingen, $p_t(\cdot|s,a)$. 
 
 
 % For at gøre rede for belønningen ved et tilfældigt eksperiment, vil handlingen beskrives ved $a \in A_s$, i et stadie, $s$, til beslutningstidspunkt, $t$.
@@ -72,29 +72,31 @@ Hvis belønningen er afhængig af tilstanden til næste beslutningstidspunkt, be
 %Når belønningen afhænger af systemets tilstand ved næste beslutningstidspunkt, beskriver $r_t(s,a,j)$ belønningen til tiden $t$, hvor $j$ er tilstanden til beslutningstidspunktet, $t+1$.
 
 
-Følgende definition beskriver den forventede værdi af belønningen til beslutningstidspunktet, $t$
+Følgende definition beskriver den forventede værdi af belønningen til beslutningstidspunktet, $t$.
 
+\begin{minipage}\textwidth
 \begin{defn} \textbf{Forventet værdi af belønning}
 \newline
-Lad $s$ være en tilstand i tilstandsrummet $S$ og $a$ en beslutning i beslutningsrummet $A_s$. Lad $r_t$ være belønningen og $p_t$ være sandsynlighedsfordelingen.
+Lad $s$ være en tilstand i tilstandsrummet $S$ og $a$ være en beslutning i beslutningsrummet $A_s$. Lad $r_t$ være belønningen og $p_t$ være sandsynligheden.
 %Lad $p_t(j | s,a)$ være en ikke-negativ funktion
-Den forventede værdi til beslutningstidspunktet $t$ er givet ved\\
+Den forventede værdi af belønningen til beslutningstidspunktet $t$ er givet ved
 \begin{align*}
     r_t(s,a)=\sum_{j\in S} r_t(s,a,j)p_t(j | s,a),
 \end{align*}
 hvor $j \in S$ er tilstanden til beslutningstidspunktet $t+1$.
 \end{defn}
+\end{minipage}
 
 
 %Funktionen $p_t(j |s,a)$ beskriver sandsynligheden for, at systemet er i tilstand $j \in S$ til tiden $t+1$, når valget, $a \in A$, er givet. 
 %p: S \to [0,1]
 
-Funktionen, $p_t(j|s,a)$ kaldes for overgangssandsynlighedsfunktionen, og der gælder, at $\sum_{j\in S} p_t(j|s,a)=1$.
+Funktionen, $p_t(j|s,a)$ kaldes for overgangssandsynlighedsfunktionen, og det gælder, at $\displaystyle\sum_{j\in S} p_t(j|s,a)=1$.
 
 
-For en Markov beslutningsproces med en endelig indeksmængde, $T$, gælder det, at der ikke tages nogen beslutninger til det sidste beslutningstidspunkt, $N$. Derfor er belønningen til beslutningstidspunktet $N$ kun en funktion af tilstanden og betegnes $r_N(s)$.
+For en Markov beslutningsproces med en endelig indeksmængde, $T$, gælder det, at der ikke tages en beslutning til det sidste beslutningstidspunkt, $N$. Derfor er belønningen til beslutningstidspunktet, $N$, kun en funktion af tilstanden og betegnes $r_N(s)$.
 
-Ud fra ovenstående bliver følgende mængde refereret til som en Markov beslutningsproces
+Ud fra ovenstående siges følgende mængde at være en Markov beslutningsproces
 %
 \begin{align*}
     \left\{T, S, A_s, p_t(\cdot | s,a), r_t(s,a)\right\}.
@@ -115,82 +117,188 @@ Dette er en Markov beslutningsproces, da overgangssandsynligheden og belønninge
 
 
 %decision rule?
-\subsection{Beslutningsregel}
-En \textit{beslutningsregel} er en procedure til at vælge hændelser for hver tilstand i en given beslutningstidspunkt, $t$. Beslutningsregler kan både være deterministisk og tilfældig, men i dette projekt tages der udgangspunkt i deterministiske beslutningsreger.
+\subsection{Beslutningsregel}\label{afsnit:beslutningsregel}
+En beslutningsregel er en procedure til at vælge beslutninger for hver tilstand til et givet beslutningstidspunkt, $t$. Beslutningsregler kan både være deterministiske og tilfældige.% men i dette projekt tages der udgangspunkt i deterministiske beslutningsregler.
 
-En deterministisk beslutningsregel er en funktion, $d_t:S\to A_s$, som angiver beslutningsvalget ved tilstanden, $s$, og beslutningstidspunkt, $t$. For en beslutningsregel gælder det, at for ethvert $s\in S$, så er $d_t(s)\in A_s$. Beslutningsreglen siges at være \textit{Markov}, eftersom den kun afhænger af de forrige tilstande og handlinger gennem den nuværende tilstand af systemet. 
+En deterministisk beslutningsregel er en funktion, $d_t:S\to A_s$, som angiver beslutningsvalget ved tilstanden, $s$, og beslutningstidspunkt, $t$. Beslutningsreglen siges at være Markov, hvis den kun afhænger af de forrige tilstande og beslutninger gennem den nuværende tilstand af systemet. 
 
-En deterministisk beslutningsregel kan være \textit{fortidsafhængig}. For at kunne definere dette introduceres begrebet \textit{historik}. En \textit{historik} er en ordnet mængde af skiftevis tilstande og beslutninger, $h_t = (s_1,a_1, \dots, s_{t-1},a_{t-1}, s_t)$, som følger rekursionen, $h_t=(h_{t-1},a_{t-1},s_t)$. En fortidsafhængig beslutningsregel defineres som følgende
-
-\begin{defn} \textbf{Fortidsafhængig}
-\newline
-Lad $s$ være en tilstand i tilstandsrummet $S$ og $a$ en beslutning i beslutningsrummet $A_s$. Lad  $h_t=(h_{t-1},a_{t-1},s_t)$ være en historik. Så er en deterministisk beslutningsregel fortidsafhængig, hvis den afhænger af den forrige historik, $h_t$.
-\end{defn}
-
+En deterministisk beslutningsregel kan være fortidsafhængig, hvis den afhænger af en historik. En historik er en ordnet mængde af skiftevis tilstande og beslutninger, $h_t = (s_1 \cap a_1\cap \dots\cap s_{t-1}\cap a_{t-1}\cap s_t)$, som følger rekursionen, $h_t=(h_{t-1}\cap a_{t-1}\cap s_t)$. En deterministisk beslutningsregel er fortidsafhængig, hvis den afhænger af den forrige historik, $h_t$.
 Lad $H_t$ angive mængden af alle historikker, $h_t$. Bemærk, at 
 \begin{align*}
     H_1&=S, \quad H_2=S\times A\times S, \quad H_n =S\times A\times S\times \cdots \times S \text{ og }\\
     H_t&=H_{t-1}\times A\times S 
 \end{align*}
-En deterministisk fortidsafhængig beslutningsregel er en funktion, $d_t: H_t\to A$, under betingelsen, at $d_t(h_t)\in A_{s, t}$.
-Mængden af alle beslutningsregler betegnes ved $D_t$. 
+En fortidsafhængig deterministisk beslutningsregel er en funktion, $d_t: H_t\to A$, under betingelsen, at $d_t(h_t)\in A_{s_t}$.
+
+En tilfældig beslutningsregel, $d_t$, er en funktion, $d_t: S\to P(A)$, som angiver sandsynligheden for en beslutning ved tilstanden, $s$, og beslutningstidspunktet, $t$. Altså angiver en tilfældig beslutningsregel sandsynlighedsfordelingen, $q_{d_t}(\cdot)$, for mængden af beslutninger til beslutningstidspunktet, $t$. For en fortidsafhængig tilfældig beslutningsregel, gælder det, at $d_t:H_t\to P(A)$.
+
+Når den tilfældige beslutningsregel er Markov gælder det, at $q_{d_t(s_t)}(\cdot)\in P(A_{s_t})$. Hvis den tilfældige beslutningsregel derimod er fortidsafhængig, gælder det, at $q_{d_t(h_t)}(\cdot)\in P(A_{s_t})$ for alle $h_t\in H_t$.
+
+En deterministisk beslutningsregel er et specialtilfælde af en tilfældig beslutningsregel, hvor det for sandsynlighedsfordelingen $q_{d_t}(A)$ gælder, at
+\begin{align*}
+    q_{d_t(s_t)}(a)=1\\
+    q_{d_t(h_t)}(a)=1
+\end{align*}
+for $a\in A_s$. Mængden af alle beslutningsregler betegnes ved $D_t^K$, hvor $K$ er klassen af beslutningsregler. Der er fire forskellige klasser, som er gennemgået ovenfor Markov deterministisk (MD), fortidsafhængig deterministisk (FD), Markov tilfældig (MT) og fortidsafhængig tilfældig (FT). 
 
 \subsection{Strategi}
+En \textit{strategi} er en sekvens af beslutningsregler $\Psi=(d_1,d_2,\dots,d_{N-1})$, hvor $d_t\in D_t^K$ for alle $t=1, 2, \dots N-1$. Altså indeholder en strategi den beslutningsregel, der skal anvendes til ethvert beslutningstidspunkt, og dermed ved beslutningstageren, hvilken beslutning der skal vælges til enhver tilstand. En strategi er invariant, hvis $d_t=d$ for alle $t\in T$. Dette har formen, $\Psi=(d,d,\dots)$ og betegnes ved $d^\infty$. 
 
-En \textit{Strategi} bestemmer hvilke beslutningsregler, der skal benyttes til ethvert beslutningstidspunkt. Med andre ord, så er det en sekvens/følge af beslutningsregler, $\pi=(d_1,d_2,\dots,d_{N-1})$, hvor $d_t\in D_t^k$.
-Lad nu $\Pi=D_1\times D_2,\times\cdots\times D_{n-1}, N\leq \infty$ være en endelig eller uendelig mængde af alle strategier.
 
-En strategi er invariant, hvis $d_t=d$ for alle $t\in T$. Dette har formen, $\pi=(d,d,\dots)$ og betegnes ved $d^\infty$. 
+% En \textit{strategi} bestemmer hvilke beslutningsregler, der skal benyttes til ethvert beslutningstidspunkt. Med andre ord er det en sekvens/følge af beslutningsregler, $\Psi=(d_1,d_2,\dots,d_{N-1})$, hvor $d_t\in D_t^k$.
+% Lad nu $\Pi=D_1\times D_2,\times\cdots\times D_{n-1}, N\leq \infty$ være en endelig eller uendelig mængde af alle strategier.
 
-\subsection{Markov modellen}
+% En strategi er invariant, hvis $d_t=d$ for alle $t\in T$. Dette har formen, $\pi=(d,d,\dots)$ og betegnes ved $d^\infty$. 
 
-I dette afsnit konstrueres en model for den stokastiske model genereret ud fra Markov beslutningsprocessen. Det antages, at $S$ og $A$ er diskrete.
+\section{DAMDAM}
 
-Som nævnt i sandsynlighedsafsnittet, består et sandsynlighedsrum af tre elementer: et udfaldsrum, $\Omega$, et hændelsesrum, $\mathcal{F}$ og et sandsynlighedsmål, $P$, på $(\Omega,\mathcal{F})$.
-Bemærk, at når $\Omega$ er endelig, så er $\mathcal{F}$ givet ved potensmængden af $\Omega$ og sandsynlighedsmålet er en sandsynlighedsmassefunktion. 
+Af \autoref{def:sandsynlighedsrum} gælder det, at et sandsynlighedsrum er givet ved triplen, $(\Omega, \F, P)$, hvor $\Omega$ betegner udfaldsrummet, $\F$ hændelsesrummet og $P$ et sandsynlighedsmål på $(\Omega,\mathcal{F})$.
 
-For en MDP med endelig horisont, vælges
+For en endelig indeksmængde, $T=\{1, 2,\cdots, N\}$ for $N<\infty$, gælder det, at
 \begin{align*}
-    \Omega=S\times A\times S\times A\times\cdots\times A\times S=\{S\times A\}^{N-1}\times S,
+    \Omega = S \times A \times S \times \cdots \times S = \{S \times A\}^{N-1} \times S,
+\end{align*}
+og for en uendelig indeksmængde, hvor $N=\infty$, er 
+\begin{align*}
+    \Omega = \{S \times A\}^\infty.
+\end{align*}
+Hvert element $\omega \in \Omega$ kaldes en \textit{udfaldsvej} og består af en sekvens af tilstande og beslutninger. Altså gælder det, at
+\begin{align*}
+    \omega=(s_1 \cap a_1 \cap s_2 \cap a_2 \cap \cdots \cap a_{N-1} \cap s_N).
+\end{align*}
+Hvis $N<\infty$, er indeksmængden endelig, og for $N=\infty$ er indeksmængden uendelig. 
+
+Lad $X_t$ og $Y_t$ være to tilfældige variabler som er givet ved
+\begin{align*}
+    X_t(\omega) = s_t \text{ og } Y_t(\omega) = a_t, \text{ for } t=1,2,\dots, N, \  N\leq \infty,
+\end{align*}
+hvor $X_t$ antager værdier i tilstandsrummet, $S$, og $Y_t$ antager værdier i beslutningsrummet, $A$. Altså gælder det, at $X_t$ betegner tilstanden til $t$ og $Y_t$ betegner beslutningen til $t$ for en udfaldvej $\omega$.
+
+Lad derudover $Z_t$ være en tilfældig variabel som er givet ved
+\begin{align*}
+    Z_1 = s_1 \text{ og } Z_t(\omega) = (s_1 \cap a_1 \cap s_2 \cap a_2 \cap \cdots \cap s_t) \text{ for } t=1,2,\dots, N, \  N\leq \infty.
 \end{align*}
 
-mens en uendelig horisont indebærer, at $\Omega=\{S\times A\}^\infty$. \\\\
-En \textit{vej} $\omega\in\Omega$ er en sekvens af tilstande og hændelser:
+En fortidsafhængig strategi, $\Psi = (d_1, d_2, \dots, d_{N-1}), N \leq \infty$ inducerer en sandsynlighed $P^\Psi$ på $(\Omega, \F)$ ved
+\begin{align}
+    P^{\Psi}\{X_1=s\}&=P_1(s)\label{eqs:de_tre_ligninger},\\
+    P^{\Psi}\{Y_t=a|Z_t=h_t\}&=q_{d_t(h_t)}(a)\label{eqs:de_tre_ligninger2},\\
+    P^{\Psi}\{X_{t+1}=s|Z_t&=(h_{t-1}\cap a_{t-1}\cap s_t)\cap Y_t=a_t\}=p_t(s|s_t\cap a_t), \label{eqs:de_tre_ligninger3}
+\end{align}
+hvor $P_1(s)$ betegner begyndelsesfordelingen til tilstanden $s$.
+
+Af kædereglen for sandsynligheder, \autoref{bilag:kædereglen}, gælder det, at sandsynligheden for en udfaldsvej, $\omega =(s_1 \cap a_1 \cap s_2 \cap \cdots \cap a_{N-1} \cap s_N)$, er givet ved
+\begin{align}
+    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)P(a_1|s_1)P(s_2|a_1 \cap s_1)P(a_2|s_2 \cap a_1 \cap s_1)\nonumber \\
+    &\phantom{= \ }\cdots P(a_{N-1}|s_{N-1} \cap \dots \cap a_1 \cap s_1) P(s_N | a_{N-1} \cap \dots \cap a_1 \cap s_1).\nonumber
+    \intertext{Af Markov egenskaben, \autoref{markov-kæde-hovedsætning}, gælder det, at}
+    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)P(a_1|s_1)P(s_2|a_1 \cap s_1)P(a_2|s_2 \cap a_1 \cap s_1)\nonumber \\
+    &\phantom{= \ }\cdots P(a_{N-1}|s_{N-1} \cap a_{N-2}) P(s_N | a_{N-1} \cap s_{N-1}).\nonumber
+    \intertext{Ved at anvende \eqref{eqs:de_tre_ligninger},\eqref{eqs:de_tre_ligninger2} og \eqref{eqs:de_tre_ligninger3} fås}
+    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)q_{d_1(s_1)}(a_1)p_1(s_2|s_1 \cap a_1)q_{d_2(h_2)}(a_2)\nonumber\\
+     &\phantom{= \ }\cdots q_{d_{N-1}(h_{N-1})}(a_{N-1})p_{N-1}(s_N|a_{N-1} \cap s_{N-1}).\label{eq:den_meget lange_der_er_træls_at_skrive}
+\end{align}
+Fra \autoref{afsnit:beslutningsregel} vides det, at når en strategi, $\Psi$, er deterministisk, gælder det, at $q_{d_t(s_t)}(a) = 1$ og $q_{d_t(h_t)}(a)=1$ for $a \in A_s$. Dermed gælder det for en deterministisk strategi, $\Psi$, at
 \begin{align*}
-    \omega=(s_1,a_1,s_2,a_2,\dots,A_{N-1},S_N)
+    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)p_1(s_2|s_1 \cap a_1)\cdots p_{N-1}(s_N|a_{N-1} \cap s_{N-1}).
+\end{align*}
+De ovenstående skal anvendes til at bestemme udtrykket for følgende betingede sandsynlighed
+\begin{align}
+    P^\Psi(a_t \cap s_{t+1}, \dots, s_n | s_1 \cap a_1 \cap \dots \cap s_t) = \frac{P^\Psi(s_1 \cap a_1 \cap \dots \cap s_N)}{P^\Psi(s_1 \cap a_1 \cap \dots \cap s_t)}, \label{eq:betinget_sands_for_meget_lang_udtryk}
+\end{align}
+som gælder af kædereglen under antagelsen af, at $P^\Psi(s_1 \cap a_1 \cap \dots \cap s_t) \neq 0$. Ved at sætte $N=t$ i \eqref{eq:den_meget lange_der_er_træls_at_skrive} vides det, at 
+\begin{align*}
+    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_t) &= P(s_1)q_{d_1(s_1)}(a_1)p_1(s_2|s_1 \cap a_1)q_{d_2(h_2)}(a_2)\\
+     &\phantom{= \ }\cdots q_{d_{t-1}(h_{t-1})}(a_{t-1})p_{t-1}(s_t|a_{t-1} \cap s_{t-1}).
+\end{align*}
+Udtrykkene brøken for \eqref{eq:betinget_sands_for_meget_lang_udtryk} indsættes og reduceres
+\begin{align*}
+P^\Psi(a_t \cap s_{t+1}, \dots, s_n | s_1 \cap a_1 \cap \dots \cap s_t) &=\frac{P(s_1)q_{d_1(s_1)}(a_1)
+    \cdots p_{N-1}(s_N|a_{N-1} \cap s_{N-1})}{P(s_1)q_{d_1(s_1)}(a_1)
+    \cdots p_{t-1}(s_t|a_{t-1} \cap s_{t-1})}\\
+    &= q_{d_t(h_t)}(a_t)p(s_{t+1}|s_t \cap a_t)\\
+    &\phantom{= \ } \cdots q_{d_{N-1}(h_{N-1})}(a_{N-1})p_{N-1}(s_N|s_{N-1} \cap a_{N-1})
+\end{align*}
+Hvis en strategi, $\Psi$, er Markov, så afhænger beslutningsreglen, $d_t$, kun af de forrige tilstande og beslutninger gennem den nuværende tilstand. Det gælder altså, at \begin{align*}
+    P^\Psi \{Y_t = a | Z_t = (h_{t-1} \cap a_{t-1} \cap s_t) \} = P \{Y_t = a | X_t = s_t\} = q_{d_t(s_t)}(a)
+\end{align*}
+Altså gælder det, at
+\begin{align*}
+    P^{\Psi}(a_t \cap s_{t+1} \cap \cdots \cap s_N|s_1 \cap a_1 \cap \cdots \cap s_t)=P^{\pi}(a_t \cap s_{t+1} \cap \cdots \cap s_n|s_t).
 \end{align*}
 
-Lad nu $X_t$ være en diskret tilfældig variabel, der antager tilstande, $s_t$ og lad ligeledes $Y_t$ antage hændelser, $a_t$. Dermed er 
+\subsection{Markov belønningsproces}
+En Markov belønningsproces er den bivariate stokatiske proces $\left\{\left(X_t, r_t(X_t, Y_t)\right); t \in T\right\}$, når en strategi, $\Psi$, er Markov. Denne stokastiske proces består af en sekvens af tilstande og belønninger givet en strategi, $\Psi$. 
+
+Lad $W$ være en diskret tilfældig variabel defineret på sandsynlighedsrummet, $(\Omega, \F, P^{\pi})$, hvorom det gælder, at
 \begin{align*}
-    X_t(\omega)=s_t \ \text{ og } \ Y_t(\omega)=a_t,
+    W(\omega)=W(s_1 \cap a_1 \cap \dots \cap s_N) = \sum_{t=1}^{N-1} r_t(s_t,a_t) + r_N(s_N).
 \end{align*}
-for $t\in T$. 
-
-En historik proces defineres til
+Altså gælder det, at $W(\omega)$ er summen af belønninger. Af \autoref{def:Forventetværdi} gælder det, at
 \begin{align*}
-    Z_t(\omega)=s_1 \ \text{ og } \ Z_t(\omega)=(s_1,a_2,\dots,s_t) \text{ for } 1\leq t\leq N;\ N\leq \infty
+    E^\Psi (W) = \sum_{\omega \in \Omega} W(\omega)P^\Psi\left(\{\omega\}\right) = \sum_{w \in \R} w P^\Psi \left(\{w: W(\omega) = w\}\right).
 \end{align*}
-Lad $P_1(\cdot)$ betegne \textit{begyndelsesdistributionen} for systemets tilstand.
+Hvorom det gælder, at summerne i ovenstående bliver integraler for $N = \infty$.
 
-
-
-\subsection{Forventet værdi}
-Når $\pi$ er Markov, siges den bivariate stokastiske proces, $\{(X_t,r_t(X_t,Y_t)); t\in T\}$, at være en \textit{Markov belønningsproces}. 
-
-Lad $W$ være en tilfældig variable på sandsynlighedsrummet, $\{\omega, \mathcal{F},P^\pi\}$ og lad $n$ være endelig. 
-Den forventede værdi er givet ved
+Hvis strategien $\Psi$ er fortidsafhængig med historikken $h_t=(s_1\cap a_1 \cap \dots \cap s_t)$, og $W$ er en funktion af $s_1\cap a_1\cap\dots\cap s_N$, så gælder det, at
 \begin{align*}
-    E^\pi [W]=\sum_{\omega\in\Omega} W(\omega)P^\pi\{\omega\}
+    E_{h_t}^\Psi \left\{W(X_t \cap Y_t \cap \dots \cap X_n) \right\} = \sum W(s_t \cap a_t \cap \dots \cap s_N) P^\Psi (a_t \cap s_{t+1} \cap \dots \cap s_N | s_1 \cap a_1 \cap \dots \cap s_t),
 \end{align*}
-
-
-Lad nu $W$ være en funktion af en historik $h_t$. Hvis $\pi$ er markov, så gælder der, at
+hvor der summes over $(a_t \cap s_{t+1} \cap \dots \cap s_N) \in A \times S \times \cdots \times S$. Er strategien, $\Psi$, derimod Markov gælder det, at
 \begin{align*}
-    E_{s_t}^\pi [W(X_t,Y_t,\dots, X_n]=\sum W(s_t,a_t,\dots, s_N)P^\pi (a_t,s_{t+1},\dots,s_N|s_t).
+     E_{s_t}^\Psi \left\{W(X_t \cap Y_t \cap \dots \cap X_n) \right\} = \sum W(s_t \cap a_t \cap \dots \cap s_N) P^\Psi (a_t \cap s_{t+1} \cap \dots \cap s_N | s_t).
 \end{align*}
 
-Bemærk, at 
-\begin{align*}
-    E^\pi[W]=\sum_{s\in S} P_1(s)E_s^\pi [W] \forall\pi\in\Pi
-\end{align*}
+For en beslutningstager gælder det da om at optimere denne sum, så der opnås størst mulig belønning.  
 
+% \subsection{Markov modellen}
+
+% I dette afsnit konstrueres en model for den stokastiske model genereret ud fra Markov beslutningsprocessen. Det antages, at $S$ og $A$ er diskrete.
+
+% Som nævnt i sandsynlighedsafsnittet, består et sandsynlighedsrum af tre elementer: et udfaldsrum, $\Omega$, et hændelsesrum, $\mathcal{F}$ og et sandsynlighedsmål, $P$, på $(\Omega,\mathcal{F})$.
+% Bemærk, at når $\Omega$ er endelig, så er $\mathcal{F}$ givet ved potensmængden af $\Omega$ og sandsynlighedsmålet er en sandsynlighedsmassefunktion. 
+
+% For en MDP med endelig horisont, vælges
+% \begin{align*}
+%     \Omega=S\times A\times S\times A\times\cdots\times A\times S=\{S\times A\}^{N-1}\times S,
+% \end{align*}
+
+% mens en uendelig horisont indebærer, at $\Omega=\{S\times A\}^\infty$. \\\\
+% En \textit{vej} $\omega\in\Omega$ er en sekvens af tilstande og hændelser:
+% \begin{align*}
+%     \omega=(s_1,a_1,s_2,a_2,\dots,A_{N-1},S_N)
+% \end{align*}
+
+% Lad nu $X_t$ være en diskret tilfældig variabel, der antager tilstande, $s_t$ og lad ligeledes $Y_t$ antage hændelser, $a_t$. Dermed er 
+% \begin{align*}
+%     X_t(\omega)=s_t \ \text{ og } \ Y_t(\omega)=a_t,
+% \end{align*}
+% for $t\in T$. 
+
+% En historik proces defineres til
+% \begin{align*}
+%     Z_t(\omega)=s_1 \ \text{ og } \ Z_t(\omega)=(s_1,a_2,\dots,s_t) \text{ for } 1\leq t\leq N;\ N\leq \infty
+% \end{align*}
+% Lad $P_1(\cdot)$ betegne \textit{begyndelsesdistributionen} for systemets tilstand.
+
+
+
+% \subsection{Forventet værdi}
+% Når $\pi$ er Markov, siges den bivariate stokastiske proces, $\{(X_t,r_t(X_t,Y_t)); t\in T\}$, at være en \textit{Markov belønningsproces}. 
+
+% Lad $W$ være en tilfældig variable på sandsynlighedsrummet, $\{\omega, \mathcal{F},P^\pi\}$ og lad $n$ være endelig. 
+% Den forventede værdi er givet ved
+% \begin{align*}
+%     E^\pi [W]=\sum_{\omega\in\Omega} W(\omega)P^\pi\{\omega\}
+% \end{align*}
+
+
+% Lad nu $W$ være en funktion af en historik $h_t$. Hvis $\pi$ er markov, så gælder der, at
+% \begin{align*}
+%     E_{s_t}^\pi [W(X_t,Y_t,\dots, X_n]=\sum W(s_t,a_t,\dots, s_N)P^\pi (a_t,s_{t+1},\dots,s_N|s_t).
+% \end{align*}
+
+% Bemærk, at 
+% \begin{align*}
+%     E^\pi[W]=\sum_{s\in S} P_1(s)E_s^\pi [W] \forall\pi\in\Pi
+% \end{align*}
