@@ -9,47 +9,84 @@
 
 % B = Sandsynlighed
 %Mængder
-\nomenclature[B,01]{$S$}{Et udfaldsrum}
-\nomenclature[B,01]{$s$}{Element af udfaldsrummet}
-\nomenclature[B,01]{$A, B$}{Hændelse}
-\nomenclature[B,01]{$\Sigma$}{Hændelsesrum}
-\nomenclature[B,01]{$\emptyset$}{Den tomme mængde}
-\nomenclature[B,01]{$\R$}{De reelle tal}
-\nomenclature[B,01]{$P(\cdot)$}{Sandsynlighedsmål}
-\nomenclature[B,01]{$A_k, B_k$}{Den $k$'te hændelse}
-\nomenclature[B,01]{$P(A | B)$}{Sandsynligheden for $A$ givet $B$}
-\nomenclature[B,01]{$k,n,i,j$}{Tællevariabler}
-\nomenclature[B,01]{$\E$}{Tilfældigt eksperiment}
-\nomenclature[B,01]{$X, Y$}{Diskrete tilfældige variabler}
-\nomenclature[B,01]{Range$(\cdot)$}{Billedet af en diskret tilfældig variabel}
-\nomenclature[B,01]{$(S,\Sigma, P)$}{Sandsynlighedsrum}
-\nomenclature[B,01]{$X^{-1}$}{Urbilledet af $X$}
-\nomenclature[B,03]{$p_X(\cdot)$}{Frekvensfunktionen til $X$}
-\nomenclature[B,01]{$\mathcal{Y}$}{En mængde}
-\nomenclature[B,01]{$F_X(\cdot)$}{Fordelingsfunktion til $X$}
-\nomenclature[B,04]{$g(\cdot)$}{Vilkårlig reel funktion funktion}
-\nomenclature[B,04]{$E[\cdot]$}{Den forventede værdi}
-\nomenclature[B,04]{Var$[\cdot]$}{Varians}
-\nomenclature[B,04]{$\sigma$}{Standardafvigelsen}
-
+\nomenclature[B,01]{$\Omega$}{Et udfaldsrum}
+\nomenclature[B,02]{$\omega$}{Element af udfaldsrummet}
+\nomenclature[B,04]{$A, B$}{Hændelse}
+\nomenclature[B,03]{$\F$}{Hændelsesrum}
+\nomenclature[B,05]{$\emptyset$}{Den tomme mængde}
+\nomenclature[B,08]{$\R$}{De reelle tal}
+\nomenclature[B,06]{$P(\cdot)$}{Sandsynlighedsmål}
+\nomenclature[B,09]{$A_k, B_k$}{Den $k$'te hændelse}
+\nomenclature[B,11]{$P(A \mid B)$}{Sandsynligheden for $A$ givet $B$}
+\nomenclature[B,10]{$k,n,i,j$}{Tællevariabler}
+\nomenclature[B,00]{$\E$}{Tilfældigt eksperiment\newline}
+\nomenclature[B,12]{$X, Y$}{Diskrete tilfældige variabler}
+\nomenclature[B,13]{Range$(\cdot)$}{Billedet af en diskret tilfældig variabel}
+\nomenclature[B,07]{$(\Omega,\F, P)$}{Sandsynlighedsrum}
+\nomenclature[B,14]{$X^{-1}$}{Urbilledet af $X$}
+\nomenclature[B,15]{$p_X(\cdot)$}{Frekvensfunktionen til $X$}
+\nomenclature[B,16]{$\mathcal{Y}$}{En mængde}
+\nomenclature[B,16]{$F_X(\cdot)$}{Fordelingsfunktion til $X$}
+\nomenclature[B,18]{$g(\cdot)$}{Vilkårlig reel funktion funktion}
+\nomenclature[B,17]{$E[\cdot]$}{Den forventede værdi}
+\nomenclature[B,19]{$E[X \mid Y]$}{Den forventede værdi for $X$ givet $Y$}
+\nomenclature[B,20]{Var$[\cdot]$}{Varians}
+\nomenclature[B,21]{$\sigma$}{Standardafvigelsen}
+\nomenclature[B,22]{}{\pagebreak}
 %Diverse
 
 
-% C = Differentialligninger
-\nomenclature[C,01]{$\frac{d^nx}{dt^n}$}{Leibniz' notation for $n$'te afledte af $x$ med hensyn til $t$}
+% C = Markov-kæder
+\nomenclature[C,01]{$\bm X$}{En sekvens af diskrete tilfældige variabler }
+\nomenclature[C,02]{$S$}{Tilstandsrummet}
+\nomenclature[C,03]{$T$}{Indeksmængden}
+\nomenclature[C,04]{$j, i$}{Tilstande i tilstandsrummet}
+\nomenclature[C,05]{$t, m, r$}{Indicer i indeksmængden}
+\nomenclature[C,06]{$p_{ij}$}{Overgangssandsynligheden for en Markov-kæde}
+\nomenclature[C,07]{$\P$}{Overgangsmatricen for en Markov-kæde}
+\nomenclature[C,08]{$P(X_0 = i_0)$}{Begyndelses -\\sandsynligheden}
+\nomenclature[C,09]{$p_{ij}^{(t)}$}{$t$'te trins overgangssandsynligheden for en Markov-kæde}
+\nomenclature[C,10]{$\P^{(t)}$}{$t$'te trins overgangsmatricen for en Markov-kæde}
+\nomenclature[C,11]{$i \to j$}{$j$ er tilgængelig fra $i$}
+\nomenclature[C,12]{$i \leftrightarrow j$}{$j$ og $i$ kommunikerer}
+\nomenclature[C,13]{$\tau_i$}{Antal trin før Markov-kæden besøger $i$}
+%\nomenclature[C,15]{$\bm \pi$}{Invariant fordelling}
+
 
 
 
 % \noncleture[BOGSTAV,VÆGT]{symbol}{symbolforklaring}
 % Hvor BOGSTAV betegner afsnittet den skal i og VÆGT betegner hvor den skal hen (01 er først og 0n er sidst)
 
-% D = Beregning a e^tA Hej får 9 fejl prøver lige at sætte preamble ind igen
-%wut Yessir 
-
-
-
-
-
+% D =  Markov beslutningsprocesser
+\nomenclature[D,01]{$T$}{Mængden af beslutningstidspunkter}
+\nomenclature[D,02]{$t$}{Beslutningstidspunkter}
+\nomenclature[D,03]{$S$}{Mængden af tilstande}
+\nomenclature[D,04]{$s$}{Tilstande}
+\nomenclature[D,05]{$S_t$}{Mængden af tilstande til $t$}
+\nomenclature[D,06]{$A$}{Mængden af mulige beslutninger}
+\nomenclature[D,07]{$a$}{Beslutninger}
+\nomenclature[D,08]{$A_s$}{Mængden af mulige beslutninger til $s$}
+\nomenclature[D,09]{$A_{s,t}$}{Mængden af mulige beslutninger til $s$ og $t$}
+\nomenclature[D,10]{$r_t(s,a)$}{Belønning}
+\nomenclature[D,11]{$r_t(s,a,j)$}{Belønning afhængig af tilstanden til $t+1$, $j$}
+\nomenclature[D,12]{$p_t(\cdot \mid s,a)$}{Overgangssandsynlig - \\hedsfunktionen}
+\nomenclature[D,13]{$N$}{Sidste beslutningstidspunkt}
+\nomenclature[D,14]{$
+\{T, S, A_s,$\\ $p_t(\cdot \mid s,a),$\\ $r_t(s,a)\}$}{Markov beslutningsproces}
+\nomenclature[D,15]{$d_t$}{Beslutningsregel}
+\nomenclature[D,16]{$h_t$}{Historik}
+\nomenclature[D,17]{$H_t$}{Mængden af historikker}
+\nomenclature[D,18]{$q_{d_t}(\cdot)$}{Sandsynlighedsfordelingen for mængden af beslutningsregler}
+\nomenclature[D,19]{$D_t^K$}{Mængden af beslutningsregler}
+\nomenclature[D,20]{$K$}{Klassen af beslutningsregler}
+\nomenclature[D,21]{$\Psi$}{Strategi}
+\nomenclature[D,22]{$\prod$}{Mængden af alle strategier}
+\nomenclature[D,23]{$\omega$}{Udfaldsvej}
+\nomenclature[D,24]{$Z_t, W$}{Diskret tilfældig variabel}
+\nomenclature[D,25]{$P^\Psi$}{Sandsynlighedsmål givet en strategi}
+\nomenclature[D,26]{$E^\Psi$}{Den forventet værdi givet en strategi}
+\nomenclature[D,27]{$v_N^{\Psi}$}{Den forventede totale belønning givet en strategi.}
 
 
 

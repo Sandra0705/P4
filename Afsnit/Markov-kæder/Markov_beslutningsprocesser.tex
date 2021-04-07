@@ -122,7 +122,7 @@ En beslutningsregel er en procedure til at vælge beslutninger for hver tilstand
 
 En deterministisk beslutningsregel er en funktion, $d_t:S\to A_s$, som angiver beslutningsvalget ved tilstanden, $s$, og beslutningstidspunkt, $t$. Beslutningsreglen siges at være Markov, hvis den kun afhænger af de forrige tilstande og beslutninger gennem den nuværende tilstand af systemet. 
 
-En deterministisk beslutningsregel kan være fortidsafhængig, hvis den afhænger af en historik. En historik er en ordnet mængde af skiftevis tilstande og beslutninger, $h_t = (s_1 \cap a_1\cap \dots\cap s_{t-1}\cap a_{t-1}\cap s_t)$, som følger rekursionen, $h_t=(h_{t-1}\cap a_{t-1}\cap s_t)$. En deterministisk beslutningsregel er fortidsafhængig, hvis den afhænger af den forrige historik, $h_t$.
+En deterministisk beslutningsregel kan være fortidsafhængig, hvis den afhænger af en historik. En historik er en ordnet mængde af skiftevis tilstande og beslutninger, $h_t = (s_1, a_1, \dots,  s_{t-1}, a_{t-1}, s_t)$, som følger rekursionen, $h_t=(h_{t-1}, a_{t-1}, s_t)$. En deterministisk beslutningsregel er fortidsafhængig, hvis den afhænger af den forrige historik, $h_t$.
 Lad $H_t$ angive mængden af alle historikker, $h_t$. Bemærk, at 
 \begin{align*}
     H_1&=S, \quad H_2=S\times A\times S, \quad H_n =S\times A\times S\times \cdots \times S \text{ og }\\
@@ -142,19 +142,19 @@ En deterministisk beslutningsregel er et specialtilfælde af en tilfældig beslu
 for $a\in A_s$. Mængden af alle beslutningsregler betegnes ved $D_t^K$, hvor $K$ er klassen af beslutningsregler. Der er fire forskellige klasser, som er gennemgået ovenfor Markov deterministisk (MD), fortidsafhængig deterministisk (FD), Markov tilfældig (MT) og fortidsafhængig tilfældig (FT). 
 
 \subsection{Strategi}
-En \textit{strategi} er en sekvens af beslutningsregler $\Psi=(d_1,d_2,\dots,d_{N-1})$, hvor $d_t\in D_t^K$ for alle $t=1, 2, \dots N-1$. Altså indeholder en strategi den beslutningsregel, der skal anvendes til ethvert beslutningstidspunkt, og dermed ved beslutningstageren, hvilken beslutning der skal vælges til enhver tilstand. En strategi er invariant, hvis $d_t=d$ for alle $t\in T$. Dette har formen, $\Psi=(d,d,\dots)$ og betegnes ved $d^\infty$. 
-
+En strategi er en sekvens af beslutningsregler $\Psi=(d_1,d_2,\dots,d_{N-1})$, hvor $d_t\in D_t^K$ for alle $t=1, 2, \dots N-1$ for $N \leq \infty$. Altså indeholder en strategi den beslutningsregel, der skal anvendes til ethvert beslutningstidspunkt, og dermed ved beslutningstageren, hvilken beslutning der skal vælges til enhver tilstand. En strategi er invariant, hvis $d_t=d$ for alle $t\in T$. Dette har formen, $\Psi=(d,d,\dots)$ og betegnes ved $d^\infty$. 
+Mængden af alle strategier for $K=MD, FD, MT, FT$ betegnes $\prod^K=D_1^K\times D_2^K\times \cdots\times D_{N-1}^K$.
 
 % En \textit{strategi} bestemmer hvilke beslutningsregler, der skal benyttes til ethvert beslutningstidspunkt. Med andre ord er det en sekvens/følge af beslutningsregler, $\Psi=(d_1,d_2,\dots,d_{N-1})$, hvor $d_t\in D_t^k$.
 % Lad nu $\Pi=D_1\times D_2,\times\cdots\times D_{n-1}, N\leq \infty$ være en endelig eller uendelig mængde af alle strategier.
 
 % En strategi er invariant, hvis $d_t=d$ for alle $t\in T$. Dette har formen, $\pi=(d,d,\dots)$ og betegnes ved $d^\infty$. 
 
-\section{DAMDAM}
+\section{Induceret stokastisk proces, betingede sandsynligheder og forventede værdier og et andet navn}
 
 Af \autoref{def:sandsynlighedsrum} gælder det, at et sandsynlighedsrum er givet ved triplen, $(\Omega, \F, P)$, hvor $\Omega$ betegner udfaldsrummet, $\F$ hændelsesrummet og $P$ et sandsynlighedsmål på $(\Omega,\mathcal{F})$.
 
-For en endelig indeksmængde, $T=\{1, 2,\cdots, N\}$ for $N<\infty$, gælder det, at
+For en endelig indeksmængde, $T=\{1, 2,\cdots, N\}$, hvor $N<\infty$, gælder det, at
 \begin{align*}
     \Omega = S \times A \times S \times \cdots \times S = \{S \times A\}^{N-1} \times S,
 \end{align*}
@@ -164,93 +164,91 @@ og for en uendelig indeksmængde, hvor $N=\infty$, er
 \end{align*}
 Hvert element $\omega \in \Omega$ kaldes en \textit{udfaldsvej} og består af en sekvens af tilstande og beslutninger. Altså gælder det, at
 \begin{align*}
-    \omega=(s_1 \cap a_1 \cap s_2 \cap a_2 \cap \cdots \cap a_{N-1} \cap s_N).
+    \omega=(s_1 , a_1 , s_2 , a_2 , \dots , a_{N-1} , s_N).
 \end{align*}
-Hvis $N<\infty$, er indeksmængden endelig, og for $N=\infty$ er indeksmængden uendelig. 
-
-Lad $X_t$ og $Y_t$ være to tilfældige variabler som er givet ved
+Hvis $N<\infty$, er indeksmængden endelig, og hvis $N=\infty$, er indeksmængden uendelig. 
+Lad $X_t$ og $Y_t$ være to tilfældige variabler, som er givet ved
 \begin{align*}
     X_t(\omega) = s_t \text{ og } Y_t(\omega) = a_t, \text{ for } t=1,2,\dots, N, \  N\leq \infty,
 \end{align*}
-hvor $X_t$ antager værdier i tilstandsrummet, $S$, og $Y_t$ antager værdier i beslutningsrummet, $A$. Altså gælder det, at $X_t$ betegner tilstanden til $t$ og $Y_t$ betegner beslutningen til $t$ for en udfaldvej $\omega$.
+hvor $X_t$ antager værdier i tilstandsrummet, $S$, og $Y_t$ antager værdier i beslutningsrummet, $A$. Altså gælder det, at $X_t$ betegner tilstanden til $t$ og $Y_t$ betegner beslutningen til $t$ for en udfaldsvej, $\omega$.
 
-Lad derudover $Z_t$ være en tilfældig variabel som er givet ved
+Lad derudover $Z_t$ være en tilfældig variabel, som er givet ved
 \begin{align*}
-    Z_1 = s_1 \text{ og } Z_t(\omega) = (s_1 \cap a_1 \cap s_2 \cap a_2 \cap \cdots \cap s_t) \text{ for } t=1,2,\dots, N, \  N\leq \infty.
+    Z_1(\omega) = s_1 \text{ og } Z_t(\omega) = (s_1 , a_1 , s_2 , a_2 , \dots , s_t) \text{ for } t=1,2, \dots, N, \  N\leq \infty.
 \end{align*}
 
-En fortidsafhængig strategi, $\Psi = (d_1, d_2, \dots, d_{N-1}), N \leq \infty$ inducerer en sandsynlighed $P^\Psi$ på $(\Omega, \F)$ ved
+En fortidsafhængig strategi $\Psi = (d_1, d_2, \dots, d_{N-1})$, hvor $N \leq \infty$, inducerer en sandsynlighed, $P^\Psi$, på $(\Omega, \F)$ ved
 \begin{align}
-    P^{\Psi}\{X_1=s\}&=P_1(s)\label{eqs:de_tre_ligninger},\\
-    P^{\Psi}\{Y_t=a|Z_t=h_t\}&=q_{d_t(h_t)}(a)\label{eqs:de_tre_ligninger2},\\
-    P^{\Psi}\{X_{t+1}=s|Z_t&=(h_{t-1}\cap a_{t-1}\cap s_t)\cap Y_t=a_t\}=p_t(s|s_t\cap a_t), \label{eqs:de_tre_ligninger3}
+    P^{\Psi}(X_1=s)&=P_1(s)\label{eqs:de_tre_ligninger},\\
+    P^{\Psi}\left(Y_t=a|Z_t=h_t\right)&= q_{d_t(h_t)}(a)\label{eqs:de_tre_ligninger2},\\
+    P^{\Psi}\big(X_{t+1}=s|Z_t&=(h_{t-1}, a_{t-1}, s_t), Y_t=a_t \big)=p_t(s|s_t, a_t), \label{eqs:de_tre_ligninger3}
 \end{align}
 hvor $P_1(s)$ betegner begyndelsesfordelingen til tilstanden $s$.
 
-Af kædereglen for sandsynligheder, \autoref{bilag:kædereglen}, gælder det, at sandsynligheden for en udfaldsvej, $\omega =(s_1 \cap a_1 \cap s_2 \cap \cdots \cap a_{N-1} \cap s_N)$, er givet ved
+Af kædereglen for sandsynligheder, \autoref{bilag:kædereglen}, gælder det, at sandsynligheden for en udfaldsvej, $\omega =(s_1 , a_1 , s_2 , \dots , a_{N-1} , s_N)$, er givet ved
 \begin{align}
-    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)P(a_1|s_1)P(s_2|a_1 \cap s_1)P(a_2|s_2 \cap a_1 \cap s_1)\nonumber \\
-    &\phantom{= \ }\cdots P(a_{N-1}|s_{N-1} \cap \dots \cap a_1 \cap s_1) P(s_N | a_{N-1} \cap \dots \cap a_1 \cap s_1).\nonumber
+    P^\Psi(s_1 , a_1 , s_2 , \dots , s_N) &= P(s_1)P(a_1|s_1)P(s_2|a_1 , s_1)P(a_2|s_2 , a_1 , s_1)\nonumber \\
+    &\phantom{= \ }\cdots P(a_{N-1}|s_{N-1} , \dots , a_1 , s_1) P(s_N | a_{N-1} , \dots , a_1 , s_1).\nonumber
     \intertext{Af Markov egenskaben, \autoref{markov-kæde-hovedsætning}, gælder det, at}
-    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)P(a_1|s_1)P(s_2|a_1 \cap s_1)P(a_2|s_2 \cap a_1 \cap s_1)\nonumber \\
-    &\phantom{= \ }\cdots P(a_{N-1}|s_{N-1} \cap a_{N-2}) P(s_N | a_{N-1} \cap s_{N-1}).\nonumber
+    P^\Psi(s_1 , a_1 , s_2 , \dots , s_N) &= P(s_1)P(a_1|s_1)P(s_2|a_1 , s_1)P(a_2|s_2 , a_1 , s_1)\nonumber \\
+    &\phantom{= \ }\cdots P(a_{N-1}|s_{N-1} , a_{N-2}) P(s_N | a_{N-1} , s_{N-1}).\nonumber
     \intertext{Ved at anvende \eqref{eqs:de_tre_ligninger},\eqref{eqs:de_tre_ligninger2} og \eqref{eqs:de_tre_ligninger3} fås}
-    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)q_{d_1(s_1)}(a_1)p_1(s_2|s_1 \cap a_1)q_{d_2(h_2)}(a_2)\nonumber\\
-     &\phantom{= \ }\cdots q_{d_{N-1}(h_{N-1})}(a_{N-1})p_{N-1}(s_N|a_{N-1} \cap s_{N-1}).\label{eq:den_meget lange_der_er_træls_at_skrive}
+    P^\Psi(s_1 , a_1 , s_2 , \dots , s_N) &= P(s_1)q_{d_1(s_1)}(a_1)p_1(s_2|s_1 , a_1)q_{d_2(h_2)}(a_2)\nonumber\\
+     &\phantom{= \ }\cdots q_{d_{N-1}(h_{N-1})}(a_{N-1})p_{N-1}(s_N|a_{N-1} , s_{N-1}).\label{eq:den_meget lange_der_er_træls_at_skrive}
 \end{align}
 Fra \autoref{afsnit:beslutningsregel} vides det, at når en strategi, $\Psi$, er deterministisk, gælder det, at $q_{d_t(s_t)}(a) = 1$ og $q_{d_t(h_t)}(a)=1$ for $a \in A_s$. Dermed gælder det for en deterministisk strategi, $\Psi$, at
 \begin{align*}
-    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_N) &= P(s_1)p_1(s_2|s_1 \cap a_1)\cdots p_{N-1}(s_N|a_{N-1} \cap s_{N-1}).
+    P^\Psi(s_1 , a_1 , s_2 , \dots , s_N) &= P(s_1)p_1(s_2|s_1 , a_1)\cdots p_{N-1}(s_N|a_{N-1} , s_{N-1}).
 \end{align*}
-De ovenstående skal anvendes til at bestemme udtrykket for følgende betingede sandsynlighed
+De ovenstående ligninger skal anvendes til at bestemme udtrykket for følgende betingede sandsynlighed 
 \begin{align}
-    P^\Psi(a_t \cap s_{t+1}, \dots, s_n | s_1 \cap a_1 \cap \dots \cap s_t) = \frac{P^\Psi(s_1 \cap a_1 \cap \dots \cap s_N)}{P^\Psi(s_1 \cap a_1 \cap \dots \cap s_t)}, \label{eq:betinget_sands_for_meget_lang_udtryk}
+    P^\Psi(a_t , s_{t+1}, \dots, s_n | s_1 , a_1 , \dots , s_t) = \frac{P^\Psi(s_1 , a_1 , \dots , s_N)}{P^\Psi(s_1 , a_1 , \dots , s_t)}, \label{eq:betinget_sands_for_meget_lang_udtryk}
 \end{align}
-som gælder af kædereglen under antagelsen af, at $P^\Psi(s_1 \cap a_1 \cap \dots \cap s_t) \neq 0$. Ved at sætte $N=t$ i \eqref{eq:den_meget lange_der_er_træls_at_skrive} vides det, at 
+som gælder af kædereglen, \autoref{bilag:kædereglen}, under antagelsen af, at $P^\Psi(s_1 , a_1 , \dots , s_t) \neq 0$. Ved at sætte $N=t$ i \eqref{eq:den_meget lange_der_er_træls_at_skrive} vides det, at 
 \begin{align*}
-    P^\Psi(s_1 \cap a_1 \cap s_2 \cap \dots \cap s_t) &= P(s_1)q_{d_1(s_1)}(a_1)p_1(s_2|s_1 \cap a_1)q_{d_2(h_2)}(a_2)\\
-     &\phantom{= \ }\cdots q_{d_{t-1}(h_{t-1})}(a_{t-1})p_{t-1}(s_t|a_{t-1} \cap s_{t-1}).
+    P^\Psi(s_1 , a_1 , s_2 , \dots , s_t) &= P(s_1)q_{d_1(s_1)}(a_1)p_1(s_2|s_1 , a_1)q_{d_2(h_2)}(a_2)\\
+     &\phantom{= \ }\cdots q_{d_{t-1}(h_{t-1})}(a_{t-1})p_{t-1}(s_t|a_{t-1} , s_{t-1}).
 \end{align*}
-Udtrykkene brøken for \eqref{eq:betinget_sands_for_meget_lang_udtryk} indsættes og reduceres
+Udtrykkene i brøken for \eqref{eq:betinget_sands_for_meget_lang_udtryk} indsættes og reduceres
 \begin{align*}
-P^\Psi(a_t \cap s_{t+1}, \dots, s_n | s_1 \cap a_1 \cap \dots \cap s_t) &=\frac{P(s_1)q_{d_1(s_1)}(a_1)
-    \cdots p_{N-1}(s_N|a_{N-1} \cap s_{N-1})}{P(s_1)q_{d_1(s_1)}(a_1)
-    \cdots p_{t-1}(s_t|a_{t-1} \cap s_{t-1})}\\
-    &= q_{d_t(h_t)}(a_t)p(s_{t+1}|s_t \cap a_t)\\
-    &\phantom{= \ } \cdots q_{d_{N-1}(h_{N-1})}(a_{N-1})p_{N-1}(s_N|s_{N-1} \cap a_{N-1})
+P^\Psi(a_t , s_{t+1}, \dots, s_n | s_1 , a_1 , \dots , s_t) &=\frac{P(s_1)q_{d_1(s_1)}(a_1)
+    \cdots p_{N-1}(s_N|a_{N-1} , s_{N-1})}{P(s_1)q_{d_1(s_1)}(a_1)
+    \cdots p_{t-1}(s_t|a_{t-1} , s_{t-1})}\\
+    &= q_{d_t(h_t)}(a_t)p(s_{t+1}|s_t , a_t)\\
+    &\phantom{= \ } \cdots q_{d_{N-1}(h_{N-1})}(a_{N-1})p_{N-1}(s_N|s_{N-1} , a_{N-1})
 \end{align*}
 Hvis en strategi, $\Psi$, er Markov, så afhænger beslutningsreglen, $d_t$, kun af de forrige tilstande og beslutninger gennem den nuværende tilstand. Det gælder altså, at \begin{align*}
-    P^\Psi \{Y_t = a | Z_t = (h_{t-1} \cap a_{t-1} \cap s_t) \} = P \{Y_t = a | X_t = s_t\} = q_{d_t(s_t)}(a)
+    P^\Psi \left(Y_t = a | Z_t = (h_{t-1} , a_{t-1} , s_t) \right) = P \left(Y_t = a | X_t = s_t\right) = q_{d_t(s_t)}(a)
 \end{align*}
 Altså gælder det, at
 \begin{align*}
-    P^{\Psi}(a_t \cap s_{t+1} \cap \cdots \cap s_N|s_1 \cap a_1 \cap \cdots \cap s_t)=P^{\pi}(a_t \cap s_{t+1} \cap \cdots \cap s_n|s_t).
+    P^{\Psi}\left(a_t , s_{t+1} , \cdots , s_N|s_1 , a_1 , \cdots , s_t\right)=P^{\Psi}\left(a_t , s_{t+1} , \cdots , s_n|s_t\right).
 \end{align*}
 
 \subsection{Markov belønningsproces}
 En Markov belønningsproces er den bivariate stokatiske proces $\left\{\left(X_t, r_t(X_t, Y_t)\right); t \in T\right\}$, når en strategi, $\Psi$, er Markov. Denne stokastiske proces består af en sekvens af tilstande og belønninger givet en strategi, $\Psi$. 
 
-Lad $W$ være en diskret tilfældig variabel defineret på sandsynlighedsrummet, $(\Omega, \F, P^{\pi})$, hvorom det gælder, at
+Lad $W$ være en diskret tilfældig variabel defineret på sandsynlighedsrummet, $(\Omega, \F, P^{\Psi})$, hvorom det gælder, at
 \begin{align*}
-    W(\omega)=W(s_1 \cap a_1 \cap \dots \cap s_N) = \sum_{t=1}^{N-1} r_t(s_t,a_t) + r_N(s_N).
+    W(\omega)=W(s_1 , a_1 , \dots , s_N) = \sum_{t=1}^{N-1} r_t(s_t,a_t) + r_N(s_N).
 \end{align*}
-Altså gælder det, at $W(\omega)$ er summen af belønninger. Af \autoref{def:Forventetværdi} gælder det, at
+Dermed gælder det, at $W(\omega)$ er summen af belønninger. Af \autoref{def:Forventetværdi} gælder det, at
 \begin{align*}
-    E^\Psi (W) = \sum_{\omega \in \Omega} W(\omega)P^\Psi\left(\{\omega\}\right) = \sum_{w \in \R} w P^\Psi \left(\{w: W(\omega) = w\}\right).
+    E^\Psi [W] = \sum_{\omega \in \Omega} W(\omega)P^\Psi\left(\omega\right) = \sum_{w \in \R} w P^\Psi \left(w: W(\omega) = w\right).
 \end{align*}
-Hvorom det gælder, at summerne i ovenstående bliver integraler for $N = \infty$.
+ Det gælder, at summerne i ovenstående bliver til integraler for $N = \infty$ og $E^\Psi(W)$ betegner den forventede værdi til $W$ givet strategien $\Psi$.
 
-Hvis strategien $\Psi$ er fortidsafhængig med historikken $h_t=(s_1\cap a_1 \cap \dots \cap s_t)$, og $W$ er en funktion af $s_1\cap a_1\cap\dots\cap s_N$, så gælder det, at
+Hvis strategien $\Psi$ er fortidsafhængig med historikken $h_t=(s_1, a_1 , \dots , s_t)$, og $W$ er en funktion af $s_1, a_1,\dots, s_N$, så gælder det, at
 \begin{align*}
-    E_{h_t}^\Psi \left\{W(X_t \cap Y_t \cap \dots \cap X_n) \right\} = \sum W(s_t \cap a_t \cap \dots \cap s_N) P^\Psi (a_t \cap s_{t+1} \cap \dots \cap s_N | s_1 \cap a_1 \cap \dots \cap s_t),
+    E_{h_t}^\Psi \left[W(X_t , Y_t , \dots , X_n) \right] = \sum W(s_t , a_t , \dots , s_N) P^\Psi (a_t , s_{t+1} , \dots , s_N | s_1 , a_1 , \dots , s_t),
 \end{align*}
-hvor der summes over $(a_t \cap s_{t+1} \cap \dots \cap s_N) \in A \times S \times \cdots \times S$. Er strategien, $\Psi$, derimod Markov gælder det, at
+hvor der summes over $(a_t , s_{t+1} , \dots , s_N) \in A \times S \times \cdots \times S$. Er strategien, $\Psi$, derimod Markov, gælder det, at
 \begin{align*}
-     E_{s_t}^\Psi \left\{W(X_t \cap Y_t \cap \dots \cap X_n) \right\} = \sum W(s_t \cap a_t \cap \dots \cap s_N) P^\Psi (a_t \cap s_{t+1} \cap \dots \cap s_N | s_t).
+     E_{s_t}^\Psi \left[W(X_t , Y_t , \dots , X_n) \right] = \sum W(s_t , a_t , \dots , s_N) P^\Psi (a_t , s_{t+1} , \dots , s_N | s_t).
 \end{align*}
 
-For en beslutningstager gælder det da om at optimere denne sum, så der opnås størst mulig belønning.  
-
+%For en beslutningstager gælder det om at optimere denne sum, så der opnås størst mulig belønning.   
 % \subsection{Markov modellen}
 
 % I dette afsnit konstrueres en model for den stokastiske model genereret ud fra Markov beslutningsprocessen. Det antages, at $S$ og $A$ er diskrete.

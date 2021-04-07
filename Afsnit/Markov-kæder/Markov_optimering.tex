@@ -1,0 +1,101 @@
+
+%I foregående afsnit blev der gennemgået, hvordan beslutningstageren til hvert beslutningstidspunkt skal tage en beslutning. For at optimere belønningen skal beslutningstageren vælge den bedste strategi, $\Psi$. Lad $\Psi=(d_1, d_2\dots d_{N-1})$ være en fortidsafhængig strategi, hvor det derfor gælder, at $d_t: H_t\to A_t$. Lad derudover $H_t^{\Psi}$ være den korresponderende mængde af historikker til den valgte strategi og historik udspillet. 
+
+
+Beslutningstageren er interesseret i at optimere sin belønning for indeksmængden, $T$, hvor beslutningstageren skal tage en beslutning til hvert beslutningstidspunkt. For at optimere belønningen skal beslutningstageren derfor vælge den bedste strategi, $\Psi=(d_1, d_2\dots d_{N-1})$.
+Lad $v_N^{\Psi}(s)= E_{h_t}^\Psi \left[W(X_t , Y_t , \dots , X_n) \right]$ angive den forventede totale belønning, når $\Psi$ er valgt og $s$ er tilstanden til første beslutningstidspunkt, $X_1=s$. 
+%Den forventede totale belønning er givet som følgende
+% \begin{align*}
+%     v_N^{\Psi}(s)=E_{\Psi, s}\left\{\sum_{t=1}^N r_t\left(X_t^{\Psi}, d_t(H_t^{\Psi})\right)+r_{N+1}^{\Psi}(X_{N+1}^{\Psi})\right\},
+% \end{align*}
+% hvor $E_{\Psi, s}$ betegner forventningen med hensyn til den fælles sandsynlighedsfordeling af den stokastiske proces bestemt af strategien $\Psi$ betinget af tilstanden, $s$.
+
+Beslutningstageren skal derfor vælge den strategi, $\Psi$, til beslutningstidspunktet $t=1$, der giver den største forventede totale belønning. Når både tilstandsrummet, $S_t$, og beslutningsrummet, $A_{s,t}$ er endeligt, kan beslutningstageren kun vælge mellem et endeligt antal strategier. Derfor er det muligt at vælge den \textit{optimale strategi}, $\Psi^*$, der opfylder følgende
+\begin{align}\label{eq:optimale_belønningsfunktion}
+    v_N^{\Psi^*}(s)=\max_{\Psi\in \prod} v_N^{\Psi}(s)\equiv v_N^*(s) \text{ for alle }  s\in S_1,
+\end{align}
+hvor $v_N^*(s)$ kaldes for den \textit{optimale belønningsfunktion}.
+
+% \textbf{Ved ikke om dette skal med}\\
+% I tilfælde hvor \eqref{eq:optimale_belønningsfunktion} ikke eksisterer, bestemmes den mindste øvre grænse. Altså bestemmes $ v_N^{\Psi^*}(s)=\displaystyle\sup_{\Psi\in\prod} v_N^{\Psi}(s)$ for alle $s\in S_1$.
+
+% Hvis dette er tilfældet, skal beslutningstageren vælge en strategi der er $\epsilon$-optimal. Dermed skal beslutningstageren vælge en strategi, der for alle $\varepsilon>0$ opfylder, at 
+% \begin{align*}
+%     v_N^{\Psi^*_\varepsilon}+\varepsilon>v_N^*(s) \text{ for alle } s\in S_1.
+% \end{align*}
+% En sådan strategi eksisterer ud fra definitionen af den mindste øvre grænse.
+
+
+
+% ________________________________________
+% For at optimere beløningsfunktionen, $v_N^*(s)$, introduceres \textit{Bellman ligninger}. Før det er muligt at introducere Bellman ligninger, defineres den forventede værdi til hvert beslutningstidspunkt, $t$, som følgende
+% \begin{align*}
+%     u_t^{\Psi}(h_t)=E_{\Psi, h_t}\left\{\sum_{n=t}^{N}r_n\left(X_n^{\Psi},d_n\left(H_n^{\Psi}\right)\right)\right\}.
+% \end{align*}
+% Dermed er den forventede belønning til ethvert beslutningstidspunkt for $t,\ t+1, \dots, N$ bestemt ud fra en strategi, $\Psi$, der er betinget af historikken op til beslutningstidspunktet. Den forventede værdi til hvert beslutningstidspunkt kaldes også for den \textit{ beslutning-belønningsfunktion}.
+% Altså gælder det, at $v_N^{\Psi}$ er defineret ud fra alle fremtidige beslutninger og tilstande, mens $u_t^{\Psi}$ er defineret ud fra en del af de fremtidige beslutninger begyndende ved $t$.
+
+% Den \textit{optimale beslutning-belønningsfunktion} er givet som følgende
+% \begin{align*}
+%     u_t^{\ast}(h_t)=\max_{\Psi\in\prod}u_t^{\Psi}(h_t).
+% \end{align*}
+
+% Herefter er det muligt at præsentere Bellman ligninger, der er givet som følgende
+% \begin{align}\label{eq:bellman_equation}
+%     u_t(h_t)=\max_{a\in A_{s_t, t}}\left\{r_t(s_t, a)+\sum_{j\in S_{t+1}}p_t(j|s_t, a)u_{t+1}(h_t, a, j)\right\},
+% \end{align}
+% hvor $t=1, 2, \dots, N$ og $h_t\in H_t$. 
+% En løsning til systemet af ligninger, \eqref{eq:bellman_equation}, er en sekvens af funktioner, $u_t: H_t\to A_t$ for $t=1, \dots, N$.
+% For Bellman ligninger gælder følgende
+% \begin{enumerate}
+%     \item Løsningerne til ligningerne er de optimale belønninger fra beslutningstidspunktet $t$ til $N$ for ethvert $t$.
+%     \item De kan afgøre om en strategi er optimal.
+%     \item De bestemmer en effektiv metode til at finde de optimale belønningsfunktioner og strategier.
+%     \item De kan bestemme egenskaber for strategier og belønningsfunktioner.
+% \end{enumerate}
+
+% Følgende sætning beskriver disse egenskaber for Bellman ligninger\\
+
+% \begin{minipage}\textwidth
+% \begin{thmx} \textbf{Egenskaber for Bellman ligninger}\label{sæt:egenskaber_for_bellman} %Ny sætning
+% \newline
+% Lad $h_t\in H_t$ være en historik, $s\in S$ være tilstande og $v_N^{\ast}$ være den optimale beløningsfunktion. Lad derudover $u_t$ være den optimale beslutning-belønningsfunktion og en løsning til \eqref{eq:bellman_equation} for $t=1, \dots, N$. Så gælder det, at
+% \begin{enumerate}
+%     \item $u_t(h_t)=u_t^{\ast}$ for alle $h_t\in H_t$, hvor $t=1, \cdots, N$.\\
+%     \item $u_1(s_1)=v_N^\ast(s_1)$ for alle $s_1\in S_1$.
+% \end{enumerate}
+% \end{thmx}
+% \end{minipage}
+
+% Fra \autoref{sæt:egenskaber_for_bellman} punkt 1. gælder det, at alle løsninger til Bellman ligninger er de optimale belønningsfunktioner fra beslutningstidspunktet $t$ til $N$ for ethvert $t$. Fra punkt 2. gælder det, at en løsning til den første Bellman ligning er belønningsfunktionen for Markov beslutningsprocessen. 
+
+% Hvis resultatet af \eqref{eq:bellman_equation} er kendt, og maksimum dermed er bestemt, kan Bellman ligningerne anvendes til at bestemme optimale strategier.
+
+% \begin{minipage}\textwidth
+% \begin{thmx} \textbf{}\label{sæt:optimal_strategi_ved_bellman} %Ny sætning
+% \newline
+% Lad $h_t\in H_t$ være en historik, $s\in S$ være tilstande, $a\in A_s$ være beslutninger og $\Psi^{\ast}=d_1^{\ast}, d_2^{\ast},\dots,d_{N-1}^{\ast}$ være en strategi. Lad derudover $u_t^{\ast}$ være den optimale forventede værdi til ethvert belønningstidspunkt og en løsning til \eqref{eq:bellman_equation} for $t=1, \dots, N$. Lad strategien være defineret som
+% \begin{align}\label{eq:optimale_strategi_ved_bellman}
+%     r_t\left(s_t, d_t^{\ast}(h_t)\right)+\sum_{j\in S_{t+1}}p_{t+1}\left(j|s_t, d_t^{\ast}(h_t)\right)u_{t+1}^{\ast}\left(h_t, d_t^{\ast}(h_t), j\right)\nonumber\\
+%     =\max_{a\in A_{s_t,t}}\left\{r_t(s_t, a)+\sum_{j\in S_{t+1}}p_t(j,s_t, a)u_{t+1}^{\ast}(h_t, a, j)\right\}
+% \end{align}
+% Så gælder det, at
+% \begin{enumerate}
+%     \item $\Psi^{\ast}$ er en optimal strategi og $v_N^{\Psi^{\ast}}(s)=v_n^{\ast}(s)$ for alle $s\in S_1$.\\
+%     \item $u_t^{\Psi^{\ast}}(h_t)=u_t^{\ast}(h_t)$ for $h_t\in H_t$ og for alle $t=1, 2,\dots, N$.
+% \end{enumerate}
+% \end{thmx}
+% \end{minipage}
+
+% Fra \autoref{sæt:optimal_strategi_ved_bellman} gælder det dermed, at den optimale strategi bestemmes ved først at løse Bellman ligningerne og dernæst vælge en beslutningsregel til enhver historik, der sikrer den beslutning, der medfører det maksimale i \eqref{eq:optimale_strategi_ved_bellman}.
+
+% Punkt 2 i \autoref{sæt:optimal_strategi_ved_bellman} kaldes også for \textit{Princippet for optimalitet/optimalitets-princippet}.
+
+% Den optimale strategi, $\Psi^{\ast}$, blev defineret ved $\eqref{eq:optimale_strategi_ved_bellman}$, som også kan udtrykkes som følgende
+% \begin{align*}
+%     d_t^{\ast}(h_t)=\arg \max_{a\in A_{s_t, t}}\left\{r_t(s_t, a)+\sum_{j\in S_{t+1}}p_t(j,s_t, a)u_{t+1}^{\ast}(h_t, a, j)\right\},
+% \end{align*}
+% hvor arg max resulterer i en mængde, mens max resulterer i en reel værdi.
+
+
+

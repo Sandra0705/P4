@@ -248,9 +248,9 @@ kaldes for \textit{fordelingsfunktionen} eller \textit{cdf} til $X$.
 Fra \autoref{Def:Kumulative_fordelingsfunktion} og \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3 følger det, at
 %
 \begin{align}
-    F_X(x) &= P\left(X\leq x\right)=P\left(\bigcup_{y\in \mathcal{Y}} \{X=y\}\right) = \sum_{y\in \mathcal{Y}} P(X=y) = \sum_{y\in \mathcal{Y}} p_X(y), \label{eq:fordelingsfunktion_som_sum_af_frekvensfunktioner}
+    F_X(x) &= P\left(X\leq x\right)=P\left(\bigcup_{y\in \mathcal{Y}_X} \{X=y\}\right) = \sum_{y\in \mathcal{Y}_X} P(X=y) = \sum_{y\in \mathcal{Y}_X} p_X(y), \label{eq:fordelingsfunktion_som_sum_af_frekvensfunktioner}
 \end{align}
-hvor $\mathcal{Y} = \{y\in \text{Range}(X) \ | \ y\leq x\}$.
+hvor $\mathcal{Y}_X = \{y\in \text{Range}(X) \ | \ y\leq x\}$.
 %
 Altså kan fordelingsfunktionen udtrykkes som en sum af frekvensfunktioner, hvilket illustreres i \autoref{eks:fordelingsfunktionen}.
 
