@@ -35,7 +35,7 @@ hvor $i, j$ er elementer af tilstandrummet, $S$.
 Overgangssandsynligheden, $p_{ij}$, beskriver dermed sandsynligheden for at gå fra tilstanden $i$ til tilstanden $j$. Det følger af \autoref{prop:frekvensfunktion}, at
 %
 \begin{align*}
-    &p_{ij}\geq 0, \text{ for alle } i,j\in S \text{ og}\\
+    &p_{ij}\geq 0 \text{ for alle } i,j\in S \text{ og}\\
     &\sum_{j\in S} p_{ij}=1 \text{ for alle } i\in S.
 \end{align*}
 
@@ -227,7 +227,7 @@ Sandsynligheden for at gå fra tilstanden $i$ til $j$ efter $t$ trin er dermed g
 \newline
 Lad $\bm X$ være en Markov-kæde med tilstandsrummet $S$. Lad derudover $p_{ij}^{(t)}$ være $t$'te trins overgangssandsynligheden og lad $i,j, k \in S$ være tilstande. Da gælder det, at
 \begin{align*}
-    p_{ij}^{(t+m)} = \sum_{k \in S} p_{ik}^{(t)}p_{kj}^{(m)},
+    p_{ij}^{(t+m)} = \sum_{k \in S} p_{ik}^{(t)}p_{kj}^{(m)}
 \end{align*}
 for alle $t, m\in T$ og alle $i,j \in S$. 
 \end{thmx}
@@ -409,7 +409,7 @@ Ud fra indikatorfunktionen, $I_t$, defineres antallet af gange Markov-kæden ven
 \begin{align*}
     A = \sum_{t = 1}^{\infty} I_t.
 \end{align*}
-Den betingede forventet værdi $E\left[A | X_0 = i\right]$ bestemmes. Af \autoref{bilag:linaritet} gælder det, at
+Den betingede forventede værdi $E\left[A | X_0 = i\right]$ bestemmes. Af linearitet af betingede forventede værdi (se \autoref{bilag:linaritet}) gælder det, at
 \begin{align*}
     E\left[A | X_0 = i\right] &= \sum_{t=1}^{\infty} E\left[I_t | X_0 = i\right]
     \intertext{Fra \autoref{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler} gælder det, at}

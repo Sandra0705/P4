@@ -57,7 +57,7 @@ Lad $(\Omega, \F, P)$ være et sandsynlighedsrum. En diskret tilfældig variabel
 \end{defn}
 \end{minipage}
 
-En funktions billede kan ligesom udfaldsrummet være endeligt, tællelig uendeligt og ikke-tællig uendelig. Det, at en funktion er diskret, betyder, at dens billede er tællelig. 
+En funktions billede kan ligesom udfaldsrummet være endeligt, tællelig uendeligt og ikke-tællig uendeligt. Det, at en funktion er diskret, betyder, at dens billede er tælleligt. 
 I \autoref{def:Diskret_tilfældig_variabel} er
 \eqref{eq:def_diskretitet_betingelsen} betingelsen, der sikrer, at $X$ er en diskret funktion.
 
@@ -78,7 +78,7 @@ I \autoref{def:Diskret_tilfældig_variabel} er
 Det bemærkes, at $X$ antager værdien $x$, hvis og kun hvis resultatet af $\E$ er et element af delmængden af $\Omega$, som afbildes over i $x$. Derved ligger resultatet af $\E$ i delmængden $X^{-1}(x) = \{\omega\in \Omega: X(\omega)=x\} \subseteq \Omega$, hvor det bemærkes, at  $X^{-1}(x)\subseteq \Omega \in \F$.
 Betingelse \eqref{eq:def_tilfældig_variabel} medfører altså, at urbilledet, $X^{-1}(x)$, til ethvert $x$, er element af hændelsesrummet, $\F$, og har derfor en tilsvarende sandsynlighed, $P(\omega\in \Omega: X(\omega)=x)$.
 
-Fremadrettet vil $\{\omega\in \Omega: X(\omega)=x\}$ blive betegnet $\{X=x\}$. Da den diskrete tilfældige variabel kan antage flere værdier, defineres en funktion, der bestemmer sandsynligheden for hvert udfald.
+Fremadrettet vil $\{\omega\in \Omega: X(\omega)=x\}$ betegnes ved $\{X=x\}$. Da den diskrete tilfældige variabel kan antage flere værdier, defineres en funktion, der bestemmer sandsynligheden for hvert udfald.
 
 \begin{minipage}\textwidth
 \begin{defn}\label{def:Frekvensfunktionen}\textbf{Frekvensfunktion} %Ny definition
@@ -106,7 +106,7 @@ Hvis $x\not\in \text{Range}(X)$, gælder det, at $p_X(x) = 0$.
     \begin{enumerate}
         \item $\displaystyle p_X(x)\geq 0$,
         %\item[(b)] $\displaystyle \sum_{k=1}^\infty p(x_k)=1$
-        \item $\displaystyle \sum_{x\in \R} p_X(x)=1$,
+        \item $\displaystyle \sum_{x\in \R} p_X(x)=1$
     \end{enumerate}
     %hvor summen er endelig, hvis $range(X)$ er endelig.
     for alle $x\in \R$.
@@ -240,7 +240,7 @@ Funktionen, der bestemmer $P(X \leq x)$, defineres som følgende
 \begin{defn}\textbf{Fordelingsfunktion}\label{Def:Kumulative_fordelingsfunktion} %Ny definition
 \newline
 Lad $X$ være en diskret tilfældig variabel. Funktionen $F_X:\R \to [0,1]$, defineret ved
-$$F_X(x)=P(X\leq x), \text{ for } x\in\R,$$
+$$F_X(x)=P(X\leq x) \text{ for } x\in\R,$$
 kaldes for \textit{fordelingsfunktionen} eller \textit{cdf} til $X$.
 \end{defn}
 \end{minipage}

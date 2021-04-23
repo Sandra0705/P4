@@ -1,0 +1,22 @@
+\subsection{Diskonteret belønning}
+Belønninger kan variere i værdi over tid. For at tage hensyn til disse tidsafhængige belønninger introduceres en \textit{diskonteringfaktor}, som noteres $\lambda$. Denne diskonteringsfaktor kan både anvendes i beregningen af den forventede totale belønning og Bellman ligningen, \ref{eq:u_t_sup}. For at introducere denne udvidelse med diskonteringfaktoren, skal følgende antagelser gælde
+
+\begin{enumerate}
+    \item Faste belønninger og overgangssandsynligheder; $r(s,a)$ og $p(s'|s,a)$ varierer ikke fra et beslutningstidspunkt til et andet.
+    \item Begrænsede belønninger; $|r_t(s,a)| < \infty$ for alle $a\in A_s$ og $s\in S$.
+    \item Diskontering; fremtidige belønninger er diskonteret med hensyn til en diskonteringsfaktor $\lambda$, hvor $0 \leq \lambda < 1$.
+    \item Diskrete tilstandsrum; $S$ er tællelig.
+\end{enumerate}
+
+Under de ovenstående antagelser kan den forventede totale diskonterede belønning givet en strategi, $\Psi\in \Pi^{FT}$, udtrykkes som følgende 
+\begin{align*}
+    v_{N,\lambda}^\Psi(s)=E_s^\Psi\left[\sum_{t=1}^{N-1}\lambda^{t-1}r_t(X_t, Y_t)+\lambda^{N-1}r_N(X_N)\right],
+\end{align*}
+hvor $\lambda$ skalerer værdien til beslutningstidspunkt $n$ af én enhed belønning modtaget til beslutningstidspunktet $n+1$. Én enhed belønning modtaget $t$ perioder ude i fremtiden har nutidsværdien $\lambda^t$.
+
+Bellman ligningen, \eqref{eq:u_t_sup}, er under disse antagelser givet ved
+\begin{align*}
+    v_n(s) = \sup_{a \in A_s} \left( r(s,a) + \sum_{s'\in S} \lambda p\left(s'|s,a\right)v_{n+1}(s')\right).
+\end{align*}
+Når diskonteringfaktoren er inkluderet, vil den optimale strategi ikke nødvendigvis være den samme som bestemt uden diskonteringsfaktoren. Derudover vil den også påvirke den maksimale forventede totale belønning. 
+

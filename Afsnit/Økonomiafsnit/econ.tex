@@ -1,13 +1,62 @@
+Dette afsnit omhandler opsparingsteori, når forbrugeren ikke har muligheden for at låne. Heriblandt de forbrugs- og opsparingstilbøjligheder, som "rammer" en investorer. Når en investorer er relativt utålmodig, og har en uafhængig indkomst, der er ligelidt fordelt, vil renter og aktiver virke som en stopper i form af dårlige forbrugsvalg. Det, at en investorer ikke har lånemuligheder, vil sågar være et motiv for, om investoren skal forbruge eller spare op. - Investoren foretrækker forbrug nu fremfor forbrug senere.
+Når indkomsten er en "random walk", viser det sig, at dem der ønsker at låne, men ikke kan, er mere tilbøjlige til at forbruge hele deres indkomst.
 
 
 
 
 
+\subsection*{Modellering}
+Forbrugeren ønsker at maksimere nyttefunktionen givet ved
+\begin{align}
+    u = E_t\big(\sum_{\tau=t}^t (1+\delta)^{t-\tau}v(A_\tau)\big)
+\end{align}
+Hvor $\delta > 0$ er satsen af tidspreferencen, og $v(c_t)$ er den øjeblikkelige nyttefunktion, der er stigende, konkav og differentiabel.
+Det antages, at forbrugeren har aktiver, der påvirker økonomien. Udviklingen af aktiver er givet ved
+\begin{align}
+    K_{t+1}=(1+r)(K_t+I_t-A_t)
+\end{align}
+hvor $I_t$ er indkomsten, $K_t$ er det reelle aktiv, og r er rentesatsen. Denne rentesats er en kendt konstant, og der tages udgangspunkt i at fokusere på indkomsten, $I_t$. 
+Lad desuden $K_t \geq 0$, således at der er en begrænsning på at optage lån.\\
+Den øjeblikkelige marginale nytte for penge beskrives ved
+$\lambda(A_t)=v'(A_t)$
+hvor $\lambda(\cdot)$ er en positiv monoton og aftagende funktion. Fremadrettet antages denne værdi $\lambda(\cdot)$ til at være konveks. 
 
 
 
+\subsubsection{Utålmodig forbruger}
+Antag en utålmodig forbruger med $\delta > r$. Og lad $S_t$ betegne den samlede beholdning af penge, givet ved
+\begin{align}
+    S_t = K_t+I_t
+\end{align}
+hvor $S_t$ er det maksimale, der kan forbruges til perioden $t$. Forbruget til tiden $t$ og $t+1$ må overholde
+\begin{align}
+    \lambda(A_t) = max\Big [\lambda(S_t), \ \ \beta E_t \lambda(A_{t+1}\Big]
+\end{align}
+hvor $\beta=(1+r)/(1+\delta)$, og $\beta$ < 1, eftersom det er antaget, at $r < \delta$. Hvis forbrugeren er begrænset, så vil forbruget ikke kunne overstige $S_t$, og den marginale nytte kan ikke være lavere end $\lambda(S_t)$. 
+Begrænsningen binder sig, hvis den marginale nytte til $S_t$ er højere end diskonteringen til den forventede marginale nytte i den næste periode. Ellers er de to marginale nytter beskrevet på sædvanligvis.
+Desuden fremgår det, at forventningen tager højde for muligheden for, at der er fremtidige begrænsninger.
+Givet ligning (5.2), fås
+\begin{align}
+    S_{t+1}=(1+r)(S_t-A_t)+I_{t+1}
+\end{align}
+Det er muligt at beskrive dette ved en stokastisk proces, hvor forbruget er en funktion til tilstandsvariablen, $S_t$, lad $A_t=f(S_t)$. Lad desuden den marginale nytte af penge være givet ved $p(S_t)$. Så er 
+\begin{align}
+    p(S_t)=\lambda[f(S_t)],\ \ \intertext{eller} \ \ A_t=f(S_t)=\lambda^{-1}[p(S_t)].
+\end{align}
+Hvis der eksisterer en stationær løsning $p(S)$ med $f(S)$, må der gælde, at
+\begin{align}
+    p(S)= max\Big[\lambda(S), \beta \int p \Big( (1+r)(S-\lambda^{-1}p(S))+I\Big) dF(I)\Big]. 
+\end{align}
+Dette er beskrevet fra (5.4) ved at indsætte (5.5) og (5.6, 5.7). Her fremgår den marginale nytte i dag og den maksimale værdi af den marginale nytte, når den er begrænset, samt diskonteringens forventede værdi af den næste dag. Hvis ligning (5.8) har en løsning, er det muligt at karakterisere ligevægten af den marginale nytte af penge, og dermed strategien for funktionen $f(S)$.
 
+Det er muligt at lade dette problem gå i en endelig tidshorisont. \\
+Lad $p_0(S), p_1(S), \ldots, p_n(S)$ være en række af funktioner, hvor $p_0(S)=\lambda(S)$, og derved fås
+\begin{align}
+    p_n(S)=max\Big[\lambda(S),\beta\int p_{n-1}\Big( (1+r)(S-\lambda^{-1} p_n(S))+I\Big)dF(I)\Big]
+\end{align}
 
+Denne rekursion kan tænkes som værende en omvendt/baglæns løsning til et endeligt stokastisk dynamisk system.\\
+I den sidste periode, $N=0$ vil alt være brugt, og den marginale nytte af penge, $p_0(S)$, er $\lambda(S),$ da ligemeget hvilken værdi $S$ har, så vil der forbruges. Da der itereres baglæns, vil funktionen i nogle tilfælde være konvergerende, hvilket vil medføre, at der findes en løsning til (5.9), og den uendelige tidshorisont.
 
 
 
@@ -18,77 +67,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\iffalse
-%- Renteteori?
-
-
-
-%- Forbrugs- og investeringsvaner?
-%(investment and consumption)
-%   - Investment: Future gain
-%    - Consumption: Use up, short gain (fysisk)
-%    - 
-
-%- Optimering af opsparing?
-
-
-%- Forbrug som funktion af opsparing og indtjening?
-
-
-%- Offentlige ift. private investeringer?
-
-
-%- økonomisk vækst?
-
-
-
-%Samlet forbrug stiger i form af, at den disponible indkomst stiger, og omvendt. Men den stiger og falder ikke i ligeså stor omfang
-  
-Hvordan beslutter forbrugeren, hvordan og hvor meget, der skal forbruges? Det er klart, at der med et højere rådighedsbeløb kan forbruges mere. Det er endvidere sådan, at når indkomsten er højere, end hvad der forbruges, så vil der automatisk dannes et overskud på kontoen - i form af en opsparing.
-Lad altså $A_t$ være et forbrug og $S_t$ være en opsparing til tiden t.
-Lad nu $I$ være den disponible indkomst.
-Det er dermed klart for en fast månedligt indkomst, $I$, og et konstant forbrug $A$, at der vil indtræffe følgende tilfælde
-\begin{itemize}
-    \item For $A > I : S \to - $
-    \item For $A = I : S \to 0$
-    \item For $A < I : S \to +$
-\end{itemize}
-
-Indkomst- og forbrugstilbøjeligheder er dog mere komplekst end dette. Indkomsten vil i fleste tilfælde varierer, og det samme vil forbruget. Antag eksempelvis hvordan den forventede indkomst, $E[I]$, kan varierer over tid...
-
-
-For at beskrives indkomsten og forbrug nærmere, er det muligt at danne følgende relation
-\begin{align*}
-A = a+bI,
-\end{align*}
-hvor a beskriver det autonome forbrug, og b den marginale forbrugstilbøjeligheden. En højere indkomst vil således give et øget forbrug relativt med en stigning i den marginale forbrugstilbøjelighed. Det er dog således, at indkomsten og forbruget ikke vil ændre sig i lige store omfang. 
-
-\fi

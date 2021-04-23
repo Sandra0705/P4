@@ -1,42 +1,35 @@
-En investor ønsker at maksimere sin \textit{nytte} over en given periode.
-Lad tidshorisonten være givet ved $N$. Investorens opsparing til tiden $t$ betegnes ved $S_t$, sådan at $S_0$ er givet. Investoren kan enten forbruge eller lade pengene akkumulere til en rente, $r$. Lad $A_t$ være forbrug og indkomst være $I>0$. I dette afsnit konstrueres en MDP over disse beslutninger, med henblik på maksimering af nytte. Følgende tabel opsummerer disse variabler.
+En investor ønsker at maksimere sin nytte over en given periode. For at maksimere sin nytte skal investoren beslutte, hvornår det er henholdvis bedst at spare op og forbruge. Investoren kan til hvert beslutningstidspunkt vælge at bruge af sin opsparing eller lade pengene stå i banken. Disse beslutninger afhænger derudover også af arbejdsstatus, opsparingen og renten i banken.
 
-
-\begin{table}[!hbt]
-\caption{Variabler for investeringsproblemet}
-\begin{tabular}{@{}l|l@{}}
-\toprule
-Variabler & Forklaring                     \\ \midrule
-$N,t$       & Tidspunkter                  \\
-$S_t$       & Opsparing til tiden t        \\
-$S$         & Beslutningsrum               \\
-$r$         & Rente                        \\
-$A_t$       & Forbrug                      \\
-$I$         & Indkomst                     \\
-$\xi_t$     & $\begin{cases}1\ \text{Hvis i arbejde}\\0\ \text{Ellers}\end{cases}$ \\ \bottomrule
-\end{tabular}
-\end{table}
-
-
-
-
-Opsparing til tiden $t+1$ er dermed givet ved
+Investoren skal tage en beslutning hver måned og derfor er indeksmængden, $T$, givet ved $t = 0,1,\ldots, N$, hvor hvert $t$ repræsenterer en måned. Mængden af mulige beslutninger, $a_t$, til beslutningstidspunkt, $t$, kaldes beslutningsrummet, $A_t$, hvor hver beslutning angiver et forbrug. Lad $S$ være opsparingen, $S_t$ være opsparingen til beslutningstidspunkt $t$ samt $S_0$ være kendt. Derudover gælder det at opsparingen til beslutningstidspunktet, $t+1$, er givet ved
 \begin{align*}
-    S_{t+1}=(1+r)(S_t-A_t)+I\dot \xi_t
+    S_{t+1}=(1+r)(S_t-a_t)+I \cdot \xi_t,
 \end{align*}
+hvor $r$ er renten i banken og $I>0$ er investorerens faste indkomst. Den stokastiske proces $t\mapsto \xi_t$ beskriver investorens arbejdsstatus, hvor $\xi_t=1$, hvis investoren er i arbejde og $\xi_t=0$, hvis han er arbejdsløs. Det antages, at investorens arbejdsstatus kan beskrives som følgende Markov kæde
+\begin{align*}
+    &P(\xi_{t+1}=0|\xi_t=1)=1-P(\xi_{t+1}=1|\xi_t=1)=p \text{ og }\\
+    &P(\xi_{t+1}=0|\xi_t=0)=1-P(\xi_{t+1}=1|\xi_t=0)=q,
+\end{align*}
+hvor $p$ angiver sandsynligheden for, at investoren mister sit arbejde i næste måned givet, at han er i arbejde i den nuværende måned. Derudover angiver $q$ sandsynligeden for at han er arbejdsløs i næste måned givet, at han er ikke er i arbejde i den nuværende måned. 
 
+
+% \begin{table}[!hbt] \centering
+% \caption{Variabler for investeringsproblemet}
+% \begin{tabular}{@{}l|l@{}}
+% \toprule
+% Variabler & Forklaring                     \\ \midrule
+% $t$         & Startidspunkt                \\
+% $N$         & Sluttidspunkt                \\
+% $S_t$       & Opsparing til tiden t        \\
+% $S$         & Beslutningsrum               \\
+% $r$         & Rente                        \\
+% $A_t$       & Forbrug                      \\
+% $I$         & Indkomst                     \\
+% $\xi_t$     & $\begin{cases}1\ \text{Hvis i arbejde}\\0\ \text{Ellers}\end{cases}$ \\ \bottomrule
+% \end{tabular}
+% \end{table}
 
 \section{Basis Problemet}
-Lad $p$ angive den betingede sandsynlighed for, at han mister sit arbejde i næste måned og lad $q$ være den betingede sandsynlighed for, at han ikke er i arbejde næste måned, givet han ikke er i arbejde. 
-Det vil sige:
-\begin{align*}
-    P(\xi_{t+1}=0|\xi_t=1)=1-P(\xi_{t+1}=1|\xi_t=1)=p\\
-    P(\xi_{t+1}=0|\xi_t=0)=1-P(\xi_{t+1}=1|\xi_t=0)=q
-\end{align*}
-
-
-
-Dette medfører følgende overgangsgraf\\
+Ovenstående system kan beskrives ved følgende overgangsgraf\\
 \begin{tikzpicture}[node distance=2cm and 1cm,>=stealth',auto, every place/.style={draw}]
     \node [place] (S1) {Ikke i arbejde};
     \coordinate[node distance=1.1cm,left of=S1] (left-S1);
@@ -56,7 +49,7 @@ Det vil sige, at overgangsmatricen er givet ved:\\
     P=\begin{bmatrix}q & 1-q\\ p & 1-p\end{bmatrix}
 \end{align*}
 
-Lad os først antage, at nytten er ækvivalent med forbruget. Det vil sige, at markedet er perfekt. Det vil sige, at man har et vist forbrug for tidspunkter mellem 0 og $N-1$ og man forbruger resten ($S_N$) til tidspunkt $N$. Med andre ord, så er nytten, $r_t(S_t,A_t)=A_t$ og $r_N(S_N)=S_N$.
+Det antages, at nytten er ækvivalent med forbruget. Det vil sige, at markedet er perfekt. Altså er der et vist forbrug til tidspunkter mellem 0 og $N-1$ og der forbruges resten ($S_N$) til tidspunkt $N$. Med andre ord, så er nytten, $r_t(S_t,A_t)=A_t$ og $r_N(S_N)=S_N$.
 
 
 \begin{align*}
@@ -81,21 +74,3 @@ Dermed ønskes at finde strategi ($\pi$), der maksimerer
 
 
 
-
-\subsection{Udvidelse(Lån)}
-Det antages, at forbrugeren i en lang periode har været foruden job (eller i form af et markant højere forbrug ift. opsparing/indkomst), derved kræves et lån.
-Lad nu beslutningsrummet udvides, så det kan antage negative værdier i form af et lån.
-Beslutningsrummet bliver derved
-\begin{align*}
-    S = [-L_t, S_t],
-\end{align*}
-hvor $L_t$ er det maksimale beløb, som investoren kan låne. Der gælder således følgende bibetingelser,
-\begin{align*}
-    \sum_{t=1}^{T-1} L_t \leq L_{max}
-\end{align*}
-og
-\begin{align*}
-    \sum_{t=1}^{T-1} L_t \leq S_T
-\end{align*}
-
-\textit{Når udlåns- og indlånsrenten er lig med hinanden? Hvad sker hvis de er forskellige? Hvordan påvirker processen $\xi's$ parametre, hvordan lån optages?}

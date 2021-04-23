@@ -22,11 +22,11 @@ Lad $B\subseteq \F$. Hændelserne i $B$ siges at være uafhængige, hvis der for
 \begin{align}\label{eq:uafhængighed}
     P\left(\bigcap_{A\in B} A\right)=\prod_{A\in B} P(A).
 \end{align}
-Hvis de ikke er uafhængige, siges de at være \textit{afhængige}.
+Hvis hændelserne ikke er uafhængige, siges de at være \textit{afhængige}.
 \end{defn}
 \end{minipage}
 
-Hvis $|B|=2$ og \eqref{eq:uafhængighed} er sand, siges hændelserne i $B$ at være \textit{parvist uafhængige}.
+Tag $|B|=2$ og lad \eqref{eq:uafhængighed} være gældende, så siges hændelserne i $B$ at være \textit{parvist uafhængige}.
 
 \subsection{Total sandsynlighed}
 %I tilfælde af, at sandsynligheden for en given hændelse er svær at bestemme direkte kan det i nogle tilfælde være hensigtsmæssigt at opdele problemet i termer af betinget sandsynlighed.
@@ -36,7 +36,7 @@ Betinget sandsynlighed kan i nogle tilfælde simplificere beregningen af sandsyn
 \begin{minipage}\textwidth
 \begin{thmx} \textbf{Loven om total sandsynlighed} \label{sæt:loven_om_total_sandsynlighed} %Ny sætning
 \newline
-Lad $A$ være en hændelse og $B_1,B_2,\dots$ være en sekvens af parvist disjunkte hændelser som opfylder, at
+Lad $\Omega$ være udfaldsrummet, $A$ være en hændelse og $B_1,B_2,\dots$ være en sekvens af parvist disjunkte hændelser som opfylder, at
 \begin{enumerate}
 \item $P(B_k)>0$ for $k=1,2,\dots$,
 \item $\Omega=\displaystyle\bigcup_{k=1}^\infty B_k$.
@@ -54,7 +54,7 @@ Lad $A\subseteq \Omega$ og $B_k \subseteq \Omega $ være en sekvens af parvist d
     A=A\cap \Omega=A\cap\bigcup_{k=1}^\infty B_k=\bigcup_{k=1}^\infty(A\cap B_k),
 \end{align*}
 som følger af den distributive lov for uendelige foreningsmængder (se \autoref{Distributive love}). 
-Eftersom $A\cap B_1,A\cap B_2,\dots$ er parvis disjunkte følger det af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3 og \autoref{def:betinget_sandsynlighed}, at
+Eftersom $A\cap B_1,A\cap B_2,\dots$ er parvist disjunkte følger det af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3 og \autoref{def:betinget_sandsynlighed}, at
 \begin{align*}
     P(A)=P\left(\bigcup_{k=1}^\infty(A\cap B_k)\right) =\sum_{k=1}^\infty P(A\cap B_k)=\sum_{k=1}^\infty P(A|B_k)P(B_k).
 \end{align*}

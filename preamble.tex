@@ -239,6 +239,10 @@
 \declaretheorem[name={Korollar}, style=mystyle,sibling=thm]{koro}
 \newenvironment{kor}[1]
     {\begin{leftbar}{black}{myGray}{3}\begin{koro}#1}{\end{koro}\end{leftbar}}
+    
+\declaretheorem[name={Algoritme}, style=mystyle,sibling=thm]{algo}
+\newenvironment{alg}[1]
+    {\begin{leftbar}{gray}{white}{3}\begin{algo}#1}{\end{algo}\end{leftbar}}
 
 %Bevis
 \declaretheoremstyle[

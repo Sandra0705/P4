@@ -1,0 +1,23 @@
+\section{}\label{Snyd}
+\begin{minipage}\textwidth
+\begin{thmx} \textbf{Epsilon-optimal} \label{sæt:epsopt}%Ny sætning
+\newline
+Lad $\varepsilon>0$ være vilkårlig og antag at $u^*_t$, for $t=1,\ldots, N$ er løsninger til \eqref{eq:u_t_sup} og \eqref{eq:u_N}. Lad derudover $\Psi^\varepsilon = (d_1^\varepsilon, d_2^\varepsilon, \ldots, d_{N-1}^\varepsilon) \in \Pi^{FD}$ være en strategi, der opfylder
+\begin{align}
+    &r_t\left(s_t, d_t^\varepsilon(h_t)\right)+\sum_{s'\in S}p_t\left(s'|s_t, d_t^\varepsilon(h_t)\right)u_{t+1}^*\left(h_t, d_t^\varepsilon(h_t), s'\right) + \frac{\varepsilon}{N-1}\nonumber\\
+    &\geq \sup_{a\in A_{s_t}}\left(r_t(s_t,a)+\sum_{s'\in S}p_t(s'|s_t, a)u_{t+1}^*(h_t, a, s')\right),\label{eq:bilag_epsilon_optimal} 
+\end{align}
+for $t=1, \ldots, N-1$.
+Så gælder det, at
+\begin{enumerate}
+    \item For hvert $t = 1, 2, \ldots, N-1$
+    \begin{align*}
+        u_t^{\Psi^\varepsilon}(h_t) +(N-t)\frac{\varepsilon}{N-1}\geq  u_t^*(h_t), \text{ for } h_t \in H_t.
+    \end{align*}
+    \item $\Psi^\varepsilon$ er en optimal, altså
+    \begin{align*}
+      v_N^{\Psi^\varepsilon}(s) + \varepsilon \geq v_N^*(s), \text{ for } s \in S.
+    \end{align*}
+\end{enumerate}
+\end{thmx}
+\end{minipage}

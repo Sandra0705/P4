@@ -1,20 +1,53 @@
 
 %I foregående afsnit blev der gennemgået, hvordan beslutningstageren til hvert beslutningstidspunkt skal tage en beslutning. For at optimere belønningen skal beslutningstageren vælge den bedste strategi, $\Psi$. Lad $\Psi=(d_1, d_2\dots d_{N-1})$ være en fortidsafhængig strategi, hvor det derfor gælder, at $d_t: H_t\to A_t$. Lad derudover $H_t^{\Psi}$ være den korresponderende mængde af historikker til den valgte strategi og historik udspillet. 
 
+Beslutningstageren er interesseret i at optimere sin belønning for indeksmængden, $T$, hvor beslutningstageren skal tage en beslutning til hvert beslutningstidspunkt. For at optimere belønningen skal beslutningstageren derfor vælge den bedste strategi, $\Psi=(d_1, d_2,\dots, d_{N-1})$.
 
-Beslutningstageren er interesseret i at optimere sin belønning for indeksmængden, $T$, hvor beslutningstageren skal tage en beslutning til hvert beslutningstidspunkt. For at optimere belønningen skal beslutningstageren derfor vælge den bedste strategi, $\Psi=(d_1, d_2\dots d_{N-1})$.
-Lad $v_N^{\Psi}(s)= E_{h_t}^\Psi \left[W(X_t , Y_t , \dots , X_n) \right]$ angive den forventede totale belønning, når $\Psi$ er valgt og $s$ er tilstanden til første beslutningstidspunkt, $X_1=s$. 
+Lad $v_N^\Psi(s)$ betegne den forventede totale belønning for en valgt strategi, $\Psi$, i tilstanden $s$ til første beslutningstidspunkt. Såfremt strategien er fortidsafhængig tilfældig, $\Psi\in \Pi^{FT}$, er $v_N^\Psi(s)$ givet ved
+\begin{align*}
+    v_N^{\Psi}(s)=E_{(s)}^{\Psi}\left[\sum_{t=1}^{N-1}r_t(X_t, Y_t)+r_N(X_N)\right].
+\end{align*}
+Er strategien derimod fortidsafhængig deterministisk, $\Psi\in\Pi^{FD}$, er $Y_t = d_t(h_t)$ til hvert beslutningstidspunkt. Under antagelsen om, at $|r_t(s,a)| < \infty$ for $(s,a) \in S \times A$ og $t \leq N$, kan $v_N^\Psi$ eksistere. 
+
+%Det gælder, at $v_N^\Psi$ eksisterer under antagelsen om, at $|r_t(s,a)| \leq M < \infty$ for $(s,a) \in S \times A$ og $t \leq N$.
+
+
+%Lad $v_N^{\Psi}(s)= E_{s}^\Psi \left[W(X_t , Y_t , \dots , X_N) \right]$ angive den forventede totale belønning, når $\Psi$ er valgt og $s$ er tilstanden til første beslutningstidspunkt, $X_1=s$. 
 %Den forventede totale belønning er givet som følgende
 % \begin{align*}
 %     v_N^{\Psi}(s)=E_{\Psi, s}\left\{\sum_{t=1}^N r_t\left(X_t^{\Psi}, d_t(H_t^{\Psi})\right)+r_{N+1}^{\Psi}(X_{N+1}^{\Psi})\right\},
 % \end{align*}
 % hvor $E_{\Psi, s}$ betegner forventningen med hensyn til den fælles sandsynlighedsfordeling af den stokastiske proces bestemt af strategien $\Psi$ betinget af tilstanden, $s$.
 
-Beslutningstageren skal derfor vælge den strategi, $\Psi$, til beslutningstidspunktet $t=1$, der giver den største forventede totale belønning. Når både tilstandsrummet, $S_t$, og beslutningsrummet, $A_{s,t}$ er endeligt, kan beslutningstageren kun vælge mellem et endeligt antal strategier. Derfor er det muligt at vælge den \textit{optimale strategi}, $\Psi^*$, der opfylder følgende
-\begin{align}\label{eq:optimale_belønningsfunktion}
-    v_N^{\Psi^*}(s)=\max_{\Psi\in \prod} v_N^{\Psi}(s)\equiv v_N^*(s) \text{ for alle }  s\in S_1,
+Beslutningstageren skal vælge den strategi, $\Psi^*$, der giver den største forventede totale belønning. Denne strategi siges at være den \textit{optimale strategi}, hvis den opfylder, at %For den valgte strategi skal følgende være opfyldt
+\begin{align*}
+    v_N^{\Psi^*}(s)\geq v_N^{\Psi}(s), \text{ for } s\in S \text{ og for alle } \Psi\in \Pi^{FT}.
+\end{align*}
+%for at den er den \textit{optimale strategi}. 
+Hvis den optimale strategi ikke eksisterer, bestemmes en $\varepsilon$-optimal strategi. Dette er en strategi $\Psi^*_\varepsilon$, hvor der for et $\varepsilon>0$, er opfyldt, at 
+\begin{align*}
+    v_N^{\Psi^*_\varepsilon}(s)+\varepsilon>v_N^\Psi(s) \text{ for } s\in S \text{ og for alle } \Psi \in \Pi^{FT}.
+\end{align*}
+
+Lad $v_N^*$ betegne den maksimale forventede totale belønning. Så gælder det, at
+%
+\begin{align}\label{eq:v_N=sup}
+    v_N^*(s)=\sup_{\Psi\in \Pi^{FT}} v_N^{\Psi}(s)=v_N^{\Psi^*}(s) \text{ for }  s\in S.
 \end{align}
+Når både tilstandsrummet, $S$, og beslutningsrummet, $A$ er endeligt, kan beslutningstageren kun vælge mellem et endeligt antal strategier. I dette tilfælde er $v_N^*$ givet ved
+\begin{align*}
+    v_N^*(s)=\max_{\Psi\in \Pi^{FT}} v_N^{\Psi}(s)=v_N^{\Psi^*}(s) \text{ for }  s\in S,
+\end{align*}
 hvor $v_N^*(s)$ kaldes for den \textit{optimale belønningsfunktion}.
+
+% Derfor er det muligt at vælge den optimale strategi, $\Psi^*$, der opfylder følgende
+% \begin{align}\label{eq:optimale_belønningsfunktion}
+%     v_N^{\Psi^*}(s)=\max_{\Psi\in \Pi} v_N^{\Psi}(s)\equiv v_N^*(s) \text{ for alle }  s\in S_1,
+% \end{align}
+% hvor $v_N^*(s)$ kaldes for den \textit{optimale belønningsfunktion}.
+
+%$E^\Psi_{(s)} [....]$
+
 
 % \textbf{Ved ikke om dette skal med}\\
 % I tilfælde hvor \eqref{eq:optimale_belønningsfunktion} ikke eksisterer, bestemmes den mindste øvre grænse. Altså bestemmes $ v_N^{\Psi^*}(s)=\displaystyle\sup_{\Psi\in\prod} v_N^{\Psi}(s)$ for alle $s\in S_1$.
@@ -93,7 +126,7 @@ hvor $v_N^*(s)$ kaldes for den \textit{optimale belønningsfunktion}.
 
 % Den optimale strategi, $\Psi^{\ast}$, blev defineret ved $\eqref{eq:optimale_strategi_ved_bellman}$, som også kan udtrykkes som følgende
 % \begin{align*}
-%     d_t^{\ast}(h_t)=\arg \max_{a\in A_{s_t, t}}\left\{r_t(s_t, a)+\sum_{j\in S_{t+1}}p_t(j,s_t, a)u_{t+1}^{\ast}(h_t, a, j)\right\},
+%     d_t^{\ast}(h_t)=\argmax_{a\in A_{s_t, t}}\left\{r_t(s_t, a)+\sum_{j\in S_{t+1}}p_t(j,s_t, a)u_{t+1}^{\ast}(h_t, a, j)\right\},
 % \end{align*}
 % hvor arg max resulterer i en mængde, mens max resulterer i en reel værdi.
 

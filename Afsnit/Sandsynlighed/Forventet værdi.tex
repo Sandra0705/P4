@@ -3,7 +3,7 @@
 
 %\textit{Den forventede værdi} afhænger af de gennemsnitlige værdier af et eksperiment. 
 
-Den \textit{forventede værdi} afhænger af de gennemsnitlige værdier for de diskrete tilfældige variabler i et tilfældigt eksperiment, $\E$. Den forventet værdi defineres som følgende.
+Den \textit{forventede værdi} afhænger af de gennemsnitlige værdier for de diskrete tilfældige variabler i et tilfældigt eksperiment, $\E$. Den forventede værdi defineres som følgende.
 
 %De gennemsnitlige værdier af E er givet ved summen af værdierne divideret med 
 
@@ -232,30 +232,30 @@ Dermed er \autoref{prop:forventet_værdi_af_funktion} bevist.
 Hvis sandsynligheden for en diskret tilfældig variabel, $X$, er betinget af en hændelse, $B\in\F$, i et tilfældigt eksperiment, påvirker det fordelingen af $X$. Sandsynligheden $P(X=x)$ erstattes derfor af $\displaystyle\frac{P\left(\{X(\omega)=x\}\cap B\right)}{P(B)}=P(X=x|B)$.
 
 \begin{minipage}\textwidth
-\begin{defn}\textbf{Betingede forventet værdi}\label{def:betinget_forventet_værdi} %Ny definition
+\begin{defn}\textbf{Betingede forventede værdi}\label{def:betinget_forventet_værdi} %Ny definition
 \newline
-Lad $(\Omega, \F, P)$ være et sandsynlighedsrum og $B\in\F$ en hændelse. Lad $X$ være en diskret tilfældig variabel og $P(B)>0$. Så er den betingede forventet værdi af $X$ givet $B$ betegnet $E[X|B]$ defineret ved 
+Lad $(\Omega, \F, P)$ være et sandsynlighedsrum og $B\in\F$ en hændelse. Lad $X$ være en diskret tilfældig variabel og $P(B)>0$. Så er den betingede forventede værdi af $X$ givet $B$ betegnet $E[X|B]$ defineret ved 
 \begin{align*}
-    E[X|B]&=\sum_{x\in Range(X)}xP(X=x|B)
+    E[X|B]&=\sum_{x\in Range(X)}xP(X=x|B),
 \end{align*}
 hvis summen er absolut konvergent.
 \end{defn}
 \end{minipage}
 
-I ovenstående definition er den forventede værdi af den diskrete tilfældige variabel, $X$, betinget af en hændelse, $B$. For hændelser på formen $B_j = \{Y=y_j\}$ defineres betinget forventet værdi som følgende 
+I ovenstående definition er den forventede værdi af den diskrete tilfældige variabel, $X$, betinget af en hændelse, $B$. For hændelser på formen $B_j = \{Y=y_j\}$ defineres betingede forventede værdi som følgende 
 
 \begin{minipage}\textwidth
-\begin{defn}\textbf{Betingede forventet værdi af diskrete tilfældige variabler}\label{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler} %Ny definition
+\begin{defn}\textbf{Betingede forventede værdi af diskrete tilfældige variabler}\label{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler} %Ny definition
 \newline
-Lad $X, Y$ være diskrete tilfældige variabler. Så er den betingede forventet værdi af $X$ givet $Y$, givet ved
+Lad $X, Y$ være diskrete tilfældige variabler. Så er den betingede forventede værdi af $X$ givet $Y$, givet ved
 \begin{align*}
-    E[X|Y=y_j] = \sum_{x\in Range(X)}xP(X=x|Y=y_j)
+    E[X|Y=y_j] = \sum_{x\in Range(X)}xP(X=x|Y=y_j),
 \end{align*}
 hvis summen er absolut konvergent.
 \end{defn}
 \end{minipage}
 
-Altså er den forventet værdi af $X$ betinget af en diskret tilfældig variabel $Y=y_j$.
+Altså er den forventede værdi af $X$ betinget af en diskret tilfældig variabel $Y=y_j$.
 
 Den forventede værdi giver ikke information om variationen for $X$. Derfor introduceres begrebet \textit{varians}, som beskriver variationen for $X$. Varians er defineret som følgende
 

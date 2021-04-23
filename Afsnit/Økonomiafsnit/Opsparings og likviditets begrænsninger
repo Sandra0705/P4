@@ -1,0 +1,59 @@
+Dette afsnit omhandler opsparingsteori, når forbrugeren ikke har muligheden for at låne. Heriblandt de forbrugs- og opsparingstilbøjligheder, som "rammer" en investorer. Når en investorer er relativt utålmodig, og har en uafhængig indkomst, der er ligelidt fordelt, vil renter og aktiver virke som en stopper i form af dårlige forbrugsvalg. Det, at en investorer ikke har lånemuligheder, vil sågar være et motiv for, om investoren skal forbruge eller spare op. - Investoren foretrækker forbrug nu fremfor forbrug senere.
+Når indkomsten er en "random walk", viser det sig, at dem der ønsker at låne, men ikke kan, er mere tilbøjlige til at forbruge hele deres indkomst.
+
+
+
+
+
+\subsection{Modellering}
+Forbrugeren vil maksimere hjælpefunktionen givet ved
+\begin{align*}
+    u = E_t\big(\sum_{\tau=t}^t (1+\delta)^{t-\tau}v(C_\tau)\big)
+\end{align*}
+Hvor $\delta > 0$ er satsen af tidspreferencen, og $v(c_t)$ er den øjeblikkelige hjælpefunktion, der er stigende, konkav og differentiabel.
+Det antages, at forbrugeren har aktiver, der påvirker økonomien. Udviklingen af aktiver er givet ved
+\begin{align*}
+    A_{t+1}=(1+r)(A_t+y_t-c_t)
+\end{align*}
+hvor $y_t$ er indkomsten, $A_t$ er det reelle aktiv, og r er rentesatsen. Denne rentesats er en kendt konstant, og der tages udgangspunkt i at fokusere på indkomsten $y_t$. 
+
+Den øjeblikkelige marginale nytte for penge beskrives ved
+$\lambda(c_t)=v'(c_t)
+hvor $\lambda(\cdot)$ er en positiv monoton og aftagende funktion. Fremadrettet antages denne værdi $\lambda(\cdot) til at være konveks. 
+
+
+
+\subsubsection{Utålmodig forbruger}
+Antag en utålmodig forbruger med $\delta > r$. Og lad $x_t$ betegne den samlede beholdning af penge, givet ved
+\begin{align*}
+    x_t = A_t+y_t
+\end{align*}
+hvor $x_t$ er det maksimale, der kan forbruges til perioden $t$. Forbruget til tiden $t$ og $t+1$ må overholde
+\begin{align*}
+    \lambda(c_t) max\Big [\lambda(x_t), \beta E_t \lambda(c_{t+1}]
+\end{align*}
+hvor $\beta=(1+r)/(1+\delta), og $\beta$ < 1, eftersom det er antaget, at $r < \delta$. Hvis forbrugeren er begrænset, så vil forbruget ikke kunne overstige $x_t$, og den marginale nytte kan ikke være lavere end $\lambda(x_t)$. 
+Begrænsningen binder sig, hvis den marginale nytte til $x_t$ er højere end diskonteringen til den forventede marginale nytte i den næste periode. Ellers er de to marginale nytter beskrevet på sædvanligvis
+Desuden fremgår det, at forventningen tager højde for muligheden for, at der er fremtidige begrænsninger.
+Givet ligning (2), fås
+\begin{align*}
+    x_{t+1}=(1+r(x_t-C_t)+Y_{t+1}
+\end{align*}
+Det er muligt at beskrive dette ved en stokastisk proces, hvor forbruget er en funktion til tilstandsvariablen, $x_t$, lad $c_t=f(x_t)$. Lad desuden den marginale nytte af penge være givet ved $p(x_t). Så er 
+\begin{align*}
+    p(x_t)=\lambda[f(x_t)],\\ eller \\
+    c=f(x_t)=\lambda^{-1}[p(x_t)].
+\end{align*}
+Hvis der eksisterer en stationær løsning $p(x)$ med $f(x)$, må der gælde, at
+\begin{align*}
+    p(x)= max[\lambda(x), \beta \int p \Big( (1+r)(x-y\lambda^{-1}p(x))+y\Big) dF(y)\Big]. 
+\end{align*}
+Dette er beskrevet fra (6) ved at indsætte (7) og (8). Den marginale nytte i dag og den maksimale værdi af den marginale nytte, når den er begrænset, samt diskonteringens forventede værdi af den næste dag. Hvis ligning (9) har en løsning, er det muligt at karakteriserer ligevægten af den marginale nytte af penge, og dermed strategien for funktionen $f(x)$.
+
+Det er muligt at lade dette problem gå i en endelig fremtidshorisont. Lad $p_0(x), p_1(x),\ldots, p_n(x), hvor $p_0(x)=\lambda(x), og derved fås
+\begin{align*}
+    p_n(x)=max[\lambda(x),\beta\int p_{n-1}\Big( (1+r)(x-\lambda^{-1} p_n(x))+y\Big)dF(y)\Big]
+\end{align*}
+
+Denne rekursion kan tænkes som værende en omvendt/baglæns løsning til et endeligt stokastisk dynamisk system.\\
+I den sidste periode, $n=0$ vil alt være brugt, og den marginale nytte af penge, $p_0(x), er $\lambda(x), da ligemeget hvilken værdi $x$ har, så vil der forbruges. Da der itereres baglæns, vil der funktionen derved konvergerer.
