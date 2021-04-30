@@ -9,8 +9,66 @@ hvor $r$ er renten i banken og $I>0$ er investorerens faste indkomst. Den stokas
     &P(\xi_{t+1}=0|\xi_t=1)=1-P(\xi_{t+1}=1|\xi_t=1)=p \text{ og }\\
     &P(\xi_{t+1}=0|\xi_t=0)=1-P(\xi_{t+1}=1|\xi_t=0)=q,
 \end{align*}
-hvor $p$ angiver sandsynligheden for, at investoren mister sit arbejde i næste måned givet, at han er i arbejde i den nuværende måned. Derudover angiver $q$ sandsynligeden for at han er arbejdsløs i næste måned givet, at han er ikke er i arbejde i den nuværende måned. 
+hvor $p$ angiver sandsynligheden for, at investoren mister sit arbejde i næste måned givet, at han er i arbejde i den nuværende måned. Derudover angiver $q$ sandsynligeden for at han er arbejdsløs i næste måned givet, at han ikke er i arbejde i den nuværende måned. Overgangssandsynlighederne til ovenstående Markov-kæde kan dermed illustreres ved følgende overrgangsgraf
+\begin{figure}[H]
+\begin{tikzpicture} [node distance=2cm and 1cm,>=stealth',auto, every place/.style={draw}]
+    \node [place] (S1) {\phantom{..}$\xi_{t+1} = 0$\phantom{..}};
+    \coordinate[node distance=1.1cm,left of=S1] (left-S1);
+    \coordinate[node distance=1.1cm,right of=S1] (right-S1);
 
+
+    \node [place] (S2) [right=of S1] {\phantom{..}$\xi_{t+1} = 1$\phantom{..}};
+
+    \path[->] (S1) edge [bend left] node {1-q} (S2);
+    \path[->] (S1) edge [loop left] node {q} (s1);
+    \path[->] (S2) edge [bend left] node {p} (S1);
+    \path[->] (S2) edge [loop right] node {1-p} ();
+\end{tikzpicture}
+    \centering
+    \caption{Overgangsgraf for arbejdsstatus}
+    \label{fig:overgangsgraf_for_arbejdsstatus}
+\end{figure}
+
+Dermed er den tilhørende overgangsmatrice givet ved
+\begin{align*}
+    \P=\begin{bmatrix}q & 1-q\\ p & 1-p\end{bmatrix}
+\end{align*}
+
+\section{Basis-problemet}
+I basis-problemet er sandsynligheden for at være i arbejde til beslutningstidspunktet, $t+1$, givet ved ovenstående Markov-kæde. Det gælder, at Markov-kæden har tilstandsrummet $S = (\xi_t=0, \xi_t=0)$, med overgangssandsynligheder beskrevet ud fra $p$ og $q$. Det vælges i dette projekt, at $p=0,1$ og $q=0,5$, og dermed gælder det, at alle overgangssandsynlighederne i Markov-kæden er positive. Markov-kædens $t$'te trins overgangsmatrice bestemmes ved brug af \autoref{sæt:P(n)Pn}.
+\begin{align*}
+    \P=\begin{bmatrix}0,5 & 0,5\\ 0,1 & 0,9\end{bmatrix}^t &= \begin{bmatrix}0,167+0,833\cdot 0,4^t & 0,833-0,833\cdot 0,4^t\\ 0,167-0,167\cdot 0,4^t & 0,833+0,167\cdot 0,4^t\end{bmatrix}
+    \intertext{For $t\to\infty$ har Markov-kæden følgende overgangsmatrice}
+    \lim_{t \to \infty} \begin{bmatrix}0,5 & 0,5\\ 0,1 & 0,9\end{bmatrix}^t &= \begin{bmatrix}0,167 & 0,833\\ 0,167 & 0,833\end{bmatrix}
+\end{align*}
+Af \autoref{def:tilgængelighed} er de to tilstande tilgængelige fra hinanden da $t$'te trins overgangssandsynlighederne er strengt positive, og dermed gælder det også at de to tilstande kommunikerer. Da alle tilstande i tilstandsrummet kommunikerer er Markov-kæden ureducerbar af \autoref{def:ureducerbar}. 
+
+Da Markov-kæden er ureducerbar og har et endeligt tilstandsrum, følger det af \autoref{prop:ured_endelig_inva}, at den har en entydig invariant fordeling. Denne bestemmes ved følgende 
+\begin{align*}
+    \begin{bmatrix}\pi_1 & \pi_2\end{bmatrix} \begin{bmatrix}0,5 & 0,5\\ 0,1 & 0,9\end{bmatrix}&=\begin{bmatrix}\pi_1 & \pi_2\end{bmatrix}
+    \intertext{Dermed fås to ligninger med to ubekendte}
+    0,5\pi_1 + 0,1 \pi_2 &= \pi_1\\
+    0,5\pi_1+0,9\pi_2&=\pi_2\\
+    \pi_2 = 5\pi_1\\
+    4,5\pi_1=4,5\pi_1
+\end{align*}
+
+\begin{align*}
+    P(\tau=\infty|\xi_0=0)&=P(\xi_{t+1}=1|\xi_t=0)*(P(\xi_{t+1}=1|\xi_t=1))^\infty=(1-q)*((1-p)^\infty) = 0\\
+    &\Updownarrow\\
+    P(\tau<\infty|\xi_0=0)&=1-P(\tau=\infty|\xi_0=0)=1\\
+    &\Updownarrow\\
+    \{\xi \text{ er tilbagevendende} \}
+\end{align*}
+ 
+Af Kor 3.3.5 er alle tilstande da tilbagevendende... 
+ 
+ \begin{align*}
+     E[\tau|\xi=0]&=\sum_{i=1}^\infty iP(\tau=i|\xi=0)\\
+     &=1q+2(1-q)*p+3(1-q)*(1-p)*p+4(1-q)*(1-p)^2*p+...\\
+     &=1q+2(1-q)*p+\sum_{i=3}^\infty i(1-q)*(1-p)^{i-2}*p = 6
+ \end{align*}
+ 
 
 % \begin{table}[!hbt] \centering
 % \caption{Variabler for investeringsproblemet}
@@ -28,26 +86,11 @@ hvor $p$ angiver sandsynligheden for, at investoren mister sit arbejde i næste 
 % \end{tabular}
 % \end{table}
 
-\section{Basis Problemet}
-Ovenstående system kan beskrives ved følgende overgangsgraf\\
-\begin{tikzpicture}[node distance=2cm and 1cm,>=stealth',auto, every place/.style={draw}]
-    \node [place] (S1) {Ikke i arbejde};
-    \coordinate[node distance=1.1cm,left of=S1] (left-S1);
-    \coordinate[node distance=1.1cm,right of=S1] (right-S1);
 
 
-    \node [place] (S2) [right=of S1] {\phantom{---}I arbejde \phantom{---}};
-
-    \path[->] (S1) edge [bend left] node {1-q} (S2);
-    \path[->] (S1) edge [loop left] node {q} (s1);
-    \path[->] (S2) edge [bend left] node {p} (S1);
-    \path[->] (S2) edge [loop right] node {1-p} ();
-\end{tikzpicture}
-
-Det vil sige, at overgangsmatricen er givet ved:\\
-\begin{align*}
-    P=\begin{bmatrix}q & 1-q\\ p & 1-p\end{bmatrix}
-\end{align*}
+%
+%
+%
 
 Det antages, at nytten er ækvivalent med forbruget. Det vil sige, at markedet er perfekt. Altså er der et vist forbrug til tidspunkter mellem 0 og $N-1$ og der forbruges resten ($S_N$) til tidspunkt $N$. Med andre ord, så er nytten, $r_t(S_t,A_t)=A_t$ og $r_N(S_N)=S_N$.
 

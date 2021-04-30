@@ -285,7 +285,7 @@ Hvis de asymptotiske sandsynligheder ikke afhænger af begyndelsestilstanden, $X
 
 \section{Klassifikation af tilstande}
 
-I dette afsnit præsenteres sammenhængen mellem tilstandsrummet, $S$, og overgangsmatricen, $P$. Hvis overgangssandsynligheden mellem to tilstande er positiv, er det muligt at gå fra den ene tilstand fra den anden. Dette præsenteres i følgende definition
+I dette afsnit præsenteres sammenhængen mellem tilstandsrummet, $S$, og overgangsmatricen, $\P$. Hvis overgangssandsynligheden mellem to tilstande er positiv, er det muligt at gå fra den ene tilstand fra den anden. Dette præsenteres i følgende definition
 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Tilgængelighed} \label{def:tilgængelighed} %Ny definition
@@ -297,7 +297,7 @@ Lad $\bm X = (X_0, X_1, \dots)$ være en Markov-kæde med tilstandsrummet, $S$. 
 Hvis der for en delmængde af $S$ gælder, at alle tilstande i delmængden kommunikerer, kaldes delmængden en \textit{kommunikerende klasse}. Det er muligt, at alle tilstande i $S$ kommunikerer, hvilket fører til følgende definition 
 
 \begin{minipage}\textwidth
-\begin{defn}\textbf{} %Ny definition
+\begin{defn}\label{def:ureducerbar} \textbf{Ureducerbar} %Ny definition
 \newline
 Lad $\bm X$ være en Markov-kæde med tilstandsrummet $S$. Så siges $\bm X$ at være \textit{ureducerbar}, hvis der for alle $i,j \in S$ gælder, at $i \leftrightarrow j$.
 \end{defn}
@@ -306,7 +306,7 @@ Lad $\bm X$ være en Markov-kæde med tilstandsrummet $S$. Så siges $\bm X$ at 
 Ud over at det er muligt at bestemme om tilstande kommunikerer, kan man finde ud af, om det er muligt at komme tilbage til en tilstand. Heraf defineres følgende
 
 \begin{minipage}\textwidth
-\begin{defn}\textbf{} %Ny definition
+\begin{defn}\textbf{Tilbagevendende og forbigående} \label{def:tau}%Ny definition
 \newline
 Lad $\bm X = (X_0, X_1, \dots)$ være en Markov-kæde med tilstandsrummet $S$. Lad derudover $i\in S$ være en tilstand og
 \begin{align*}
@@ -458,6 +458,20 @@ Deraf følger det, at hvis $\displaystyle\sum_{r=0}^\infty p_{j,j}^{(r)}= \infty
 \end{bev}
 Det kan herved konkluderes, at hvis én tilstand er tilbagegående eller forbigående, så er alle tilstande dette.
 
+Hvis en tilstand i Markov-kæden er tilbagevendende, kan den enten være positiv- eller null tilbagevendende. Disse defineres som følgende
+
+\begin{defn}\textbf{Positiv og null tilbagevendende} %Ny definition
+\newline
+Lad $\bm X$ være en Markov-kæde med en tilstand, $i$, i tilstandsrummet, $S$. Lad $i$ være en tilbagevendende tilstand og $\tau_i$ være antallet af trin før kæden besøger $i$. Hvis
+\begin{enumerate}
+    \item $E_i[\tau_i]<\infty$, så er $i$ positiv tilbagevendende
+    \item $E_i[\tau_i]=\infty$, så er $i$ null tilbagevendende
+\end{enumerate}
+\end{defn}
+
+Altså gælder det, at hvis $i$ er positiv tilbagevendende, forventes det, at der er et endeligt antal trin, før Markov-kæden vender tilbage til $i$. For en tilstand der er null tilbagevendende, forventes der derimod at gå uendeligt mange trin, før kæden vender tilbage til tilstanden. 
+
+%For en Markov-kæde med et endeligt tilstandsrum vil det ikke være muligt for tilstande at være null tilbagevendende. 
 
 
 % \vspace{2cm} 
@@ -474,71 +488,174 @@ Det kan herved konkluderes, at hvis én tilstand er tilbagegående eller forbig�
 
 
 \section{Invariant fordeling}
-
-\begin{defn}\textbf{} %Ny definition
-\newline \label{defn: invariant_fordeling}
+Overgangssandsynlighederne i en Markov-kæde kan konvergere mod en ligevægt for $t \to \infty$. Hvis overgangssandsynlighederne konvergerer, har Markov-kæden en invariant fordeling, som defineres som følgende.
+%
+\begin{defn}\textbf{Invariant fordeling} \label{defn: invariant_fordeling} %Ny definition
+\newline 
 Lad $\bm X$ være en Markov-kæde med tilstandsrummet, $S$, og overgangsmatricen, $P$. En sandsynlighedsfordeling, $\bm\pi=(\pi_1,\pi_2,\dots)$ på $S$, som opfylder
 \begin{enumerate}
     \item $\pi_i\geq 0 \text{ for } i\in S$
     \item $\displaystyle\sum_{i\in S} \pi_i=1$
-    \item $\bm\pi P=\bm\pi$
+    \item $\bm\pi \P=\bm\pi$
 \end{enumerate}
-kaldes for en \textit{invariant fordeling} på kæden. 
+kaldes for en \textit{invariant fordeling} af kæden. 
 \end{defn}
-Bemærk, at $\bm\pi$ er en rækkevektor med ikke-negative indgange.
-Sandsynligheden, $\pi_j$, fortæller altså hvor lang tid der bruges i tilstand j i det lange løb. Derfor er det intuitivt, at der gælder følgende definition.
+Altså vil $\bm \pi \P^t = \bm\pi$ for $t = 1, 2, \ldots, N$. 
 
-\begin{defn}\textbf{Positiv og null tilbagevendende} %Ny definition
-\newline
-Lad $\bm X$ være en Markov-kæde med en tilstand, $i$, i tilstandsrummet, $S$. Lad $i$ være en tilbagevendende tilstand og $\tau_i$ være antallet af trin før kæden besøger $i$. Hvis
-\begin{enumerate}
-    \item $E_i[\tau_i]<\infty$, så er $i$ positiv tilbagevendende
-    \item $E_i[\tau_i]=\infty$, så er $i$ null tilbagevendende
-\end{enumerate}
-\end{defn}
+Bemærk desuden, at indgangene i $\bm\ \pi$ opfylder,
+\begin{align}\label{eq:sum_invariant_fordeling}
+     \pi_j=\sum_{i\in S}\pi_ip_{ij} \text{ for alle } j\in S. 
+\end{align}
 
---Altså gælder det, at hvis $i$ er positiv tilbagevendende, forventes det, at der er et endeligt antal trin, før Markov-kæden vender tilbage til $i$. For en tilstand der er null tilbagevendende, forventes der derimod at gå uendeligt mange trin, før kæden vender tilbage til tilstanden. For en Markov-kæde med et endeligt tilstandsrum vil det ikke være muligt for tilstande at være null tilbagevendende. 
+For en ureducerbar Markov-kæde gælder følgende
+%Bemærk, at $\bm\pi$ er en rækkevektor med ikke-negative indgange. Sandsynligheden, $\pi_j$, fortæller altså, hvor lang tid der bruges i tilstand j i det lange løb. Derfor er det intuitivt, at der gælder følgende definition.
 
 \begin{minipage}\textwidth
-\begin{thmx} \textbf{} %Ny sætning
+\begin{thmx} \label{sæt:den_vi_ikke_beviser}\textbf{} %Ny sætning
 \newline
-Lad $\bm X$ være en ureducerbar Markov-kæde. Så gælder det, at 
+Lad $\bm X$ være en ureducerbar Markov-kæde med tilstandsrummet, $S$ og tilstande $i, j\in S$. Lad derudover $\tau_i$ være antallet af trin før kæden besøger tilstanden $i$.
+\begin{enumerate}
+    \item Så eksisterer der en invariant fordeling, $\bm \pi$, hvis og kun hvis, der eksisterer en positiv tilbagevendende tilstand.
+    \item Hvis der eksisterer en invariant fordeling $\bm \pi$, så er alle tilstande dermed positiv tilbagevendende og 
+    \begin{align*}
+        \pi_i = \frac{1}{E[\tau_i]}.
+    \end{align*}
+    Altså er $\bm\pi$ entydig. 
+\end{enumerate}
+\end{thmx}
+\end{minipage}
+Denne sætning vil ikke blive bevist i dette projekt, men der henvises til \citep[s. 233-234]{oxford}. 
+
+Af \autoref{sæt:den_vi_ikke_beviser} følger det dermed, at hvis der eksisterer en invariant fordeling, så gælder det, at den er entydig, og alle tilstande er positiv tilbagevendende. Derudover medfører positiv tilbagevendende tilstande, at der eksisterer en invariant fordeling. 
+
+...
+
+\begin{minipage}\textwidth
+\begin{lem} \label{lem:lort}\textbf{} %Nyt lemma
+\newline
+Lad $\bm X$ være en ureducerbar Markov-kæde med $t$'te trins overgangssandsynligheden $p_{ij}^{(t)}$. Lad derudover $\bm X$ have tilstandsrummet $S$ og tilstande $i, j, k \in S$. Hvis $\bm X$ har en aperiodisk tilstand $k$, så for alle tilstande $i$ og $j$ er $p_{ij}^{(t)}>0$ for et stort nok $t$. 
+\end{lem}
+\end{minipage}
+
+\begin{bev} \textbf{} %Nyt bevis
+\newline
+Lad $\bm X$ være en ureducerbar Markov-kæde med $t$'te trins overgangssandsynligheden $p_{ij}^{(t)}$. Lad derudover $\bm X$ have tilstandsrummet $S$ og tilstande $i, j, k \in S$.
+
+Da $\bm X$ er ureducerbar følger det af \autoref{def:tilgængelighed} og \autoref{def:ureducerbar}, at der eksisterer et $r, s\geq 0$ med tilhørende overgangssandsynligheder $p{ik}^{(r)}, p_{kj}^{(s)}>0$. Da $k$ er aperiodisk, er $p_{kk}^{(t)} > 0$ for et stort nok $t$. Dermed fås
 \begin{align*}
-    \text{En invariant fordeling, } \bm \pi \text{, eksisterer} \Leftrightarrow \ \bm X \text{ er positiv tilbagevendende}
+    p_{ij}^{(r+t+s)}\geq p_{ik}^{(r)}p_{kk}^{(n)}p_{kj}^{(s)}>0
 \end{align*}
-Hvis dette er opfyldt, er $\bm\pi$ entydig. 
+Hermed er \autoref{lem:lort} bevist. 
+\end{bev}
+
+\begin{minipage}\textwidth
+\begin{thmx} \textbf{Konvergens for en Markov-kæde}\label{sæt:konvergens_for_markov} %Ny sætning
+\newline
+Lad $\bm X$ være en Markov-kæde med $t$'te trins overgangssandsynligheden $p_{ij}^{(t)}$. Lad derudover $\bm X$ være ureducerbar, aperiodisk og positiv tilbagevendende med tilstandsrummet, $S$ og tilstande $i, j\in S$. Så gælder det, at 
+\begin{align*}
+    p_{ij}^{(t)} \to \pi_j \text{ for } t \to \infty,
+\end{align*}
+hvor $\bm \pi$ er Markov-kædens entydige invariante fordeling. 
 \end{thmx}
 \end{minipage}
 
-\begin{minipage}\textwidth
-\begin{pro} \textbf{} %Ny proposition
+\begin{bev} \textbf{} %Nyt bevis
 \newline
-Lad $\bm X$ være en ureducerbar Markov-kæde med det endelige tilstandsrum $S$. Så eksisterer der en entydig invariant fordeling $\bm \pi$.
-\end{pro}
-\end{minipage}
+Lad $\bm X$ være en Markov-kæde med $t$'te trins overgangssandsynligheden $p_{ij}^{(t)}$. Lad derudover $\bm X$ være ureducerbar, aperiodisk og positiv tilbagevendende med tilstandsrummet, $S$ og tilstande $i, j\in S$. 
 
-Det gælder desuden, at hvis Markov-kæden ikke er ureducerbar, så vil det være muligt, at der findes flere løsninger.
+Lad $\bm Z = ( \bm X, \bm Y)$ være et ordnet par af uafhængige Markov-kæder, hvor $\bm X = (X_0, X_1, \ldots)$ og $\bm Y = (Y_0, Y_1, \ldots)$. Begge Markov-kæder har tilstandsrummet $S$ og overgangsmatrice $\P$. Så følger det, at $\bm Z = (Z_0, Z_1, \ldots)$ er en Markov-kæde med tilstandsrum $S \times S$, hvor $Z_t = (X_t, Y_t)$. Af \autoref{def:overgangssandsynlighed} er overgangssandsynlighederne for $\bm Z$ givet ved
+\begin{align*}
+    p_{ij, kl} &= P\left(Z_{t+1} = (k,l) | Z_t = (i,j)\right).
+    \intertext{Da $\bm X$ og $\bm Y$ er uafhængige, følger det af \autoref{def:uafhængighed}, at}
+    p_{ij, kl}&=P\left(X_{t+1} = k|X_t = i\right)P\left(Y_{t+1} = l|Y_t = j\right) = p_{ik}p_{jl}.
+\end{align*}
+Af \autoref{lem:lort} følger det, at for $i,j,k,l \in S$ eksisterer der et $N$ således, at $p_{ik}^{(t)}p_{jl}^{(t)}> 0$ for alle $t \geq N$. Altså er $p_{ij, kl}^{(t)}>0$ for et $t$, og $\bm Z$ er dermed ureducerbar som følge af \autoref{def:tilgængelighed} og \autoref{def:ureducerbar}.  
 
-\begin{eks} \textbf{} %Nyt eksempel
-\newline Find invariant fordelingen for \autoref{eks:overgangsmatrice}.\\
-I dette tilfælde er det en ikke ureducerbar Markov-kæde, men det er stadig muligt at gøre rede for invariant fordelingen.\\
-Tilstandene $AA, Aa$ og $aa$, samt jævntført \autoref{defn: invariant_fordeling} (3)
-giver\\
+Da $\bm X$ er positiv tilbagevendende, har $\bm X$ en entydig invariant fordeling, $\bm \pi$, som følge af \autoref{sæt:den_vi_ikke_beviser} punkt 1. Dermed må der eksisterer en positiv tilbagevendende tilstand i $\bm Z$, og af \autoref{sæt:den_vi_ikke_beviser} punkt 1 gælder det dermed, at $\bm Z$ har en invariant fordeling $\bm \hat{\pi} = (v_{ij}:i,j\in S)$, som er givet ved $\hat{\pi}_{ij} = \pi_i\pi_j$. Derfor er $\bm Z$ positiv tilbagevendende af \autoref{sæt:den_vi_ikke_beviser} punkt 2. 
+Lad $X_0=i$ og $Y_0=j$ således, at $Z_0=(i,j)$. Lad derudover $s\in S$ være en tilstand og 
 \begin{align*}
-    (\pi_{AA} \ \pi_{Aa} \ \pi_{aa}) \begin{pmatrix}
-    1 & 0 & 0 \\
-    1/4 & 1/2 & 1/4 \\
-    0 & 0 & 1 \\
-    \end{pmatrix}
-    = (\pi_{AA} \ \pi_{Aa} \ \pi_{aa})
+    \tau_{ss}=\min\{t\geq 1:Z_t=(s,s)\},
 \end{align*}
-Fra den første ligning fås
+være antallet af trin før kæden besøger $(s,s)$. Altså antallet af trin før Markov-kæderne $\bm X$ og $\bm Y$ er lig hinanden. Da $\bm Z$ er positiv tilbagevendende følger det af \autoref{def:tau}, at
+\begin{align}\label{tauss}
+    P\left(\tau_{ss} < \infty |Z_0 = (i, j)\right) = 1.
+\end{align}
+Dermed er $\tau_{ss}$ endelig, hvilket skal bruges til at vise følgende. Det skal vises at grænsefordelingen for $\bm X$ og $\bm Y$ er uafhængige af deres begyndelsesandsynlighed.
 \begin{align*}
-    \pi_{AA} + \dfrac{1}{4}\pi_{Aa} = \pi_{AA}
+    p_{ik}^{(t)}&=P(X_t=k | Z_0 = (i,j))
+    \intertext{Det følger af \autoref{def:sandsynlighedsregningens_grundsætninger}, at}
+    p_{ik}^{(t)}&=P(X_t=k, \tau\leq t | Z_0 = (i,j))+P(X_t=k, \tau> t | Z_0 = (i,j))
+    \intertext{Af Stærk Markov egenskaben (se \autoref{stærk_markov}), med $\tau$ som stoptid (se \autoref{stoptid}), gælder det, at $X_n$ og $Y_n$ har den samme betinget sandsynlighed givet, at $\{\tau \leq n\}$}
+    p_{ik}^{(t)}&=P(Y_t=k, \tau\leq t| Z_0 = (i,j))+P(X_t=k, \tau> t| Z_0 = (i,j))\\
+    &\leq P(Y_t=k| Z_0 = (i,j))+P(\tau> t| Z_0\\
+    &= p_{jk}^{(t)} + P(\tau> t| Z_0 = (i,j))\\
 \end{align*}
-hvilket må sige $\pi_{Aa}=0$, og anden ligning giver dermed $0=0$, samt at $\pi_{aa}=\pi_{aa}$. Dette giver, at fordelingen er givet ved
+Ud fra ovenstående og \eqref{tauss} fås følgende
 \begin{align*}
-    \bm \pi = (\alpha, \ 0,\ 1-\alpha)
+    |p_{ik}^{(t)} - p_{jk}^{(t)}| \leq P(\tau> t| Z_0 = (i,j)) \to 0 \text{ for } t \to \infty
 \end{align*}
-hvor $0 \leq \alpha \leq 1$ er en invariant fordeling. Markov-kæden giver, at hvis der enten vælger mellem tilstandene $AA$ og $aa$ i forhold til $\bm \pi$, så vil kæden blive ved med at være der. Dette giver, at sekvensen $AA, \ AA, \ldots$ har sandsynligheden $\alpha$, og $aa, \ aa, \dots$ har sandsynligheden $1-\alpha$. Dette er altså et eksempel på, hvad der vil ske i en ikke ureducerbar Markov-kæde.
-\end{eks}
+Dette medfører, at
+\begin{align*}
+    p_{ik}^{(t)} - p_{jk}^{(t)} \to 0 \text{ for } t \to \infty.
+\end{align*}
+Hvis grænsen $\lim_{t \to \infty} p_{ik}^{(t)}$ eksisterer, afhænger den dermed ikke af $i$. 
+
+Herefter vises det, at grænsen eksisterer. Fra \eqref{eq:sum_invariant_fordeling} følger det, at
+\begin{align*}
+    \pi_k-p_{jk}^{(t)}&=\sum_{i\in S}\pi_ip_{ik}^{(t)}-p_{jk}^{(t)}\\
+    &=\sum_{i\in S}\pi_i(p_{ik}^{(t)}-p_{jk}^{(t)}) 
+\end{align*}
+Da $ p_{ik}^{(t)} - p_{jk}^{(t)} \to 0$ for $t\to \infty$ følger det af dumt lemma at $\sum_{i\in S}\pi_i(p_{ik}^{(t)}-p_{jk}^{(t)})\to 0 $ for $ t \to \infty$.
+Altså gælder det, at $p_{ij}^{(t)} \to \pi_j \text{ for } t \to \infty$, og dermed er \autoref{sæt:konvergens_for_markov} bevist.
+\end{bev}
+
+%%%%%%
+%Ny bevis
+
+
+
+% \begin{minipage}\textwidth
+% \begin{pro} \label{prop:ured_endelig_inva}\textbf{} %Ny proposition
+% \newline
+% Lad $\bm X$ være en ureducerbar Markov-kæde med det endelige tilstandsrum $S$. Så eksisterer der en entydig invariant fordeling $\bm \pi$.
+% \end{pro}
+% \end{minipage}
+
+
+
+% \begin{minipage}\textwidth
+% \begin{thmx} \textbf{} %Ny sætning
+% \newline
+% Lad $\bm X$ være en ureducerbar Markov-kæde. Så gælder det, at 
+% \begin{align*}
+%     \text{En invariant fordeling, } \bm \pi \text{, eksisterer} \Leftrightarrow \ \bm X \text{ er positiv tilbagevendende}
+% \end{align*}
+% Hvis dette er opfyldt, er $\bm\pi$ entydig. 
+% \end{thmx}
+% \end{minipage}
+
+%Det gælder desuden, at hvis Markov-kæden ikke er ureducerbar, så vil det være muligt, at der findes flere løsninger.
+
+% \begin{eks} \textbf{} %Nyt eksempel
+% \newline Find invariant fordelingen for \autoref{eks:overgangsmatrice}.\\
+% I dette tilfælde er det en ikke ureducerbar Markov-kæde, men det er stadig muligt at gøre rede for invariant fordelingen.\\
+% Tilstandene $AA, Aa$ og $aa$, samt jævntført \autoref{defn: invariant_fordeling} (3)
+% giver\\
+% \begin{align*}
+%     (\pi_{AA} \ \pi_{Aa} \ \pi_{aa}) \begin{pmatrix}
+%     1 & 0 & 0 \\
+%     1/4 & 1/2 & 1/4 \\
+%     0 & 0 & 1 \\
+%     \end{pmatrix}
+%     = (\pi_{AA} \ \pi_{Aa} \ \pi_{aa})
+% \end{align*}
+% Fra den første ligning fås
+% \begin{align*}
+%     \pi_{AA} + \dfrac{1}{4}\pi_{Aa} = \pi_{AA}
+% \end{align*}
+% hvilket må sige $\pi_{Aa}=0$, og anden ligning giver dermed $0=0$, samt at $\pi_{aa}=\pi_{aa}$. Dette giver, at fordelingen er givet ved
+% \begin{align*}
+%     \bm \pi = (\alpha, \ 0,\ 1-\alpha)
+% \end{align*}
+% hvor $0 \leq \alpha \leq 1$ er en invariant fordeling. Markov-kæden giver, at hvis der enten vælger mellem tilstandene $AA$ og $aa$ i forhold til $\bm \pi$, så vil kæden blive ved med at være der. Dette giver, at sekvensen $AA, \ AA, \ldots$ har sandsynligheden $\alpha$, og $aa, \ aa, \dots$ har sandsynligheden $1-\alpha$. Dette er altså et eksempel på, hvad der vil ske i en ikke ureducerbar Markov-kæde.
+% \end{eks}

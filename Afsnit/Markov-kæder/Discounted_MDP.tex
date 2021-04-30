@@ -16,7 +16,9 @@ hvor $\lambda$ skalerer værdien til beslutningstidspunkt $n$ af én enhed belø
 
 Bellman ligningen, \eqref{eq:u_t_sup}, er under disse antagelser givet ved
 \begin{align*}
-    v_n(s) = \sup_{a \in A_s} \left( r(s,a) + \sum_{s'\in S} \lambda p\left(s'|s,a\right)v_{n+1}(s')\right).
+    u_t(s) = \sup_{a \in A_s} \left( r(s,a) + \sum_{s'\in S} \lambda p\left(s'|s,a\right)u_{t+1}(s')\right).
 \end{align*}
 Når diskonteringfaktoren er inkluderet, vil den optimale strategi ikke nødvendigvis være den samme som bestemt uden diskonteringsfaktoren. Derudover vil den også påvirke den maksimale forventede totale belønning. 
+
+Diskonteringsfaktoren er essentiel når indeksmængden er uendelig. Her sikre diskonteringsfaktoren at den uendelige sum i den forventede totale belønning bliver endelig, og dermed sikre at den konvergerer. 
 

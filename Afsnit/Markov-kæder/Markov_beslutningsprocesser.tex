@@ -17,7 +17,7 @@ Til et specifik beslutningstidspunkt observerer en beslutningstager en tilstand 
 
 %Problem -- beslutninger, tilstande -- beslutningstager --taget en beslutning-- reward/cost
 
-\section{Markov beslutningsprocesser}
+\section{Markov beslutningsprocesser}\label{afsnit:Markov_beslutningsprocesser}
 En Markov beslutningsproces er en beslutningsmodel, og er dermed baseret på begreberne beslutninger, heriblandt beslutningstager og beslutningstidspunkter, samt tilstande og belønninger. For en Markov beslutningsproces afhænger tilstande til fremtidige beslutningstidspunkter af den nuværende tilstand og de forrige beslutninger. Beslutningstageren skal derfor ikke udelukkende tage beslutninger ud fra kortsigtede belønninger, men også ud fra de fremtidige for at kunne optimere sine belønninger. 
 
 
@@ -139,6 +139,10 @@ Mængden af alle strategier for $K=MD, FD, MT, FT$ betegnes $\Pi^K=D_1^K\times D
 
 \section{Induceret stokastisk proces, betingede sandsynligheder og forventede værdier og et andet navn}
 
+% Symbolerne for sandsynlighedsrum, hændelsesrum og lignende anvendes uden forklaring i følgende afsnit.
+
+%Symbolerne som er præsenteret i underafsnit \ref{afsnit:Markov_beslutningsprocesser} anvendes uden forklaring i det resterende af dette kapitel, og derfor præsenteres de ikke i resultaterne i de følgende underafsnit. 
+
 Af \autoref{def:sandsynlighedsrum} gælder det, at et sandsynlighedsrum er givet ved triplen, $(\Omega, \F, P)$, hvor $\Omega$ betegner udfaldsrummet, $\F$ hændelsesrummet og $P$ et sandsynlighedsmål på $(\Omega,\mathcal{F})$. I dette afsnit er $\F$ potensmængden af $\Omega$.
 
 Udfaldsrummet er givet ved
@@ -239,11 +243,12 @@ Lad $W$ være en diskret tilfældig variabel defineret på sandsynlighedsrummet,
 \end{align*}
 Dermed er $W(\omega)$ summen af belønninger. Af \autoref{def:Forventetværdi} følger det, at
 \begin{align*}
-    E^\Psi [W] = \sum_{\omega \in \Omega} W(\omega)P^\Psi\left(\omega\right) = \sum_{w \in Range(W)} w P^\Psi \left(w: W(\omega) = w\right).
+    E^\Psi [W] = \sum_{\omega \in \Omega} W(\omega)P^\Psi\left(\omega\right) = \sum_{w \in Range(W)} w P^\Psi \left(w: W(\omega) = w\right), 
 \end{align*}
- Summerne i ovenstående bliver til integraler for $N = \infty$ og $E^\Psi(W)$ betegner den forventede værdi til $W$ givet strategien $\Psi$.
+hvor $E^\Psi(W)$ betegner den forventede værdi til $W$ givet strategien $\Psi$. Hvis Omega ikke er tællelig, bliver summerne i ovenstående til integraler. 
+ %Summerne i ovenstående bliver til integraler for $N = \infty$ og $E^\Psi(W)$ betegner den forventede værdi til $W$ givet strategien $\Psi$.
 
-Hvis strategien $\Psi$ er fortidsafhængig med historikken $h_t=(s_1, a_1 , \dots , s_t)$, og $W$ er en funktion af $s_1, a_1,\dots, s_N$, så gælder det, at
+Hvis strategien $\Psi$ er fortidsafhængig med historikken $h_t=(s_1, a_1 , \dots , s_t)$, og $W$ er en funktion af $s_t, a_t,\dots, s_N$, så gælder det, at
 \begin{align}\label{eq:forventet_belønning_fortidsafhængig}
     E_{h_t}^\Psi \left[W(X_t , Y_t , \dots , X_N) \right] = \sum W(s_t , a_t , \dots , s_N) P^\Psi (a_t , s_{t+1} , \dots , s_N | s_1 , a_1 , \dots , s_t),
 \end{align}

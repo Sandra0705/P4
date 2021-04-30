@@ -3,9 +3,9 @@ I dette afsnit introduceres en måde, hvorpå den maksimale forventede totale be
 %Følgende gælder for en endelig indeksmængde. 
 
 Lad en strategi, $\Psi = (d_1,d_2, \ldots, d_{N-1})$, være fortidsafhængig tilfældig og $u_t^\Psi: H_t \to \R$ være den forventede totale belønning for $\Psi$ til beslutningstidspunkterne $t, t+1, \ldots, N-1$. For historikken, $h_t \in H_t$, er $u_t^\Psi$ givet ved 
-%
-\begin{align}\label{eq:forventede_totale_belønning}
-    u_t^{\Psi}(h_t)=E^{\Psi}_{h_t}\left[\sum^{N-1}_{n=t}r_n(X_n, Y_n)+r_N(X_N)\right] \text{ for } t < N.
+% 
+\begin{align}\label{eq:forventede_totale_belønning} 
+    u_t^{\Psi}(h_t)=E^{\Psi}_{h_t}\left[\sum^{N-1}_{n=t}r_n(X_n, Y_n)+r_N(X_N)\right] \text{ for } t < N. 
 \end{align}
 For $t=N$, så er $h_N=(h_{N-1},a_{N-1},s)$ og
 \begin{align}\label{eq:u_N=r_N}
@@ -17,7 +17,7 @@ Forskellen mellem $v_N^\Psi$ og $u_t^\Psi$ er, at $v_N^\Psi$ betegner den forven
 %Dog er $u_1^{\Psi}(s)=v_N^{\Psi}(s)$, hvis det for alle $s\in S$ er opfyldt, at $h_1=s$.
 
 Ved at bestemme $u_t^{\Psi}$ induktivt er det derved muligt at bestemme $v_N^\Psi$. Altså anvendes baglæns induktion til at bestemme den forventede totale belønning. 
-Lad $\Psi\in \Pi^{FT}$ og lad tilstandsrummet, $S$, være diskret. Så er det muligt at bestemme $u_t^\Psi$ med følgende evalueringsalgoritme for en endelig strategi. %\textit{endelige strategi evalueringsalgoritme}, som er givet ved følgende
+Lad $\Psi\in \Pi^{FT}$ og lad $S$ være et diskret tilstandsrum. Så er det muligt at bestemme $u_t^\Psi$ med følgende evalueringsalgoritme for en endelig strategi. %\textit{endelige strategi evalueringsalgoritme}, som er givet ved følgende
 
 \begin{alg} \textbf{Evalueringsalgoritme for en endelig strategi} \label{Algoritme1}%Ny algoritme
 \begin{enumerate}
@@ -31,7 +31,7 @@ Lad $\Psi\in \Pi^{FT}$ og lad tilstandsrummet, $S$, være diskret. Så er det mu
 \end{enumerate}
 \end{alg}
 
-Såfremt historikken til et beslutningstidspunkt, $t$, er $h_t$, så er den forventede totale belønning for en strategi til beslutningstidspunkterne, $t, t+1, \ldots, N$, givet ved \eqref{eq:ligning_i_algoritme1}. Altså er den forventede totale belønning lig belønningen modtaget ved at tage beslutningen $a$ adderet med den forventede belønning for de resterende beslutningstidspunkter, $t+1, \ldots, N$. Alt dette multipliceres med sandsynlighedsfordelingen, $q$. 
+Givet historikken $h_t$ kan \eqref{eq:ligning_i_algoritme1} bruges til at evaluere en givet strategi. Altså er den forventede totale belønning lig belønningen modtaget ved at tage beslutningen $a$ adderet med den forventede belønning for de resterende beslutningstidspunkter, $t+1, \ldots, N$. Alt dette multipliceres med sandsynlighedsfordelingen, $q_{d_t(h_t)}$, som er sandsynligheden for at tage beslutningen $a$ givet $h_t$. 
 
 Summen, over $s' \in S$, i \eqref{eq:ligning_i_algoritme1} indeholder produktet mellem sandsynligheden for at være i tilstanden $s'$ til beslutningstidspunktet $t+1$, hvis beslutningen $a$ er valgt, og den forventede totale belønning ved at bruge strategien, $\Psi$, for perioderne $t+1, \ldots, N$, når historikken til beslutningstidspunktet $t+1$ er $h_{t+1} = (h_t, a, s')$. 
 
@@ -131,9 +131,9 @@ For at bevise dette introduceres følgende lemma
 \begin{minipage}\textwidth
 \begin{lem} \label{lem:ret_vigtig}\textbf{} %Nyt lemma
 \newline
-Lad $G$ være en vilkårlig diskret mængde og $g$ være en reel funktion på $G$. Lad derudover $q$ være sandsynlighedsfordelingen på $G$. Så er 
+Lad $G$ være en vilkårlig diskret mængde og $g: G\to \R$. Lad derudover $q$ være en sandsynlighedsfordeling på $G$. Så er
 \begin{align*}
-    \sup_{z\in G}g(z)\geq \sum_{z\in G}q(z)g(z).
+    \sup_{z\in G}g(z)\geq \sum_{z\in G}q(z) g(z).
 \end{align*}
 \end{lem}
 \end{minipage}
@@ -144,13 +144,13 @@ Lad $G$ være en vilkårlig diskret mængde og $g$ være en reel funktion på $G
 \begin{align*}
     g^* = \sum_{z \in G} q(z)g^* \geq \sum_{z \in G} q(z)g(z).
 \end{align*}
-Første lighed er fra \autoref{prop:frekvensfunktion}, og sidste ulighed gælder, da $g^* \geq g(z)$. Dermed er \autoref{lem:ret_vigtig} bevist.
+Første lighed er fra \autoref{prop:frekvensfunktion}, og sidste ulighed gælder, da $g^* \geq g(z)$ jævnfør \autoref{sæt_om_eps}. Dermed er \autoref{lem:ret_vigtig} bevist.
 \end{bev}
 
 Det er hermed muligt at bevise \autoref{sæt:ret_så_vigtig}.
 
-\begin{bev} \textbf{} %Nyt bevis
-\newline
+\begin{bev} %Nyt bevis\newline
+
 Lad $u_t$ være en løsning til \eqref{eq:u_t_sup} for $t = 1, 2, \ldots, N-1$ og $u_N$ være givet som i \eqref{eq:u_N}. Lad derudover $u_t^*$ være den maksimale forventede totale belønning. 
 
 \textbf{Bevis for punkt 1}
@@ -183,8 +183,10 @@ Herefter vises, at $u^*_n(h_n) \geq u_n(h_n)$. Dette gøres ved først at vise, 
 \end{align}
 for alle $h_n \in H_n$ og $n = 1, 2, \ldots, N$. For at bevise dette konstrueres en strategi, $\Psi' = (d_1, d_2, \ldots, d_{N-1})$, ved at vælge $d_n(h_n)$, der opfylder
 \begin{align}\label{eq:bevis_pt_2}
-    &r_n\left(s_n,d_n(h_n)\right)+\sum_{s'\in S}p_n\left(s'|s_n, d_n(h_n)\right)u_{n+1}\left(s_n, d_n(h_n), s'\right)+\varepsilon\geq u_n(h_n).
+    &r_n\left(s_n,d_n(h_n)\right)+\sum_{s'\in S}p_n\left(s'|s_n, d_n(h_n)\right)u_{n+1}\left(s_n, d_n(h_n), s'\right)+\varepsilon\geq u_n(h_n), 
 \end{align}
+som er muligt jævnfør \autoref{sæt_om_eps}. 
+
 Ved induktion vises \eqref{eq:4.3.8}. Da der ikke tages en beslutning til beslutningstidspunktet $N$, følger det af \eqref{eq:u_N=r_N} og \eqref{eq:u_N}, at
 
 \begin{align*}
@@ -253,7 +255,7 @@ Lad $u_t^*$ være en løsning til Bellman ligningerne, \eqref{eq:u_N} og \eqref{
 \textbf{Bevis for punkt 1}\\
 Dette bevises ved induktion. Af \autoref{sæt:ret_så_vigtig}, \eqref{eq:u_N} og \eqref{eq:u_N=r_N} følger det, at
 \begin{align*}
-    u_N^*(h_n)=u_N(h_n)=r_N(s) = u^{\Psi^*}_N(h_n), \text{ for } h_n\in H_n.
+    u_N^*(h_N)=u_N(h_N)=r_N(s) = u^{\Psi^*}_N(h_N), \text{ for } h_N\in H_N.
 \end{align*}
 Dermed er induktionsstarten bevist. Lad nu $u_t^*(h_t) = u_t^{\Psi^*}(h_t)$ for $t = n+1, \ldots, N$. Det skal vises, at dette medfører, at $u_t^*(h_t) = u_t^{\Psi^*}(h_t)$ for $t=n$. Af \eqref{eq:u_t_max} er
 \begin{align*}
@@ -275,7 +277,14 @@ og derfor er $\Psi^*$ en optimal strategi.
 Dermed er \autoref{sæt:optimal_strategi_ved_Bellman} bevist.
 \end{bev}
 
-Fra \autoref{sæt:optimal_strategi_ved_Bellman} gælder det dermed, at den optimale strategi bestemmes ved først at løse Bellman ligningerne. Dernæst vælges en beslutningsregel til enhver historik, der bestemmer den beslutning, der medfører, at højresiden af \eqref{eq:optimal_strategi} for $t=1, 2, \ldots, N$ er maksimal. %Punkt 1 i \autoref{sæt:optimal_strategi_ved_Bellman} kaldes også for \textit{Optimalitets-princippet}.
+Fra \autoref{sæt:optimal_strategi_ved_Bellman} gælder det dermed, at den optimale strategi bestemmes ved først at løse Bellman ligningerne. Dernæst vælges en beslutningsregel til enhver historik, der bestemmer den beslutning, der medfører, at højresiden af \eqref{eq:optimal_strategi} for $t=1, 2, \ldots, N$ er maksimal.
+
+I \autoref{sæt:optimal_strategi_ved_Bellman} er strategien fortidsafhængig deterministisk. Hvis der eksisterer en fortidsafhængig tilfældig strategi, der opfylder det generaliserede udtryk for \eqref{eq:optimal_strategi}, så af \autoref{lem:ret_vigtig} eksisterer der også en fortidsafhængig deterministisk, der opfylder \eqref{eq:optimal_strategi}. Dermed er det kun nødvendigt at vise \autoref{sæt:optimal_strategi_ved_Bellman} for fortidsafhængige deterministiske strategier. 
+
+
+%Dette gælder, da lemmaet resulterer i, at en sådan strategi kan bestemmes selvom strategien havde været fortidsafhæng tilfældig.
+%Hvis der eksisterer en fortidsafhængig tilfældig strategi der opfylder ... vil der fra lemma kunne bestemmes en deterministisk strategi der opfylder...
+%Punkt 1 i \autoref{sæt:optimal_strategi_ved_Bellman} kaldes også for \textit{Optimalitets-princippet}.
 
 % Den optimale strategi, $\Psi^{\ast}$, blev defineret ved \eqref{eq:optimal_strategi}, hvor max resulterer i en reel værdi. \eqref{eq:optimal_strategi} kan udtrykkes som følgende
 % \begin{align*}
@@ -323,21 +332,34 @@ Da højresiden kun afhænger af $h_n$ gennem $s_n$, er punkt 1 bevist.
 
 \textbf{Bevis for punkt 2}\\
 Lad $\varepsilon > 0$ og lad $\Psi^\varepsilon = (d_1^\varepsilon, d_2^\varepsilon, \ldots, d_{N-1}^\varepsilon)$ være en vilkårlig strategi i $\Pi^{MD}$ som opfylder, at
+
 \begin{align*}
     &r_t\left(s_t, d_t^\varepsilon(s_t)\right)+\sum_{s'\in S}p_t\left(s'|s_t, d_t^\varepsilon(s_t)\right)u_{t+1}^*\left(s'\right) + \frac{\varepsilon}{N-1}\nonumber\\
-    &\geq \sup_{a\in A_{s_t}}\left(r_t(s_t,a)+\sum_{s'\in S}p_t(s'|s_t, a)u_{t+1}^*( s')\right).
+    &\geq \sup_{a\in A_{s_t}}\left(r_t(s_t,a)+\sum_{s'\in S}p_t(s'|s_t, a)u_{t+1}^*( s')\right),
 \end{align*}
-Af punkt 1 er $u_t^*(h_t)$ kun afhængig af $h_t$ gennem $s_t$, dermed gælder det fra \autoref{sæt:epsopt}, at strategien, $\Psi^\varepsilon $, er $\varepsilon$-optimal.
+som eksisterer jævnfør \autoref{sæt_om_eps}. Af punkt 1 er $u_t^*(h_t)$ kun afhængig af $h_t$ gennem $s_t$, dermed gælder det fra \autoref{sæt:epsopt}, at strategien, $\Psi^\varepsilon $, er $\varepsilon$-optimal.
 
 \textbf{Bevis for punkt 3}\\
-Antag, at der eksisterer et $a^\circ \in A_{s_t}$ således, at der eksisterer et $\Psi^* = (d_1^*, d_2^*, \ldots, d_{N-1}^*) \in \Pi^{MD}$, som opfylder \eqref{eq:deterministisk_fortidsafhængig_sup}. Altså gælder det, at $\Psi^*$ opfylder
+Antag, at der eksisterer et $a^\circ \in A_{s_t}$ for ethvert $t$ og $s_t$ således, at der eksisterer et $\Psi^* = (d_1^*, d_2^*, \ldots, d_{N-1}^*) \in \Pi^{MD}$, som opfylder \eqref{eq:deterministisk_fortidsafhængig_sup}. 
+
+Eftersom supremum er antaget ved $a^{\circ}$ for ethvert $t$ og $s_t$, så er det muligt at konstruere en strategi, hvorom der gælder, at $d_t(s_t)=a^{circ}$ for alle $t$ og $s_t$. Derfor eksisterer der en strategi, således at 
+
+%Dermed eksisterer supremum og altså gælder det, at $\Psi^*$ opfylder
 \begin{align*}
     r_t\left(s_t,d_t^*(s_t)\right) + \sum_{s'\in S}p_t\left(s' | s_t, d_t^*(s_t)\right)u^*_{t+1}(s')\nonumber 
     = \max_{a \in A_{s_t}}\left(r_t(s_t,a) +  \sum_{s'\in S}p_t(s' | s_t,a)u^*_{t+1}(s')\right).
 \end{align*}
+
 Af punkt 1 er $u_t^*(h_t)$ kun afhængig af $h_t$ gennem $s_t$, og dermed følger det af \autoref{sæt:optimal_strategi_ved_Bellman}, at $\Psi^*$ er den optimale strategi.
 Dermed er \autoref{sæt:deterministisk_Markov_optimal_strategi} bevist.
 \end{bev}
+
+Det er dermed vist at
+\begin{align*}
+    v_N^*(s)=\sup_{\Psi\in\Pi^{FT}}v_N^\Psi(s)=\sup_{\Psi\in\Pi^{MD}}v_N^\Psi(s) \text{ for } s\in S.
+\end{align*}
+
+Altså gælder det for en Markov beslutningsproces, at den maksimale forventede totale belønning har samme værdi for en Markov deterministisk strategi som en fortidsafhængig tilfældig strategi. Dermed er det kun nødvendigt at betragte Markov deterministiske strategier for at bestemme den maksimale forventede totale belønning. 
 
 %Følgende proposition kan anvendes til at bestemme om der eksisterer en Markov deterministisk strategi der er optimal. 
 For at bestemme hvorvidt en Markov deterministisk strategi er optimal, anvendes følgende proposition. 
@@ -349,15 +371,22 @@ Lad tilstandsrummet, $S$, være tællelig og lad beslutningsrummet, $A_s$, være
 \end{pro}
 \end{minipage}
 
-\begin{bev} \textbf{} %Nyt bevis
+\begin{bev} \textbf{} %Nyt bevisw
 \newline
-Det skal vises, at der eksisterer et $a^\circ$, som opfylder \eqref{eq:deterministisk_fortidsafhængig_sup}. Af \autoref{sæt:optimal_strategi_ved_Bellman} gælder det da, at der eksisterer en optimal Markov deterministisk strategi.  
-Jævnfør \autoref{sæt:deterministisk_Markov_optimal_strategi} punkt 3 skal der for ethvert $s\in S$ eksistere et $a^\circ$, der opfylder
+Det er tilstrækkeligt at vise, at der for ethvert $t$ og $s_t$ findes et $a\in A_{s,t}$, så
 \begin{align*}
-    r_t(s_t,a^\circ) + \sum_{s'\in S}p_t\left(s' | s_t, a^\circ\right)u^*_{t+1}(s')\nonumber 
-    = \sup_{a \in A_{s_t}}\left(r_t(s_t,a) +  \sum_{s'\in S}p_t\left(s' | s_t,a\right)u^*_{t+1}(s')\right).
+    \sup_{a\in A_{s_t}} r_t(s_t,a) + \sum_{s'\in S}p_t\left(s' | s_t, a\right)u^*_{t+1}(s')\nonumber \\
+    = \max_{a\in A_{s_t}} r_t(s_t,a) + \sum_{s'\in S}p_t\left(s' | s_t, a\right)u^*_{t+1}(s').
 \end{align*}
-Da $A_s$ er endelig, må der eksistere et $a^\circ$ således, at dette er opfyldt. Dermed er \autoref{prop:markov_det_strategi} bevist.
+Da $A_s$ er endelig, må der eksistere et $a$ således, at dette er opfyldt, og af \autoref{sæt:optimal_strategi_ved_Bellman} eksisterer der derfor en optimal Markov deterministisk strategi.
+
+% Det skal vises, at der eksisterer et $a^\circ$, som opfylder \eqref{eq:deterministisk_fortidsafhængig_sup}. Af \autoref{sæt:optimal_strategi_ved_Bellman} gælder det da, at der eksisterer en optimal Markov deterministisk strategi.  
+% Jævnfør \autoref{sæt:deterministisk_Markov_optimal_strategi} punkt 3 skal der for ethvert $s\in S$ eksistere et $a^\circ$, der opfylder
+% \begin{align*}
+%     r_t(s_t,a^\circ) + \sum_{s'\in S}p_t\left(s' | s_t, a^\circ\right)u^*_{t+1}(s')\nonumber 
+%     = \sup_{a \in A_{s_t}}\left(r_t(s_t,a) +  \sum_{s'\in S}p_t\left(s' | s_t,a\right)u^*_{t+1}(s')\right).
+% \end{align*}
+% Da $A_s$ er endelig, må der eksistere et $a^\circ$ således, at dette er opfyldt. Dermed er \autoref{prop:markov_det_strategi} bevist.
 \end{bev}
 
 
