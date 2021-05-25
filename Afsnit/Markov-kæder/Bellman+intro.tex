@@ -1,4 +1,4 @@
-\section{Optimering af belønning}
+\section{Optimering af belønning}\label{afsnit:optimering_af_belønning}
 I dette afsnit introduceres en måde, hvorpå den maksimale forventede totale belønning kan bestemmes. I følgende afsnit er indeksmængden endelig. 
 %Følgende gælder for en endelig indeksmængde. 
 
@@ -33,13 +33,13 @@ Lad $\Psi\in \Pi^{FT}$ og lad $S$ være et diskret tilstandsrum. Så er det muli
 
 Givet historikken $h_t$ kan \eqref{eq:ligning_i_algoritme1} bruges til at evaluere en givet strategi. Altså er den forventede totale belønning lig belønningen modtaget ved at tage beslutningen $a$ adderet med den forventede belønning for de resterende beslutningstidspunkter, $t+1, \ldots, N$. Alt dette multipliceres med sandsynlighedsfordelingen, $q_{d_t(h_t)}$, som er sandsynligheden for at tage beslutningen $a$ givet $h_t$. 
 
-Summen, over $s' \in S$, i \eqref{eq:ligning_i_algoritme1} indeholder produktet mellem sandsynligheden for at være i tilstanden $s'$ til beslutningstidspunktet $t+1$, hvis beslutningen $a$ er valgt, og den forventede totale belønning ved at bruge strategien, $\Psi$, for perioderne $t+1, \ldots, N$, når historikken til beslutningstidspunktet $t+1$ er $h_{t+1} = (h_t, a, s')$. 
+Summen over $s' \in S$ i \eqref{eq:ligning_i_algoritme1} indeholder produktet mellem sandsynligheden for at være i tilstanden $s'$ til beslutningstidspunktet $t+1$, hvis beslutningen $a$ er valgt, og den forventede totale belønning ved at bruge strategien, $\Psi$, for perioderne $t+1, \ldots, N$, når historikken til beslutningstidspunktet $t+1$ er $h_{t+1} = (h_t, a, s')$. 
 
 Da der summes over $s' \in S$, følger det af \autoref{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler}, at \eqref{eq:ligning_i_algoritme1} kan udtrykkes som 
 \begin{align}\label{eq:algoritme_ligning_vol2}
     u_t^\Psi(h_t)=\sum_{a \in A_{s_t}}q_{d_t(h_t)}(a)\left(r_t\left(s_t,a\right)+E_{h_t}^\Psi\left[u_{t+1}^\Psi\left(h_t, a, X_{t+1}\right)\right]\right).
 \end{align}
-Ved at bestemme den forventede belønning, betinget af historikken op til $t+1$, er $X_{t+1}$ kendt. Da algoritmen evaluerer $u^\Psi_{t+1}$ for alle $h_{t+1}$ før $u^\Psi_t$, kan den forventede værdi over $X_{t+1}$ bestemmes.
+Ved at bestemme den forventede belønning betinget af historikken op til $t+1$, er $X_{t+1}$ kendt. Da algoritmen evaluerer $u^\Psi_{t+1}$ for alle $h_{t+1}$ før $u^\Psi_t$, kan den forventede værdi over $X_{t+1}$ bestemmes.
 
 Følgende resultat viser, at \autoref{Algoritme1} bestemmer $u_t^\Psi$.
 
@@ -59,9 +59,14 @@ Fra \eqref{eq:u_N=r_N} er resultatet opfyldt for $t=N$, og dermed er induktionss
 \begin{align*}
      u_n^\Psi(h_n)&=\sum_{a \in A_{s_n}}q_{d_t(h_n)}(a)\left(r_n\left(s_n,a\right)+E_{h_n}^\Psi\left[E_{h_{n+1}}^\Psi \left[ \sum_{k=n+1}^{N-1}r_k(X_k,Y_k)+r_N(X_N)\right]\right]\right)\\
      &= \sum_{a \in A_{s_n}}q_{d_n(h_n)}(a)\left(r_n\left(s_n,a\right)+E_{h_n}^\Psi \left[ \sum_{k=n+1}^{N-1}r_k(X_k,Y_k)+r_N(X_N)\right]\right)
-     \intertext{Da $s_n$ og $h_n$ er givet ved beslutningstiden $n, X_n=s_n$, er}
-     u_n^\Psi(h_n)&= \sum_{a \in A_{s_n}}q_{d_n(h_n)}(a)\left(E_{h_n}^\Psi \left[ \sum_{k=n}^{N-1}r_k(X_k,Y_k)+r_N(X_N)\right]\right)\\
-      u_n^\Psi(h_n)&= E_{h_n}^\Psi \left[ \sum_{k=n}^{N-1}r_k(X_k,Y_k)+r_N(X_N)\right].
+     \intertext{
+     %Givet at $X_n = s_n$ og $Y_n = a$, kan belønningsfunktionen indsættes i den forventede værdi af summen, således at.
+     %Da $s_n$ og $h_n$ er givet ved beslutningstiden $n, X_n=s_n$, er%
+     %Da $s_n$ er kendt til beslutningstidspunktet $n$, som $X_n = s_n$, vil det gælde, at givet $Y_n = a$, kan belønningen $r_n(s_n, a)$ kunne skrives som $r_n(X_n, Y_n)$ og indsættes i summen som følgende%
+      Da $s_n$ er kendt til beslutningstidspunktet $n$, som $X_n = s_n$, vil det gælde, at belønningen $r_n(s_n, a)$ kan indsættes i summen, givet at $Y_n = a$. Altså
+     }
+     u_n^\Psi(h_n)&= \sum_{a \in A_{s_n}}q_{d_n(h_n)}(a)\left(E_{h_n}^\Psi \left[ \sum_{k=n}^{N-1}r_k(X_k,Y_k)+r_N(X_N)| Y_n = a\right]\right)\\
+      u_n^\Psi(h_n)&= E_{h_n}^\Psi \left[ \sum_{k=n}^{N-1}r_k(X_k,Y_k)+r_N(X_N)|Y_n = a\right].
 \end{align*}
 Dermed er \autoref{sæt:den_gælder} bevist.
 %så kan det første udtryk i \eqref{eq: 4.1.13} bestemmes ved forventningen, og dermed er sætningen opfyldt.
@@ -72,7 +77,7 @@ Hvis strategien er fortidsafhængig deterministisk, $\Psi\in \Pi^{FD}$, eksister
         \vspace{-0.5cm}u_t^\Psi(h_t) = r_t\left(s_t, d_t(h_t)\right) + \sum_{s' \in S} p_t\left(s'|s_t,d_t(h_t)\right)u_{t+1}^\Psi\left(h_t,d_t(h_t),s'\right),
     \end{align}
 hvor $\left(h_t, d_t(h_t), s'\right) \in H_{t+1}$.
-
+ 
 For henholdsvis en Markov tilfældig og en Markov deterministisk strategi erstattes \eqref{eq:ligning_i_algoritme1} med 
 \begin{align*}
         \vspace{-0.5cm}u_t^\Psi(s_t) &=\sum_{a \in A_{s_t}}q_{d_t(s_t)}(a)\left( r_t\left(s_t, a\right) + \sum_{s' \in S} p_t\left(s'|s_t,a)\right)u_{t+1}^\Psi(s')\right) \text{ og }\\
@@ -149,14 +154,14 @@ Første lighed er fra \autoref{prop:frekvensfunktion}, og sidste ulighed gælder
 
 Det er hermed muligt at bevise \autoref{sæt:ret_så_vigtig}.
 
-\begin{bev} %Nyt bevis\newline
-
+\begin{bev} \textbf{} %Nyt bevis 
+\newline
 Lad $u_t$ være en løsning til \eqref{eq:u_t_sup} for $t = 1, 2, \ldots, N-1$ og $u_N$ være givet som i \eqref{eq:u_N}. Lad derudover $u_t^*$ være den maksimale forventede totale belønning. 
 
 \textbf{Bevis for punkt 1}
 
 Først bevises det ved induktion, at $u_n(h_n) \geq u_n^*(h_n)$ for alle $h_n \in H_n$ og $n = 1, 2, \ldots, N$.
-Da der ikke tages en beslutning til beslutningstidspunktet $N$, følger det af \eqref{eq:u_N=r_N} og \eqref{eq:u_N}, at
+Da der ikke tages en beslutning til beslutningstidspunktet  $N$, følger det af \eqref{eq:u_N=r_N} og \eqref{eq:u_N}, at
 \begin{align*}
     u_N(h_N) = r_N(s_N) = u_N^\Psi(h_N), \text{ for alle } h_N \in H_N \text{ og } \Psi \in \Pi^{FT}.
 \end{align*}
@@ -188,7 +193,7 @@ for alle $h_n \in H_n$ og $n = 1, 2, \ldots, N$. For at bevise dette konstrueres
 som er muligt jævnfør \autoref{sæt_om_eps}. 
 
 Ved induktion vises \eqref{eq:4.3.8}. Da der ikke tages en beslutning til beslutningstidspunktet $N$, følger det af \eqref{eq:u_N=r_N} og \eqref{eq:u_N}, at
-
+%
 \begin{align*}
     u_N(h_N) = r_N(s_N) = u_N^{\Psi'}(h_N), \text{ for alle } h_N \in H_N .
 \end{align*}
@@ -249,7 +254,6 @@ Så gælder det, at
 
 \begin{bev} \textbf{} %Nyt bevis
 \newline
-
 Lad $u_t^*$ være en løsning til Bellman ligningerne, \eqref{eq:u_N} og \eqref{eq:u_t_max}, for $t=1, 2, \ldots, N$. Lad derudover $\Psi^*=(d_1^*, d_2^*, \ldots, d_{N-1}^*)\in \Pi^{FD}$ være en strategi.
 
 \textbf{Bevis for punkt 1}\\
@@ -332,7 +336,7 @@ Da højresiden kun afhænger af $h_n$ gennem $s_n$, er punkt 1 bevist.
 
 \textbf{Bevis for punkt 2}\\
 Lad $\varepsilon > 0$ og lad $\Psi^\varepsilon = (d_1^\varepsilon, d_2^\varepsilon, \ldots, d_{N-1}^\varepsilon)$ være en vilkårlig strategi i $\Pi^{MD}$ som opfylder, at
-
+%
 \begin{align*}
     &r_t\left(s_t, d_t^\varepsilon(s_t)\right)+\sum_{s'\in S}p_t\left(s'|s_t, d_t^\varepsilon(s_t)\right)u_{t+1}^*\left(s'\right) + \frac{\varepsilon}{N-1}\nonumber\\
     &\geq \sup_{a\in A_{s_t}}\left(r_t(s_t,a)+\sum_{s'\in S}p_t(s'|s_t, a)u_{t+1}^*( s')\right),
@@ -343,7 +347,7 @@ som eksisterer jævnfør \autoref{sæt_om_eps}. Af punkt 1 er $u_t^*(h_t)$ kun a
 Antag, at der eksisterer et $a^\circ \in A_{s_t}$ for ethvert $t$ og $s_t$ således, at der eksisterer et $\Psi^* = (d_1^*, d_2^*, \ldots, d_{N-1}^*) \in \Pi^{MD}$, som opfylder \eqref{eq:deterministisk_fortidsafhængig_sup}. 
 
 Eftersom supremum er antaget ved $a^{\circ}$ for ethvert $t$ og $s_t$, så er det muligt at konstruere en strategi, hvorom der gælder, at $d_t(s_t)=a^{circ}$ for alle $t$ og $s_t$. Derfor eksisterer der en strategi, således at 
-
+%
 %Dermed eksisterer supremum og altså gælder det, at $\Psi^*$ opfylder
 \begin{align*}
     r_t\left(s_t,d_t^*(s_t)\right) + \sum_{s'\in S}p_t\left(s' | s_t, d_t^*(s_t)\right)u^*_{t+1}(s')\nonumber 

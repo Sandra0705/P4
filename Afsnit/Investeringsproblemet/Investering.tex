@@ -1,74 +1,332 @@
-En investor ønsker at maksimere sin nytte over en given periode. For at maksimere sin nytte skal investoren beslutte, hvornår det er henholdvis bedst at spare op og forbruge. Investoren kan til hvert beslutningstidspunkt vælge at bruge af sin opsparing eller lade pengene stå i banken. Disse beslutninger afhænger derudover også af arbejdsstatus, opsparingen og renten i banken.
+I dette afsnit anvendes Maple og Python til samtlige beregninger.
 
-Investoren skal tage en beslutning hver måned og derfor er indeksmængden, $T$, givet ved $t = 0,1,\ldots, N$, hvor hvert $t$ repræsenterer en måned. Mængden af mulige beslutninger, $a_t$, til beslutningstidspunkt, $t$, kaldes beslutningsrummet, $A_t$, hvor hver beslutning angiver et forbrug. Lad $S$ være opsparingen, $S_t$ være opsparingen til beslutningstidspunkt $t$ samt $S_0$ være kendt. Derudover gælder det at opsparingen til beslutningstidspunktet, $t+1$, er givet ved
-\begin{align*}
-    S_{t+1}=(1+r)(S_t-a_t)+I \cdot \xi_t,
-\end{align*}
-hvor $r$ er renten i banken og $I>0$ er investorerens faste indkomst. Den stokastiske proces $t\mapsto \xi_t$ beskriver investorens arbejdsstatus, hvor $\xi_t=1$, hvis investoren er i arbejde og $\xi_t=0$, hvis han er arbejdsløs. Det antages, at investorens arbejdsstatus kan beskrives som følgende Markov kæde
-\begin{align*}
-    &P(\xi_{t+1}=0|\xi_t=1)=1-P(\xi_{t+1}=1|\xi_t=1)=p \text{ og }\\
-    &P(\xi_{t+1}=0|\xi_t=0)=1-P(\xi_{t+1}=1|\xi_t=0)=q,
-\end{align*}
-hvor $p$ angiver sandsynligheden for, at investoren mister sit arbejde i næste måned givet, at han er i arbejde i den nuværende måned. Derudover angiver $q$ sandsynligeden for at han er arbejdsløs i næste måned givet, at han ikke er i arbejde i den nuværende måned. Overgangssandsynlighederne til ovenstående Markov-kæde kan dermed illustreres ved følgende overrgangsgraf
+En forbruger vil maksimere sin belønning over en given periode. For at maksimere sin belønning skal forbrugeren beslutte, hvornår det er bedst at forbruge eller spare op. Forbrugeren kan til ethvert beslutningstidspunkt vælge at forbruge af sin opsparing eller lade sine penge stå i banken. Disse beslutninger afhænger derudover af arbejdsstatus, opsparingen og indlånsrenten i banken.
+
+Forbrugeren skal tage en beslutning hver måned, og derfor er indeksmængden givet ved $T=\{0, 1, \ldots, N\}$, hvor hvert beslutningstidspunkt, $t\in T$, repræsenterer en måned. 
+Hver beslutning til beslutningstidspunkt, $t$, betegnes $a_t$ og angiver et forbrug. Mængden af mulige beslutninger kaldes beslutningsrummet og betegnes $A_t$.
+%Mængden af mulige beslutninger, $a_t$, til beslutningstidspunkt, $t$, kaldes beslutningsrummet, $A_t$, hvor hver beslutning angiver et forbrug.
+Lad $S$ være opsparingen, $S_t$ være opsparingen til beslutningstidspunkt $t$ samt startopsparingen, $S_0$, være kendt. Den stokastiske proces $\bm \xi= (\xi_t : t \in T)$ beskriver forbrugerens arbejdsstatus, hvor $\xi_t=1$, hvis han er i arbejde og $\xi_t=0$, hvis han er arbejdsløs til beslutningstidspunktet, $t$. Det antages, at forbrugerens arbejdsstatus kan beskrives som en Markov-kæde med følgende overgangssandsynligheder
+\begin{align}\label{eq:markov_kæde_problem}
+\begin{split}
+    &P(\xi_{t+1}=0|\xi_t=1)=1-P(\xi_{t+1}=1|\xi_t=1)=\alpha \text{ og }\\
+    &P(\xi_{t+1}=0|\xi_t=0)=1-P(\xi_{t+1}=1|\xi_t=0)=\beta,
+    \end{split}
+\end{align}
+hvor $\alpha$ angiver sandsynligheden for, at forbrugeren mister sit arbejde i næste måned givet, at han er i arbejde i den nuværende måned. Derudover angiver $\beta$ sandsynligeden for, at han er arbejdsløs i næste måned givet, at han ikke er i arbejde i den nuværende måned. Denne Markov-kæde er homogen, da overgangssandsynlighederne ikke afhænger af $t$. Ovenstående overgangssandsynligheder til Markov-kæden kan dermed illustreres ved følgende overgangsgraf
 \begin{figure}[H]
 \begin{tikzpicture} [node distance=2cm and 1cm,>=stealth',auto, every place/.style={draw}]
-    \node [place] (S1) {\phantom{..}$\xi_{t+1} = 0$\phantom{..}};
+    \node [place] (S1) {\phantom{..}$\xi_t = 0$\phantom{..}};
     \coordinate[node distance=1.1cm,left of=S1] (left-S1);
     \coordinate[node distance=1.1cm,right of=S1] (right-S1);
 
 
-    \node [place] (S2) [right=of S1] {\phantom{..}$\xi_{t+1} = 1$\phantom{..}};
+    \node [place] (S2) [right=of S1] {\phantom{..}$\xi_t = 1$\phantom{..}};5
 
-    \path[->] (S1) edge [bend left] node {1-q} (S2);
-    \path[->] (S1) edge [loop left] node {q} (s1);
-    \path[->] (S2) edge [bend left] node {p} (S1);
-    \path[->] (S2) edge [loop right] node {1-p} ();
+    \path[->] (S1) edge [bend left] node {$1-\beta$} (S2);
+    \path[->] (S1) edge [loop left] node {$\beta$} (s1);
+    \path[->] (S2) edge [bend left] node {$\alpha$} (S1);
+    \path[->] (S2) edge [loop right] node {$1-\alpha$} ();
 \end{tikzpicture}
     \centering
-    \caption{Overgangsgraf for arbejdsstatus}
+    \caption{Overgangsgraf for arbejdsstatus.}
     \label{fig:overgangsgraf_for_arbejdsstatus}
 \end{figure}
 
-Dermed er den tilhørende overgangsmatrice givet ved
+% \begin{center}
+%     \begin{tikzpicture}
+%       \draw[color=purple, fill=purple] (0.5, -8) circle (1.5);
+%       \draw[color=yellow, fill=yellow] (-1,0) rectangle ++ (3, -8);
+%       \draw[color=blue, fill=blue] (-1, 1) circle (2);
+%       \draw[color=blue, fill=blue] (2,1) circle (2);
+%     \end{tikzpicture}
+% \end{center}
+hvor den tilhørende overgangsmatrice er givet ved
 \begin{align*}
-    \P=\begin{bmatrix}q & 1-q\\ p & 1-p\end{bmatrix}
+    \P=\begin{bmatrix}\beta & 1-\beta\\ \alpha & 1-\alpha\end{bmatrix}.
 \end{align*}
+Ud fra disse overgangssandsynligheder er det muligt for forbrugeren at vide, hvor sandsynligt det er at være i arbejde, og kan dermed tage beslutninger ud fra disse sandsynligheder.
+
+Forbrugerens maksimering af belønning er en Markov beslutningsproces, hvor forbrugeren er beslutningstageren, der skal tage bestemte beslutninger til hvert beslutningstidspunkt. Ved at tage disse beslutninger opnår forbrugeren nogle bestemte tilstande givet ved en opsparing. Processen er Markov, da de fremtidige opsparinger og beslutninger afhænger af den nuværende og de forrige beslutninger. Forbrugeren skal derudover tage beslutninger ud fra sandsynligheden for at være i arbejde, som er beskrevet ved den homogene Markov-kæde, samt indlånsrenten i banken. %Da det er en Markov beslutningsproces vides det fra \textbf{ref afsnit om optimering}, at investoren kan maksimere sin belønning ved \textbf{ref algo og bellman evt}.  
+Da dette er en Markov beslutningsproces, vil forbrugeren modtage en belønning, ud fra de beslutninger han tager. Belønningsfunktionen er givet forskelligt afhængig af, hvilken type forbruger han er. Derfor vil der nu redegøres for de forbrugstilbøjeligheder, som vil blive anvendt. 
+
+
+\section{Forbrugstilbøjeligheder}
+\input{Afsnit/Investeringsproblemet/Forbrugstyper og kvadratrod}
 
 \section{Basis-problemet}
-I basis-problemet er sandsynligheden for at være i arbejde til beslutningstidspunktet, $t+1$, givet ved ovenstående Markov-kæde. Det gælder, at Markov-kæden har tilstandsrummet $S = (\xi_t=0, \xi_t=0)$, med overgangssandsynligheder beskrevet ud fra $p$ og $q$. Det vælges i dette projekt, at $p=0,1$ og $q=0,5$, og dermed gælder det, at alle overgangssandsynlighederne i Markov-kæden er positive. Markov-kædens $t$'te trins overgangsmatrice bestemmes ved brug af \autoref{sæt:P(n)Pn}.
+I basis-problemet undersøges, hvordan arbejdsstatus og indlånsrenten påvirker forbruget og belønningen for forbrugeren. Det antages, at forbrugeren er fornuftig, og dermed er belønningsfunktion givet ved \eqref{eq:belønning_fornuftig_forbruger}. 
+%Det antages, at investoren har mulighed for at få afkast på sin opsparing.
+%Det gælder, at opsparingen til beslutningstidspunktet, $t+1$, afhænger af den forrige opsparing således at
+%Altså vil den fremtidige opsparing afhænge af den forrige opsparing, indlånsrenten, forbrug, løn og arbejdsstatus.
+
+Det gælder, at opsparingen til beslutningstidspunktet, $t+1$, afhænger af den forrige opsparing, indlånsrenten, forbrug, løn og arbejdsstatus og er dermed givet ved
+%Det gælder, at opsparingen til beslutningstidspunktet, $t+1$, er givet ved
+\begin{align}\label{st+1}
+    S_{t+1}=(1+\gamma_i)(S_t-a_t)+I \cdot \xi_t,
+\end{align}
+hvor $\gamma_i$ er indlånsrenten i banken, og $I>0$ er forbrugererens faste indkomst.
+
+Til hver måned er det muligt for forbrugeren at forbruge hans opsparing til dette beslutningstidspunkt. Dermed er beslutningsrummet givet ved
 \begin{align*}
-    \P=\begin{bmatrix}0,5 & 0,5\\ 0,1 & 0,9\end{bmatrix}^t &= \begin{bmatrix}0,167+0,833\cdot 0,4^t & 0,833-0,833\cdot 0,4^t\\ 0,167-0,167\cdot 0,4^t & 0,833+0,167\cdot 0,4^t\end{bmatrix}
+    A_t(S_t) = \left[0, S_t\right].
+\end{align*}
+%
+I basisproblemet antages det, at opsparingen til beslutningstidspunkt, $t+1$, er givet ved \eqref{st+1}, overgangssandsynlighederne for at være i arbejde er givet ved \eqref{eq:markov_kæde_problem} med tilstandsrummet $\Xi = \{0,1\}$, og belønningsfunktionen er givet ved \eqref{eq:belønning_fornuftig_forbruger}. 
+
+Den optimale belønning undersøges for en tidshorisont på et år. Det antages, at startopsparingen er 100 og lønnen er 10. Altså gælder det, at
+\begin{align}\label{damdamdam..}
+\begin{split}
+    N &= 11,\\
+    S_0 &= 100,\\
+    I &= 10,\\
+    \Delta &= 0.1,
+    \end{split}
+\end{align}
+hvor $\Delta$ er den diskretisering, som anvendes på beslutningsrummet, $A_t$. Altså kan der forbruges for hver $\Delta>0$ enhed, forbrugeren har. Dermed konstrueres en endelig mængde af beslutninger i beslutningsrummet. Derudover antages det, at forbrugeren er i arbejde til begyndelsestidspunktet, $t=0$. Da Python indekserer fra 0, er $N=11$. Bemærk, at der for hver simulering anvendes $\alpha$ og $\beta$ til at bestemme arbejdsstatus til hvert beslutningstidspunkt. Derved kan forbruget variere alt efter, hvor meget forbrugeren har været i arbejde. Af denne grund tages den gennemsnitlige optimale strategi over 10000 simuleringer.
+
+Ud fra de ovenstående antagelser følger det af \autoref{prop:markov_det_strategi}, at der eksisterer en optimal Markov deterministisk strategi, og af \eqref{eq:v_N=sup} er den maksimale belønning givet ved
+\begin{align*}
+    v_N^{*} (S_0) = \sup_{\Psi\in \Pi^{MD}}\left( E^{\Psi}_{S_0}\left[\sum_{t=1}^{N-1} r_t(a) + r_N(a)\right] \right).
+\end{align*}
+Den maksimale belønning bestemmes derfor ved brug af \eqref{eq:u_N}, \eqref{eq:u_t_max} og \autoref{Algoritme1}. Denne algoritme er implementeret i Python \textbf{(se bilag MANGLER REF)}, hvor den optimale strategi og den maksimale belønning er bestemt. 
+
+%\subsection{Analyse af basisproblemet}
+%\subsection{Variation af $\alpha$}
+
+\subsection[Variation af  \texorpdfstring{$\alpha$}{alpha}]{Variation af \bm{$\alpha$}}
+
+For at analysere hvordan sandsynligheden for at være arbejdsløs påvirker forbruget og belønningen, bestemmes den optimale strategi og tilhørende maksimale belønning for forskellige $\alpha$- og $\beta$-værdier mens de andre værdier fastholdes som i \eqref{damdamdam..} og indlånsrenten er lig 0. De forskellige værdier for $\alpha$ og $\beta$ vil være følgende
+\begin{align*}
+    \alpha = 0.1 &\text{ og } \beta = 0.5,\\
+    \alpha = 0.5 &\text{ og } \beta = 0.5,\\
+    \alpha = 0.9 &\text{ og } \beta = 0.5.
+\end{align*}
+Før resultaterne for de optimale strategier og tilhørende belønninger præsenteres, vil Markov-kæden, som beskriver forbrugerens arbejdsstatus, blive analyseret for de forskellige værdier for $\alpha$ og $\beta$.
+
+Først vælges $\alpha=0.1$ og $\beta=0.5$, og dermed er alle overgangssandsynlighederne i Markov-kæden positive. Markov-kædens $t$'te trins overgangsmatrice bestemmes ved brug af \autoref{sæt:P(n)Pn}.
+\begin{align}
+    \P^t=\begin{bmatrix}0.5 & 0.5\\ 0.1 & 0.9\end{bmatrix}^t &= \begin{bmatrix}0.167+0.833\cdot 0.4^t & 0.833-0.833\cdot 0.4^t\\ 0.167-0.167\cdot 0.4^t & 0.833+0.167\cdot 0.4^t\end{bmatrix}. \label{eq:p_t.p0.1}
     \intertext{For $t\to\infty$ har Markov-kæden følgende overgangsmatrice}
-    \lim_{t \to \infty} \begin{bmatrix}0,5 & 0,5\\ 0,1 & 0,9\end{bmatrix}^t &= \begin{bmatrix}0,167 & 0,833\\ 0,167 & 0,833\end{bmatrix}
-\end{align*}
-Af \autoref{def:tilgængelighed} er de to tilstande tilgængelige fra hinanden da $t$'te trins overgangssandsynlighederne er strengt positive, og dermed gælder det også at de to tilstande kommunikerer. Da alle tilstande i tilstandsrummet kommunikerer er Markov-kæden ureducerbar af \autoref{def:ureducerbar}. 
+    \lim_{t \to \infty} \P^t &=\lim_{t \to \infty} \begin{bmatrix}0.5 & 0.5\\ 0.1 & 0.9\end{bmatrix}^t = \begin{bmatrix}0.167 & 0.833\\ 0.167 & 0.833\end{bmatrix}.\label{grænse_for_P}
+\end{align}
+Af \autoref{def:tilgængelighed} er de to tilstande tilgængelige fra hinanden, da $t$'te trins overgangssandsynlighederne er strengt positive, og dermed følger det, at de to tilstande kommunikerer. Da alle tilstande i tilstandsrummet kommunikerer, er Markov-kæden ureducerbar af \autoref{def:ureducerbar}. 
 
-Da Markov-kæden er ureducerbar og har et endeligt tilstandsrum, følger det af \autoref{prop:ured_endelig_inva}, at den har en entydig invariant fordeling. Denne bestemmes ved følgende 
-\begin{align*}
-    \begin{bmatrix}\pi_1 & \pi_2\end{bmatrix} \begin{bmatrix}0,5 & 0,5\\ 0,1 & 0,9\end{bmatrix}&=\begin{bmatrix}\pi_1 & \pi_2\end{bmatrix}
-    \intertext{Dermed fås to ligninger med to ubekendte}
-    0,5\pi_1 + 0,1 \pi_2 &= \pi_1\\
-    0,5\pi_1+0,9\pi_2&=\pi_2\\
-    \pi_2 = 5\pi_1\\
-    4,5\pi_1=4,5\pi_1
-\end{align*}
+Det skal bestemmes, om denne Markov-kæde har en invariant fordeling, $\bm \pi$. Af \autoref{sæt:den_vi_ikke_beviser} gælder det, at hvis Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling. Derfor undersøges det, om Markov-kæden har en positiv tilbagevendende tilstand. 
 
+Først bestemmes det, om tilstanden $\xi_t = 0$ er tilbagevendende eller forbigående. Dette gøres ved at beregne følgende sum
 \begin{align*}
-    P(\tau=\infty|\xi_0=0)&=P(\xi_{t+1}=1|\xi_t=0)*(P(\xi_{t+1}=1|\xi_t=1))^\infty=(1-q)*((1-p)^\infty) = 0\\
-    &\Updownarrow\\
-    P(\tau<\infty|\xi_0=0)&=1-P(\tau=\infty|\xi_0=0)=1\\
-    &\Updownarrow\\
-    \{\xi \text{ er tilbagevendende} \}
+    \sum_{t=1}^\infty p_{00}^{(t)} = \sum_{t=1}^\infty 0.167+0.833\cdot 0.4^t = \infty.
 \end{align*}
- 
-Af Kor 3.3.5 er alle tilstande da tilbagevendende... 
- 
+Af \autoref{tilbagevendende} følger det, at tilstanden $\xi_t = 0$ er tilbagevendende, og af
+\autoref{kor:enten_forbigå_eller_tilbagevend} er alle tilstande i Markov-kæden dermed tilbagevendende.
+
+Herefter undersøges det, om tilstanden $\xi_t = 0$ er positiv tilbagevendende. For at bestemme om en tilstand er positiv tilbagevendende, beregnes den forventede værdi af antal skridt, før kæden vender tilbage til tilstanden. Dette gøres ved at anvende \autoref{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler}.
  \begin{align*}
-     E[\tau|\xi=0]&=\sum_{i=1}^\infty iP(\tau=i|\xi=0)\\
-     &=1q+2(1-q)*p+3(1-q)*(1-p)*p+4(1-q)*(1-p)^2*p+...\\
-     &=1q+2(1-q)*p+\sum_{i=3}^\infty i(1-q)*(1-p)^{i-2}*p = 6
+     E[\tau_{0}=i|\xi_0=0]&=\sum_{i\in \N} iP(\tau_{0}=i|\xi_0=0)\\
+     &=0.5+2(1-0.5)0.1+3(1-0.5)(1-0.1)0.1\\
+     &\phantom{=} +4(1-0.5)(1-0.1)^20.1+5(1-0.5)(1-0.1)^30.1+\ldots\\
+     &=0.5 + \sum_{2\leq i \in \N } i(1-0.5)(1-0.1)^{i-2}0.1 = 6.
  \end{align*}
- 
+Da $E[\tau_{0}=i|\xi_0=0]=6$, følger det af \autoref{def:positiv_null_tilbagevendende}, at tilstanden, $\xi_t = 0$, er positiv tilbagevendende.
+
+Af \autoref{sæt:den_vi_ikke_beviser} eksisterer der dermed en entydig invariant fordeling, $\bm \pi$, da Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand. Derudover gælder det, at alle tilstandene er positiv tilbagevendende.
+
+%at da Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling, $\bm \pi$. Derudover gælder det, at alle tilstandene er positiv tilbagevendende.
+
+For at bestemme om Markov-kæden konvergerer mod den invariante fordeling, undersøges det, om Markovkæden er aperiodisk. Såfremt $d(i)=1$, følger det jævnfør \autoref{def:aperiodisk}, at Markov-kæden er aperiodisk. Da begge tilstande i Markov-kæden har en strengt positiv $t$'te trins overgangssandsynlighed til sig selv, gælder det, at de er aperiodiske. 
+
+Eftersom Markov-kæden er ureducerbar, aperiodisk og positiv tilbagevendende, følger det af \autoref{sæt:konvergens_for_markov}, at den konvergerer mod den invariante fordeling, der er givet ved 
+\begin{align}\label{eq:pi_p,q}
+    \bm \pi = \begin{bmatrix} 0.167 & 0.833\end{bmatrix}.
+\end{align}
+Altså vil sandsynligheden for, at forbrugeren er i arbejde være beskrevet ved ovenstående sandsynlighedsfordeling for $t \to \infty$. Der er dermed større sandsynlighed for, at forbrugeren er i arbejde, end at han er arbejdsløs. 
+
+%For at kunne analysere hvordan $\alpha$ og $\beta$ påvirker investoren forbrug og belønning, maksimeres belønningen for forskellige værdier af disse variable, mens alle andre variable fastholdes. Derfor analyseres Markov-kæden for investorens arbejdsstatus først for $\alpha = \beta=0.5$ og $\alpha=0.9, \beta = 0.5$. Herefter vil den maksimale belønning under disse betingelser præsenteres sammen med den optimale strategi.
+
+Herefter vælges $\alpha = \beta = 0.5$. Overgangsmatricen er i så fald givet ved
+\begin{align*}
+    \P=\begin{bmatrix}0.5 & 0.5\\ 0.5 & 0.5\end{bmatrix}.
+\end{align*}
+Det er i \autoref{bilag:beregninger} bestemt, at der eksisterer en entydig invariant fordeling, som er givet ved 
+\begin{align*}
+    \bm \pi =\begin{bmatrix}0.5 & 0.5\end{bmatrix},
+\end{align*}
+og som Markov-kæden konvergerer imod. Dermed er sandsynligheden for, at forbrugeren er i arbejde lig sandsynligheden for, at han er arbejdsløs for $t \to \infty$. 
+
+Til sidst vælges $\alpha=0.9$ og $\beta=0.5$. Dermed er overgangsmatricen givet ved
+\begin{align*}
+    \P=\begin{bmatrix}0.5 & 0.5\\ 0.9 & 0.1\end{bmatrix}.
+\end{align*}
+Det er i \autoref{bilag:beregninger} bestemt, at der eksisterer en entydig invariant fordeling, som er givet ved
+\begin{align*}
+    \bm \pi =\begin{bmatrix}0.643 & 0.357\end{bmatrix},
+\end{align*}
+og som Markov-kæden konvergerer imod. Dermed er der større sandsynlighed for, at forbrugeren er arbejdsløs, end at han er i arbejde for $t \to \infty$.
+
+De optimale strategier og maksimale belønninger for hver af værdierne for $\alpha$ og $\beta$ vil nu præsenteres. Disse er bestemt ved brug af \textbf{algoritmen} (se bilag). Disse er præsenteret i nedenstående tabel, \autoref{tab:ændring_i_p_og_q}.
+
+\input{Afsnit/Investeringsproblemet/Tabel_p,q}
+
+I ovenstående tabel er de optimale strategier samt den tilhørende maksimale belønning præsenteret i kolonne 2-4. Hver beslutningsregel har et tilhørende beslutningstidspunkt, som er i kolonne 1. Altså gælder det, at i første måned, $t=0$, med $\alpha=0.1$, $\beta=0.5$ og $\gamma_i=0$ opnås maksimal belønning ved at forbruge $15.70$. Herudover kan det aflæses, at indlånsrenten, $\gamma_i$, fastholdes, mens forholdet mellem $\alpha$ og $\beta$ varieres. De optimale strategier i \autoref{tab:ændring_i_p_og_q} illustreres på følgende figur
+
+\begin{figure} [H] 
+    \begin{center}
+      \resizebox{12cm}{!}{\input{Afsnit/PGF/ændring_i_p.pgf}}
+    \end{center}
+    \caption{Optimale strategi ved $\gamma_i=0$ og ved variation af $\alpha$ og $\beta$.}\label{fig:Optimal_strategi_ved_ændring_i_p}
+\end{figure}
+
+
+%Det bemærkes, at investoren forsøger at fordele forbruget ligeligt i starten, hvorefter det stiger markant til sidst. Desuden ses det, at forbruget stiger mere i starten i takt med sandsynligheden for, at han er arbejdsløs til det pågældende tidspunkt er større. Jo større $p$ er, des mere ustabil er konvergensen mod den invariante fordeling. Grunden til, at investoren forbruger mere til sidst er fordi han ved en ustabil fremtid vil forbruge konservativt op til $t=8$, hvorefter den forventede belønning er tættere på den rigtige belønning. 
+
+%Eftersom det er garanteret, at investoren får løn til $t=1$, stiger forbruget (selvom det kun er tydelig for $p = 0.5$). 
+
+%# Akser osv  ✓
+%#Ingen rente ✓
+%# kvadratroden fordeler stadig ud  ✓
+%# Forbruget er generelt stigende  ✓
+%# Usikkerhed gør, at den er voksende ✓
+%# Voksende i starten - Fordi han er i job til t=0 ✓
+%# Sandsynligheden for at være eller ikke at være i arbejde konvergerer mod den invariante fordeling over tid 
+%# grafen er flot
+% 
+
+% konservativ
+% 
+
+
+I \autoref{fig:Optimal_strategi_ved_ændring_i_p}  afbildes forbruget over tid givet, at forbrugeren starter i arbejde. I \autoref{fig:Optimal_strategi_ved_ændring_i_p} afbildes tre kurver, hvor $\gamma_i=0$ og $\beta=0.5$. Sandsynligheden for at forbrugeren mister sit arbejde, er henholdsvis $\alpha=0.1, \alpha=0.5$ og $\alpha=0.9$ for de tre kurver. 
+
+
+%Generelt medfører en nyttefunktion, som er givet ved kvadratroden, at investoren bliver mere tilbøjelig til at fordele sit forbrug over hele perioden.
+%For den blå graf er det let at se, at forbruget stiger i takt med, at den forventede værdi bliver en mere nøjagtig approksimation, 
+
+Det er givet, at forbrugeren med sikkerhed er i arbejde for $t=0$ og sandsynligheden for at være i arbejde i de efterfølgende tidperioder er lavere. Ved $t=0$ har forbrugeren kun sin startopsparing at forbruge af, og til $t=1$ er han garanteret at få løn. Derfor ses en stigning i forbruget fra $t=0$ til $t=1$. Derfor analyseres fra $t=1$ til $t=11$ i følgende. 
+
+Det bemærkes i \autoref{tab:ændring_i_p_og_q}, at forbruget er stigende, uafhængigt af værdierne for $\alpha$, over tidsperioden. Dette skyldes, at forbrugeren er mere konservativt i starten, da han i gennemsnit gerne vil have overskydende kapital i tilfælde af, at han ikke er i arbejde til næste beslutningstidspunkt. 
+Ved $\alpha=0.1$ er der lavere sandsynlig for, at forbrugeren mister sit arbejde, og derfor er han mindre konservativ med sit forbrug i de senere tidsperioder. For $\alpha=0.9$ er sandsynligheden for, at forbrugeren er arbejdsløs størst sammenlignet med de andre. I dette tilfælde er forbrugeren derfor mere konservativ med sit forbrug end for $\alpha=0.1$ og $\alpha=0.5$. I alle tre tilfælde ses en stor stigning i forbruget til sidste beslutningstidspunkt. Dette skyldes, at forbrugeren ikke behøver at tage højde for, om han er i arbejde til fremtidige beslutningstidspunkter og skal dermed ikke spare penge op. Altså opnår forbrugeren størst mulig belønning ved at forbruge hans resterende opsparing til sidste beslutningstidspunkt.
+
+Derudover gælder det, at når sandsynligheden for at forbrugeren er arbejdsløs, er større, vil han generelt være i arbejde til færre beslutningstidspunkter. Dermed vil forbrugeren ikke modtage løn til lige så mange beslutningstidspunkter, og han vil derfor have mindre at forbruge. Dette kan aflæses i \autoref{tab:ændring_i_p_og_q} og \autoref{fig:Optimal_strategi_ved_ændring_i_p}, hvor forbrugeren generelt har et lavere forbrug, når sandsynligheden for at han mister sit job, er større. 
+
+%Udover dette, er forbruget en funktion af $t$'te trins overgangssandsynligheden. Dette er eksempevelses tydeligt i den grønne graf, eftersom $t$'te trins overgangssandsynligheden approksimerer den invariante fordeling. 
+
+For at beskrive grafen yderligere analyseres $t$'te trins overgangssandsynlighederne for, at forbrugeren mister sit arbejde. Disse er beregnet i henholdvis \eqref{eq:p_t.p0.1}, \eqref{eq:matrice_p=0.5} og \eqref{eq:matrice_p=0.9}, og er givet ved følgende
+\begin{align*}
+    p_{10}^{(t)}&=0.167-0.167\cdot 0.4^t \text{ for } \alpha=0.1\\
+    p_{10}^{(t)} &= 0.5 \text{ for } \alpha = 0.5\\
+    p_{10}^{(t)} &= 0.643 - 0.357 \cdot (-0.4)^t \text{ for } \alpha=0.9
+\end{align*}
+Altså er $p_{10}^{(t)}$ for $\alpha=0.1$ monotont voksende og konvergerer mod den invariante fordeling $\pi_0 = 0.167$. Overgangssandsynligheden for $\alpha=0.5$ forbliver konstant for alle beslutningstidspunkter, og for $\alpha=0.9$ er $p^{(t)}_{10}$ oscillerende og konvergerer mod den invariante fordeling $\pi_0=0.643$. 
+
+Forbruget er direkte afhængig af sandsynligheden for at være i arbejde. Dette afspejles også i \autoref{fig:Optimal_strategi_ved_ændring_i_p}, hvilket er tydeligst for $\alpha=0.9$. På den grønne kurve ses det, at ved de første beslutningstidspunkter oscillerer kurven på samme måde, som overgangssandsynligheden oscillerer. For den orange kurve er overgangssandsynligheden konstant og har ingen effekt på hældningen. Da overgangssandsynligheden for den blå kurve er monotont voksende, vil dette afspejles på kurven ved, at forbruget i gennemsnit vokser mere for hvert beslutningstidspunkt end for den orange kurve. Dette kan også aflæses i \autoref{tab:ændring_i_p_og_q}, hvis man sammenligner forbruget for $\alpha=0.1$ og $\alpha=0.5$. 
+
+Da forbrugeren er en fornuftig, vil han forsøge at fordele sit forbrug ligeligt mellem beslutningstidspunkterne. Det kan konkluderes, at hvis der er større sandsynlighed for, at forbrugeren ikke er i arbejde i fremtidige perioder, vil han forbruge mere konservativt for at være sikker på, at han kan opretholde et konstant forbrug, selvom han mister sit arbejde.
+Derudover vil han generelt forbruge mere, hvis han har større sandsynlighed for at være i arbejde. 
+
+
+
+%For alle tre værdier for $\alpha$ kan det aflæses at forbrugeren vil fordele sit forbrug
+
+
+
+
+
+% \MapleInput{$p := 0.5$}
+
+% \MapleOutput{$\begin{bmatrix} test & test\\
+% test & test\end{bmatrix} $}
+
+
+%I den grønne graf er det usandsynligt, at investoren er i arbejde efter begyndelsestidspunktet, og derved vil forbruget falde igen. 
+
+%Sandsynligheden for at være i arbejde til tiden $t$ er givet ved $t$'te trins overgangssandsynlighederne, som for den grønne graf er oscillerende. 
+
+%\textbf{Analyse:\\
+%- Alle fordeler det ligeligt med en stigning tilsidst (hvorfor)\\
+%- Skal vi nævne at hvis der er flere tidsperioder så er det ikke sådan at den allerede %stiger fra t = 9-10 stykker, det er stadig først tilsidst. 
+%- Kan man bestemme varians af dem og giver det mening?\\
+%- Jo større sandsynlighed for at være i arbejde, jo flere penge forbruge generelt - mere i arbejde har flere penge (giver mening)\\
+%- Hvorfor er hakket større jo højere p og q?\\ illustrer med graf}
+
+
+
+%\subsection{Variation af indlånsrente}
+\subsection[Variation af  \texorpdfstring{$\gamma_i$}{indlånsrenten}]{Variation af \bm{$\gamma_i$}}
+
+Ved at variere indlånsrenten, $\gamma_i$, mens $\alpha$, $\beta$ samt de andre variable fastholdes, kan det analyseres, hvordan renten påvirker forbruget og den maksimale belønning.
+
+Da belønningsfunktionen er givet ved kvadratroden af forbruget, forventes det, at forbrugeren vil opnå den maksimale belønning ved at fordele forbruget ligeligt mellem månederne. Når renten vokser, forventes det, at forbrugeren er mere tilbøjelig til at udnytte renters rente end tendensen for at fordele forbruget ligeligt. 
+
+Det antages for alle de følgende tilfælde, at $\alpha=0.1$ og $\beta=0.5$. Dermed er overgangssandsynlighederne givet ved \eqref{eq:p_t.p0.1}, hvilket går mod sandsynlighedsfordelingen \eqref{eq:pi_p,q}. Altså er sandsynligheden for, at forbrugeren er i arbejde større end sandsynligheden for, at han er arbejdsløs for $t\to\infty $. Indlånsrenterne der sammenlignes, er $\gamma_i = 0, \gamma_i=0.02, \gamma_i = 0.05$ og $\gamma_i = 0.1$. I \autoref{tab:ændring_r} præsenteres den optimale strategi for forbrugeren, givet de forskellige indlånsrenter samt den maksimale belønning givet denne strategi. 
+
+\input{Afsnit/Investeringsproblemet/tabel_r}
+
+I ovenstående tabel, \autoref{tab:ændring_r}, kan den optimale strategi samt de tilhørende maksimale belønninger aflæses i kolonne 2-5, og i kolonne 1 er hvert beslutningstidspunkt præsenteret. Det kan ydermere aflæses, at $\alpha$ og $\beta$ fastholdes, mens indlånsrenten, $\gamma_i$, varieres. I nedenstående figur, \autoref{fig:renter}, illustreres de optimale strategier.
+
+\begin{figure}[H]
+    \begin{center}
+        \resizebox{12cm}{!}{\input{Afsnit/PGF/histogram.pgf}}
+    \end{center}
+    \caption{Optimal strategi ved $\alpha=0.1$ og $\beta=0.5$ og ved variation af $\gamma_i$.}\label{fig:renter}
+\end{figure}
+
+Når $\gamma_i=0$, kan det aflæses i \autoref{tab:ændring_r}, at forbrugeren fordeler sit forbrug relativt ligeligt. Dette er også illustreret på \autoref{fig:renter}, hvor det ses, at den blå kurve er relativt konstant. Det kan på figuren aflæses, at hældningen af kurverne til ethvert tidspunkt er større for højere indlånsrenter. Dette illustrerer også, at forbruget fordeles mindre ligeligt mellem månederne, når renten er højere. Grunden til, at forbrugeren ikke vælger at forbruge det hele til sidst, er, fordi belønningsfunktionen er givet ved kvadratroden af forbruget. 
+
+Herudover kan det i \autoref{tab:ændring_r} aflæses, at forbruget til hver måned og dermed det samlede forbrug er højere, jo større indlånsrenten er. Dermed er den maksimale belønning også højere, når indlånsrenten er større, hvilket stemmer overens med forventningerne. Da sandsynlighedsfordelingen for arbejdstatus er konstant, er dette en konsekvens af den stigende rente.
+
+Altså gælder det, at når indlånsrenten stiger, påvirkes den optimale strategi således, at forbrugeren generelt har mere at forbruge. Derudover forbruger han mere til sidst i stedet for at fordele forbruget ligeligt mellem månederne. Den maksimale belønning vil herudover stige, når indlånsrenten stiger.
+
+
+% 15.375659700000026
+
+% q = 0,5 p = 0,5, r = 0,02
+% \begin{align*}
+%     \begin{bmatrix}
+%         11,90& 11,60& 11,79& 11,93& 12,08& 12,26& 12,46& 12,65& 12,94& 13,26 &13,54& 14,038 &15,14
+%     \end{bmatrix}
+% \end{align*}
+% 14,597563249999993
+
+% q = 0,9 p = 0,7, r = 0,02
+% \begin{align*}
+%     \begin{bmatrix}
+%     8,60 & 8,76 & 9,01 & 9,35 & 9,62 & 9,96 & 10,32 & 10,75 & 11,20 & 11,82 & 12,52 & 13,36 & 14,96
+%     \end{bmatrix}
+% \end{align*}
+
+% 13,42288233000003
+
+% q = 0,5 p = 0,1, r = 0,1 \\
+% \begin{align*}
+%     \left[
+%     14,50 \ \ 15,04 \ \ 15,68\ \ 16,30\ \ 17,00\ \ 17,73\ \ 18,54\ \ 19,38 \ \ 20,27 \ \ 21,23 \ \ 22,14 \ \ 23,13 \ \  24,25
+%     \right]
+% \end{align*}
+
+% 17,781626239999994
+
+% q = 0,5 p = 0,1, r = - 0,02 
+% \begin{align*}
+%     \begin{bmatrix}
+%     14,50 & 14,16 & 13,89 & 13,54 & 13,23 & 12,92 & 12,52 &12,17 & 11,80 & 11,40 & 11,07 & 10,78 & 10,93
+%     \end{bmatrix}
+% \end{align*}
+
+% 14,50115696999999
+% 
+
+
+
+
+% Da Markov-kæden er ureducerbar og har et endeligt tilstandsrum, følger det af \autoref{sæt:den_vi_ikke_beviser}, at den har en entydig invariant fordeling. Denne bestemmes ved følgende 
+% \begin{align*}
+%     \begin{bmatrix}\pi_1 & \pi_2\end{bmatrix} \begin{bmatrix}0,5 & 0,5\\ 0,1 & 0,9\end{bmatrix}&=\begin{bmatrix}\pi_1 & \pi_2\end{bmatrix}
+%     \intertext{Dermed fås to ligninger med to ubekendte}
+%     0,5\pi_1 + 0,1 \pi_2 &= \pi_1\\
+%     0,5\pi_1+0,9\pi_2&=\pi_2\\
+%     \pi_2 = 5\pi_1\\
+%     4,5\pi_1=4,5\pi_1
+% \end{align*}
 
 % \begin{table}[!hbt] \centering
 % \caption{Variabler for investeringsproblemet}
@@ -92,28 +350,42 @@ Af Kor 3.3.5 er alle tilstande da tilbagevendende...
 %
 %
 
-Det antages, at nytten er ækvivalent med forbruget. Det vil sige, at markedet er perfekt. Altså er der et vist forbrug til tidspunkter mellem 0 og $N-1$ og der forbruges resten ($S_N$) til tidspunkt $N$. Med andre ord, så er nytten, $r_t(S_t,A_t)=A_t$ og $r_N(S_N)=S_N$.
+% Det antages, at belønningen er ækvivalent med forbruget. Det vil sige, at markedet er perfekt. Altså er der et vist forbrug til tidspunkter mellem 0 og $N-1$ og der forbruges resten ($S_N$) til tidspunkt $N$. Med andre ord, så er belønningen, $r_t(S_t,A_t)=A_t$ og $r_N(S_N)=S_N$.
 
 
-\begin{align*}
-    W=\sum_{t=1}^{N-1} r_t(s_t,a_t)+ r_N(s_N)
-\end{align*}
+% \begin{align*}
+%     W=\sum_{t=1}^{N-1} r_t(s_t,a_t)+ r_N(s_N)
+% \end{align*}
 
-Lad nyttefunktionen være givet ved
-\begin{align*}
-    \{U\}_t^N=\begin{cases}A_t\ \text{ for } t<N\\ S_N \text{ for } t=N \end{cases}.
-\end{align*}
-Det antages, desuden, at indkomsten kommer sidst på måneden og den kan dermed ikke bruges i den indeværende måned. Beslutningsrummet er givet ved:
-\begin{align*}
-    S=[0,S_t]
-\end{align*}
+% Lad nyttefunktionen være givet ved
+% \begin{align*}
+%     \{U\}_t^N=\begin{cases}A_t\ \text{ for } t<N\\ S_N \text{ for } t=N \end{cases}.
+% \end{align*}
+% Det antages, desuden, at indkomsten kommer sidst på måneden og den kan dermed ikke bruges i den indeværende måned. Beslutningsrummet er givet ved:
+% \begin{align*}
+%     S=[0,S_t]
+% \end{align*}
 
-Dermed ønskes at finde strategi ($\pi$), der maksimerer
-\begin{align*}
-    E^\pi \left[\sum_{t=1}^N U_t(A_t)\right]
-\end{align*}
-
-
+% Dermed ønskes at finde strategi ($\pi$), der maksimerer
+% \begin{align*}
+%     E^\pi \left[\sum_{t=1}^N U_t(A_t)\right]
+% \end{align*}
 
 
+
+% \begin{figure}
+%     \begin{center}
+%         \resizebox{12cm}{!}{\input{Afsnit/PGF/histogram.pgf}}
+%     \end{center}
+%     \caption{Gennemsnitlig forbrug over tid ved p=0,1 og q=0,5}
+% \end{figure}
+
+
+
+% \begin{figure}
+%     \begin{center}
+%         \resizebox{12cm}{!}{\input{Afsnit/PGF/ændring_i_p.pgf}}
+%     \end{center}
+%     \caption{Gennemsnitlig forbrug over tid ved p=0,1 og q=0,5}
+% \end{figure}
 

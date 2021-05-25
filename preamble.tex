@@ -104,7 +104,7 @@
       \def\nomgroupname{Markov beslutningsprocesser}%
     \else
     \ifx#1E\relax
-      \def\nomgroupname{Stabilitet}%
+      \def\nomgroupname{Forbrugsproblem}%
     \else
     \ifx#1F\relax
       \def\nomgroupname{Problemløsning}% 
@@ -165,6 +165,31 @@
 % Define a simple command to use at the start of a table row to make it have a shaded background
 \newcommand{\gray}{\rowcolor[gray]{.9}}
 
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+\newcommand{\thickcline}[1]{%
+    \@thickcline #1\@nil%
+}
+\usepackage{tabu}
+\def\@thickcline#1-#2\@nil{%
+  \omit
+  \@multicnt#1%
+  \advance\@multispan\m@ne
+  \ifnum\@multicnt=\@ne\@firstofone{&\omit}\fi
+  \@multicnt#2%
+  \advance\@multicnt-#1%
+  \advance\@multispan\@ne
+  \leaders\hrule\@height1pt\hfill
+  \cr
+  \noalign{\vskip-1pt}%
+}
+
 \usepackage{textcomp}
 \usepackage{url}
 \usepackage{hyperref}
@@ -181,6 +206,7 @@
 \usepackage[position=top]{subfig}
 \usepackage{verbatim}
 \usepackage{pgfplots}
+\usepackage{pgf}
 \pgfplotsset{compat=1.15}
 \tikzset{->-/.style={decoration={
   markings,
@@ -205,6 +231,25 @@
 
 \algnewcommand\algorithmicforeach{\textbf{for each}}
 \algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+
+% Maple:
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\definecolor{MapleRed}{RGB}{199,0,0}
+\definecolor{MapleRed1}{RGB}{50,0,0}
+\definecolor{MapleBlue}{rgb}{0,0,1}
+\definecolor{MaplePink}{rgb}{1,0,1} 
+
+\def\MapleInput#1{\noindent{{\small \color{MapleRed}{ $>$ }{\tt \color{MapleRed1}{#1} }}}}
+
+\def\MapleOutput#1{{\begin{center} \color{MapleBlue}{#1} \end{center}}}
+
+\def\MapleOutputText#1{\noindent{ \color{MapleBlue}{#1} }}
+
+\def\MapleWarning#1{\noindent{{\small {\tt \color{MaplePink}{#1} }}}}
+
 
 %Sætninger, definitioner, mm. general stil
 \declaretheoremstyle[

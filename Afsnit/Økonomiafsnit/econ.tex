@@ -1,10 +1,15 @@
-Dette afsnit omhandler opsparingsteori, når forbrugeren ikke har muligheden for at låne. Heriblandt de forbrugs- og opsparingstilbøjligheder, som "rammer" en investorer. Når en investorer er relativt utålmodig, og har en uafhængig indkomst, der er ligelidt fordelt, vil renter og aktiver virke som en stopper i form af dårlige forbrugsvalg. Det, at en investorer ikke har lånemuligheder, vil sågar være et motiv for, om investoren skal forbruge eller spare op. - Investoren foretrækker forbrug nu fremfor forbrug senere.
+
+
+%kilde https://www.jstor.org/stable/2938366?seq=1#metadata_info_tab_contents
+Dette afsnit omhandler opsparingsteori, hvor der vil blive redegjort for 
+
+%når forbrugeren ikke har muligheden for at låne. Heriblandt de forbrugs- og opsparingstilbøjeligheder, som investoren har.
+
+Når en investor er mere tilbøjelig til at forbruge nu end senere og har en ligelig fordelt, uafhængig indkomst, vil renter og aktiver motivere gode forbrugsvalg. 
+Det, at en investorer ikke har lånemuligheder, vil sågar være et motiv for, om investoren skal forbruge eller spare op. - Investoren foretrækker forbrug nu fremfor forbrug senere.
 Når indkomsten er en "random walk", viser det sig, at dem der ønsker at låne, men ikke kan, er mere tilbøjlige til at forbruge hele deres indkomst.
 
-
-
-
-
+\iffalse
 \subsection*{Modellering}
 Forbrugeren ønsker at maksimere nyttefunktionen givet ved
 \begin{align}
@@ -15,7 +20,7 @@ Det antages, at forbrugeren har aktiver, der påvirker økonomien. Udviklingen a
 \begin{align}
     K_{t+1}=(1+r)(K_t+I_t-A_t)
 \end{align}
-hvor $I_t$ er indkomsten, $K_t$ er det reelle aktiv, og r er rentesatsen. Denne rentesats er en kendt konstant, og der tages udgangspunkt i at fokusere på indkomsten, $I_t$. 
+hvor $I_t$ er indkomsten, $K_t$ er det reelle aktiv, og $r$ er rentesatsen. Denne rentesats er en kendt konstant, og der tages udgangspunkt i at fokusere på indkomsten, $I_t$. 
 Lad desuden $K_t \geq 0$, således at der er en begrænsning på at optage lån.\\
 Den øjeblikkelige marginale nytte for penge beskrives ved
 $\lambda(A_t)=v'(A_t)$
@@ -26,13 +31,15 @@ hvor $\lambda(\cdot)$ er en positiv monoton og aftagende funktion. Fremadrettet 
 \subsubsection{Utålmodig forbruger}
 Antag en utålmodig forbruger med $\delta > r$. Og lad $S_t$ betegne den samlede beholdning af penge, givet ved
 \begin{align}
-    S_t = K_t+I_t
+    S_t = K_t + I_t
 \end{align}
 hvor $S_t$ er det maksimale, der kan forbruges til perioden $t$. Forbruget til tiden $t$ og $t+1$ må overholde
 \begin{align}
-    \lambda(A_t) = max\Big [\lambda(S_t), \ \ \beta E_t \lambda(A_{t+1}\Big]
+    \lambda(A_t) = max\Big [\lambda(S_t), \ \ \beta E_t \lambda(A_{t+1})\Big]
 \end{align}
-hvor $\beta=(1+r)/(1+\delta)$, og $\beta$ < 1, eftersom det er antaget, at $r < \delta$. Hvis forbrugeren er begrænset, så vil forbruget ikke kunne overstige $S_t$, og den marginale nytte kan ikke være lavere end $\lambda(S_t)$. 
+hvor $\beta=(1+r)/(1+\delta)$, og $\beta$ < 1, eftersom det er antaget, at $r < \delta$.
+
+Hvis forbrugeren er begrænset, så vil forbruget ikke kunne overstige $S_t$, og den marginale nytte kan ikke være lavere end $\lambda(S_t)$. 
 Begrænsningen binder sig, hvis den marginale nytte til $S_t$ er højere end diskonteringen til den forventede marginale nytte i den næste periode. Ellers er de to marginale nytter beskrevet på sædvanligvis.
 Desuden fremgår det, at forventningen tager højde for muligheden for, at der er fremtidige begrænsninger.
 Givet ligning (5.2), fås
@@ -59,6 +66,20 @@ Denne rekursion kan tænkes som værende en omvendt/baglæns løsning til et end
 I den sidste periode, $N=0$ vil alt være brugt, og den marginale nytte af penge, $p_0(S)$, er $\lambda(S),$ da ligemeget hvilken værdi $S$ har, så vil der forbruges. Da der itereres baglæns, vil funktionen i nogle tilfælde være konvergerende, hvilket vil medføre, at der findes en løsning til (5.9), og den uendelige tidshorisont.
 
 
+\fi
+
+
+
+
+
+\section{Utålmodig forbruger}
+Antag en utålmodig forbruger, der foretrækker at forbruge nu fremfor at lade penge stå i en opsparing. Den utålmodige forbruger tager ikke højde for fremtidige belønninger ved at spare op.
+Hvis forbrugeren ikke er i arbejde, vil der dog ikke være betydning, om der bliver forbruget. Det er dog sådan, at en utålmodig ikke vil være 
+Antag nu, at investoren modtager en indlånsrente $>0\%$. D
+
+
+
+\section{Tålmodig/fornuftig forbruger}
 
 
 
@@ -66,4 +87,6 @@ I den sidste periode, $N=0$ vil alt være brugt, og den marginale nytte af penge
 
 
 
-
+\subsection{Brugen af kvadratrod}
+Det antages, at en investorer modtager en 0\% indlånsrente. Det er derfor sådan, at investorer ikke modtager penge for at have dem til at stå i en opsparing i banken. Den optimale strategi vil dog ikke nødvendigvis være at forbruge alt i hver måned. 
+Antag, at nytten er givet ved at tage $\sqrt{.}$. Det er der derfor klart, at nytten maksimeres ved at forbruge alt til den sidste tidsperiode.

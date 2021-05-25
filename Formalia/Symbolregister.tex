@@ -5,13 +5,13 @@
 % Eksempel på et symbolregister:
 
 % A = Indledning/Problemanalyse/Problemformulering
-\nomenclature[A]{$a$}{Test}
+
 
 % B = Sandsynlighed
 %Mængder
 \nomenclature[B,01]{$\Omega$}{Et udfaldsrum}
 \nomenclature[B,02]{$\omega$}{Element af udfaldsrummet}
-\nomenclature[B,04]{$A, B$}{Hændelse}
+\nomenclature[B,04]{$A, B$}{Hændelser}
 \nomenclature[B,03]{$\F$}{Hændelsesrum}
 \nomenclature[B,05]{$\emptyset$}{Den tomme mængde}
 \nomenclature[B,08]{$\R$}{De reelle tal}
@@ -32,7 +32,7 @@
 \nomenclature[B,19]{$E[X \mid Y]$}{Den forventede værdi for $X$ givet $Y$}
 \nomenclature[B,20]{Var$[\cdot]$}{Varians}
 \nomenclature[B,21]{$\sigma$}{Standardafvigelsen}
-\nomenclature[B,22]{}{\pagebreak}
+
 %Diverse
 
 
@@ -50,8 +50,11 @@
 \nomenclature[C,11]{$i \to j$}{$j$ er tilgængelig fra $i$}
 \nomenclature[C,12]{$i \leftrightarrow j$}{$j$ og $i$ kommunikerer}
 \nomenclature[C,13]{$\tau_i$}{Antal trin før Markov-kæden besøger $i$}
-%\nomenclature[C,15]{$\bm \pi$}{Invariant fordelling}
-
+\nomenclature[C,14]{$d(i)$}{Største fælles divisor af antallet af trin for at vende tilbage til $i$.}
+\nomenclature[C,15]{$\bm \pi$}{Invariant fordeling}
+\nomenclature[C,16]{$\pi_i$}{Den $i$'te indgang i den invariante fordeling}
+\nomenclature[C,17]{$\bm q$}{En sandsynlighedsfordeling}
+\nomenclature[C,18]{$q_i$}{Den $i$'te indgang i en sandsynlighedsfordeling}
 
 
 
@@ -61,20 +64,18 @@
 % D =  Markov beslutningsprocesser
 \nomenclature[D,01]{$T$}{Mængden af beslutningstidspunkter}
 \nomenclature[D,02]{$t$}{Beslutningstidspunkter}
-\nomenclature[D,03]{$S$}{Mængden af tilstande}
+\nomenclature[D,03]{$S$}{Tilstandsrummet}
 \nomenclature[D,04]{$s$}{Tilstande}
 \nomenclature[D,05]{$S_t$}{Mængden af tilstande til $t$}
-\nomenclature[D,06]{$A$}{Mængden af mulige beslutninger}
+\nomenclature[D,06]{$A$}{Beslutningsrummet}
 \nomenclature[D,07]{$a$}{Beslutninger}
 \nomenclature[D,08]{$A_s$}{Mængden af mulige beslutninger til $s$}
 \nomenclature[D,09]{$A_{s,t}$}{Mængden af mulige beslutninger til $s$ og $t$}
 \nomenclature[D,10]{$r_t(s,a)$}{Belønning}
 \nomenclature[D,11]{$r_t(s,a,s')$}{Belønning afhængig af tilstanden til $t+1$}
-\nomenclature[D,11]{$s'$}{Tilstanden til beslutningstidspunktet $t+1$}
-\nomenclature[D,12]{$p_t(\cdot \mid s,a)$}{Overgangssandsynlig - \\hedsfunktionen}
-\nomenclature[D,13]{$N$}{Sidste beslutningstidspunkt}
-\nomenclature[D,14]{$
-\{T, S, A_s,$\\ $p_t(\cdot \mid s,a),$\\ $r_t(s,a)\}$}{Markov beslutningsproces}
+\nomenclature[D,12]{$s'$}{Tilstanden til beslutningstidspunktet $t+1$}
+\nomenclature[D,13]{$p_t(\cdot \mid s,a)$}{Overgangssandsynlig - \\hedsfunktionen}
+\nomenclature[D,14]{$N$}{Sidste beslutningstidspunkt}
 \nomenclature[D,15]{$d_t$}{Beslutningsregel}
 \nomenclature[D,16]{$h_t$}{Historik}
 \nomenclature[D,17]{$H_t$}{Mængden af historikker}
@@ -102,12 +103,24 @@
 \nomenclature[D,39]{$v_{N,\lambda}^{\Psi}$}{Den forventede totale diskonterede belønning givet en strategi}
 
 
+% E =Investeringsproblemet
+\nomenclature[E,01]{$T$}{Mængden af beslutningstidspunkter}
+\nomenclature[E,02]{$t$}{Beslutningstidspunkter}
+\nomenclature[E,03]{$S$}{En opsparing}
+\nomenclature[E,04]{$S_t$}{En opsparing til beslutningstidspunkt $t$}
+\nomenclature[E,05]{$a_t$}{En beslutning der angiver et forbrug til beslutningstidspunkt $t$}
+\nomenclature[E,06]{$A_t$}{Mængden af beslutninger $a_t$}
+\nomenclature[E,07]{$\gamma_i$}{Indlånsrenten}
+\nomenclature[E,07]{$\gamma_u$}{Udlånsrenten}
+\nomenclature[E,08]{$I$}{Indkomst}
+\nomenclature[E,09]{$\bm \xi$}{Stokastisk proces for arbejdsstatus}
+\nomenclature[E,10]{$\xi$}{Arbejdsstatus til beslutningstidspunkt $t$}
+\nomenclature[E,11]{$\alpha$}{Sandsynligheden for at investoren mister sit arbejde i næste beslutningstidspunkt givet, at han er i arbejde i det nuværende beslutningstidspunkt}
+\nomenclature[E,12]{$\beta$}{Sandsynligheden for at investoren er arbejdsløs i næste beslutningstidspunkt givet, at han ikke er i arbejde til nuværende arbejdstidspunkt}
+\nomenclature[E,13]{$\Delta$}{En diskretseringfaktor}
+\nomenclature[E,14]{$L_t$}{Samlede lån indtil $t$}
+\nomenclature[E,15]{$L$}{Lånebegrænsning}
 
-
-
-
-
-% E = Stabilitet
 
 
 % F = Problemløsning

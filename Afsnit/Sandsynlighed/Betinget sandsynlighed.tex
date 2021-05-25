@@ -1,24 +1,26 @@
-I et tilfældigt eksperiment kan sandsynligheden for én hændelse være \textit{betinget} af en anden hændelse. Dette kaldes \textit{betinget sandsynlighed}, hvilket defineres som følgende
+I et tilfældigt eksperiment kan sandsynligheden for en hændelse være \textit{betinget} af en anden hændelse. Dette kaldes \textit{betinget sandsynlighed} og defineres som følgende
 
 %Hvis der er givet ekstra information om en given hændelse, så vil udfaldsrummet indskrænkes - mere formelt:\\
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Betinget sandsynlighed} \label{def:betinget_sandsynlighed}%Ny definition
 \newline
-Lad $(\Omega, \F, P)$ være et sandsynlighedsrum, $A,B\in \F$ og $P(B)>0$. Så gælder det, at den \textit{betingede sandsynlighed}, af $A$ givet $B$, er
+Lad $(\Omega, \F, P)$ være et sandsynlighedsrum, $A,B\in \F$ være hændelser og $P(B)>0$. Så gælder det, at den \textit{betingede sandsynlighed} af $A$ givet $B$ er
 \begin{align*}
       \displaystyle P(A|B)=\frac{P(A\cap B)}{P(B)}.
 \end{align*}
 \end{defn}
 \end{minipage}
 
-Eksempelvis, kastes en mønt to gange. Det oplyses, at det andet udfald er det samme som det første. Dermed er sandsynligheden af andet kast betinget af første kast.
-
-Hvis to hændelser, $A$ og $B$, er \textit{uafhængige}, vil en hændelse $B$ ikke påvirke sandsynligheden for $A$. Dermed gælder det, at den betingede og ubetingede sandsynlighed er den samme, altså $P(A)=P(A|B)\Leftrightarrow P(A\cap B)=P(A)P(B)$. Dette generaliseres til følgende definition
+Hvis to hændelser, $A,B\in \F$, er \textit{uafhængige}, vil sandsynligheden for $B$ ikke påvirke sandsynligheden for $A$. Dermed gælder det, at den betingede og ubetingede sandsynlighed er den samme, altså
+\begin{align*}
+    P(A)=P(A|B)\Leftrightarrow P(A\cap B)=P(A)P(B).
+\end{align*}
+Dette generaliseres til følgende definition.
 
 \begin{minipage}\textwidth
 \begin{defn}\textbf{Uafhængighed}\label{def:uafhængighed} %Ny definition
 \newline
-Lad $B\subseteq \F$. Hændelserne i $B$ siges at være uafhængige, hvis der for alle hændelser i $B$ gælder, at
+Lad $(\Omega, \F, P)$ være et sandsynlighedsrum og $B\subseteq \F$. Hændelserne i $B$ siges at være uafhængige, hvis der for alle hændelser i $B$ gælder, at
 \begin{align}\label{eq:uafhængighed}
     P\left(\bigcap_{A\in B} A\right)=\prod_{A\in B} P(A).
 \end{align}
@@ -26,7 +28,7 @@ Hvis hændelserne ikke er uafhængige, siges de at være \textit{afhængige}.
 \end{defn}
 \end{minipage}
 
-Tag $|B|=2$ og lad \eqref{eq:uafhængighed} være gældende, så siges hændelserne i $B$ at være \textit{parvist uafhængige}.
+Lad $B \subseteq \F$ og \eqref{eq:uafhængighed} være opfyldt. Hvis $|B| = 2$, siges hændelserne i $B$ at være \textit{parvist uafhængige}.
 
 \subsection{Total sandsynlighed}
 %I tilfælde af, at sandsynligheden for en given hændelse er svær at bestemme direkte kan det i nogle tilfælde være hensigtsmæssigt at opdele problemet i termer af betinget sandsynlighed.
@@ -36,99 +38,28 @@ Betinget sandsynlighed kan i nogle tilfælde simplificere beregningen af sandsyn
 \begin{minipage}\textwidth
 \begin{thmx} \textbf{Loven om total sandsynlighed} \label{sæt:loven_om_total_sandsynlighed} %Ny sætning
 \newline
-Lad $\Omega$ være udfaldsrummet, $A$ være en hændelse og $B_1,B_2,\dots$ være en sekvens af parvist disjunkte hændelser som opfylder, at
+Lad $(\Omega, \F, P)$ være et sandsynlighedsrum, $A$ være en hændelse og $(B_1,B_2,\ldots)$ være en sekvens af parvist disjunkte hændelser som opfylder, at
 \begin{enumerate}
-\item $P(B_k)>0$ for $k=1,2,\dots$,
+\item $P(B_k)>0$ for $k = 1, 2, \ldots$
 \item $\Omega=\displaystyle\bigcup_{k=1}^\infty B_k$.
 \end{enumerate}
-Så gælder der for $A$, at
+Så gælder det, at
 \begin{align*}
-    P(A)=\sum_{k=1}^\infty P(A|B_k)P(B_k).
+    P(A)=\sum_{k = 1}^\infty P(A|B_k)P(B_k).
 \end{align*}
 \end{thmx}
 \end{minipage}
 \begin{bev} \textbf{} %Nyt bevis
 \newline
-Lad $A\subseteq \Omega$ og $B_k \subseteq \Omega $ være en sekvens af parvist disjunkte hændelser og $P(B_k)>0$ for $k=1,2,\dots$. Bemærk, at
+Lad $A$ være en hændelse og $(B_1,B_2,\ldots)$ være en sekvens af parvist disjunkte hændelser som opfylder punkt 1 og 2 i \autoref{sæt:loven_om_total_sandsynlighed}. Bemærk, at
 \begin{align*}
     A=A\cap \Omega=A\cap\bigcup_{k=1}^\infty B_k=\bigcup_{k=1}^\infty(A\cap B_k),
 \end{align*}
 som følger af den distributive lov for uendelige foreningsmængder (se \autoref{Distributive love}). 
-Eftersom $A\cap B_1,A\cap B_2,\dots$ er parvist disjunkte følger det af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3 og \autoref{def:betinget_sandsynlighed}, at
+Eftersom $A\cap B_1,A\cap B_2,\dots$ er parvist disjunkte, følger det af \autoref{def:sandsynlighedsregningens_grundsætninger} punkt 3 og \autoref{def:betinget_sandsynlighed}, at
 \begin{align*}
     P(A)=P\left(\bigcup_{k=1}^\infty(A\cap B_k)\right) =\sum_{k=1}^\infty P(A\cap B_k)=\sum_{k=1}^\infty P(A|B_k)P(B_k).
 \end{align*}
 Dermed er \autoref{sæt:loven_om_total_sandsynlighed} bevist.
 \end{bev}
 
-% \begin{eks} \textbf{} %Nyt eksempel
-% \newline
-% Der er to poser. De har begge 10 kugler. Den ene har 5 røde og 5 blå. Den anden har 3 røde og 7 blå. 
-% Én pose vælges tilfældigt, hvorefter der trækkes en kugle tilfældigt. Hvad er sandsynligheden for, at der trækkes en rød?\\
-
-% Lad 
-% \begin{align*}
-%     R&=\{\text{Kuglen er rød}\}=A\\
-%     P_1&=\{\text{Trækker fra pose ét}\}=B_1\\
-% \end{align*}
-% Enten trækker man af den pose eller den anden. Altså er $B_2=P_1^c$.
-% Derfor er $S=\bigcup_{k=1}^\infty B_k=P_1\cup P_2$.
-% Der gælder desuden, at
-% \begin{align*}
-%     P(P_1)=\frac{1}{2}>0\\
-%     \text{ og }
-%     P(p_1^c)=\frac{1}{2}>0
-% \end{align*}
-
-% Så følger det af loven om Total Sandsynlighed, at
-% \begin{align*}
-%     P(R)&=P(R|P_1)P(P_1)+P(R^c|P_1^c)P(P_1^c)\\
-%     &=\frac{5}{10}\cdot\frac{1}{2}+\frac{3}{10}\cdot\frac{1}{2}\\
-%     &=\frac{2}{5}
-% \end{align*}
-
-%\end{eks}
-%By virtue of Proposition 1.2, we realize that the law of total probability is also true for a finite union of events
-%Hvis mængden af hændelser er endelig og givet ved $n$, kan man konstruere en uendelig følge af hændelser, sådan at P(\bigcup_{k=n}^\infty B_k)=0.
-%For $n=2$ gælder der, at hvis $B_1=B$, så følger det at $B_2=B^c$ og følgende korollar fås.
-%\begin{minipage}\textwidth
-%\begin{kor} \textbf{} %Nyt korollar
-%\newline
-%Hvis $0<P(B)<1$, så er
-%\begin{align*}
-%    P(A)=P(A|B)P(B)+P(A|B^c)P(B^c)
-%\end{align*}
-%\end{kor}
-%\end{minipage}
-
-\iffalse
-Idét foreningsmængder er kommutative, gælder der, at
-$$P(B_j|A)P(A)=P(A|B_j)P(B_j)$$
-som må betyde, at
-$$P(B_j|A)=\frac{P(A|B_j)P(B_j)}{P(A)}$$
-
-Dette leder op til følgende proposition:\\
-\begin{minipage}\textwidth
-\begin{pro} \textbf{(Bayes' Formel).} %Ny proposition
-\newline
-Med samme antagelser som i Loven om Total Sandsynlighed og hvis $P(A)>0$, så gælder der for enhver hændelse, $B_j$, at
-\begin{align*}
-    P(B_j|A)=\frac{P(A|B_j)P(B_j)}{\sum_{k=1}^\infty P(A|B_k)P(B_k)}
-\end{align*}
-\end{pro}
-\end{minipage}
-\begin{bev}
-Beviset følger af foregående udregninger.
-\end{bev}
-
-Analogt, følger denne korrollar:\\
-\begin{minipage}\textwidth
-\begin{kor} \textbf{} %Nyt korollar
-\newline
-Hvis $0<P(B)<1$ og $P(A)>0$, så er
-\begin{align*}
-    P(B|A)=\frac{P(A|B)P(B)}{P(A|B)P(B)+P(A|B^c)P(B^c)}
-\end{align*}
-\end{kor}
-\end{minipage}
-\fi
