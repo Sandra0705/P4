@@ -1,15 +1,59 @@
-For at besvare problemformuleringen om hvordan det er muligt at bestemme det optimale forbrug og den maksimale belønning for en forbruger over en given tidsperiode, er forbrugsproblemet blevet opstillet som en Markov beslutningsproces. Herudover er forbrugerens arbejdsstatus beskrevet som en Markov-kæde, der indgår i denne beslutningsproces. For at kunne beskrive denne Markov beslutningsproces og Markov-kæde er teori om sandsynlighedsregning, Markov-kæder og Markov beslutningsprocesser blevet præsenteret. Ud fra denne teori er det bestemt, at forbrugerproblemet kan løses ved brug af baglæns induktion i form af \autoref{Algoritme1}, og Bellman-ligningen, \autoref{eq:u_t_max}. For at bestemme det optimale forbrug og den maksimale belønning er disse blevet implementeret i Python. Herudover er det blevet analyseret, hvordan varierende sandsynligheder for at være i arbejde, samt hvordan varierende renter og lån vil påvirke forbruget og belønningen. 
+For at besvare problemformuleringen, om hvordan det er muligt at bestemme det optimale forbrug og den forventede maksimale belønning for en forbruger over en given tidsperiode, er forbrugsproblemet blevet opstillet som en Markov beslutningsproces. Herudover er forbrugerens arbejdsstatus beskrevet som en Markov-kæde, der indgår i denne beslutningsproces. For at kunne beskrive denne Markov beslutningsproces og Markov-kæde er teori om sandsynlighedsregning, Markov-kæder og Markov beslutningsprocesser blevet præsenteret. Ud fra denne teori er det bestemt, at forbrugerproblemet kan løses ved brug af baglæns induktion i form af \autoref{Algoritme1}, og Bellman-ligningen, \autoref{eq:u_t_max}. For at bestemme det optimale forbrug og den forventede maksimale belønning er disse blevet implementeret i Python. Herudover er det blevet analyseret, hvordan varierende sandsynligheder for at være i arbejde, samt hvordan varierende renter og lån påvirker forbruget og den forventede maksimale belønning. 
 
-Det kan ud fra basis-problemet konkluderes, at sandsynligheden for at forbrugeren er arbejdsløs, påvirker hans forbrug. Jo større sandsynligheden er, for at forbrugeren bliver arbejdsløs, jo mere konservativ er hans forbrug over tidsperioden. Dette skyldes, at forbrugeren vil holde et konstant forbrug også til de beslutningstidspunkter, hvor han er arbejdsløs. Hvis sandsynligheden er større for, at forbrugeren er arbejdsløs, vil han gennemsnitligt være i arbejde mindre og dermed også få løn til færre beslutningstidspunkter. Dermed har forbrugeren mindre at forbruge over hele tidsperioden og forbruger derfor mindre til hvert beslutningtidspunkt. Dette forudsager også, at den maksimale belønning er lavere, jo større sandsynligheden for arbejdsløshed er.
+Det kan ud fra basis-problemet konkluderes, at sandsynligheden for at forbrugeren er arbejdsløs, påvirker hans forbrug. Jo større sandsynligheden er, for at forbrugeren bliver arbejdsløs, jo mere konservativ er hans forbrug over tidsperioden. Dette skyldes, at forbrugeren vil holde et konstant forbrug også til de beslutningstidspunkter, hvor han er arbejdsløs. Hvis sandsynligheden er større for, at forbrugeren er arbejdsløs, vil han gennemsnitligt være i arbejde mindre og dermed også få løn til færre beslutningstidspunkter. Dermed har forbrugeren mindre at forbruge over hele tidsperioden, og han forbruger derfor mindre til hvert beslutningtidspunkt. Dette forudsager også, at den forventede maksimale belønning er lavere, jo større sandsynligheden for arbejdsløshed er.
 
-Fra basis-problemet kan det desuden konkluderes, at den fornuftige forbruger vil hæve sit månedlige forbrug, når renten stiger, og det samlede forbrug vil dermed være større.
+Fra basis-problemet kan det desuden konkluderes, at den fornuftige forbruger vil hæve sit månedlige forbrug, når renten stiger. Dette skyldes, at en højere indlånsrente giver større afkast af opsparingen, og dermed har forbrugeren mulighed for at hæve forbruget. Da det månedlige forbrug hæves, medfører det, at den forventede maksimale belønning stiger.
 
-Ud fra det udvidede problem kan det konkluderes, at forholdet mellem indlåns- og udlånsrenten påvirker forbrugerens lånetendens og forbrug. Når indlåns- og udlånsrenten er ækvivalente, er belønningen uafhængig af lån, dog er der enkelte beslutningstidspunkter, hvor forbrugeren har en præference til at låne. Denne præference kan skyldes, at diskretiseringsfaktoren er for høj i det udvidede problem. I tilfældet hvor udlånsrenten er større end indlånsrenten, konkluderes det, at den optimale strategi er uafhængig af udlånsrenten, da forbrugeren ikke får yderligere belønning af at låne. Når indlånsrenten er større end udlånsrenten, gælder det derimod, at forbrugeren vil låne så længe afkastet af opsparingen kan kompensere for afdraget af lånet. 
+Ud fra det udvidede problem kan det konkluderes, at forholdet mellem indlåns- og udlånsrenten påvirker forbrugerens lånetendens og forbrug. Når indlåns- og udlånsrenten er ækvivalente, er belønningen uafhængig af lån, dog er der enkelte beslutningstidspunkter, hvor forbrugeren har en præference til at låne. Denne præference kan skyldes, at diskretiseringsfaktoren er for høj i det udvidede problem. I tilfældet hvor udlånsrenten er større end indlånsrenten, konkluderes det, at den optimale strategi er uafhængig af udlånsrenten, da forbrugeren ikke får yderligere belønning af at låne. Når indlånsrenten er større end udlånsrenten, gælder det derimod, at forbrugeren vil låne, så længe afkastet af opsparingen kan kompensere for afdraget af lånet. 
 
-Ved variation af $\alpha$ kan det ligesom i basis-problemet konkluderes, at det samlede forbrug falder, og dermed også den maksimale belønning, når sandsynligheden for at blive arbejdsløs stiger. 
-%Noget godt når vi har snakket med Toke.
+Ved variation af $\alpha$ kan det ligesom i basis-problemet konkluderes, at det samlede forbrug falder, og dermed også den forventede maksimale belønning, når sandsynligheden for at blive arbejdsløs stiger. 
 
-I tilfældet hvor lånebegrænsningen øges, konkluderes det, at forbrugeren udnytter renters rente mere. Dette skyldes, at han har mulighed for at forbruge mindre af sin opsparing, hvorved han kan udnytte renters rente uden at sænke sit forbrug. Altså kan forbrugeren hæve sit samlede forbrug, når lånebegrænsningen stiger. 
+I tilfældet hvor lånebegrænsningen forøges, konkluderes det, at forbrugeren udnytter renters rente mere. Dette skyldes, at han har mulighed for at forbruge mindre af sin opsparing, hvorved han kan udnytte renters rente uden at sænke sit forbrug. Altså kan forbrugeren hæve sit samlede forbrug, når lånebegrænsningen stiger. 
+
+Ud fra diskussionen kan det konkluderes, at antagelserne er simple, hvilket medfører, at resultaterne ikke nødvendigvis afspejler virkeligheden. Dog stemmer resultaterne hovedsageligt overens med forventningerne til, hvordan en forbruger maksimerer sin belønning. Modellen kan altså i visse omfang benyttes til at bestemme en forbrugers optimale strategi og forventede maksimale belønning.
 
 
-%Derudover konkluderes det, at en højere lånebegrænsning og en højere indlånsrente medfører, at forbrugeren bliver mindre konservativ omkring hans forbrug, hvorved det er fordelt mindre ligeligt.
+% Dermed er modellen tilnærmelsesvis retvisende.
+%Den æ go´nok novle gav
+% Dermed er modellen realistisk i visse omfang. 
+%Modellen kan altså i visse omfang benyttes til at bestemme en virkelig forbrugers optimale strategi og forventede maksimale belønning.
+% hvordan det virkelige forbrug for 
+
+% det 
+
+
+% Dog viser resultaterne tendensen for en forbruger.
+
+
+% Visse resultater, såsom ---- ændring i renter, viste sig, at være det forventlige.sad.fsd.fkajsæld
+
+% hvorimod resultaterne som aasdf ændring i alpha, viste sig at give et uventet resultat
+
+% Det viste sig, at visse resultater, herunder ændring i indlånsrente var forventelige. 
+% Der er simple antagelser hvis disse laves mindre simple er modellen mere præcis. Dog passer mange af resultaterne med vores forventninger og derfor synes vi den er ok.
+
+
+% Det kan ud fra diskussionen konkluderes
+
+% at modellen 
+
+
+% Til diskussion:
+% I problemet antages det, at forbrugerens arbejdsstatus er bestemt ud fra en Markov-kæde. Typisk vil en forbruger være arbejdsløs i en periode efterfulgt af en periode i arbejde, mens Markov-kæden gør, at forbrugeren går ind og ud af arbejdsmarkedet. Eftersom det er umuligt at simulere deterministiske arbejdskontrakter som en markov-kæde, vil modellen i disse tilfælde være urealistisk.  Dog...
+
+% På baggrund af diskussion - 
+
+
+
+% det kan konkluderes at modellen ville være mere omfattende hvis Markov-kæden var inhomogen. Dette skyldes, at modellen ville kunne tage højde for økonomiske kriser..............
+
+% Derudover kan det diskuteres, om en Markov kæde er "god" til at beskrive en forbrugers arbejdsstatus. 
+% Dette skyldes, blandt andet, at arbejdsstatus ikke nødvendigvis er tilfældig.
+% Hvis arbejdsstatus er tilfældig
+% Dette skyldes blandt andet, at en forbrugers sandsynlighed for at være i arbejde i virkeligheden er mere komplekse end antaget. 
+
+% I problemet antages det at forbrugerens arbejdsstatus er bestemt ud fra en Markov-kæde. I virkeligheden kan der komme udefrakommende faktorer, der kan påvirke en forbrugers arbejdsstatus over tid, såsom arbejdskontrakter, pludselige skader og lignende. Det kan derfor diskuteres, hvorvidt en Markov-kæde er en realistisk 
+
+
+
+% %Derudover konkluderes det, at en højere lånebegrænsning og en højere indlånsrente medfører, at forbrugeren bliver mindre konservativ omkring hans forbrug, hvorved det er fordelt mindre ligeligt.

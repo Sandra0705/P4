@@ -5,14 +5,16 @@ Dette er baseret på \cite[s. 225 og 234]{oxford}
 \begin{minipage}\textwidth
 \begin{defn}\label{stoptid}\textbf{Stoptid} %Ny definition
 \newline
-En tilfældig variabel $T: \Omega \to \{0,1,\ldots\}\cup \{\infty\}$ kaldes stoptiden for Markov-kæden $\bm X$, hvis der for alle $n\geq 0$, er en hændelse $\{T = n\}$ som kun er givet ved $X_0,X_1, \ldots, X_n$.
+Lad $\bm X = (X_0, X_1, \dots)$ være en Markov-kæde.
+En tilfældig variabel\\ $T: \Omega \to \{0,1,\ldots\}\cup \{\infty\}$ kaldes stoptiden for $\bm X$, hvis der for alle $n\geq 0$, er en hændelse $\{T = n\}$, som kun er givet ved $X_0,X_1, \ldots, X_n$.
+%En tilfældig variabel $T: \Omega \to \{0,1,\ldots\}\cup \{\infty\}$ kaldes stoptiden for Markov-kæden $\bm X$, hvis der for alle $n\geq 0$, er en hændelse $\{T = n\}$, som kun er givet ved $X_0,X_1, \ldots, X_n$.
 \end{defn}
 \end{minipage}
 
 \begin{minipage}\textwidth
 \begin{thmx} \label{stærk_markov}\textbf{Stærk Markov egenskab} %Ny sætning
 \newline
-Lad $\bm X$ være en Markov-kæde med overgangsmatrice $\P$ og stoptid $T$. Givet at $T < \infty$ og $X_T = i$ er sekvensen $\bm Y = (Y_k: k \geq 0)$, givet ved $Y_k = X_{T+k}$, en Markov-kæde med overgangsmatrice $P$ og $Y_0=i$. Derudover, givet at $T < \infty$ og $X_T = i$, så er $\bm Y$ uafhængig af $X_0, X_1, \ldots, X_{T-1}$.
+Lad $\bm X$ være en Markov-kæde med overgangsmatrice $\P$ og stoptid $T$. Givet at $T < \infty$ og $X_T = i$, er sekvensen $\bm Y = (Y_k: k \geq 0)$, givet ved $Y_k = X_{T+k}$, en Markov-kæde med overgangsmatrice $P$ og $Y_0=i$. Derudover, givet at $T < \infty$ og $X_T = i$, så er $\bm Y$ uafhængig af $X_0, X_1, \ldots, X_{T-1}$.
 \end{thmx}
 \end{minipage}
 

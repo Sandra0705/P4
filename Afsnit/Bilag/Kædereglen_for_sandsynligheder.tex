@@ -4,25 +4,25 @@ Dette er baseret på \cite{"wiki"}.
 \begin{minipage}\textwidth
 \begin{thmx} \textbf{Kædereglen for sandsynligheder} \label{sæt:kæde}%Ny sætning
 \newline
-Lad $X_1, X_2, \cdots, X_n$ være diskrete tilfældige variabler og $(\Omega, \F, P)$ være et sandsynlighedsrum. Så gælder det, at 
+Lad $X_1, X_2, \cdots, X_N$ være diskrete tilfældige variabler og $(\Omega, \F, P)$ være et sandsynlighedsrum. Så gælder det, at 
 \begin{align*}
-    P\left(\bigcap_{k=1}^n X_k\right)=\prod_{k=1}^n P\left(X_k\bigg|\bigcap_{j=1}^{k-1} X_j\right).
+    P\left(\bigcap_{t=1}^N X_t\right)=\prod_{t=1}^N P\left(X_t\bigg|\bigcap_{j=1}^{t-1} X_j\right).
 \end{align*}
 \end{thmx}
 \end{minipage}
 
 \begin{bev} \textbf{} %Nyt bevis
 \newline
-Lad $X_1, X_2, \cdots, X_n$ være diskrete tilfældige variabler og $(\Omega, \F, P)$ være et sandsynlighedsrum.
-Dette bevises ved induktion. Induktionsstarten $n=2$ er opfyldt per \autoref{def:betinget_sandsynlighed}, da
+Lad $X_1, X_2, \cdots, X_N$ være diskrete tilfældige variabler og $(\Omega, \F, P)$ være et sandsynlighedsrum.
+Dette bevises ved induktion. Induktionsstarten $t=2$ er opfyldt per \autoref{def:betinget_sandsynlighed}, da
 \begin{align*}
     P(X_2 | X_1) = \frac{P(X_2 \cap X_1)}{P(X_1)} \Leftrightarrow P(X_2 \cap X_1) = P(X_1)P(X_2 | X_1)
 \end{align*}
-Det antages nu, at det er sandt for $n = n-1$, altså at 
+Det antages, at det er sandt for $t = n-1$, altså at 
 \begin{align*}
     P(X_1 \cap \dots \cap X_{n-1}) = P(X_1)P(X_2|X_1)P(X_3|X_2 \cap X_1) \cdots P(X_{n-1} | X_{n-2} \cap \dots \cap X_1),
 \end{align*}
-og det skal vises, at dette medfører, at $n=n$ er sand. Lad $\{X_1, X_2, \dots, X_{n-1}\} = B$, dermed gælder det af \autoref{def:betinget_sandsynlighed} og induktionshypotesen, at
+og det skal vises, at dette medfører, at $t=n$ er sand. Lad $\{X_1, X_2, \dots, X_{n-1}\} = B$, dermed gælder det af \autoref{def:betinget_sandsynlighed} og induktionshypotesen, at
 \begin{align*}
     P(X_1 \cap \dots \cap X_{n-1} \cap X_n) &= P(B \cap X_n) = P(B)P(X_n | B)\\
     &= P(X_1)P(X_2|X_1)P(X_3|X_2 \cap X_1) \\
@@ -30,4 +30,4 @@ og det skal vises, at dette medfører, at $n=n$ er sand. Lad $\{X_1, X_2, \dots,
 \end{align*}
 Dermed er induktionsskridtet vist. Altså er \autoref{sæt:kæde} bevist.
 \end{bev}
-Når denne sætning anvendes i projektet vil $\cap$ erstattes med komma.
+Når denne sætning anvendes i projektet erstattes $\cap$ med komma.

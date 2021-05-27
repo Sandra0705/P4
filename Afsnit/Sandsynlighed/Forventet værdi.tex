@@ -84,7 +84,7 @@ Hvis sandsynligheden for en diskret tilfældig variabel, $X$, er betinget af en 
 \newline
 Lad $(\Omega, \F, P)$ være et sandsynlighedsrum og $B\in\F$ en hændelse. Lad $X$ være en diskret tilfældig variabel og $P(B)>0$. Så er den betingede forventede værdi af $X$ givet $B$ defineret ved 
 \begin{align*}
-    E[X|B]&=\sum_{x\in Range(X)}xP(X=x|B),
+    E[X|B]&=\sum_{x\in \text{Range}(X)}xP(X=x|B),
 \end{align*}
 hvis summen er absolut konvergent.
 \end{defn}
@@ -97,7 +97,7 @@ I ovenstående definition er den forventede værdi af den diskrete tilfældige v
 \newline
 Lad $X, Y$ være diskrete tilfældige variabler. Så er den betingede forventede værdi af $X$ givet $Y$, givet ved
 \begin{align*}
-    E[X|Y=y] = \sum_{x\in Range(X)}xP(X=x|Y=y),
+    E[X|Y=y] = \sum_{x\in \text{Range}(X)}xP(X=x|Y=y),
 \end{align*}
 hvis summen er absolut konvergent.
 \end{defn}

@@ -9,7 +9,7 @@ For $p=0.5$ og $q=0.5$ er alle overgangssandsynlighederne i Markov-kæden positi
 \end{align}
 Af \autoref{def:tilgængelighed} er de to tilstande tilgængelige fra hinanden, da $t$'te trins overgangssandsynlighederne er strengt positive, og dermed følger det, at de to tilstande kommunikerer. Da alle tilstande i tilstandsrummet kommunikerer, er Markov-kæden ureducerbar af \autoref{def:ureducerbar}. 
 
-Det skal bestemmes om denne Markov-kæde har en invariant fordeling, $\bm \pi$. Af \autoref{sæt:den_vi_ikke_beviser} gælder det, at hvis Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling. Derfor undersøges det, om Markov-kæden har en positiv tilbagevendende tilstand. 
+Det skal bestemmes, om denne Markov-kæde har en invariant fordeling, $\bm \pi$. Af \autoref{sæt:den_vi_ikke_beviser} gælder det, at hvis Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling. Derfor undersøges det, om Markov-kæden har en positiv tilbagevendende tilstand. 
 
 Først bestemmes det, om tilstanden $\xi_t = 0$ er tilbagevendende eller forbigående. Dette gøres ved at udregne følgende sum
 \begin{align*}
@@ -20,18 +20,18 @@ Af \autoref{tilbagevendende} følger det, at tilstanden $\xi_t = 0$ er tilbageve
 
 Herefter undersøges det, om tilstanden $\xi_t = 0$ er positiv tilbagevendende. For at bestemme om en tilstand er positiv tilbagevendende, findes den forventede værdi af antal skridt, før kæden vender tilbage til tilstanden. For at beregne dette anvendes \autoref{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler}.
  \begin{align*}
-     E[\tau_{\xi_{t} = 0}=i|\xi_0=0]&=\sum_{i\in \N} iP(\tau_{\xi_{t} = 0}=i|\xi_0=0)\\
+     E_0[\tau_{0}|\xi_0=0]&=\sum_{i\in \N} iP(\tau_{0}=i|\xi_0=0)\\
      &=0.5+2(1-0.5)0.5+3(1-0.5)(1-0.5)0.5\\
      &\phantom{=} +4(1-0.5)(1-0.5)^20.5+5(1-0.5)(1-0.5)^30.5+\ldots\\
      &= \sum_{i \in \N } i(1-0.5)^{i} = 2.
  \end{align*}
-Da $E[\tau_{\xi_{t} =0}=i|\xi_0=0]=2$, følger det af \autoref{def:positiv_null_tilbagevendende}, at den er positiv tilbagevendende.
+Da $E_0[\tau_{0}|\xi_0=0]=2<\infty$, følger det af \autoref{def:positiv_null_tilbagevendende}, at den er positiv tilbagevendende.
 
 Dermed følger det af \autoref{sæt:den_vi_ikke_beviser}, at der eksisterer en entydig invariant fordeling, $\bm \pi$, da Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand. Derudover gælder det, at alle tilstandene er positiv tilbagevendende.
 
 %at da Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling, $\bm \pi$. Derudover gælder det, at alle tilstandene er positiv tilbagevendende.
 
-For at bestemme om Markov-kæden konvergerer mod den invariante fordeling, undersøges det, om Markovkæden er aperiodisk. Hvis $d(i)=1$ følger det jævnfør \autoref{def:aperiodisk}, at Markov-kæden er aperiodisk. Da begge tilstande i Markov-kæden har en strengt positiv $t$'te trins overgangssandsynlighed til sig selv, gælder det, at de er aperiodiske. 
+For at bestemme om Markov-kæden konvergerer mod den invariante fordeling, undersøges det, om Markovkæden er aperiodisk. Hvis $d(i)=1$, følger det jævnfør \autoref{def:aperiodisk}, at Markov-kæden er aperiodisk. Da begge tilstande i Markov-kæden har en strengt positiv $t$'te trins overgangssandsynlighed til sig selv, gælder det, at de er aperiodiske. 
 
 Eftersom Markov-kæden er ureducerbar, aperiodisk og positiv tilbagevendende, følger det af \autoref{sæt:konvergens_for_markov}, at den konvergerer mod den invariante fordeling, der er givet ved \eqref{grænse_for_P}, altså
 \begin{align}
@@ -48,7 +48,7 @@ For $p=0,9$ og $q=0,5$ er alle overgangssandsynlighederne i Markov-kæden positi
 \end{align}
 Af \autoref{def:tilgængelighed} er de to tilstande tilgængelige fra hinanden, da $t$'te trins overgangssandsynlighederne er strengt positive, og dermed følger det, at de to tilstande kommunikerer. Da alle tilstande i tilstandsrummet kommunikerer, er Markov-kæden ureducerbar af \autoref{def:ureducerbar}. 
 
-Det skal bestemmes om denne Markov-kæde har en invariant fordeling, $\bm \pi$. Af \autoref{sæt:den_vi_ikke_beviser} gælder det, at hvis Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling. Derfor undersøges det, om Markov-kæden har en positiv tilbagevendende tilstand. 
+Det skal bestemmes, om denne Markov-kæde har en invariant fordeling, $\bm \pi$. Af \autoref{sæt:den_vi_ikke_beviser} gælder det, at hvis Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling. Derfor undersøges det, om Markov-kæden har en positiv tilbagevendende tilstand. 
 
 Først bestemmes det, om tilstanden $\xi_t = 0$ er tilbagevendende eller forbigående. Dette gøres ved at udregne følgende sum
 \begin{align*}
@@ -59,18 +59,18 @@ Af \autoref{tilbagevendende} følger det, at tilstanden $\xi_t = 0$ er tilbageve
 
 Herefter undersøges det, om tilstanden $\xi_t = 0$ er positiv tilbagevendende. For at bestemme om en tilstand er positiv tilbagevendende, findes den forventede værdi af antal skridt, før kæden vender tilbage til tilstanden. For at beregne dette anvendes \autoref{def:betinget_forventet_værdi_af_diskrete_tilfældige_variabler}.
  \begin{align*}
-     E[\tau_{\xi_{t} = 0}=i|\xi_0=0]&=\sum_{i\in \N} iP(\tau_{\xi_{t} = 0}=i|\xi_0=0)\\
+     E_0[\tau_{0}|\xi_0=0]&=\sum_{i\in \N} iP(\tau_{0}=i|\xi_0=0)\\
      &=0.5+2(1-0.5)0.9+3(1-0.5)(1-0.9)0.9\\
      &\phantom{=} +4(1-0.5)(1-0.9)^20.9+5(1-0.5)(1-0.9)^30.9+\ldots\\
      &=0.5 + \sum_{2\leq i \in \N } i(1-0.5)(1-0.9)^{i-2}0.9 = 1.556.
  \end{align*}
-Da $E[\tau_{\xi_{t} =0}=i|\xi_0=0]=1.556$, følger det af \autoref{def:positiv_null_tilbagevendende}, at den er positiv tilbagevendende.
+Da $E_0[\tau_{0}|\xi_0=0]=1.556<\infty$, følger det af \autoref{def:positiv_null_tilbagevendende}, at den er positiv tilbagevendende.
 
 Dermed følger det af \autoref{sæt:den_vi_ikke_beviser}, at der eksisterer en entydig invariant fordeling, $\bm \pi$, da Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand. Derudover gælder det, at alle tilstandene er positiv tilbagevendende.
 
 %at da Markov-kæden er ureducerbar og har en positiv tilbagevendende tilstand, så eksisterer der en entydig invariant fordeling, $\bm \pi$. Derudover gælder det, at alle tilstandene er positiv tilbagevendende.
 
-For at bestemme om Markov-kæden konvergerer mod den invariante fordeling, undersøges det, om Markovkæden er aperiodisk. Hvis $d(i)=1$ følger det jævnfør \autoref{def:aperiodisk}, at Markov-kæden er aperiodisk. Da begge tilstande i Markov-kæden har en strengt positiv $t$'te trins overgangssandsynlighed til sig selv, gælder det, at de er aperiodiske. 
+For at bestemme om Markov-kæden konvergerer mod den invariante fordeling, undersøges det, om Markovkæden er aperiodisk. Hvis $d(i)=1$, følger det jævnfør \autoref{def:aperiodisk}, at Markov-kæden er aperiodisk. Da begge tilstande i Markov-kæden har en strengt positiv $t$'te trins overgangssandsynlighed til sig selv, gælder det, at de er aperiodiske. 
 
 Eftersom Markov-kæden er ureducerbar, aperiodisk og positiv tilbagevendende, følger det af \autoref{sæt:konvergens_for_markov}, at den konvergerer mod den invariante fordeling, der er givet ved \eqref{grænse_for_P}, altså
 \begin{align}

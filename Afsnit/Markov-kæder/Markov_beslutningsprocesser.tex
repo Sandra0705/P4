@@ -121,6 +121,8 @@ En fortidsafhængig deterministisk beslutningsregel er en funktion, $d_t: H_t\to
 
 En tilfældig beslutningsregel, $d_t$, er en funktion, $d_t: S\to P(A)$, som angiver sandsynligheden for en beslutning ved tilstanden, $s$, til beslutningstidspunktet, $t$. Altså angiver en tilfældig beslutningsregel sandsynlighedsfordelingen, $q_{d_t}$, for mængden af beslutninger til beslutningstidspunktet, $t$. For en fortidsafhængig tilfældig beslutningsregel, gælder det, at $d_t:H_t\to P(A)$. Når den tilfældige beslutningsregel er Markov, er $q_{d_t(s_t)}\in P(A_{s_t})$. Hvis den tilfældige beslutningsregel derimod er fortidsafhængig, er $q_{d_t(h_t)}\in P(A_{s_t})$ for alle $h_t\in H_t$.
 
+\pagebreak
+
 En deterministisk beslutningsregel er et specialtilfælde af en tilfældig beslutningsregel, hvor 
 \begin{align*}
     q_{d_t(s_t)}(a)&=1, \\
@@ -224,98 +226,48 @@ hvis $P^\Psi(s_1 , a_1 , \dots , s_t) = 0$.
 Ved at sætte $N=t$ i \eqref{eq:den_meget lange_der_er_træls_at_skrive} vides det, at 
 \begin{align*}
     P^\Psi(s_1 , a_1 , s_2 , \dots , s_t) &= P^\Psi(s_1)q_{d_1(s_1)}(a_1)p_1(s_2|s_1 , a_1)q_{d_2(h_2)}(a_2)\\
-     &\phantom{= \ }\cdots q_{d_{t-1}(h_{t-1})}(a_{t-1})p_{t-1}(s_t|a_{t-1} , s_{t-1}).
+     &\phantom{= \ }\cdots q_{d_{t-1}(h_{t-1})}(a_{t-1})p_{t-1}(s_t|s_{t-1}, a_{t-1}).
 \end{align*}
 
-Udtrykkene i brøken for \eqref{eq:betinget_sands_for_meget_lang_udtryk} indsættes og reduceres
+Udtrykkene for brøken i \eqref{eq:betinget_sands_for_meget_lang_udtryk} indsættes og reduceres
 \begin{align*}
-P^\Psi(a_t , s_{t+1}, \dots, s_N | s_1 , a_1 , \dots , s_t) &=\frac{P(s_1)q_{d_1(s_1)}(a_1)
-    \cdots p_{N-1}(s_N|s_{N-1} , a_{N-1})}{P(s_1)q_{d_1(s_1)}(a_1)
+P^\Psi(a_t , s_{t+1}, \dots, s_N | s_1 , a_1 , \dots , s_t) &=\frac{P^\Psi(s_1)q_{d_1(s_1)}(a_1)
+    \cdots p_{N-1}(s_N|s_{N-1} , a_{N-1})}{P^\Psi(s_1)q_{d_1(s_1)}(a_1)
     \cdots p_{t-1}(s_t|s_{t-1} , a_{t-1})}\\
     &= q_{d_t(h_t)}(a_t)p(s_{t+1}|s_t , a_t)\\
     &\phantom{= \ } \cdots q_{d_{N-1}(h_{N-1})}(a_{N-1})p_{N-1}(s_N|s_{N-1} , a_{N-1}).
 \end{align*}
 Hvis en strategi, $\Psi$, er Markov, så afhænger beslutningsreglen, $d_t$, kun af de forrige tilstande og beslutninger gennem den nuværende tilstand. Det gælder altså, at 
 \begin{align*}
-    q_{d_t(h_t)}(a)= P^\Psi \left(Y_t = a | Z_t = (h_{t-1} , a_{t-1} , s_t) \right) = P \left(Y_t = a | X_t = s_t\right) = q_{d_t(s_t)}(a).
+    q_{d_t(h_t)}(a)= P^\Psi \left(Y_t = a | Z_t = (h_{t-1} , a_{t-1} , s_t) \right) = P^\Psi \left(Y_t = a | X_t = s_t\right) = q_{d_t(s_t)}(a).
 \end{align*}
-Dermed følger det, at
+Af overstående følger det derfor, at
 \begin{align*}
     P^{\Psi}\left(a_t , s_{t+1} , \cdots , s_N|s_1 , a_1 , \cdots , s_t\right)=P^{\Psi}\left(a_t , s_{t+1} , \cdots , s_N|s_t\right).
 \end{align*}
+Sandsynligheden er dermed udelukkende afhængig af $h_t$ gennem $s_t$. 
 
 \subsection{Markov belønningsproces}
-En Markov belønningsproces er den bivariate stokastiske proces $\left\{\left(X_t, r_t(X_t, Y_t)\right); t \in T\right\}$, når en strategi, $\Psi$, er Markov. Denne stokastiske proces består af en sekvens af tilstande og belønninger givet en strategi, $\Psi$. 
+Såfremt en strategi, $\Psi$, er Markov, så er en Markov belønningsproces den bivariate stokastiske proces, $\left(X_t, r_t(X_t,Y_t) \right)\text{ for } t=1,2,\ldots,N$. Denne stokastiske proces består af en sekvens af tilstande og belønninger givet en strategi, $\Psi$.
 
 Lad $W$ være en diskret tilfældig variabel defineret på sandsynlighedsrummet, $(\Omega, \F, P^{\Psi})$, hvor
+\vspace{-0.4cm}
 \begin{align*}
     W(\omega)=W(s_1 , a_1 , \dots , s_N) = \sum_{t=1}^{N-1} r_t(s_t,a_t) + r_N(s_N).
-\end{align*}
-Dermed er $W(\omega)$ summen af belønninger. Af \autoref{def:Forventetværdi} følger det, at
+\end{align*} 
+Dermed er $W(\omega)$ summen af belønninger for alle beslutningstidspunkter. Af \autoref{def:Forventetværdi} følger det, at
 \begin{align*}
     E^\Psi [W] = \sum_{\omega \in \Omega} W(\omega)P^\Psi\left(\omega\right) = \sum_{w \in Range(W)} w P^\Psi \left(w: W(\omega) = w\right), 
 \end{align*}
-hvor $E^\Psi(W)$ betegner den forventede værdi til $W$ givet strategien $\Psi$. Hvis Omega ikke er tællelig, bliver summerne i ovenstående til integraler. 
+hvor $E^\Psi[W]$ betegner den forventede værdi af $W$ givet strategien $\Psi$. Hvis $\Omega$ ikke er tællelig, erstattes ovenstående summer med integraler.
  %Summerne i ovenstående bliver til integraler for $N = \infty$ og $E^\Psi(W)$ betegner den forventede værdi til $W$ givet strategien $\Psi$.
 
-Hvis strategien $\Psi$ er fortidsafhængig med historikken $h_t=(s_1, a_1 , \dots , s_t)$, og $W$ er en funktion af $s_t, a_t,\dots, s_N$, så gælder det, at
+Såfremt strategien $\Psi$ er fortidsafhængig med historikken $h_t=(s_1, a_1 , \dots , s_t)$, og $W$ er en funktion af $s_t, a_t,\dots, s_N$, så gælder det, at
 \begin{align}\label{eq:forventet_belønning_fortidsafhængig}
     E_{h_t}^\Psi \left[W(X_t , Y_t , \dots , X_N) \right] = \sum W(s_t , a_t , \dots , s_N) P^\Psi (a_t , s_{t+1} , \dots , s_N | s_1 , a_1 , \dots , s_t),
 \end{align}
 hvor der summes over $(a_t , s_{t+1} , \dots , s_N) \in A \times S \times \cdots \times S$. Er strategien, $\Psi$, derimod Markov, følger det, at
 \begin{align*}
-     E_{s_t}^\Psi \left[W(X_t , Y_t , \dots , X_N) \right] = \sum W(s_t , a_t , \dots , s_N) P^\Psi (a_t , s_{t+1} , \dots , s_N | s_t).
+     E_{s_t}^\Psi \left[W(X_t , Y_t , \dots , X_N) \right] = \sum W(s_t , a_t , \dots , s_N) P^\Psi (a_t , s_{t+1} , \dots , s_N | s_t),
 \end{align*}
- 
-%For en beslutningstager gælder det om at optimere denne sum, så der opnås størst mulig belønning.   
-% \subsection{Markov modellen}
-
-% I dette afsnit konstrueres en model for den stokastiske model genereret ud fra Markov beslutningsprocessen. Det antages, at $S$ og $A$ er diskrete.
-
-% Som nævnt i sandsynlighedsafsnittet, består et sandsynlighedsrum af tre elementer: et udfaldsrum, $\Omega$, et hændelsesrum, $\mathcal{F}$ og et sandsynlighedsmål, $P$, på $(\Omega,\mathcal{F})$.
-% Bemærk, at når $\Omega$ er endelig, så er $\mathcal{F}$ givet ved potensmængden af $\Omega$ og sandsynlighedsmålet er en sandsynlighedsmassefunktion. 
-
-% For en MDP med endelig horisont, vælges
-% \begin{align*}
-%     \Omega=S\times A\times S\times A\times\cdots\times A\times S=\{S\times A\}^{N-1}\times S,
-% \end{align*}
-
-% mens en uendelig horisont indebærer, at $\Omega=\{S\times A\}^\infty$. \\\\
-% En \textit{vej} $\omega\in\Omega$ er en sekvens af tilstande og hændelser:
-% \begin{align*}
-%     \omega=(s_1,a_1,s_2,a_2,\dots,A_{N-1},S_N)
-% \end{align*}
-
-% Lad nu $X_t$ være en diskret tilfældig variabel, der antager tilstande, $s_t$ og lad ligeledes $Y_t$ antage hændelser, $a_t$. Dermed er 
-% \begin{align*}
-%     X_t(\omega)=s_t \ \text{ og } \ Y_t(\omega)=a_t,
-% \end{align*}
-% for $t\in T$. 
-
-% En historik proces defineres til
-% \begin{align*}
-%     Z_t(\omega)=s_1 \ \text{ og } \ Z_t(\omega)=(s_1,a_2,\dots,s_t) \text{ for } 1\leq t\leq N;\ N\leq \infty
-% \end{align*}
-% Lad $P_1(\cdot)$ betegne \textit{begyndelsesdistributionen} for systemets tilstand.
-
-
-
-% \subsection{Forventet værdi}
-% Når $\pi$ er Markov, siges den bivariate stokastiske proces, $\{(X_t,r_t(X_t,Y_t)); t\in T\}$, at være en \textit{Markov belønningsproces}. 
-
-% Lad $W$ være en tilfældig variable på sandsynlighedsrummet, $\{\omega, \mathcal{F},P^\pi\}$ og lad $n$ være endelig. 
-% Den forventede værdi er givet ved
-% \begin{align*}
-%     E^\pi [W]=\sum_{\omega\in\Omega} W(\omega)P^\pi\{\omega\}
-% \end{align*}
-
-
-% Lad nu $W$ være en funktion af en historik $h_t$. Hvis $\pi$ er markov, så gælder der, at
-% \begin{align*}
-%     E_{s_t}^\pi [W(X_t,Y_t,\dots, X_n]=\sum W(s_t,a_t,\dots, s_N)P^\pi (a_t,s_{t+1},\dots,s_N|s_t).
-% \end{align*}
-
-% Bemærk, at 
-% \begin{align*}
-%     E^\pi[W]=\sum_{s\in S} P_1(s)E_s^\pi [W] \forall\pi\in\Pi
-% \end{align*}
+hvor der summes over $(a_t , s_{t+1} , \dots , s_N) \in A \times S \times \cdots \times S$.

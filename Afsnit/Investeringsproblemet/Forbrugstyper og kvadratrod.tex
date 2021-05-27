@@ -7,7 +7,7 @@ For at analysere forbrugstilbøjelighederne kræver det at anvende psykologiske 
 
 
 \subsection{Utålmodig forbruger}
-En utålmodig forbruger foretrækker at forbruge nu fremfor senere. Den utålmodige forbruger er derfor ikke interesseret i den belønning, han kan opnå i fremtiden. Derfor vil en indlånsrente ikke have en indflydelse på forbrugstilbøjeligheden for en utålmodig forbruger. Herudover vil forbrugstilbøjeligheden ikke blive påvirket af forbrugerens arbejdsstatus. Hvis det antages, at der ikke er mulighed for at låne, risikerer den utålmodige forbruger i nogle beslutningstidspunkter dermed ikke at have noget at forbruge. Der kan således være relativt store udsving i forbruget i forhold til, om forbrugeren er i arbejde eller er arbejdsløs. 
+En utålmodig forbruger foretrækker at forbruge nu fremfor senere. Den utålmodige forbruger er derfor ikke interesseret i den mulige fremtidige belønning. Derfor vil en indlånsrente ikke have en indflydelse på forbrugstilbøjeligheden for en utålmodig forbruger. Herudover vil forbrugstilbøjeligheden ikke blive påvirket af forbrugerens arbejdsstatus. Hvis det antages, at der ikke er mulighed for at låne, risikerer den utålmodige forbruger i nogle beslutningstidspunkter dermed ikke at have noget at forbruge. Der kan således være relativt store udsving i forbruget i forhold til, om forbrugeren er i arbejde eller er arbejdsløs. 
 
 %Da den utålmodige forbrugers forbrugstilbøjelighed er den samme uafhængig af arbejdsstatus og renter i banken, kan han risikere i nogle beslutningstidspunkter ikke at have noget at forbruge, hvis der ikke er mulighed for at låne. Der kan således være relativt store udsving i forbruget i forhold til, om forbrugeren er i arbejde eller er arbejdsløs. 
 
@@ -25,9 +25,11 @@ En utålmodig forbruger foretrækker at forbruge nu fremfor senere. Den utålmod
 
 Belønningsfunktionen for en utålmodig forbruger kan eksempelvis være givet ved følgende
 \begin{align}\label{eq:utolmodig}
-    r_t(S, a) = \frac{a}{(S+1)t} \ ,
+    r_t(S_t, a_t) = \frac{a_t}{(S_t+1)^t} \ ,
 \end{align}
-hvor $S$ er en opsparing, $a$ er en beslutning, og $t$ er et beslutningstidspunkt. Hvis belønningen er givet ved \eqref{eq:utolmodig} er det forventeligt ud fra \eqref{eq:u_t_max}, at alt forbruges til hvert beslutningstidspunkt, da dette giver den største belønning. Dette skyldes, at tælleren maksimeres og nævneren minimeres ved at forbruge alt til hvert beslutningstidspunkt. 
+hvor $S_t$ er en opsparing, $a_t$ en beslutning og $t$ et beslutningstidspunkt. Hvis belønningen er givet ved \eqref{eq:utolmodig} er det forventeligt ud fra \eqref{eq:u_t_max}, at alt forbruges til hvert beslutningstidspunkt. Dette forventes, da det er denne forbrugstendens, der giver den forventede maksimale belønning, hvilket skyldes, at tælleren maksimeres og nævneren minimeres, når alt forbruges til hvert beslutningstidspunkt.
+
+%da dette giver den største belønning. Dette skyldes, at tælleren maksimeres og nævneren minimeres ved at forbruge alt til hvert beslutningstidspunkt. 
 
 %Da belønningen er givet ved beslutningen divideret med opsparingen multipliceret med beslutningstidspunktet vil det gælde, at det samme forbrug vil give en større belønning i første beslutningsperiode end i de følgende. Derfor er det forventeligt, at alt forbruges i hver tidperiode, da dette giver den største belønning.  
 
@@ -37,21 +39,21 @@ hvor $S$ er en opsparing, $a$ er en beslutning, og $t$ er et beslutningstidspunk
 %Det ses jævnfør \eqref{eq:u_t_max}, at den optimale strategi vil være at forbruge alt i hver tidsperiode. Det gælder desuden, at beløningen er beskrevet direkte af forbruget. 
 
 \subsection{Tålmodig forbruger}
-En tålmodig forbruger er indifferent i forhold til, om han skal forbruge nu eller senere. Hvis indlånsrenten i banken er nul, vil den tålmodige forbruger derved opnå den samme belønning uafhængigt af strategien. Hvis renten i banken er positiv, vil han forbruge det hele til sidste beslutningstidspunkt. En tålmodig forbruger er derfor kun interesseret i det samlede forbrug over hele tidsperioden. Dermed vil en tålmodig forbrugers arbejdsstatus ikke påvirke forbrugstilbøjeligheden. Det vil derudover gælde, at hvis der er mulighed for at låne, så vil den tålmodige forbruger låne mest muligt så længe indlånsrenten er højere end udlånsrenten. 
+En tålmodig forbruger er indifferent i forhold til, om han skal forbruge nu eller senere. Hvis indlånsrenten i banken er nul, vil den tålmodige forbruger derved opnå den samme forventede maksimale belønning uafhængigt af strategien. Hvis indlånsrenten i banken er positiv, vil han forbruge det hele til sidste beslutningstidspunkt. En tålmodig forbruger er derfor kun interesseret i det samlede forbrug over hele tidsperioden. Dermed vil en tålmodig forbrugers arbejdsstatus ikke påvirke forbrugstilbøjeligheden. Det vil derudover gælde, at hvis der er mulighed for at låne, så vil den tålmodige forbruger låne mest muligt, så længe indlånsrenten er højere end udlånsrenten. 
 
 Følgende belønningsfunktion er et eksempel på en tålmodig forbruger
 \begin{align}\label{eq:tolmodig}
-    r_t(a) = a,
+    r_t(a_t) = a_t,
 \end{align}
-hvor $a$ er en beslutning, og $t$ er et beslutningstidspunkt. Eftersom belønningen er givet ved \eqref{eq:tolmodig}, er det forventeligt ud fra \eqref{eq:u_t_max}, at såfremt indlånsrenten i banken er nul, vil han opnå samme belønning uafhængig af strategien, han vælger.
-Hvis renten derimod er større end nul, vil det gælde ud fra \eqref{eq:u_t_max}, at den maksimale belønning opnås ved at forbruge alt til sidste beslutningstidspunkt. 
+hvor $a_t$ er en beslutning, og $t$ et beslutningstidspunkt. Eftersom belønningen er givet ved \eqref{eq:tolmodig}, er det forventeligt ud fra \eqref{eq:u_t_max}, at såfremt indlånsrenten i banken er nul, vil han opnå samme forventede maksimale belønning uafhængig af strategien.
+Hvis indlånsrenten derimod er større end nul, vil det gælde ud fra \eqref{eq:u_t_max}, at den maksimale belønning opnås ved at forbruge alt til sidste beslutningstidspunkt. 
 
 \subsection{Fornuftig forbruger}
-Eftersom alle forbrugere i virkeligheden har et basisforbrug, vil det være urealistisk kun at forbruge til sidste beslutningstidspunkt. Samtidig vil de fleste forbrugeres forbrugstilbøjeligheder påvirkes af renten. Dermed er det usandsynligt, at en forbruger enten er helt utålmodig eller tålmodig. Det antages derfor, at den gennemsnitlige forbruger vil fordele sit forbrug mere ligeligt mellem beslutningstidspunkterne. På denne måde vil der blandt andet ikke være måneder, hvor der ikke forbruges noget. Denne slags forbruger betegnes som en fornuftig forbruger. En belønningsfunktion for en fornuftig forbruger kan eksempelvis være givet ved følgende
+Eftersom alle forbrugere har et basisforbrug, vil det være urealistisk kun at forbruge til sidste beslutningstidspunkt. Samtidig vil de fleste forbrugere have en forbrugstilbøjelighed, der påvirkes af indlånsrenten. Dermed er det usandsynligt, at en forbruger enten er helt utålmodig eller tålmodig. Det antages derfor, at den gennemsnitlige forbruger fordeler sit forbrug mere ligeligt mellem beslutningstidspunkterne. På denne måde vil der blandt andet ikke være måneder, hvor der ikke forbruges. Denne type af forbruger betegnes som en fornuftig forbruger. En belønningsfunktion for en fornuftig forbruger kan eksempelvis være givet ved følgende
 \begin{align}\label{eq:belønning_fornuftig_forbruger}
-    r_t(a) = \sqrt{a}
+    r_t(a_t) = \sqrt{a_t}
 \end{align}
-hvor $a$ er en beslutning, og $t$ er et beslutningstidspunkt. I det følgende afsnit analyseres det, hvordan renten, sandsynligheden for at være arbejdsløs og muligheden for lån påvirker forbruget og den samlede belønning for en fornuftig forbruger.
+hvor $a_t$ er en beslutning, og $t$ et beslutningstidspunkt. I det følgende afsnit analyseres det, hvordan renten, sandsynligheden for at være arbejdsløs og muligheden for lån påvirker forbruget og den forventede maksimale belønning for en fornuftig forbruger.
 
 
 

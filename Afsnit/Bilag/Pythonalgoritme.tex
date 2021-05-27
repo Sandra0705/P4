@@ -1,0 +1,174 @@
+\section{Python kode}\label{Bilag:python_kode}
+\lstset{language=Python}
+\lstset{frame=lines}
+\lstset{numbers=left}
+\lstset{stepnumber=1}
+\lstset{firstnumber=1}
+\lstset{numberfirstline=false}
+\lstset{escapeinside={(*}{*)}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}[mathescape=true,caption={Python algoritme},label={kode:python}]
+import numpy as np
+from bisect import bisect_left
+from time import time
+
+
+def print_time():
+    print("tid: " + str(time() - time_start))
+
+def print_dict(dict):
+    for key in (dict):
+        print(f"{key} : {dict[key]}")
+
+def ny_opsparing(opsparing, forbrug, arbejdsstatus):
+    global I, gamma_i
+    return (1 + gamma_i) * (opsparing - forbrug) + I * arbejdsstatus
+
+def find(myNumber):
+    global l
+    pos=bisect_left(l, myNumber)
+    if pos == len(l):
+        return l[-1]
+    elif l[pos] > myNumber and l[pos] != 0:
+        return l[pos-1]
+    else:
+        return l[pos]
+
+def totalnytte(forbrugsliste):
+    nytte = 0
+    t = 0
+    for a in forbrugsliste:
+        nytte += R(a)
+        t += 1
+    return nytte
+
+
+def ny_arbejdsstatus(arbejdsstatus):
+    random = np.random.random()
+    if random < beta and not arbejdsstatus:
+        return 0
+    elif random < alpha and arbejdsstatus:
+        return 0
+    else:
+        return 1
+
+alpha = float(input("alpha = "))
+beta = float(input("beta = "))
+N = int(input("N = "))
+S_0 = float(input("S_0 = "))
+L =  float(input("L = "))
+I = float(input("I = "))
+Delta = float(input("Delta = "))
+gamma_i = float(input("gamma_i = "))
+gamma_u = float(input("gamma_u = "))
+
+time_start = time()
+
+xi_0 = 1
+digits = 5
+
+l = [round(k * Delta, 5) for k in range(100000)]
+
+S_max = [S_0]
+for t in range(0, N):
+    S_max.append(ny_opsparing(S_max[t], 0, 1) + \
+                  L * t * (gamma_u <= gamma_i))
+
+S_max = [find(i) for i in S_max] 
+
+
+def dS(t):
+    return np.arange(0, (S_max[t] + Delta), Delta)
+
+def dL(t):
+    return np.arange(0, L*t + Delta, Delta)
+
+S = [(t, round(s, digits), xi, round(L_t, digits)) for t in range(0, N + 1) \ 
+     for s in dS(t) for xi in (0, 1) for L_t in dL(t)]
+
+def A(s):
+    return np.arange(0, s + Delta, Delta)
+
+
+def R(forbrug):
+    if forbrug < 0:
+        return - 1000000
+    return np.sqrt(forbrug)
+
+V = {t: {(find(state[1]), state[2], state[3]): 0. \ 
+     for state in S if t == state[0]} for t in range(N + 1)}
+
+Pi = dict()
+
+for t in reversed(range(N + 1)):
+    if t == N:
+        for s, xi, L_t in V[t]:
+            V[t][s, xi, L_t] = R(s - L_t * (1 + gamma_u))    
+            Pi[t, s, xi, L_t] = s, 0   
+    else:
+        for s, xi, L_t in V[t]:
+            for a in A(s):
+                for ny_L_t in np.arange(L_t, L_t + L + Delta, Delta):
+                    ny_L_t = round(ny_L_t, digits)
+                    u = R(a + ny_L_t - L_t) + \
+                        xi * (alpha * V[t + 1][find((1 + gamma_i) * \ 
+                             (s - a - gamma_u * L_t)), 0, ny_L_t] + \
+                             (1 - alpha) * V[t + 1][find((1 + gamma_i) * \
+                             (s - a - gamma_u * L_t) + I), 1, ny_L_t]) + \
+                             (1 - xi) * (beta * V[t + 1][find((1 + gamma_i) * \
+                             (s - a - gamma_u * L_t)), 0, ny_L_t] + \
+                             (1 - beta) * V[t + 1][find((1 + gamma_i) * \
+                             (s - a -  gamma_u * L_t) + I), 1, ny_L_t])
+                    if u > V[t][s, xi, L_t]:
+                        V[t][s, xi, L_t] = u
+                        Pi[t, s, xi, L_t] = a, (ny_L_t - L_t)
+
+def generer_arbejdsliste(arbejde_start):
+    arbejdsliste = [arbejde_start]
+    for t in range(N):
+        arbejdsliste.append(ny_arbejdsstatus(arbejdsliste[t]))
+    return arbejdsliste
+
+def udregnforbrug(arbejdsliste):
+    forbrug_opsparing = []
+    forbrug_l(*å*)n = []
+    s = S_0
+    L_t = 0
+    for t in range(len(arbejdsliste)):
+        xi = arbejdsliste[t]
+        if t == N:
+            forbrug_opsparing.append(Pi[t, find(s), xi, L_t][0])
+            forbrug_l(*å*)n.append(Pi[t, find(s), xi, L_t][1])
+        else:
+            a = Pi[t, find(s), xi, L_t][0]
+            L_t = round(Pi[t, find(s), xi, L_t][1], digits)
+            s = find(round(ny_opsparing(s, a, xi), digits))
+            forbrug_opsparing.append(a)
+            forbrug_l(*å*)n.append(L_t)
+
+    return forbrug_opsparing, forbrug_l(*å*)n
+
+X = 10000
+arbejdslister = [generer_arbejdsliste(xi_0) for i in range(X)]
+
+forbrugs_ops = [np.array(udregnforbrug(arbejdsliste)[0]) \
+                for arbejdsliste in arbejdslister]
+forbrugs_l(*å*)n = [np.array(udregnforbrug(arbejdsliste)[1]) \ 
+                for arbejdsliste in arbejdslister]
+samlet_forbrug_1 = np.array([0. for i in range(N + 1)])
+samlet_forbrug_2 = np.array([0. for i in range(N + 1)])
+
+for ops, l(*å*)n in zip(forbrugs_ops, forbrugs_l(*å*)n):
+    samlet_forbrug_1 += ops
+    samlet_forbrug_2 += l(*å*)n
+
+forbrugs_gennemsnit = []
+for gennemsnit_opsparing, gennemsnit_l(*å*)n in zip(samlet_forbrug_1, \
+                                                    samlet_forbrug_2):
+    forbrugs_gennemsnit.append((gennemsnit_opsparing/X, gennemsnit_l(*å*)n/X))
+
+print(forbrugs_gennemsnit)
+print(totalnytte(sum(i) for i in forbrugs_gennemsnit))
+
+\end{lstlisting}
+

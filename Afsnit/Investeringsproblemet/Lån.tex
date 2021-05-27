@@ -1,24 +1,26 @@
-\section{Udvidet problem}
-I det udvidede problem undersøges det, hvordan muligheden for at optage lån påvirker forbruget og belønningen for forbrugeren. Det antages, at forbrugeren er fornuftig, og dermed er belønningsfunktionen givet ved \eqref{eq:belønning_fornuftig_forbruger}. Derudover er sandsynligheden for, at forbrugeren er i arbejde givet ved Markov-kæden med overgangssandsynlighederne, \eqref{eq:markov_kæde_problem}.
+\pagebreak
 
-Da det i denne udvidelse antages, at forbrugeren har muligheden for at optage lån, afhænger den fremtidige opsparing også af lånet og udlånsrenten. Altså er den fremtidige opsparing 
+\section{Udvidet problem}
+I det udvidede problem undersøges det, hvordan muligheden for at optage lån påvirker forbrugerens forventede maksimale belønning og forbrug. Det antages, at forbrugeren er fornuftig, og dermed er belønningsfunktionen \eqref{eq:belønning_fornuftig_forbruger}. Derudover er sandsynligheden for, at forbrugeren er i arbejde beskrevet ved Markov-kæden med overgangssandsynlighederne, \eqref{eq:markov_kæde_problem}.
+
+Da der i denne udvidelse antages, at forbrugeren har muligheden for at optage lån, afhænger den fremtidige opsparing også af lånet og udlånsrenten. Altså er den fremtidige opsparing givet ved
 \begin{align*} 
     S_{t+1} =(1 + \gamma_i)(S_t-a_t - L_t \cdot \gamma_u) + \xi_t \cdot I,
 \end{align*}
-hvor $\gamma_i$ betegner indlånsrenten, $\gamma_u$ udlånsrenten, og $L_t$ det samlede lån frem til beslutningstidspunkt $t$. Altså afdrager forbrugeren renterne på lånet, før han modtager afkast fra banken. 
+hvor $\gamma_i$ betegner indlånsrenten, $\gamma_u$ udlånsrenten og $L_t$ det samlede lån frem til beslutningstidspunkt $t$. Altså afdrager forbrugeren renterne på lånet, før han modtager afkast fra banken. 
 %  V[N][s, xi, L_N] = R(s - L_N * (1 + udlånsrente))    
-Det antages desuden, at der forbruges, hvad der lånes i det pågældende beslutningstidspunkt, og at han kun i beslutningstidspunkt $t=N$ kan betale lånet tilbage. 
+Det antages desuden, at der forbruges, hvad der lånes i det pågældende beslutningstidspunkt, og at lånet tilbagebetales i beslutningstidspunkt $t=N$.
 
-Lad $L$ betegne lånebegrænsningen, som er det maksimale beløb, forbrugeren kan låne til alle beslutningstidspunkter. Da det er muligt for forbrugeren at låne til hvert beslutningstidspunkt, er beslutningsrummet givet ved
+Lad $L$ betegne lånebegrænsningen, som er det maksimale beløb, forbrugeren kan låne til hvert beslutningstidspunkt. Da det er muligt for forbrugeren at låne til hvert beslutningstidspunkt, er beslutningsrummet givet ved
 \begin{align*}
-    A_t(S_t) = [-L, S_t].
+    A_t(S_t) = [0, S_t] \times [0, L].
 \end{align*}
-
-Det antages, at forbrugeren ikke må have nogen gæld efter det sidste beslutningstidspunkt, og dermed skal hele lånet og de tilhørende udlånsrenter være tilbagebetalt ved sidste beslutningstidspunkt. Altså skal
+%
+Det antages, at forbrugeren ikke må have gæld efter det sidste beslutningstidspunkt, og dermed skal hele lånet og de tilhørende udlånsrenter være tilbagebetalt ved sidste beslutningstidspunkt. Altså gælder det, at
 \begin{align*}
     L_N \leq S_N.
 \end{align*}
-Ud fra ovenstående vil det undersøges, hvordan forbruget samt belønningen påvirkes af varierende lånebegrænsninger, renter og sandsynligheden for arbejdsløshed. Nedenstående værdier holdes faste, hvis ikke andet er angivet
+Ud fra ovenstående vil det analyseres, hvordan forbruget samt den forventede maksimale belønning påvirkes af varierende lånebegrænsninger, renter og sandsynligheder for arbejdsløshed. For at kunne analysere dette vil disse faktorer varieres, mens nedenstående faktorer fastholdes til følgende værdier, medmindre andet er angivet
 \begin{align}\label{fastevariable}
     \begin{split}
         N=11,\\
@@ -32,15 +34,15 @@ Ud fra ovenstående vil det undersøges, hvordan forbruget samt belønningen på
 \end{align}
 
 \subsection[Variation af  \texorpdfstring{$\gamma_i$ og $\gamma_u$}{Variation af indlåns- og udlånsrenten}]{Variation af \bm{$\gamma_i$} og \bm{$\gamma_u$}}
-Først undersøges, hvordan forbruget påvirkes, når indlåns- og udlånsrenten er ækvivalente. Derfor fastholdes de andre variable som i \eqref{fastevariable}.
+Først undersøges det, hvordan forbruget og den forventede maksimale belønning påvirkes, når indlåns- og udlånsrenten er ækvivalente. Derfor fastholdes de andre faktorer som i \eqref{fastevariable}.
 
-De værdier for indlåns- og udlånsrenten der sammenlignes, er henholdsvis $\gamma_i = \gamma_u= 0.01, \gamma_i = \gamma_u=0.02$ og $\gamma_i = \gamma_u=0.05$.
+Værdierne for indlåns- og udlånsrenten der sammenlignes, er henholdsvis $\gamma_i = \gamma_u= 0.01, \gamma_i = \gamma_u=0.02$ og $\gamma_i = \gamma_u=0.05$.
 
-Ved at anvende de ovenstående værdier i \textbf{algoritmen} bestemmes den optimale strategi inklusiv lån for forbrugeren samt den maksimale belønning givet denne strategi. Disse værdier er præsenteret i nedenstående tabel, \autoref{tab:ind_ud_ens}.
+Ved at anvende de ovenstående værdier i den implementerede algoritme, \autoref{Bilag:python_kode}, bestemmes den optimale strategi, inklusiv lån, for forbrugeren samt den forventede maksimale belønning givet denne strategi. Disse værdier er præsenteret i nedenstående tabel, \autoref{tab:ind_ud_ens}.
 
 \input{Afsnit/Investeringsproblemet/tabel_Ind_ud_ens}
 
-I ovenstående tabel er de optimale strategier samt den tilhørende maksimale belønning præsenteret i kolonne 2-4. Derudover er beslutningstidspunkterne angivet i kolonne 1. Til hvert beslutningstidspunkt kan det optimale forbrug aflæses, hvor tallene i parenteserne repræsenterer den andel lånet udgør af forbruget. De optimale strategier samt lånet illustreres i nedenstående figur, \autoref{fig:lån_i=u}, hvor figuren til venstre repræsenterer forbruget inklusiv lån og figuren til højre repræsenterer lånet. 
+I ovenstående tabel er de optimale strategier samt den tilhørende forventede maksimale belønning præsenteret i kolonne 2-4. Derudover er beslutningstidspunkterne angivet i kolonne 1. Til hvert beslutningstidspunkt kan det optimale forbrug aflæses, hvor tallene i parenteserne repræsenterer den andel af forbruget, som lånet udgør. De optimale strategier, samt lånet, illustreres i nedenstående figur, \autoref{fig:lån_i=u}, hvor figuren til venstre repræsenterer forbruget, inklusiv lån, og figuren til højre repræsenterer lånet. 
 
 \begin{figure}[H] 
     \begin{center}
@@ -49,25 +51,26 @@ I ovenstående tabel er de optimale strategier samt den tilhørende maksimale be
     \end{center}
     \caption{Forbrug af henholdsvis opsparing og lån med variation af $\gamma_u=\gamma_i$}\label{fig:lån_i=u}
 \end{figure}
-
-
-I \autoref{tab:ind_ud_ens} og \autoref{fig:lån_i=u} kan det aflæses, at på samme måde som i basisproblemet, stiger den maksimale belønning, når indlånsrenten stiger. Desuden bemærkes det, at belønningen er omtrent den samme som i basisproblemet givet samme indlånsrenter, som i \autoref{tab:ændring_r}. 
+På samme måde som i basis-problemet kan det i \autoref{tab:ind_ud_ens} og \autoref{fig:lån_i=u} aflæses, at den forventede maksimale belønning stiger, når indlånsrenten stiger. Desuden bemærkes det, at den forventede maksimale belønning er omtrent den samme som i basis-problemet givet samme indlånsrenter, som i \autoref{tab:ændring_r}. Altså kan det ligesom ved basis-problemet aflæses, at hældningen på kurverne er større ved højere indlånsrenter, hvilket igen illustrerer, at forbrugeren udnytter renters renter mere og dermed fordeler sit forbrug mindre ligeligt mellem månederne.
 
 %I \autoref{tab:ind_ud_ens} og \autoref{fig:lån_i=u} kan det aflæses, at den maksimale belønning stiger i takt med, at indlånsrenten stiger på samme måde som i basisproblemet. Desuden bemærkes det, at belønningen er omtrent den samme som i basisproblemet. 
 
-Da $\Delta = 1$, kan der kun forbruges nærmeste heltal. Derfor er der små afrundingsfejl, som resulterer i, at forbrugeren i nogle beslutningstidspunkter har en præference til at låne. Disse lån har ingen betydning, da belønningen er uafhængig af lån, når indlåns- og udlånsrenten er den samme. 
+Da $\Delta = 1$, kan der kun forbruges nærmeste heltal. Derfor er der små afrundingsfejl, som resulterer i, at forbrugeren i nogle beslutningstidspunkter har en præference til at låne. Disse lån har ingen betydning, da den forventede maksimale belønning er uafhængig af lån, når indlåns- og udlånsrenten er den samme. 
 
 %Grunden til, at investoren vælger at låne ved større rente er uvis, men det postuleres, at det har noget at gøre med Delta. 
 
+Herefter vil det analyseres, hvordan forbruget påvirkes, når $\gamma_i \neq \gamma_u$. Det forventes, at når udlånsrenten er større end indlånsrenten, vil forbrugeren undlade at låne. 
+Denne forventning er baseret på, at lånet vil vokse hurtigere end opsparingen, hvilket resulterer i et negativt afkast. Omvendt forventes det, at forbrugeren får en højere forventet maksimal belønning ved at låne, når udlånsrenten er lavere end indlånsrenten.
 
-Herefter vil det analyseres, hvordan forbruget påvirkes, hvis $\gamma_i \neq \gamma_u$. Det forventes, at når udlånsrenten er større end indlånsrenten, vil forbrugeren undlade at låne. Dette skyldes, at lånet vokser hurtigere end opsparingen, hvilket resulterer i et negativt afkast. Omvendt kan forbrugeren få en højere belønning ved at låne med en udlånsrente lavere end indlånsrenten.
+Først analyseres tilfældet, hvor $\gamma_i < \gamma_u$. Indlånsrenten fastholdes til $0.01$, mens alle andre faktorer fastholdes med værdierne givet i \eqref{fastevariable}.
 
-Først analyseres tilfældet, hvor $\gamma_i < \gamma_u$. Indlånsrenten lades være $0.01$, og alle andre faktorer fastholdes med værdierne givet i \eqref{fastevariable}. Udlånsrenterne, der sammenlignes, er henholdsvis $\gamma_u = 0.01, \gamma_u = 0.02, \gamma_u = 0.03$ og $\gamma_u = 0.04$. Ved at anvende disse værdier for $\gamma_u$ i \textbf{algoritmen}, bestemmes den optimale strategi, inklusiv lån, for forbrugeren samt den maksimale belønning givet denne strategi. Disse værdier er præsenteret i nedenstående tabel, \autoref{tab:ind_udvari}.
+Udlånsrenten vil henholdsvis være $\gamma_u = 0.02, \gamma_u = 0.03$ og $\gamma_u = 0.04$. Ved at anvende disse værdier for $\gamma_u$ i den implementerede algoritme, \autoref{Bilag:python_kode}, bestemmes den optimale strategi, inklusiv lån, for forbrugeren samt den forventede maksimale belønning givet denne strategi. Disse værdier er præsenteret i nedenstående tabel, \autoref{tab:ind_udvari}.
 
 \input{Afsnit/Investeringsproblemet/tabel_indlån_udlån}
-
-Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_ens}. De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_gamma_u}. 
-
+%%
+Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_ens}. 
+De optimale strategier, samt lånet, illustreres i nedenstående figur, \autoref{fig:lån_gamma_u}, hvor figuren til venstre repræsenterer forbruget, inklusiv lån, og figuren til højre repræsenterer lånet. 
+%
 % 
 \begin{figure}[H]
     \begin{center}
@@ -77,14 +80,22 @@ Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \aut
     \caption{Optimal strategi og lån ved variation af $\gamma_u$}\label{fig:lån_gamma_u}
 \end{figure}
 
-I \autoref{tab:ind_udvari} og \autoref{fig:lån_gamma_u} kan det aflæses, at når udlånsrenten er større end indlånsrenten vil forbrugeren, som forventet, ikke låne noget. Herudover kan det aflæses, at den optimale strategi i dette tilfælde er uafhængig af udlånsrenten. Der er dog nogle få afvigelser, hvilket skyldes, at den optimale strategi bestemmes ud fra et gennemsnit af $10000$ simuleringer. Disse afvigelser kan formindskes ved at øge antallet af simuleringer. Derudover er dette også forårsaget af diskretiseringsfaktorens størrelse. Da den optimale strategi er den samme i de fire tilfælde, og indlånsrenten fastholdes, er de maksimale belønninger ækvivalente, hvilket kan aflæses i nederste række i \autoref{tab:ind_udvari}. Da forbrugeren ikke optager lån, når $\gamma_i < \gamma_u$, dannes der er en konstant graf, hvilket kommer til udtryk i grafen til højre i \autoref{fig:lån_gamma_u}.
+I \autoref{tab:ind_udvari} og \autoref{fig:lån_gamma_u} kan det aflæses, at når udlånsrenten er større end indlånsrenten vil forbrugeren, som forventet, ikke låne noget. Herudover kan det aflæses, at den optimale strategi i dette tilfælde er uafhængig af udlånsrenten. 
+
+Dette medfører, at det optimale forbrug er det samme i de tre tilfælde, bortset fra små afvigelser, som skyldes, at strategien bestemmes ud fra et gennemsnit at $10000$ simuleringer. Disse afvigelser kan formindskes ved at øge antallet af simuleringer. Da der ikke lånes i nogle af beslutningstidspunkterne, er det muligt at sammenligne disse resultater med basis-problemet hvor indlånsrenten er varierende, \autoref{tab:ændring_r}. Det er forventet ud fra basis-problemet, at forbruget vil være monotont voksende. Dette er ikke tilfældet for resultaterne i \autoref{tab:ind_ud_lån_var}, hvilket skyldes den høje diskretiseringsfaktor for det udvidede problem.
+
+Da den optimale strategi er den samme i de tre tilfælde, og indlånsrenten fastholdes, er de forventede maksimale belønninger ækvivalente, hvilket kan aflæses i nederste række i \autoref{tab:ind_udvari}. Da forbrugeren ikke optager lån, når $\gamma_i < \gamma_u$, dannes der er en konstant graf for lånet, hvilket illustreres i grafen til højre i \autoref{fig:lån_gamma_u}.
 %Efter at have sammenlignet forskellige værdier for udlånsrenten, vil det undersøges,
+%Indlånsrenten fastholdes til $0.01$, mens alle andre faktorer fastholdes med værdierne givet i \eqref{fastevariable}.
 
-Herefter analyseres tilfældet, hvor $\gamma_i > \gamma_u$. Udlånsrenten lades være $0.01$, og alle andre faktorer fastholdes med værdierne givet i \eqref{fastevariable}. Indlånsrenterne, der sammenlignes, er henholdsvis $\gamma_i = 0.01,  \gamma_i = 0.02,  \gamma_i = 0.03$ og $ \gamma_i = 0.04$. Den optimale strategi, inklusiv lån, for forbrugeren samt den maksimale belønning givet denne strategi bestemmes ved at anvende disse værdier for $\gamma_i$. Resultaterne er præsenteret i nedenstående tabel, \autoref{tab:ind_udvari}.
-
+Herefter analyseres tilfældet, hvor $\gamma_i > \gamma_u$. Udlånsrenten fastholdes til $0.01$, mens alle andre faktorer fastholdes med værdierne givet i \eqref{fastevariable}. Indlånsrenten vil henholdsvis være $\gamma_i = 0.02,  \gamma_i = 0.03$ og $ \gamma_i = 0.04$. Den optimale strategi, inklusiv lån, for forbrugeren samt den forventede maksimale belønning givet denne strategi bestemmes ved at anvende disse værdier for $\gamma_i$. Resultaterne er præsenteret i nedenstående tabel, \autoref{tab:ind_udvari}.
+%
 \input{Afsnit/Investeringsproblemet/tabel_indl_var}
+%
+Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_ens}. 
 
-Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_ens}. De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_gamma_u}. 
+De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_gamma_u}, hvor figuren til venstre repræsenterer forbruget, inklusiv lån, og figuren til højre repræsenterer lånet.  
+
 
 \begin{figure}[H]
     \begin{center}
@@ -94,9 +105,11 @@ Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \aut
     \caption{Optimal strategi og lån ved variation af $\gamma_i$ }\label{fig:lån_gamma_i}
 \end{figure}
 
-Det kan i \autoref{tab:indvari} igen konkluderes, at den maksimale belønning stiger, jo højere indlånsrenten er. Ved at analysere de tilfælde, hvor $\gamma_i > \gamma_u$ kan det aflæses, at forbrugeren vil låne mere i de første beslutningstidspunkter end i de sidste. Grunden til at forbrugeren ikke bliver ved med at låne, er, at han skal betale udlånsrenten af sin samlede gæld, før han får tillagt afkastet af opsparingen. Selvom indlånsrenten er større end udlånsrenten, vil dette medføre, at afkastet af opsparingen vil være for lille til at kompensere for afdraget af lånet i de senere beslutningstidspunkter. Dermed er forbrugeren nødsaget til at låne mindre og mindre. Jo større indlånsrenten er, jo længere tid vil der gå, før afkastet af opsparingen ikke længere vil dække afdraget af lånet. 
+Sammenlignet med resultaterne, hvor $\gamma_i \leq \gamma_u$, kan det for $\gamma_i > \gamma_u$ aflæses, at indlånsrenten har en påvirkning på forbrugerens forventede maksimale belønning. Det kan i \autoref{tab:indvari} konkluderes, at den forventede maksimale belønning stiger, jo højere indlånsrenten er, ligesom i basis-problemet. Det kan derudover aflæses, at forbrugeren vil låne mere i de første beslutningstidspunkter end i de sidste. 
+% Det kan i \autoref{tab:indvari} igen konkluderes, at den forventede maksimale belønning stiger, jo højere indlånsrenten er. Sammenlignet med resultaterne, hvor $\gamma_i \leq \gamma_u$, kan det for $\gamma_i > \gamma_u$ aflæses, at indlånsrenten har en påvirkning på forbrugerens forventede maksimale belønning. Det kan aflæses, at forbrugeren vil låne mere i de første beslutningstidspunkter end i de sidste.
+Grunden til at forbrugeren ikke bliver ved med at låne, er, at han skal betale udlånsrenten af sin samlede gæld, før han får tillagt afkastet af opsparingen. Selvom indlånsrenten er større end udlånsrenten, vil dette medføre, at afkastet af opsparingen vil være for lille til at kompensere for afdraget af lånet i de senere beslutningstidspunkter. Dermed er forbrugeren nødsaget til at låne mindre og mindre. Jo større indlånsrenten er, jo længere tid vil der gå, før afkastet af opsparingen ikke længere vil dække afdraget af lånet. 
 
-Herudover kan det aflæses, at når indlånsrenten stiger, vil forbrugeren, ligesom i \autoref{fig:renter} fra basisproblemet, forbruge mindre ligeligt og udnytte renters rente mere. Det følger også, at når indlånsrenten vokser, er forbruget til hvert beslutningstidspunkt samt den maksimale belønning større. 
+Herudover kan det aflæses, at når indlånsrenten stiger, vil forbrugeren, ligesom i \autoref{fig:renter} fra basis-problemet, forbruge mindre ligeligt og udnytte renters rente mere. Det følger også, at når indlånsrenten vokser, er forbruget til hvert beslutningstidspunkt og den forventede maksimale belønning større. 
 
 %Grunden til han stopper er at på et tidspunkt at lånet er så stort hvad kommer der ud gift hvad der kommer ind. Det han får i renter for lånet er større end det han får i renter af opsparingen. Fordi lånet er en sum af mange lån kan dette hænde. Dermed får man ikke lige så meget ud af sit lån. Den er inde i parentesen, lånet trækkes først fra. Hvad er den afledte af udtrykket ift $L_t$, hvis mindre end en eller nul vil det koste penge at låne. Af vektoren. Bare kommenter det.
 
@@ -115,11 +128,13 @@ Herudover kan det aflæses, at når indlånsrenten stiger, vil forbrugeren, lige
 %I følgende tabel varieres $\alpha$, 
 
 \subsection[Variation af  \texorpdfstring{$\alpha$}{alpha}]{Variation af \bm{$\alpha$}}
-I dette afsnit analyseres hvordan varierende $\alpha$-værdier påvirker forbruget. De resterende faktorer fastholdes som i \eqref{fastevariable}, og hvor indlånsrenten er $0.03$ og udlånsrenten er $0.01$. De varierende sandsynligheder for at forbrugeren mister sit arbejde, er henholdsvis $\alpha=0.1$, $\alpha=0.5$ og $\alpha=0.9$. Den optimale strategi, inklusiv lån, for forbrugeren samt den maksimale belønning givet denne strategi bestemmes ved at anvende disse værdier. Resultaterne er præsenteret i nedenstående tabel, \autoref{tab:ind_ud_alpha_var}.
+I dette afsnit analyseres det, hvordan varierende $\alpha$-værdier påvirker forbruget og den forventede maksimale belønning. De resterende faktorer fastholdes som i \eqref{fastevariable}, mens indlånsrenten er $0.03$, og udlånsrenten er $0.01$. Sandsynligheden, for at forbrugeren mister sit arbejde, er henholdsvis $\alpha=0.1$, $\alpha=0.5$ og $\alpha=0.9$. Den optimale strategi, inklusiv lån, for forbrugeren samt den forventede maksimale belønning givet denne strategi bestemmes ved at anvende disse værdier. Resultaterne er præsenteret i nedenstående tabel, \autoref{tab:ind_ud_alpha_var}.
 
 \input{Afsnit/Investeringsproblemet/tabel_ind_ud_alpha_var}
 
-Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_ens}. De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_alpha}.
+Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_ens}. De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_alpha}, hvor figuren til venstre repræsenterer forbruget, inklusiv lån, og figuren til højre repræsenterer lånet. 
+
+%Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_ens}. De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_alpha}.
 
 \begin{figure}[H]
     \begin{center}
@@ -129,7 +144,28 @@ Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \aut
     \caption{Optimal strategi og lån ved variation af $\alpha$}\label{fig:lån_alpha}
 \end{figure}
  
-I \autoref{tab:ind_ud_alpha_var} og \autoref{fig:lån_alpha} kan det aflæses, at den maksimale belønning falder i takt med, at sandsynligheden for at blive arbejdsløs stiger. Dette stemmer overens med resultatet i basisproblemet tilhørende \autoref{tab:ændring_i_p_og_q}. Derudover kan det aflæses, at forbruget er stigende uafhængigt af $\alpha$-værdierne. Dette kan ligesom i basisproblemet skyldes, at hans forbrug er mere konservativt i starten således, at han kan forbruge af sin opsparing i de beslutningstidspunkter, han ikke er i arbejde. 
+I \autoref{tab:ind_ud_alpha_var} og \autoref{fig:lån_alpha} kan det aflæses, at den forventede maksimale belønning falder, i takt med at sandsynligheden for at blive arbejdsløs stiger. Dette stemmer overens med resultatet i basis-problemet tilhørende \autoref{tab:ændring_i_p_og_q}. Derudover kan det aflæses, at forbruget er stigende uafhængigt af $\alpha$-værdierne. Dette kan skyldes, at forbrugeren udnytter renters rente eftersom $\gamma_i > \gamma_u$ ligesom i resultaterne for \autoref{tab:indvari}.
+
+
+%Dette kan ligesom i basis-problemet skyldes, at hans forbrug er mere konservativt i starten således, at han kan forbruge af sin opsparing i de beslutningstidspunkter, han ikke er i arbejde.  
+%Desuden bemærkes det, at kurverne tilnærmelsesvis er forskydninger af hinanden, hvor den grønne og orange kurve følger hinanden bedre end den blå. 
+
+%Det kan aflæses i \autoref{tab:ind_ud_lån_var}, at forbrugeren vil låne mere, jo større sandsynligheden for at være arbejdsløs er. Det var forventet, at dette ikke var tilfældet, da forbrugeren har færre penge, når han i flere beslutningstidspunkter er arbejdsløs. Dette ville resultere i, at afkastet på opsparingen hurtigere bliver lavere end afdraget på lånet i forhold til en lavere sandsynlighed for at være arbejdsløs. 
+
+Det kan aflæses i \autoref{tab:ind_ud_lån_var}, at forbrugeren vil låne mere, jo større sandsynligheden for at være arbejdsløs er. Det var forventet, at dette ikke var tilfældet, da forbrugeren har færre penge, når han i flere beslutningstidspunkter er arbejdsløs, hvilket resultere i, at afkastet på opsparingen hurtigere bliver lavere end afdraget på lånet. Det, at resultaterne og forventningerne ikke stemmer overens, kan skyldes diskretiseringsfaktoren og forholdet mellem startopsparing og lån. 
+
+Yderligere analyse af forbrugerens adfærd undlades på grund af problemets størrelse, samt begrænsning af projektet.
+
+%Dette kan ikke analyseres yderligere på grund af størrelsen af problemet og begrænsning af projektet. % og tidsmangel.     
+
+%den store forskel mellem -startopsparing og lån-. Årsagen til dette vil ikke analyseres yderligere i dette projekt, men "en ide" kunne være at kigge på heatmaps og ekstremtilfælde.
+
+% ikke hvad vi forventede
+% mere analyse nødvendig - heatmap osv
+% diskretiseringsfaktor
+% kig på ekstremtilfælde
+
+
 
 %Grunden til dette er, at når investoren forventer at miste sit job, er der større belønning ved at opretholde sit forbrug igennem lån, som dermed gør det muligt for investoren at sænke forbruget af sin opsparing, da renteindtægterne fra investorens bank er en større prioritet når der forventes arbejdsløshed.
 
@@ -147,28 +183,38 @@ I \autoref{tab:ind_ud_alpha_var} og \autoref{fig:lån_alpha} kan det aflæses, a
 
 \subsection[Variation af  \texorpdfstring{$L$}{lånebegrænsning}]{Variation af \bm{$L$}} 
 
-Til sidst vil lånebegrænsningen varieres, mens de resterende faktorer fastholdes som i \eqref{fastevariable}, og hvor indlånsrenten fastholdes ved $0.03$ og udlånsrenten ved $0.01$. Den optimale strategi, inklusiv lån, for forbrugeren samt den maksimale belønning givet denne strategi bestemmes ved at anvende disse værdier for $L$. Resultaterne er præsenteret i nedenstående tabel, \autoref{tab:ind_ud_lån_var}.
+Til sidst analyseres det, hvordan varierende lånebegrænsning påvirker forbruget og den forventede maksimale belønning. De resterende faktorer fastholdes som i \eqref{fastevariable}, mens indlånsrenten er $0.03$, og udlånsrenten er $0.01$. Den optimale strategi, inklusiv lån, for forbrugeren samt den forventede maksimale belønning givet denne strategi bestemmes ved at anvende disse værdier for $L$. Resultaterne er præsenteret i nedenstående tabel, \autoref{tab:ind_ud_lån_var}.
 
 \input{Afsnit/Investeringsproblemet/tabel_ind_ud_lån_var}
 
-Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_lån_var}. De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_L_t}.
+Forbruget og lånet kan aflæses i ovenstående tabel på samme måde som i \autoref{tab:ind_ud_lån_var}. De optimale strategier samt lånet er illustreret i nedenstående figur, \autoref{fig:lån_L_t}, hvor figuren til venstre repræsenterer forbruget, inklusiv lån, og figuren til højre repræsenterer lånet. 
 
 \begin{figure}[H]
     \begin{center}
         \resizebox{8cm}{!}{\input{Afsnit/PGF/ændre_L_t_samlet.pgf}}
         \resizebox{8cm}{!}{\input{Afsnit/PGF/ændre_L_t_lån.pgf}}
     \end{center}
-    \caption{Mangler caption: De to grafer men på ved siden af }\label{fig:lån_L_t}
+    \caption{Optimal strategi og lån ved variation af $L$ }\label{fig:lån_L_t}
 \end{figure}
 
 I \autoref{tab:ind_ud_lån_var} låner forbrugeren mere i starten end til sidst, hvilket også er tilfældet i \autoref{tab:ind_udvari}. Dette skyldes, at afkastet af opsparingen i de senere beslutningstidspunkter ikke vil dække afdraget af lånet. 
 
-Det bemærkes, at når lånebegrænsningen forøges, er forbrugeren i stand til at forbruge mindre af sin opsparing ved at tage lån, og han kan derfor udnytte renters rente mere, da hans opsparing er større. Dermed er forbrugeren i stand til at låne maksimalt i flere beslutningstidspunkter, hvilket giver en større belønning. Ved $t=0$ kan det eksempelvis aflæses for $L=4$, at forbrugeren vælger at forbruge $5$ fra sin opsparing og $4$ gennem lån, hvorimod han forbruger $13$ fra sin opsparing og $2$ gennem lån for $L=2$. 
+Det bemærkes, at når lånebegrænsningen forøges, er forbrugeren i stand til at forbruge mindre af sin opsparing ved at tage lån. Derved er det muligt for forbrugeren at opretholde et vist forbrug, samtidig med at han udnytter renters rente mere, da hans opsparing er større. Ved $t=2$ kan det eksempelvis aflæses for $L=4$, at forbrugeren vælger at forbruge $11.54$ fra sin opsparing og $4$ gennem lån, hvorimod han forbruger $13.57$ fra sin opsparing og $2$ gennem lån for $L=2$. Det bemærkes herudover, at det samlede forbrug for de to lånebegrænsninger i $t=2$ er omtrent det samme. Dermed er forbrugeren i stand til at låne maksimalt i flere beslutningstidspunkter, hvilket giver en større forventet maksimal belønning. Dette kan desuden bemærkes ved at sammenligne kurverne for $L=1$ og $L=2$, hvor forbruget i starten er omtrent det samme, men lånet er forskelligt. Altså kommer en større andel af forbruget gennem lån for $L=2$ i forhold til $L=1$ i de første beslutningstidspunkter.
 
-Da der forbruges mindre af hans opsparing ved at låne, vil forbrugeren udnytte indlånsrenten mere og dermed have mere at forbruge generelt. Dette afspejles i \autoref{fig:lån_L_t} ved, at der forbruges mere i de senere beslutningstidspunkter, jo højere det mulige lån er. Samtidig medfører dette, at hvis forbrugeren har mulighed for at låne mere til hvert beslutningstidspunkt, stiger den maksimale belønning. 
-
+Da der forbruges mindre af hans opsparing ved at låne, vil forbrugeren udnytte indlånsrenten mere og dermed have mere at forbruge generelt. Dette observeres i \autoref{fig:lån_L_t} ved, at der forbruges mere i de senere beslutningstidspunkter, jo højere lånebegrænsningen er. Samtidig medfører dette, at hvis forbrugeren har mulighed for at låne mere til hvert beslutningstidspunkt, stiger den forventede maksimale belønning. 
 
 \section{Delkonklusion}
-I basis- og det udvidede problem kan det konkluderes, at hvis indlånsrenten og udlånsrenten er nul, vil forbrugeren forsøge at fordele sit forbrug ligeligt mellem månederne på grund af hans belønningsfunktion. Derudover kan det konkluderes, at hvis indlånsrenten er positiv og større end udlånsrenten, vil forbrugeren udnytte renters rente mere og forbruge mere i slutningen af tidperioden end først. Forbrugeren vil herudover udnytte, at der er mulighed for at optage lån, så længe at hans afkast på opsparingen overstiger afdraget af gælden, og at det er muligt at betale gælden tilbage i sidste beslutningstidspunkt. Han vil dermed heller ikke låne noget, hvis udlånsrenten er større end indlånsrenten. Sandsynligheden for at forbrugeren er i arbejde, påvirker også hans forbrug, blandt andet ved, at han er i arbejde i færre beslutningstidspunkter og dermed har mindre at forbruge, da han får løn færre gange. En diskretiseringsfaktor på $1$ gør det dog svært at analysere det udvidede problem yderligere. Dette samt antagelserne for investeringsproblemet vil diskuteres i følgende afsnit. 
+I basis- og det udvidede problem kan det konkluderes, at hvis indlånsrenten og udlånsrenten er nul, vil forbrugeren forsøge at fordele sit forbrug ligeligt mellem månederne på grund af hans belønningsfunktion. Derudover kan det konkluderes, at hvis indlånsrenten er positiv og større end udlånsrenten, vil forbrugeren udnytte renters rente mere og forbruger mere i slutningen af tidperioden end først. Forbrugeren vil herudover udnytte, at der er mulighed for at optage lån, så længe at hans afkast på opsparingen overstiger afdraget af gælden, og at det er muligt at betale gælden tilbage i sidste beslutningstidspunkt. En forbruger vil af denne grund ikke optage lån, hvis udlånsrenten er større end indlånsrenten. Sandsynligheden for at forbrugeren er i arbejde, påvirker også hans forbrug. Når sandsynligheden, for at forbrugeren mister sit arbejde, er større, er forbrugeren i arbejde til færre beslutningstidspunkter. Dette medfører, at han får lån færre gange, og dermed forbruger han mindre.
+
+Problemets størrelse gør det svært at analysere det udvidede problem yderligere. Dette samt antagelserne for forbrugsproblemet diskuteres i følgende afsnit. 
+
+
+
+
+
+
+
+
+
 
 
